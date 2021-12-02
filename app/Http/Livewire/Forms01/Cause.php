@@ -99,7 +99,7 @@ class Cause extends Component
         $info = CauseModel::find($causes_id);
         $this->dispatchBrowserEvent('SwalConfirm',[
             'title'=>'Are you sure?',
-            'html'=>'You want to delete <strong>'.$info->gender_description.'</strong>',
+            'html'=>'You want to delete <strong>'.$info->causes_description.'</strong>',
             'id'=>$causes_id
         ]);
     }
