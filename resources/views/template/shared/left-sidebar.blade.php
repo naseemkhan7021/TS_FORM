@@ -354,14 +354,37 @@
                             <a href="{{ route('form01_subactivity') }}"> Sub Activity </a>
                         </li>
                         <li>
+                            <a href="{{ route('form01_cause') }}"> Potential Hazard </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('form01_cause') }}"> Probable Consequence </a>
+                        </li>
+                        <li>
                             <a href="{{ route('form01_cause') }}"> Causes </a>
                         </li>
                         <li>
                             <a href="{{ route('form01_subcause') }}"> Sub Causes </a>
                         </li>
                         <li>
-                            <a href="#"> Potential Hazards </a>
+                            <a href="#"> Risk Probability </a>
                         </li>
+                        <li>
+                            <a href="#"> Risk Consequence </a>
+                        </li>
+                        <li>
+                            <a href="#"> Consequences Control </a>
+                        </li>
+                        <li>
+                            <a href="#"> Administrative Control Mitigative </a>
+                        </li>
+                        <li>
+                            <a href="#"> Administrative Control Preventive </a>
+                        </li>
+                        <li>
+                            <a href="#"> Duration Of Exposure </a>
+                        </li>
+
+
                     </ul>
                 </div>
             </li>

@@ -112,5 +112,39 @@ class Form01Controller extends Controller
     }
 
 
+    public function index_administrative_control_mitigative()
+    {
+        return view('forms.forms_01.administrative_control_mitigative.index');
+    }
+
+
+    public function index_administrative_control_preventive()
+    {
+        return view('forms.forms_01.administrative_control_preventive.index');
+    }
+
+
+    public function index_engineering_control()
+    {
+        return view('forms.forms_01.engineering_control.index');
+    }
+
+
+    public function index_consequences_control()
+    {
+        return view('forms.forms_01.consequences_control.index');
+    }
+
+
+    public function index_duration_of_exposure()
+    {
+        return view('forms.forms_01.duration_of_exposure.index');
+    }
+
+
+
+
+
+
 
 }

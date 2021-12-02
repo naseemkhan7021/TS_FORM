@@ -58,6 +58,11 @@ Route::get('/form01_subactivity',[Form01Controller::class,'index_subactivity'])-
 Route::get('/form01_cause',[Form01Controller::class,'index_cause'])->name('form01_cause');
 Route::get('/form01_subcause',[Form01Controller::class,'index_subcause'])->name('form01_subcause');
 
+Route::get('/form01_administrative_control_mitigative',[Form01Controller::class,'index_administrative_control_mitigative'])->name('form01_administrative_control_mitigative');
+Route::get('/form01_administrative_control_preventive',[Form01Controller::class,'index_administrative_control_preventive'])->name('form01_administrative_control_preventive');
+Route::get('/form01_engineering_control',[Form01Controller::class,'index_engineering_control'])->name('form01_engineering_control');
+Route::get('/form01_consequences_control',[Form01Controller::class,'index_consequences_control'])->name('form01_consequences_control');
+Route::get('/form01_duration_of_exposure',[Form01Controller::class,'index_duration_of_exposure'])->name('form01_duration_of_exposure');
 
 
 // dashboard_presales
