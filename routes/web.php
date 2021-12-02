@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommonController;
+use App\Http\Controllers\Forms\Form01Controller;
 use App\Http\Controllers\RoutingController;
 
 /*
@@ -48,6 +49,15 @@ Route::get('/leads',[CommonController::class,'index_leads'])->name('leads');
 Route::get('/leadfollow',[CommonController::class,'index_leadfollowup'])->name('leadfollow');
 Route::get('/primarymember',[CommonController::class,'index_primarymember'])->name('primarymember');
 Route::get('/secondarymember',[CommonController::class,'index_secondarymember'])->name('secondarymember');
+
+
+// Forms Routes
+
+Route::get('/form01_activity',[Form01Controller::class,'index_activity'])->name('form01_activity');
+Route::get('/form01_subactivity',[Form01Controller::class,'index_subactivity'])->name('form01_subactivity');
+Route::get('/form01_cause',[Form01Controller::class,'index_cause'])->name('form01_cause');
+Route::get('/form01_subcause',[Form01Controller::class,'index_subcause'])->name('form01_subcause');
+
 
 
 // dashboard_presales

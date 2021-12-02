@@ -290,6 +290,87 @@
             @endif
 
 
+
+
+
+
+
+            @if (Auth::user()->current_role⁯_id == 1)
+
+
+            <li>
+                <a href="#sidebarForm00" data-toggle="collapse">
+                    <i data-feather="users"></i>
+                    <span> Form 00 </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarForm00">
+                    <ul class="nav-second-level">
+                        <li>
+                            <a href="{{ route('salesunit') }}"> Forms 00 </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('leadstatus') }}"> Lead Status </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('leadsource') }}"> Lead Source </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('paymentmode') }}"> Payment Mode </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('propertystatus') }}"> Property Status </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('paymenttemplate') }}"> Payment Template </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+        @endif
+
+
+
+
+        @if (Auth::user()->current_role⁯_id == 1)
+
+
+            <li>
+                <a href="#sidebarForm00" data-toggle="collapse">
+                    <i data-feather="users"></i>
+                    <span> Form 01 </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarForm00">
+                    <ul class="nav-second-level">
+                        <li>
+                            <a href="#"> Forms 01 </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('form01_activity') }}"> Activity </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('form01_subactivity') }}"> Sub Activity </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('form01_cause') }}"> Causes </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('form01_subcause') }}"> Sub Causes </a>
+                        </li>
+                        <li>
+                            <a href="#"> Potential Hazards </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+        @endif
+
+
+
+
                 {{-- <li>
                     <a href="{{ route('second', ['apps', 'social-feed']) }}">
                         <span class="badge badge-pink float-right">Hot</span>
