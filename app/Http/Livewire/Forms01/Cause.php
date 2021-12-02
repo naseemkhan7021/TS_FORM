@@ -78,8 +78,8 @@ class Cause extends Component
               'upd_causes_abbr'=>'required'
         ],[
 
-            'upd_causes_description.required'=>'Enter Gender Description',
-            'upd_causes_abbr.required'=>'Gender Abbrivation require'
+            'upd_causes_description.required'=>'Enter Cause Description',
+            'upd_causes_abbr.required'=>'Cause Abbrivation require'
         ]);
 
         $update = CauseModel::find($cid)->update([

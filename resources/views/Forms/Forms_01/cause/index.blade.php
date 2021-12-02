@@ -1,12 +1,12 @@
-@extends('template.vertical', ['title' => 'Forms - Activity'])
+@extends('template.vertical', ['title' => 'Forms - Causes'])
 
 @section('content')
 
 <div class="container-fluid pl-3 pr-3">
 
     <!-- start page title -->
-        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 01 Activity' , 'page_title' => 'Form 01 Activity'  ])
-        @livewire('forms01.activity')
+        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 01 Causes' , 'page_title' => 'Form 01 Causes'  ])
+        @livewire('forms01.cause')
     <!-- end page title -->
 
 
@@ -21,41 +21,41 @@
 
 <script>
     window.addEventListener('OpenAddCountryModal', function(){
-         $('.addActivity').find('span').html('');
-         $('.addActivity').find('form')[0].reset();
-         $('.addActivity').modal('show');
+         $('.addCause').find('span').html('');
+         $('.addCause').find('form')[0].reset();
+         $('.addCause').modal('show');
     });
 
     window.addEventListener('CloseAddCountryModal', function(){
-        $('.addActivity').find('span').html('');
-        $('.addActivity').find('form')[0].reset();
-        $('.addActivity').modal('hide');
+        $('.addCause').find('span').html('');
+        $('.addCause').find('form')[0].reset();
+        $('.addCause').modal('hide');
 
         Swal.fire(
             'Well Done!',
-            'New Activity Has been Saved Successfully !',
+            'New Cause Has been Saved Successfully !',
             'success'
             );
 
-        // alert('New Activity Has been Saved Successfully');
+        // alert('New Cause Has been Saved Successfully');
     });
 
     window.addEventListener('OpenEditCountryModal', function(event){
-        $('.editActivity').find('span').html('');
-        $('.editActivity').modal('show');
+        $('.editCause').find('span').html('');
+        $('.editCause').modal('show');
     });
 
     window.addEventListener('CloseEditCountryModal', function(event){
-        $('.editActivity').find('span').html('');
-        $('.editActivity').find('form')[0].reset();
-        $('.editActivity').modal('hide');
+        $('.editCause').find('span').html('');
+        $('.editCause').find('form')[0].reset();
+        $('.editCause').modal('hide');
 
         Swal.fire(
             'Good job!',
-            'Activity Has been Updated Successfully !',
+            'Cause Has been Updated Successfully !',
             'success'
             );
-        // alert('Activity Has been Updated Successfully');
+        // alert('Cause Has been Updated Successfully');
     });
 
     window.addEventListener('SwalConfirm', function(event){
@@ -80,7 +80,7 @@
     })
 
     window.addEventListener('deleted', function(event){
-        alert('Activity record has been deleted');
+        alert('Cause record has been deleted');
     });
 
     window.addEventListener('swal:deleteCountries', function(event){
