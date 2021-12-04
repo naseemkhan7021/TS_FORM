@@ -1,6 +1,6 @@
 <div>
-    @php $button_title = 'Add New Activity' @endphp
-    @php $data_not_found = 'No Activities Data Found' @endphp
+    @php $button_title = 'Add New Probable Consequence' @endphp
+    @php $data_not_found = 'No Probable Consequence Data Found' @endphp
 
 
     <div class="row">
