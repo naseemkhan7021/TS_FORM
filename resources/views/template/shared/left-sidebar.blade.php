@@ -337,12 +337,12 @@
 
 
             <li>
-                <a href="#sidebarForm00" data-toggle="collapse">
+                <a href="#sidebarForm01" data-toggle="collapse">
                     <i data-feather="users"></i>
                     <span> Form 01 </span>
                     <span class="menu-arrow"></span>
                 </a>
-                <div class="collapse" id="sidebarForm00">
+                <div class="collapse" id="sidebarForm01">
                     <ul class="nav-second-level">
                         <li>
                             <a href="#"> Forms 01 </a>
@@ -357,7 +357,7 @@
                             <a href="{{ route('form01_cause') }}"> Potential Hazard </a>
                         </li>
                         <li>
-                            <a href="{{ route('form01_cause') }}"> Probable Consequence </a>
+                            <a href="{{ route('form01_probable_consequence') }}"> Probable Consequence </a>
                         </li>
                         <li>
                             <a href="{{ route('form01_cause') }}"> Causes </a>
@@ -366,22 +366,22 @@
                             <a href="{{ route('form01_subcause') }}"> Sub Causes </a>
                         </li>
                         <li>
-                            <a href="#"> Risk Probability </a>
+                            <a href="{{ route('form01_risk_probability') }}"> Risk Probability </a>
                         </li>
                         <li>
-                            <a href="#"> Risk Consequence </a>
+                            <a href="{{ route('form01_risk_consequence') }}"> Risk Consequence </a>
                         </li>
                         <li>
-                            <a href="#"> Consequences Control </a>
+                            <a href="{{ route('form01_consequences_control') }}"> Consequences Control </a>
                         </li>
                         <li>
-                            <a href="#"> Administrative Control Mitigative </a>
+                            <a href="{{ route('form01_administrative_control_mitigative') }}"> Administrative Control Mitigative </a>
                         </li>
                         <li>
-                            <a href="#"> Administrative Control Preventive </a>
+                            <a href="{{ route('form01_administrative_control_preventive') }}"> Administrative Control Preventive </a>
                         </li>
                         <li>
-                            <a href="#"> Duration Of Exposure </a>
+                            <a href="{{ route('form01_duration_of_exposure') }}"> Duration Of Exposure </a>
                         </li>
 
 

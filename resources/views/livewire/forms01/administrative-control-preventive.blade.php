@@ -30,7 +30,7 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ( $activitydata as  $row )
+            @forelse ( $administrativecontrolpreventive as  $row )
                 <tr>
                     <td>{{ $row->administrative_control_preventive_id }}</td>
                     <td>{{ $row->administrative_control_preventive_description  }}</td>
@@ -53,12 +53,12 @@
 
         </tbody>
     </table>
-    @if (count($activitydata))
-        {{ $activitydata->links('livewire-pagination-links') }}
+    @if (count($administrativecontrolpreventive))
+        {{ $administrativecontrolpreventive->links('livewire-pagination-links') }}
     @endif
 
-    @include('Forms.Forms_01.activity.add-modal')
-    @include('Forms.Forms_01.activity.edit-modal')
+    @include('Forms.Forms_01.administrativecontrolpreventive.add-modal')
+    @include('Forms.Forms_01.administrativecontrolpreventive.edit-modal')
 
 </div>
 

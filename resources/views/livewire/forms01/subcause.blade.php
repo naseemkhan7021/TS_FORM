@@ -1,5 +1,5 @@
 <div>
-    @php $button_title = 'Add New Activity' @endphp
+    @php $button_title = 'Add New Sub couses' @endphp
     @php $data_not_found = 'No Activities Data Found' @endphp
 
 
@@ -20,23 +20,25 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Activity Description</th>
-                <th>Activity Abbrivartion.</th>
+                <th>Sub couses Description</th>
+                <th>Sub couses Abbrivartion.</th>
+                <th>couses Description</th>
                 <th>Created Date</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            @forelse ( $activitydata as  $row )
+            @forelse ( $subcousesydata as  $row )
                 <tr>
-                    <td>{{ $row->activity_id }}</td>
-                    <td>{{ $row->activity_description  }}</td>
-                    <td>{{ $row->activity_abbr }}</td>
+                    <td>{{ $row->sub_causes_id }}</td>
+                    <td>{{ $row->sub_causes_description  }}</td>
+                    <td>{{ $row->sub_causes_abbr }}</td>
+                    <td>{{ $row->causes_description }}</td>
                     <td>{{ $row->created_at }}</td>
                     <td>
                         <div class="btn-group">
-                            <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->activity_id}})">Edit</button>
-                            <button class="btn btn-danger btn-sm" wire:click="deleteConfirm({{$row->activity_id}})">Delete</button>
+                            <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->sub_causes_id}})">Edit</button>
+                            <button class="btn btn-danger btn-sm" wire:click="deleteConfirm({{$row->sub_causes_id}})">Delete</button>
 
                         </div>
                     </td>
@@ -49,11 +51,11 @@
 
         </tbody>
     </table>
-    @if (count($activitydata))
-        {{ $activitydata->links('livewire-pagination-links') }}
+    @if (count($subcousesydata))
+        {{ $subcousesydata->links('livewire-pagination-links') }}
     @endif
 
-    @include('Forms.Forms_01.activity.add-modal')
-    @include('Forms.Forms_01.activity.edit-modal')
+    @include('Forms.Forms_01.subcause.add-modal')
+    @include('Forms.Forms_01.subcause.edit-modal')
 
 </div>

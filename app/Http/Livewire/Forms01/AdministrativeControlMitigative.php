@@ -25,7 +25,7 @@ class AdministrativeControlMitigative extends Component
                 ->where('administrative_control_mitigative_description', 'like', '%' . $this->searchQuery . '%')
                 ->where('administrative_control_mitigative_value', 'like', '%' . $this->searchQuery . '%')
                 ->orWhere('administrative_control_mitigative_abbr', 'like', '%' . $this->searchQuery . '%');
-        })->orderBy('administrative_control_mitigative_id', 'dec')->paginate(10);
+        })->orderBy('administrative_control_mitigative_id', 'desc')->paginate(10);
 
         return view('livewire.forms01.administrative-control-mitigative',[
             'administrativecontrolmitigative'=>$administrativecontrolmitigative

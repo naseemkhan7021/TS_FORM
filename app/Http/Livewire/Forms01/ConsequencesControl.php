@@ -25,7 +25,7 @@ class ConsequencesControl extends Component
             ->where('consequences_controls_description' , 'like' , '%'.$this->searchQuery.'%')
             ->orWhere('consequences_controls_abbr' , 'like' , '%'.$this->searchQuery.'%');
         })
-        ->orderBy('potential_hazard_id','desc')->paginate(10);
+        ->orderBy('consequences_controls_id','desc')->paginate(10);
 
         return view('livewire.forms01.consequences-control',[
             'consequencescontrol'=>$consequencescontrol

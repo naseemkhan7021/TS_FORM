@@ -76,8 +76,20 @@ class Formdata01 extends Component
         ->join('companies','companies.ibc_id','=','formdata_01s.administrative_control_preventive_id_fk')
         // administrative_control_mitigative_id_fk
         ->join('companies','companies.ibc_id','=','formdata_01s.administrative_control_mitigative_id_fk')
-        // formdata_01s_id order by
-        ->orderBy('formdata_01s_id', 'dec')->paginate(10);;
+        ->when($this->searchQuery != '', function ($query) {
+            $query->where('bactive', '1')
+                ->where('M_any_legal_obligation_to_the_risk_assessment', 'like', '%' . $this->searchQuery . '%')
+                ->orWhere('N_risk_quantum', 'like', '%' . $this->searchQuery . '%')
+                ->orWhere('O_risk_acceptable_non_acceptable', 'like', '%' . $this->searchQuery . '%')
+                ->orWhere('P_no_of_person_believed_to_be_affected', 'like', '%' . $this->searchQuery . '%')
+                ->orWhere('Q_actions_as_per_hierarchy_of_control','like','%',$this->searchQuery.'%')
+                ->orWhere('R_risk_probability','like','%',$this->searchQuery.'%')
+                ->orWhere('S_risk_consequence','like','%',$this->searchQuery.'%')
+                ->orWhere('T_duration','like','%',$this->searchQuery.'%')
+                ->orWhere('U_risk_quantum','like','%',$this->searchQuery.'%')
+                ->orWhere('V_risk_acceptable_non_acceptable','like','%',$this->searchQuery.'%')
+                ;
+        })->orderBy('formdata_01s_id', 'dec')->paginate(10);
         return view('livewire.forms01.formdata01',[
             'formdata01'=>$formdata01
         ]);

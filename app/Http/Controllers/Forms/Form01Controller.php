@@ -99,10 +99,16 @@ class Form01Controller extends Controller
     }
 
 
+    public function index_probable_consequence()
+    {
+        return view('forms.forms_01.probableconsequence.index');
+    }
+
     public function index_cause()
     {
         return view('forms.forms_01.cause.index');
     }
+   
 
 
 
@@ -114,13 +120,13 @@ class Form01Controller extends Controller
 
     public function index_administrative_control_mitigative()
     {
-        return view('forms.forms_01.administrative_control_mitigative.index');
+        return view('forms.forms_01.administrativecontrolmitigative.index');
     }
 
 
     public function index_administrative_control_preventive()
     {
-        return view('forms.forms_01.administrative_control_preventive.index');
+        return view('forms.forms_01.administrativecontrolpreventive.index');
     }
 
 
@@ -128,17 +134,29 @@ class Form01Controller extends Controller
     {
         return view('forms.forms_01.engineering_control.index');
     }
+    
+    public function index_risk_probability()
+    {
+        # code...
+        return view('forms.forms_01.riskprobability.index');
+    }
+
+    public function index_risk_consequence()
+    {
+        # code...
+        return view('forms.forms_01.riskconsequence.index');
+    }
 
 
     public function index_consequences_control()
     {
-        return view('forms.forms_01.consequences_control.index');
+        return view('forms.forms_01.consequencescontrol.index');
     }
 
 
     public function index_duration_of_exposure()
     {
-        return view('forms.forms_01.duration_of_exposure.index');
+        return view('forms.forms_01.durationofexposure.index');
     }
 
 

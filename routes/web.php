@@ -51,10 +51,11 @@ Route::get('/primarymember',[CommonController::class,'index_primarymember'])->na
 Route::get('/secondarymember',[CommonController::class,'index_secondarymember'])->name('secondarymember');
 
 
-// Forms Routes
+// Forms01 Routes
 
 Route::get('/form01_activity',[Form01Controller::class,'index_activity'])->name('form01_activity');
 Route::get('/form01_subactivity',[Form01Controller::class,'index_subactivity'])->name('form01_subactivity');
+Route::get('/form01_probable_consequence',[Form01Controller::class,'index_probable_consequence'])->name('form01_probable_consequence');
 Route::get('/form01_cause',[Form01Controller::class,'index_cause'])->name('form01_cause');
 Route::get('/form01_subcause',[Form01Controller::class,'index_subcause'])->name('form01_subcause');
 
@@ -63,11 +64,11 @@ Route::get('/form01_administrative_control_preventive',[Form01Controller::class,
 Route::get('/form01_engineering_control',[Form01Controller::class,'index_engineering_control'])->name('form01_engineering_control');
 Route::get('/form01_consequences_control',[Form01Controller::class,'index_consequences_control'])->name('form01_consequences_control');
 Route::get('/form01_duration_of_exposure',[Form01Controller::class,'index_duration_of_exposure'])->name('form01_duration_of_exposure');
+Route::get('/form01_risk_probability',[Form01Controller::class,'index_risk_probability'])->name('form01_risk_probability');
+Route::get('/form01_risk_consequence',[Form01Controller::class,'index_risk_consequence'])->name('form01_risk_consequence');
 
 
 // dashboard_presales
-
-
 Route::get('/dashboard_presales',[CommonController::class,'dashboard_presales'])->name('dashboard_presales');
 Route::get('/dashboard_unitavailable',[CommonController::class,'dashboard_unitavailable'])->name('dashboard_unitavailable');
 Route::get('/dashboard_management',[CommonController::class,'dashboard_management'])->name('dashboard_management');

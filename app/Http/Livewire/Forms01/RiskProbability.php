@@ -25,10 +25,10 @@ class RiskProbability extends Component
                  ->where('risk_probability_description', 'like', '%' . $this->searchQuery . '%')
                  ->where('risk_probability_value', 'like', '%' . $this->searchQuery . '%')
                  ->orWhere('risk_probability_abbr', 'like', '%' . $this->searchQuery . '%');
-         })->orderBy('risk_probability_id', 'dec')->paginate(10);
+         })->orderBy('risk_probability_id', 'desc')->paginate(10);
 
         return view('livewire.forms01.risk-probability',[
-            'risk_probability'=>$riskprobability,
+            'riskprobability'=> $riskprobability
         ]);
     }
 

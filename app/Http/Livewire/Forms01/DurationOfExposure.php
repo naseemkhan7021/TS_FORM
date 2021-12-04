@@ -27,7 +27,7 @@ class DurationOfExposure extends Component
                 ->where('duration_of_exposure_value', 'like', '%' . $this->searchQuery . '%')
                 ->where('duration_of_exposure_description', 'like', '%' . $this->searchQuery . '%')
                 ->orWhere('duration_of_exposure_abbr', 'like', '%' . $this->searchQuery . '%');
-        })->orderBy('duration_of_exposure_id', 'dec')->paginate(10);
+        })->orderBy('duration_of_exposure_id', 'desc')->paginate(10);
 
 
         return view('livewire.forms01.duration-of-exposure',[

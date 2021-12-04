@@ -20,23 +20,23 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Activity Description</th>
-                <th>Activity Abbrivartion.</th>
+                <th>Prob. conseq. Description</th>
+                <th>Prob. conseq. Abbrivartion.</th>
                 <th>Created Date</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            @forelse ( $activitydata as  $row )
+            @forelse ( $probableconsequence as  $row )
                 <tr>
-                    <td>{{ $row->activity_id }}</td>
-                    <td>{{ $row->activity_description  }}</td>
-                    <td>{{ $row->activity_abbr }}</td>
+                    <td>{{ $row->probable_consequence_id }}</td>
+                    <td>{{ $row->probable_consequence_description  }}</td>
+                    <td>{{ $row->probable_consequence_abbr }}</td>
                     <td>{{ $row->created_at }}</td>
                     <td>
                         <div class="btn-group">
-                            <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->activity_id}})">Edit</button>
-                            <button class="btn btn-danger btn-sm" wire:click="deleteConfirm({{$row->activity_id}})">Delete</button>
+                            <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->probable_consequence_id}})">Edit</button>
+                            <button class="btn btn-danger btn-sm" wire:click="deleteConfirm({{$row->probable_consequence_id}})">Delete</button>
 
                         </div>
                     </td>
@@ -49,11 +49,11 @@
 
         </tbody>
     </table>
-    @if (count($activitydata))
-        {{ $activitydata->links('livewire-pagination-links') }}
+    @if (count($probableconsequence))
+        {{ $probableconsequence->links('livewire-pagination-links') }}
     @endif
 
-    @include('Forms.Forms_01.activity.add-modal')
-    @include('Forms.Forms_01.activity.edit-modal')
+    @include('Forms.Forms_01.probableconsequence.add-modal')
+    @include('Forms.Forms_01.probableconsequence.edit-modal')
 
 </div>

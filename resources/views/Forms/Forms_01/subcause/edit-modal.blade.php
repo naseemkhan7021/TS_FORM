@@ -1,8 +1,8 @@
-<div class="modal fade editActivity" wire:ignore.self tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+<div class="modal fade editSubcause" wire:ignore.self tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit / Update  Activity </h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit / Update  Sub-cause </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,13 +12,13 @@
                      <input type="hidden" wire:model="cid">
 
                      <div class="form-group">
-                         <label for="">Activity Description</label>
-                         <input type="text" class="form-control" placeholder="Activity Description" wire:model="upd_activity_description">
+                         <label for="">Sub-cause Description</label>
+                         <input type="text" class="form-control" placeholder="Sub-cause Description" wire:model="upd_activity_description">
                          <span class="text-danger"> @error('upd_activity_description') {{ $message }}@enderror</span>
                      </div>
                      <div class="form-group">
-                         <label for="">Activity Abbrivation</label>
-                         <input type="text" class="form-control" placeholder="Activity Abbrivation" wire:model="upd_activity_abbr">
+                         <label for="">Sub-cause Abbrivation</label>
+                         <input type="text" class="form-control" placeholder="Sub-cause Abbrivation" wire:model="upd_activity_abbr">
                          <span class="text-danger"> @error('upd_activity_abbr') {{ $message }}@enderror</span>
                      </div>
                      <div class="form-group">

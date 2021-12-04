@@ -1,6 +1,6 @@
 <div>
-    @php $button_title = 'Add New Activity' @endphp
-    @php $data_not_found = 'No Activities Data Found' @endphp
+    @php $button_title = 'Add New Duration of exposure' @endphp
+    @php $data_not_found = 'No Duration of exposure Data Found' @endphp
 
 
     <div class="row">
@@ -20,23 +20,25 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Activity Description</th>
-                <th>Activity Abbrivartion.</th>
+                <th>Dur. Of Exposure Descri</th>
+                <th>Dur. Of Exposure Abbrivartion</th>
+                <th>Dur. Of Exposure value</th>
                 <th>Created Date</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            @forelse ( $activitydata as  $row )
+            @forelse ( $durationofexposure as  $row )
                 <tr>
-                    <td>{{ $row->activity_id }}</td>
-                    <td>{{ $row->activity_description  }}</td>
-                    <td>{{ $row->activity_abbr }}</td>
+                    <td>{{ $row->duration_of_exposure_id }}</td>
+                    <td>{{ $row->duration_of_exposure_description  }}</td>
+                    <td>{{ $row->duration_of_exposure_abbr }}</td>
+                    <td>{{ $row->duration_of_exposure_value }}</td>
                     <td>{{ $row->created_at }}</td>
                     <td>
                         <div class="btn-group">
-                            <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->activity_id}})">Edit</button>
-                            <button class="btn btn-danger btn-sm" wire:click="deleteConfirm({{$row->activity_id}})">Delete</button>
+                            <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->duration_of_exposure_id}})">Edit</button>
+                            <button class="btn btn-danger btn-sm" wire:click="deleteConfirm({{$row->duration_of_exposure_id}})">Delete</button>
 
                         </div>
                     </td>
@@ -49,11 +51,11 @@
 
         </tbody>
     </table>
-    @if (count($activitydata))
-        {{ $activitydata->links('livewire-pagination-links') }}
+    @if (count($durationofexposure))
+        {{ $durationofexposure->links('livewire-pagination-links') }}
     @endif
 
-    @include('Forms.Forms_01.activity.add-modal')
-    @include('Forms.Forms_01.activity.edit-modal')
+    @include('Forms.Forms_01.durationofexposure.add-modal')
+    @include('Forms.Forms_01.durationofexposure.edit-modal')
 
 </div>

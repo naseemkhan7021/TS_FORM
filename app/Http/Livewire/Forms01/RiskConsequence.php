@@ -25,10 +25,10 @@ class RiskConsequence extends Component
                 ->where('risk_consequence_description', 'like', '%' . $this->searchQuery . '%')
                 ->where('risk_consequence_value', 'like', '%' . $this->searchQuery . '%')
                 ->orWhere('risk_consequence_abbr', 'like', '%' . $this->searchQuery . '%');
-        })->orderBy('risk_consequence_id', 'dec')->paginate(10);
+        })->orderBy('risk_consequence_id', 'desc')->paginate(10);
 
         return view('livewire.forms01.risk-consequence',[
-            'riskconsequence',$riskconsequence
+            'riskconsequence'=>$riskconsequence
         ]);
     }
 

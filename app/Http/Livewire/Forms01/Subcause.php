@@ -2,14 +2,15 @@
 
 namespace App\Http\Livewire\Forms01;
 
+use App\Models\forms_01\Cause as CauseModel;
 use App\Models\forms_01\Sub_cause;
 use Livewire\Component;
 
 class Subcause extends Component
 {
     public $searchQuery;
-    public $sub_causes_description, $sub_causes_abbr;
-    public $cid, $upd_sub_causes_description, $upd_sub_causes_abbr;
+    public $sub_causes_description, $sub_causes_abbr,$sub_causes_fk;
+    public $cid, $upd_sub_causes_description, $upd_sub_causes_abbr,$upd_sub_causes_fk;
 
     public function mount()
     {
@@ -20,16 +21,28 @@ class Subcause extends Component
     public function render()
     {
         # render with search query
-        $subcousesydata = Sub_cause::join('causes', 'causes.causes_id', '=', 'sub_causes.causes_id_fk')
+        $subcousesydata = Sub_cause::join('causes', 'causes.causes_id', '=', 'sub_causes.sub_causes_fk')
             ->when($this->searchQuery != '', function ($query) {
                 $query->where('bactive', '1')
                     ->where('sub_causes_description', 'like', '%' . $this->searchQuery . '%')
                     ->orWhere('sub_causes_abbr', 'like', '%' . $this->searchQuery . '%');
-            })->orderBy('sub_causes_id', 'dec')->paginate(10);
+            })->get([ 'sub_causes.*', 'causes.*' ]);
+            // ->orderBy('sub_causes_id', 'desc')->paginate(10);
+        
+        $cousesData = CauseModel::all();  
 
         return view('livewire.forms01.subcause',[
-            'subcousesydata'=>$subcousesydata,
+            'subcousesydata'=>$subcousesydata,'cousesData'=>$cousesData,
         ]);
+    }
+
+    public function OpenAddCountryModal()
+    {
+        $this->sub_causes_description = '';
+        $this->sub_causes_abbr = '';
+        $this->sub_causes_fk = '';
+        $this->dispatchBrowserEvent('OpenAddCountryModal');
+
     }
 
     public function save()
@@ -37,11 +50,13 @@ class Subcause extends Component
         # save
         $this->validate([
             'sub_causes_description' => 'required',
-            'sub_causes_abbr' => 'required'
+            'sub_causes_abbr' => 'required',
+            'sub_causes_fk' => 'required',
         ]);
 
         $save = Sub_cause::insert([
             'sub_causes_abbr' => $this->sub_causes_abbr,
+            'sub_causes_fk' => $this->sub_causes_fk,
             'sub_causes_description' => $this->sub_causes_description
         ]);
 
