@@ -73,6 +73,7 @@ class Subcause extends Component
 
         $this->upd_sub_causes_description = $info->sub_causes_description;
         $this->upd_sub_causes_abbr = $info->sub_causes_abbr;
+        $this->upd_sub_causes_fk = $info->sub_causes_fk;
         $this->cid = $info->sub_causes_id;
         $this->dispatchBrowserEvent('OpenEditCountryModal', [
             'sub_causes_id' => $sub_causes_id
@@ -94,6 +95,7 @@ class Subcause extends Component
         $update = Sub_cause::find($cid)->update([
             'sub_causes_description' => $this->upd_sub_causes_description,
             'sub_causes_abbr' => $this->upd_sub_causes_abbr,
+            'sub_causes_fk' => $this->upd_sub_causes_fk
         ]);
 
         if ($update) {

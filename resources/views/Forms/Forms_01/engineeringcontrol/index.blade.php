@@ -1,12 +1,12 @@
-@extends('template.vertical', ['title' => 'Forms - Duration Of Exposure'])
+@extends('template.vertical', ['title' => 'Forms - Engineering Control'])
 
 @section('content')
 
 <div class="container-fluid pl-3 pr-3">
 
     <!-- start page title -->
-        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 01 Duration Of Exposure' , 'page_title' => 'Form 01 Duration Of Exposure'  ])
-        @livewire('forms01.duration-of-exposure')
+        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 01 Engineering Control' , 'page_title' => 'Form 01 Engineering Control'  ])
+        @livewire('forms01.engineering-control')
     <!-- end page title -->
 
 
@@ -21,19 +21,19 @@
 
 <script>
     window.addEventListener('OpenAddCountryModal', function(){
-         $('.addDurationofexposure').find('span').html('');
-         $('.addDurationofexposure').find('form')[0].reset();
-         $('.addDurationofexposure').modal('show');
+         $('.addEngineeringcontrol').find('span').html('');
+         $('.addEngineeringcontrol').find('form')[0].reset();
+         $('.addEngineeringcontrol').modal('show');
     });
 
     window.addEventListener('CloseAddCountryModal', function(){
-        $('.addDurationofexposure').find('span').html('');
-        $('.addDurationofexposure').find('form')[0].reset();
-        $('.addDurationofexposure').modal('hide');
+        $('.addEngineeringcontrol').find('span').html('');
+        $('.addEngineeringcontrol').find('form')[0].reset();
+        $('.addEngineeringcontrol').modal('hide');
 
         Swal.fire(
             'Well Done!',
-            'New <b>Duration Of Exposure</b> Has been Saved Successfully !',
+            'New <b>Engineering Control</b> Has been Saved Successfully !',
             'success'
             );
 
@@ -41,18 +41,18 @@
     });
 
     window.addEventListener('OpenEditCountryModal', function(event){
-        $('.editDurationofexposure').find('span').html('');
-        $('.editDurationofexposure').modal('show');
+        $('.ediEengineeringcontrol').find('span').html('');
+        $('.ediEengineeringcontrol').modal('show');
     });
 
     window.addEventListener('CloseEditCountryModal', function(event){
-        $('.editDurationofexposure').find('span').html('');
-        $('.editDurationofexposure').find('form')[0].reset();
-        $('.editDurationofexposure').modal('hide');
+        $('.ediEengineeringcontrol').find('span').html('');
+        $('.ediEengineeringcontrol').find('form')[0].reset();
+        $('.ediEengineeringcontrol').modal('hide');
 
         Swal.fire(
             'Good job!',
-            '<b>Duration Of Exposure</b> Has been Updated Successfully !',
+            '<b>Engineering Control</b> Has been Updated Successfully !',
             'success'
             );
         // alert('administrative control preventive Has been Updated Successfully');

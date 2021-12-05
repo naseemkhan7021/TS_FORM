@@ -33,7 +33,7 @@
 
         Swal.fire(
             'Well Done!',
-            'New Activity Has been Saved Successfully !',
+            'New <b>Activity</b> Has been Saved Successfully !',
             'success'
             );
 
@@ -52,7 +52,7 @@
 
         Swal.fire(
             'Good job!',
-            'Activity Has been Updated Successfully !',
+            '<b>Activity</b> Has been Updated Successfully !',
             'success'
             );
         // alert('Activity Has been Updated Successfully');

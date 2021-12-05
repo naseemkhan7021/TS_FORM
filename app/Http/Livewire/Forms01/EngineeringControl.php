@@ -26,7 +26,7 @@ class EngineeringControl extends Component
                 ->where('engineering_control_description', 'like', '%' . $this->searchQuery . '%')
                 ->where('engineering_control_abbr', 'like', '%' . $this->searchQuery . '%')
                 ->orWhere('engineering_control_value', 'like', '%' . $this->searchQuery . '%');
-        })->orderBy('engineering_control_id', 'dec')->paginate(10);
+        })->orderBy('engineering_control_id', 'desc')->paginate(10);
 
 
         return view('livewire.forms01.engineering-control',[

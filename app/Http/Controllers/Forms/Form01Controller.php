@@ -98,7 +98,14 @@ class Form01Controller extends Controller
         return view('forms.forms_01.subactivity.index');
     }
 
-
+    public function index_potentialhazard()
+    {
+        return view('forms.forms_01.potentialhazard.index');
+    }
+    public function index_preventiveincidentcontrol()
+    {
+        return view('forms.forms_01.preventiveincidentcontrol.index');
+    }
     public function index_probable_consequence()
     {
         return view('forms.forms_01.probableconsequence.index');
@@ -109,9 +116,6 @@ class Form01Controller extends Controller
         return view('forms.forms_01.cause.index');
     }
    
-
-
-
     public function index_subcause()
     {
         return view('forms.forms_01.subcause.index');
@@ -132,7 +136,7 @@ class Form01Controller extends Controller
 
     public function index_engineering_control()
     {
-        return view('forms.forms_01.engineering_control.index');
+        return view('forms.forms_01.engineeringcontrol.index');
     }
     
     public function index_risk_probability()
@@ -152,6 +156,7 @@ class Form01Controller extends Controller
     {
         return view('forms.forms_01.consequencescontrol.index');
     }
+    
 
 
     public function index_duration_of_exposure()

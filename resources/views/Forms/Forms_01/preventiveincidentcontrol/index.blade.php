@@ -1,12 +1,12 @@
-@extends('template.vertical', ['title' => 'Forms - Duration Of Exposure'])
+@extends('template.vertical', ['title' => 'Forms - Preventive Incident Control'])
 
 @section('content')
 
 <div class="container-fluid pl-3 pr-3">
 
     <!-- start page title -->
-        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 01 Duration Of Exposure' , 'page_title' => 'Form 01 Duration Of Exposure'  ])
-        @livewire('forms01.duration-of-exposure')
+        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 01 Preventive Incident Control' , 'page_title' => 'Form 01 Preventive Incident Control'  ])
+        @livewire('forms01.preventive-incident-control')
     <!-- end page title -->
 
 
@@ -21,41 +21,41 @@
 
 <script>
     window.addEventListener('OpenAddCountryModal', function(){
-         $('.addDurationofexposure').find('span').html('');
-         $('.addDurationofexposure').find('form')[0].reset();
-         $('.addDurationofexposure').modal('show');
+         $('.addPreventiveincidentcontrol').find('span').html('');
+         $('.addPreventiveincidentcontrol').find('form')[0].reset();
+         $('.addPreventiveincidentcontrol').modal('show');
     });
 
     window.addEventListener('CloseAddCountryModal', function(){
-        $('.addDurationofexposure').find('span').html('');
-        $('.addDurationofexposure').find('form')[0].reset();
-        $('.addDurationofexposure').modal('hide');
+        $('.addPreventiveincidentcontrol').find('span').html('');
+        $('.addPreventiveincidentcontrol').find('form')[0].reset();
+        $('.addPreventiveincidentcontrol').modal('hide');
 
         Swal.fire(
             'Well Done!',
-            'New <b>Duration Of Exposure</b> Has been Saved Successfully !',
+            'New <b>Preventive Incident Control</b> Has been Saved Successfully !',
             'success'
             );
 
-        // alert('New administrative control preventive Has been Saved Successfully');
+        // alert('New Preventiveincidentcontrol Has been Saved Successfully');
     });
 
     window.addEventListener('OpenEditCountryModal', function(event){
-        $('.editDurationofexposure').find('span').html('');
-        $('.editDurationofexposure').modal('show');
+        $('.editPreventiveincidentcontrol').find('span').html('');
+        $('.editPreventiveincidentcontrol').modal('show');
     });
 
     window.addEventListener('CloseEditCountryModal', function(event){
-        $('.editDurationofexposure').find('span').html('');
-        $('.editDurationofexposure').find('form')[0].reset();
-        $('.editDurationofexposure').modal('hide');
+        $('.editPreventiveincidentcontrol').find('span').html('');
+        $('.editPreventiveincidentcontrol').find('form')[0].reset();
+        $('.editPreventiveincidentcontrol').modal('hide');
 
         Swal.fire(
             'Good job!',
-            '<b>Duration Of Exposure</b> Has been Updated Successfully !',
+            '<b>Preventive Incident Control</b> Has been Updated Successfully !',
             'success'
             );
-        // alert('administrative control preventive Has been Updated Successfully');
+        // alert('Preventiveincidentcontrol Has been Updated Successfully');
     });
 
     window.addEventListener('SwalConfirm', function(event){
@@ -80,7 +80,7 @@
     })
 
     window.addEventListener('deleted', function(event){
-        alert('duration of exposure record has been deleted');
+        alert('Preventive Incident Control record has been deleted');
     });
 
     window.addEventListener('swal:deleteCountries', function(event){

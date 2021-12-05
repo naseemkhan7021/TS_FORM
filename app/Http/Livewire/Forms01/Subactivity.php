@@ -2,14 +2,15 @@
 
 namespace App\Http\Livewire\Forms01;
 
+use App\Models\forms_01\activity;
 use App\Models\forms_01\Sub_activity;
 use Livewire\Component;
 
 class Subactivity extends Component
 {
     public $searchQuery;
-    public $sub_activity_description, $sub_activity_abbr;
-    public $cid, $upd_sub_activity_description, $upd_sub_activity_abbr;
+    public $sub_activity_description, $sub_activity_abbr,$activity_id_fk;
+    public $cid, $upd_sub_activity_description, $upd_sub_activity_abbr,$upd_activity_id_fk;
 
     public function mount()
     {
@@ -25,11 +26,20 @@ class Subactivity extends Component
                 $query->where('bactive', '1')
                     ->where('sub_activity_description', 'like', '%' . $this->searchQuery . '%')
                     ->orWhere('sub_activity_abbr', 'like', '%' . $this->searchQuery . '%');
-            })->orderBy('sub_activity_id', 'dec')->paginate(10);
-
+            })->orderBy('sub_activity_id', 'desc')->paginate(10);
+        $activityData = activity::all();
         return view('livewire.forms01.subactivity', [
-            'subactivitydata' => $subactivitydata
+            'subactivitydata' => $subactivitydata,'activityData'=>$activityData
         ]);
+    }
+
+    public function OpenAddCountryModal()
+    {
+        $this->sub_activity_description = '';
+        $this->sub_activity_abbr = '';
+        $this->activity_id_fk = '';
+        $this->dispatchBrowserEvent('OpenAddCountryModal');
+
     }
 
     public function save()
@@ -37,11 +47,13 @@ class Subactivity extends Component
         # save
         $this->validate([
             'sub_activity_description' => 'required',
-            'sub_activity_abbr' => 'required'
+            'sub_activity_abbr' => 'required',
+            'activity_id_fk' => 'required',
         ]);
 
         $save = Sub_activity::insert([
             'sub_activity_abbr' => $this->sub_activity_abbr,
+            'activity_id_fk' => $this->activity_id_fk,
             'sub_activity_description' => $this->sub_activity_description
         ]);
 
@@ -58,6 +70,7 @@ class Subactivity extends Component
 
         $this->upd_sub_activity_description = $info->sub_activity_description;
         $this->upd_sub_activity_abbr = $info->sub_activity_abbr;
+        $this->upd_activity_id_fk = $info->activity_id_fk;
         $this->cid = $info->sub_activity_id;
         $this->dispatchBrowserEvent('OpenEditCountryModal', [
             'sub_activity_id' => $sub_activity_id
@@ -71,6 +84,7 @@ class Subactivity extends Component
         $this->validate([
             'upd_sub_activity_description' => 'required',
             'upd_sub_activity_abbr' => 'required',
+            'upd_activity_id_fk' => 'required',
         ], [
             'upd_sub_activity_description.required' => 'Enter subactivity description',
             'upd_sub_activity_abbr.required' => 'subactivity Abbrivation require',
@@ -79,6 +93,7 @@ class Subactivity extends Component
         $update = Sub_activity::find($cid)->update([
             'sub_activity_description' => $this->upd_sub_activity_description,
             'sub_activity_abbr' => $this->upd_sub_activity_abbr,
+            'activity_id_fk' => $this->upd_activity_id_fk,
         ]);
 
         if ($update) {
