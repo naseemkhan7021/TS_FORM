@@ -52,7 +52,7 @@
 
         Swal.fire(
             'Good job!',
-            'Cause Has been Updated Successfully !',
+            '<b>Cause</b> Has been Updated Successfully !',
             'success'
             );
         // alert('Cause Has been Updated Successfully');
@@ -80,7 +80,7 @@
     })
 
     window.addEventListener('deleted', function(event){
-        alert('Cause record has been deleted');
+        alert('<b>Cause</b> record has been deleted');
     });
 
     window.addEventListener('swal:deleteCountries', function(event){

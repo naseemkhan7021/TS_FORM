@@ -354,7 +354,10 @@
                             <a href="{{ route('form01_subactivity') }}"> Sub Activity </a>
                         </li>
                         <li>
-                            <a href="{{ route('form01_cause') }}"> Potential Hazard </a>
+                            <a href="{{ route('form01_preventiveincidentcontrol') }}"> Preventive Incident Control</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('form01_potentialhazard') }}"> Potential Hazard </a>
                         </li>
                         <li>
                             <a href="{{ route('form01_probable_consequence') }}"> Probable Consequence </a>
@@ -373,6 +376,9 @@
                         </li>
                         <li>
                             <a href="{{ route('form01_consequences_control') }}"> Consequences Control </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('form01_engineering_control') }}"> Engineering Control </a>
                         </li>
                         <li>
                             <a href="{{ route('form01_administrative_control_mitigative') }}"> Administrative Control Mitigative </a>

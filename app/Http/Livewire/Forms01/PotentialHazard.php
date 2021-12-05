@@ -58,14 +58,14 @@ class PotentialHazard extends Component
 
 
 
-    public function OpenEditCountryModal($preventive_incident_control_id){
-        $info = Potential_Hazard::find($preventive_incident_control_id);
+    public function OpenEditCountryModal($potential_hazard_id){
+        $info = Potential_Hazard::find($potential_hazard_id);
 
         $this->upd_potential_hazard_description = $info->potential_hazard_description;
         $this->upd_potential_hazard_abbr = $info->potential_hazard_abbr;
-        $this->cid = $info->preventive_incident_control_id;
+        $this->cid = $info->potential_hazard_id;
         $this->dispatchBrowserEvent('OpenEditCountryModal',[
-            'preventive_incident_control_id'=>$preventive_incident_control_id
+            'potential_hazard_id'=>$potential_hazard_id
         ]);
     }
 
@@ -95,19 +95,19 @@ class PotentialHazard extends Component
 
 
     // delete
-    public function deleteConfirm($preventive_incident_control_id){
-        $info = Potential_Hazard::find($preventive_incident_control_id);
+    public function deleteConfirm($potential_hazard_id){
+        $info = Potential_Hazard::find($potential_hazard_id);
         $this->dispatchBrowserEvent('SwalConfirm',[
             'title'=>'Are you sure?',
             'html'=>'You want to delete <strong>'.$info->potential_hazard_description.'</strong>',
-            'id'=>$preventive_incident_control_id
+            'id'=>$potential_hazard_id
         ]);
     }
 
 
     // delete
-    public function delete($preventive_incident_control_id){
-        $del =  Potential_Hazard::find($preventive_incident_control_id)->delete();
+    public function delete($potential_hazard_id){
+        $del =  Potential_Hazard::find($potential_hazard_id)->delete();
         if($del){
             $this->dispatchBrowserEvent('delete');
         }

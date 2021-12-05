@@ -1,5 +1,5 @@
 <div>
-    @php $button_title = 'Add New Activity' @endphp
+    @php $button_title = 'Add New Preventive Incident Control' @endphp
     @php $data_not_found = 'No Activities Data Found' @endphp
 
 
@@ -20,23 +20,23 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Activity Description</th>
-                <th>Activity Abbrivartion.</th>
+                <th>Preventive Inci. Ctrl Desc.</th>
+                <th>Preventive Inci. Ctrl Abbriv.</th>
                 <th>Created Date</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            @forelse ( $activitydata as  $row )
+            @forelse ( $preventiveincidentcontrol as  $row )
                 <tr>
-                    <td>{{ $row->activity_id }}</td>
-                    <td>{{ $row->activity_description  }}</td>
-                    <td>{{ $row->activity_abbr }}</td>
+                    <td>{{ $row->preventive_incident_control_id }}</td>
+                    <td>{{ $row->preventive_incident_control_description  }}</td>
+                    <td>{{ $row->preventive_incident_control_abbr }}</td>
                     <td>{{ $row->created_at }}</td>
                     <td>
                         <div class="btn-group">
-                            <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->activity_id}})">Edit</button>
-                            <button class="btn btn-danger btn-sm" wire:click="deleteConfirm({{$row->activity_id}})">Delete</button>
+                            <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->preventive_incident_control_id}})">Edit</button>
+                            <button class="btn btn-danger btn-sm" wire:click="deleteConfirm({{$row->preventive_incident_control_id}})">Delete</button>
 
                         </div>
                     </td>
@@ -49,11 +49,11 @@
 
         </tbody>
     </table>
-    @if (count($activitydata))
-        {{ $activitydata->links('livewire-pagination-links') }}
+    @if (count($preventiveincidentcontrol))
+        {{ $preventiveincidentcontrol->links('livewire-pagination-links') }}
     @endif
 
-    @include('Forms.Forms_01.activity.add-modal')
-    @include('Forms.Forms_01.activity.edit-modal')
+    @include('Forms.Forms_01.preventiveincidentcontrol.add-modal')
+    @include('Forms.Forms_01.preventiveincidentcontrol.edit-modal')
 
 </div>

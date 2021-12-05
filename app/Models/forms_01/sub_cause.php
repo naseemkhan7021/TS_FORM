@@ -12,9 +12,9 @@ class sub_cause extends Model
     protected $primaryKey = 'sub_causes_id';
     protected $table = 'sub_causes';
     protected $fillable = [
-        'sub_causes_description',
-        'sub_causes_abbr',
         'sub_causes_fk',
+        'sub_causes_description',
+        'sub_causes_abbr'
 
      ];
 }

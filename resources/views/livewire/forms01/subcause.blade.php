@@ -51,9 +51,9 @@
 
         </tbody>
     </table>
-    @if (count($subcousesydata))
+    {{-- @if (count($subcousesydata))
         {{ $subcousesydata->links('livewire-pagination-links') }}
-    @endif
+    @endif --}}
 
     @include('Forms.Forms_01.subcause.add-modal')
     @include('Forms.Forms_01.subcause.edit-modal')

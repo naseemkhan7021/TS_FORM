@@ -33,7 +33,7 @@
 
         Swal.fire(
             'Well Done!',
-            'New Risk Probability Has been Saved Successfully !',
+            'New <b>Risk Probability</b> Has been Saved Successfully !',
             'success'
             );
 
@@ -52,7 +52,7 @@
 
         Swal.fire(
             'Good job!',
-            'Risk probability Has been Updated Successfully !',
+            '<b>Risk probability</b> Has been Updated Successfully !',
             'success'
             );
         // alert('administrative control preventive Has been Updated Successfully');

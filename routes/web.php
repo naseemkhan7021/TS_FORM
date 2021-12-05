@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommonController;
 use App\Http\Controllers\Forms\Form01Controller;
-use App\Http\Controllers\RoutingController;
+// use App\Http\Controllers\RoutingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +54,8 @@ Route::get('/secondarymember',[CommonController::class,'index_secondarymember'])
 // Forms01 Routes
 
 Route::get('/form01_activity',[Form01Controller::class,'index_activity'])->name('form01_activity');
+Route::get('/form01_preventiveincidentcontrol',[Form01Controller::class,'index_preventiveincidentcontrol'])->name('form01_preventiveincidentcontrol');
+Route::get('/form01_potentialhazard',[Form01Controller::class,'index_potentialhazard'])->name('form01_potentialhazard');
 Route::get('/form01_subactivity',[Form01Controller::class,'index_subactivity'])->name('form01_subactivity');
 Route::get('/form01_probable_consequence',[Form01Controller::class,'index_probable_consequence'])->name('form01_probable_consequence');
 Route::get('/form01_cause',[Form01Controller::class,'index_cause'])->name('form01_cause');

@@ -33,7 +33,7 @@
 
         Swal.fire(
             'Well Done!',
-            'New Probableconsequence Has been Saved Successfully !',
+            'New<b> Probableconsequence</b> Has been Saved Successfully !',
             'success'
             );
 
@@ -52,7 +52,7 @@
 
         Swal.fire(
             'Good job!',
-            'Probableconsequence Has been Updated Successfully !',
+            '<b> Probableconsequence </b>Has been Updated Successfully !',
             'success'
             );
         // alert('Probableconsequence Has been Updated Successfully');

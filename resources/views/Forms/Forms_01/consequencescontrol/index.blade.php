@@ -33,7 +33,7 @@
 
         Swal.fire(
             'Well Done!',
-            'New ConsequencesControl Has been Saved Successfully !',
+            'New <b>ConsequencesControl</b> Has been Saved Successfully !',
             'success'
             );
 
@@ -52,7 +52,7 @@
 
         Swal.fire(
             'Good job!',
-            'ConsequencesControl Has been Updated Successfully !',
+            '<b>ConsequencesControl</b> Has been Updated Successfully !',
             'success'
             );
         // alert('ConsequencesControl Has been Updated Successfully');

@@ -1,12 +1,12 @@
-@extends('template.vertical', ['title' => 'Forms - Activity'])
+@extends('template.vertical', ['title' => 'Forms - Sub-activity'])
 
 @section('content')
 
 <div class="container-fluid pl-3 pr-3">
 
     <!-- start page title -->
-        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 01 Activity' , 'page_title' => 'Form 01 Activity'  ])
-        @livewire('forms01.activity')
+        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 01 subactivity' , 'page_title' => 'Form 01 Sub-activity'  ])
+        @livewire('forms01.subactivity')
     <!-- end page title -->
 
 
@@ -21,41 +21,41 @@
 
 <script>
     window.addEventListener('OpenAddCountryModal', function(){
-         $('.addActivity').find('span').html('');
-         $('.addActivity').find('form')[0].reset();
-         $('.addActivity').modal('show');
+         $('.addSubactivity').find('span').html('');
+         $('.addSubactivity').find('form')[0].reset();
+         $('.addSubactivity').modal('show');
     });
 
     window.addEventListener('CloseAddCountryModal', function(){
-        $('.addActivity').find('span').html('');
-        $('.addActivity').find('form')[0].reset();
-        $('.addActivity').modal('hide');
+        $('.addSubactivity').find('span').html('');
+        $('.addSubactivity').find('form')[0].reset();
+        $('.addSubactivity').modal('hide');
 
         Swal.fire(
             'Well Done!',
-            'New Activity Has been Saved Successfully !',
+            'New <b>Subactivity</b> Has been Saved Successfully !',
             'success'
             );
 
-        // alert('New Activity Has been Saved Successfully');
+        // alert('New Subactivity Has been Saved Successfully');
     });
 
     window.addEventListener('OpenEditCountryModal', function(event){
-        $('.editActivity').find('span').html('');
-        $('.editActivity').modal('show');
+        $('.editSubactivity').find('span').html('');
+        $('.editSubactivity').modal('show');
     });
 
     window.addEventListener('CloseEditCountryModal', function(event){
-        $('.editActivity').find('span').html('');
-        $('.editActivity').find('form')[0].reset();
-        $('.editActivity').modal('hide');
+        $('.editSubactivity').find('span').html('');
+        $('.editSubactivity').find('form')[0].reset();
+        $('.editSubactivity').modal('hide');
 
         Swal.fire(
             'Good job!',
-            'Activity Has been Updated Successfully !',
+            '<b>Subactivity</b> Has been Updated Successfully !',
             'success'
             );
-        // alert('Activity Has been Updated Successfully');
+        // alert('Subactivity Has been Updated Successfully');
     });
 
     window.addEventListener('SwalConfirm', function(event){
@@ -80,7 +80,7 @@
     })
 
     window.addEventListener('deleted', function(event){
-        alert('Activity record has been deleted');
+        alert('Subactivity record has been deleted');
     });
 
     window.addEventListener('swal:deleteCountries', function(event){
