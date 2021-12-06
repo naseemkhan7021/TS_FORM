@@ -297,7 +297,7 @@
 
             @if (Auth::user()->current_role⁯_id == 1)
 
-
+            {{-- Form 00  --}}
             <li>
                 <a href="#sidebarForm00" data-toggle="collapse">
                     <i data-feather="users"></i>
@@ -328,14 +328,7 @@
                 </div>
             </li>
 
-        @endif
-
-
-
-
-        @if (Auth::user()->current_role⁯_id == 1)
-
-
+            {{-- Form 01 --}}
             <li>
                 <a href="#sidebarForm01" data-toggle="collapse">
                     <i data-feather="users"></i>
@@ -395,6 +388,7 @@
                 </div>
             </li>
 
+            {{-- Form 15 --}}
             <li>
                 <a href="#sidebarForm15" data-toggle="collapse">
                     <i data-feather="users"></i>
@@ -410,29 +404,62 @@
                             <a href="{{ route('form15_activity15') }}"> Activity </a>
                         </li>
                         <li>
-                            <a href="{{ route('form01_subactivity') }}"> Sub Activity </a>
+                            <a href="{{ route('form15_cause15') }}"> Causes </a>
                         </li>
                         <li>
-                            <a href="{{ route('form01_preventiveincidentcontrol') }}"> Preventive Incident Control</a>
+                            <a href="{{ route('form15_imdaction') }}"> Imd. Action </a>
                         </li>
                         <li>
-                            <a href="{{ route('form01_potentialhazard') }}"> Potential Hazard </a>
+                            <a href="{{ route('form15_contributingcause') }}"> Contributing Cause</a>
                         </li>
                         <li>
-                            <a href="{{ route('form01_probable_consequence') }}"> Probable Consequence </a>
+                            <a href="{{ route('form15_imdcorrection') }}"> Imd. Correction </a>
                         </li>
                         <li>
-                            <a href="{{ route('form01_cause') }}"> Causes </a>
+                            <a href="{{ route('form15_natureofpotentialinjury') }}"> Nature Of Potential Injuries </a>
                         </li>
                         <li>
-                            <a href="{{ route('form01_subcause') }}"> Sub Causes </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form01_risk_probability') }}"> Risk Probability </a>
+                            <a href="{{ route('form15_whyunsafeactcommitted') }}"> Whyunsafeact Committeds </a>
                         </li>
                         
+                    </ul>
+                </div>
+            </li>
 
-
+            {{-- Form 16  --}}
+            <li>
+                <a href="#sidebarForm16" data-toggle="collapse">
+                    <i data-feather="users"></i>
+                    <span> Form 16 </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarForm16">
+                    <ul class="nav-second-level">
+                        <li>
+                            <a href="#"> Forms 16 </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('form15_activity15') }}"> Activity </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('form15_cause15') }}"> Causes </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('form15_imdaction') }}"> Imd. Action </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('form15_contributingcause') }}"> Contributing Cause</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('form15_imdcorrection') }}"> Imd. Correction </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('form15_natureofpotentialinjury') }}"> Nature Of Potential Injuries </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('form15_whyunsafeactcommitted') }}"> Whyunsafeact Committeds </a>
+                        </li>
+                        
                     </ul>
                 </div>
             </li>

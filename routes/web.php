@@ -73,6 +73,12 @@ Route::get('/form01_risk_consequence', [Form01Controller::class, 'index_risk_con
 
 // forms 15 
 Route::get('/form15_activity15',[Forms15Controller::class,'index_activity15'])->name('form15_activity15');
+Route::get('/form15_cause15',[Forms15Controller::class,'index_cause15'])->name('form15_cause15');
+Route::get('/form15_contributingcause',[Forms15Controller::class,'index_contributingcause'])->name('form15_contributingcause');
+Route::get('/form15_imdaction',[Forms15Controller::class,'index_imdaction'])->name('form15_imdaction');
+Route::get('/form15_imdcorrection',[Forms15Controller::class,'index_imdcorrection'])->name('form15_imdcorrection');
+Route::get('/form15_natureofpotentialinjury',[Forms15Controller::class,'index_natureofpotentialinjury'])->name('form15_natureofpotentialinjury');
+Route::get('/form15_whyunsafeactcommitted',[Forms15Controller::class,'index_whyunsafeactcommitted'])->name('form15_whyunsafeactcommitted');
 
 // dashboard_presales
 Route::get('/dashboard_presales', [CommonController::class, 'dashboard_presales'])->name('dashboard_presales');

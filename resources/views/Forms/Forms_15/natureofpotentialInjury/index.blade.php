@@ -1,12 +1,12 @@
-@extends('template.vertical', ['title' => 'Forms - Engineering Control'])
+@extends('template.vertical', ['title' => 'Forms - Nature Of Potential Injuries'])
 
 @section('content')
 
 <div class="container-fluid pl-3 pr-3">
 
     <!-- start page title -->
-        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 01 Engineering Control' , 'page_title' => 'Form 01 Engineering Control'  ])
-        @livewire('forms01.engineering-control')
+        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 15 Nature Of Potential Injuries' , 'page_title' => 'Form 15 Nature Of Potential Injuries'  ])
+        @livewire('forms15.nature-of-potential-injury')
     <!-- end page title -->
 
 
@@ -21,41 +21,41 @@
 
 <script>
     window.addEventListener('OpenAddCountryModal', function(){
-         $('.addEngineeringcontrol').find('span').html('');
-         $('.addEngineeringcontrol').find('form')[0].reset();
-         $('.addEngineeringcontrol').modal('show');
+         $('.addNatureofpotentialinjury').find('span').html('');
+         $('.addNatureofpotentialinjury').find('form')[0].reset();
+         $('.addNatureofpotentialinjury').modal('show');
     });
 
     window.addEventListener('CloseAddCountryModal', function(){
-        $('.addEngineeringcontrol').find('span').html('');
-        $('.addEngineeringcontrol').find('form')[0].reset();
-        $('.addEngineeringcontrol').modal('hide');
+        $('.addNatureofpotentialinjury').find('span').html('');
+        $('.addNatureofpotentialinjury').find('form')[0].reset();
+        $('.addNatureofpotentialinjury').modal('hide');
 
         Swal.fire(
             'Well Done!',
-            'New <b>Engineering Control</b> Has been Saved Successfully !',
+            'New <b>Natureofpotentialinjury</b> Has been Saved Successfully !',
             'success'
             );
 
-        // alert('New administrative control preventive Has been Saved Successfully');
+        // alert('New Natureofpotentialinjury Has been Saved Successfully');
     });
 
     window.addEventListener('OpenEditCountryModal', function(event){
-        $('.ediEengineeringcontrol').find('span').html('');
-        $('.ediEengineeringcontrol').modal('show');
+        $('.editNatureofpotentialinjury').find('span').html('');
+        $('.editNatureofpotentialinjury').modal('show');
     });
 
     window.addEventListener('CloseEditCountryModal', function(event){
-        $('.ediEengineeringcontrol').find('span').html('');
-        $('.ediEengineeringcontrol').find('form')[0].reset();
-        $('.ediEengineeringcontrol').modal('hide');
+        $('.editNatureofpotentialinjury').find('span').html('');
+        $('.editNatureofpotentialinjury').find('form')[0].reset();
+        $('.editNatureofpotentialinjury').modal('hide');
 
         Swal.fire(
             'Good job!',
-            '<b>Engineering Control</b> Has been Updated Successfully !',
+            '<b>Nature Of Potential Injuries</b> Has been Updated Successfully !',
             'success'
             );
-        // alert('administrative control preventive Has been Updated Successfully');
+        // alert('Natureofpotentialinjury Has been Updated Successfully');
     });
 
     window.addEventListener('SwalConfirm', function(event){
@@ -80,7 +80,7 @@
     })
 
     window.addEventListener('deleted', function(event){
-        alert('duration of exposure record has been deleted');
+        alert('Nature Of Potential Injuries record has been deleted');
     });
 
     window.addEventListener('swal:deleteCountries', function(event){

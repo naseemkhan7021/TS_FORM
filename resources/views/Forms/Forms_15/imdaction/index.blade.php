@@ -1,12 +1,12 @@
-@extends('template.vertical', ['title' => 'Forms - ConsequencesControl'])
+@extends('template.vertical', ['title' => 'Forms - Imd. Action'])
 
 @section('content')
 
 <div class="container-fluid pl-3 pr-3">
 
     <!-- start page title -->
-        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 01 ConsequencesControl' , 'page_title' => 'Form 01 ConsequencesControl'  ])
-        @livewire('forms01.consequences-control')
+        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 15 Imd. Action' , 'page_title' => 'Form 15 Imd. Action'  ])
+        @livewire('forms15.imd-action')
     <!-- end page title -->
 
 
@@ -21,41 +21,41 @@
 
 <script>
     window.addEventListener('OpenAddCountryModal', function(){
-         $('.addConsequencesControl').find('span').html('');
-         $('.addConsequencesControl').find('form')[0].reset();
-         $('.addConsequencesControl').modal('show');
+         $('.addImdaction').find('span').html('');
+         $('.addImdaction').find('form')[0].reset();
+         $('.addImdaction').modal('show');
     });
 
     window.addEventListener('CloseAddCountryModal', function(){
-        $('.addConsequencesControl').find('span').html('');
-        $('.addConsequencesControl').find('form')[0].reset();
-        $('.addConsequencesControl').modal('hide');
+        $('.addImdaction').find('span').html('');
+        $('.addImdaction').find('form')[0].reset();
+        $('.addImdaction').modal('hide');
 
         Swal.fire(
             'Well Done!',
-            'New <b>ConsequencesControl</b> Has been Saved Successfully !',
+            'New <b>Imdaction</b> Has been Saved Successfully !',
             'success'
             );
 
-        // alert('New ConsequencesControl Has been Saved Successfully');
+        // alert('New Imdaction Has been Saved Successfully');
     });
 
     window.addEventListener('OpenEditCountryModal', function(event){
-        $('.editConsequencesControl').find('span').html('');
-        $('.editConsequencesControl').modal('show');
+        $('.editImdaction').find('span').html('');
+        $('.editImdaction').modal('show');
     });
 
     window.addEventListener('CloseEditCountryModal', function(event){
-        $('.editConsequencesControl').find('span').html('');
-        $('.editConsequencesControl').find('form')[0].reset();
-        $('.editConsequencesControl').modal('hide');
+        $('.editImdaction').find('span').html('');
+        $('.editImdaction').find('form')[0].reset();
+        $('.editImdaction').modal('hide');
 
         Swal.fire(
             'Good job!',
-            '<b>ConsequencesControl</b> Has been Updated Successfully !',
+            '<b>Imd. Action</b> Has been Updated Successfully !',
             'success'
             );
-        // alert('ConsequencesControl Has been Updated Successfully');
+        // alert('Imdaction Has been Updated Successfully');
     });
 
     window.addEventListener('SwalConfirm', function(event){
@@ -80,7 +80,7 @@
     })
 
     window.addEventListener('deleted', function(event){
-        alert('ConsequencesControl record has been deleted');
+        alert('Imd. Action record has been deleted');
     });
 
     window.addEventListener('swal:deleteCountries', function(event){

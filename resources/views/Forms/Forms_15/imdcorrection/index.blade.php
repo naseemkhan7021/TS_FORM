@@ -1,12 +1,12 @@
-@extends('template.vertical', ['title' => 'Forms - Duration Of Exposure'])
+@extends('template.vertical', ['title' => 'Forms - Imd. Corrections'])
 
 @section('content')
 
 <div class="container-fluid pl-3 pr-3">
 
     <!-- start page title -->
-        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 01 Duration Of Exposure' , 'page_title' => 'Form 01 Duration Of Exposure'  ])
-        @livewire('forms01.duration-of-exposure')
+        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 15 Imd. Corrections' , 'page_title' => 'Form 15 Imd. Corrections'  ])
+        @livewire('forms15.imd-correction')
     <!-- end page title -->
 
 
@@ -21,41 +21,41 @@
 
 <script>
     window.addEventListener('OpenAddCountryModal', function(){
-         $('.addDurationofexposure').find('span').html('');
-         $('.addDurationofexposure').find('form')[0].reset();
-         $('.addDurationofexposure').modal('show');
+         $('.addImdcorrection').find('span').html('');
+         $('.addImdcorrection').find('form')[0].reset();
+         $('.addImdcorrection').modal('show');
     });
 
     window.addEventListener('CloseAddCountryModal', function(){
-        $('.addDurationofexposure').find('span').html('');
-        $('.addDurationofexposure').find('form')[0].reset();
-        $('.addDurationofexposure').modal('hide');
+        $('.addImdcorrection').find('span').html('');
+        $('.addImdcorrection').find('form')[0].reset();
+        $('.addImdcorrection').modal('hide');
 
         Swal.fire(
             'Well Done!',
-            'New <b>Duration Of Exposure</b> Has been Saved Successfully !',
+            'New <b>Imdcorrection</b> Has been Saved Successfully !',
             'success'
             );
 
-        // alert('New administrative control preventive Has been Saved Successfully');
+        // alert('New Imdcorrection Has been Saved Successfully');
     });
 
     window.addEventListener('OpenEditCountryModal', function(event){
-        $('.editDurationofexposure').find('span').html('');
-        $('.editDurationofexposure').modal('show');
+        $('.editImdcorrection').find('span').html('');
+        $('.editImdcorrection').modal('show');
     });
 
     window.addEventListener('CloseEditCountryModal', function(event){
-        $('.editDurationofexposure').find('span').html('');
-        $('.editDurationofexposure').find('form')[0].reset();
-        $('.editDurationofexposure').modal('hide');
+        $('.editImdcorrection').find('span').html('');
+        $('.editImdcorrection').find('form')[0].reset();
+        $('.editImdcorrection').modal('hide');
 
         Swal.fire(
             'Good job!',
-            '<b>Duration Of Exposure</b> Has been Updated Successfully !',
+            '<b>Imd. Corrections</b> Has been Updated Successfully !',
             'success'
             );
-        // alert('administrative control preventive Has been Updated Successfully');
+        // alert('Imdcorrection Has been Updated Successfully');
     });
 
     window.addEventListener('SwalConfirm', function(event){
@@ -80,7 +80,7 @@
     })
 
     window.addEventListener('deleted', function(event){
-        alert('duration of exposure record has been deleted');
+        alert('Imd. Corrections record has been deleted');
     });
 
     window.addEventListener('swal:deleteCountries', function(event){

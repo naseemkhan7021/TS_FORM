@@ -1,8 +1,8 @@
-<div class="modal fade editAdministrativeControlPreventive" wire:ignore.self tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+<div class="modal fade editcontributingcause" wire:ignore.self tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit / Update  Administrative Control Preventive </h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit / Update  Contributing cause </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -13,19 +13,14 @@
 
                      <div class="form-group">
                          <label for="">Activity Description</label>
-                         <input type="text" class="form-control" placeholder="Administrative Control Preventive Description"  wire:model="upd_administrative_control_preventive_description">
-                         <span class="text-danger"> @error('upd_administrative_control_preventive_description') {{ $message }}@enderror</span>
+                         <input type="text" class="form-control" placeholder="Contributing cause Description"  wire:model="upd_contributing_causes_description">
+                         <span class="text-danger"> @error('upd_contributing_causes_description') {{ $message }}@enderror</span>
                      </div>
                      <div class="form-group">
                          <label for="">Activity Abbrivation</label>
-                         <input type="text" class="form-control" placeholder="Administrative Control Preventive Abbrivation" wire:model="upd_administrative_control_preventive_abbr">
-                         <span class="text-danger"> @error('upd_administrative_control_preventive_abbr') {{ $message }}@enderror</span>
+                         <input type="text" class="form-control" placeholder="Contributing cause Abbrivation" wire:model="upd_contributing_causes_abbr">
+                         <span class="text-danger"> @error('upd_contributing_causes_abbr') {{ $message }}@enderror</span>
                      </div>
-                     <div class="form-group">
-                        <label for="">Administrative Control Preventive Value</label>
-                        <input type="text" class="form-control" placeholder="Administrative Control Preventive value"  wire:model="upd_administrative_control_preventive_value">
-                        <span class="text-danger"> @error('upd_administrative_control_preventive_value') {{ $message }}@enderror</span>
-                    </div>
                      <div class="form-group">
                          <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
                          <button type="submit" class="btn btn-primary btn-sm">Save Changes</button>

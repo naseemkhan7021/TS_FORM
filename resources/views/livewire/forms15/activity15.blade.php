@@ -31,8 +31,8 @@
                 <tr>
                     <td>{{ $row->activity15s_id }}</td>
                     <td>{{ $row->activity15s_description  }}</td>
-                    <td>{{ $row->activity_abbr }}</td>
-                    <td>{{ $row->created_at }}</td>
+                    <td>{{ $row->activity15s_abbr }}</td>
+                    <td>{{ $row->created_at->diffForHumans() }}</td>
                     <td>
                         <div class="btn-group">
                             <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->activity15s_id}})">Edit</button>
@@ -53,7 +53,7 @@
         {{ $activity15data->links('livewire-pagination-links') }}
     @endif
 
-    @include('Forms.Forms_01.activity15.add-modal')
-    @include('Forms.Forms_01.activity15.edit-modal')
+    @include('Forms.Forms_15.activity15.add-modal')
+    @include('Forms.Forms_15.activity15.edit-modal')
 
 </div>

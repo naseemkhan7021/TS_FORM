@@ -1,12 +1,12 @@
-@extends('template.vertical', ['title' => 'Forms - Potentialhazard'])
+@extends('template.vertical', ['title' => 'Forms - Why was the unsafe act committed'])
 
 @section('content')
 
 <div class="container-fluid pl-3 pr-3">
 
     <!-- start page title -->
-        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 01 Potentialhazard' , 'page_title' => 'Form 01 Potentialhazard'  ])
-        @livewire('forms01.potential-hazard')
+        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 15 Why was the unsafe act committed' , 'page_title' => 'Form 15 Why was the unsafe act committed'  ])
+        @livewire('forms15.whyunsafeact-committed')
     <!-- end page title -->
 
 
@@ -21,41 +21,41 @@
 
 <script>
     window.addEventListener('OpenAddCountryModal', function(){
-         $('.addPotentialhazard').find('span').html('');
-         $('.addPotentialhazard').find('form')[0].reset();
-         $('.addPotentialhazard').modal('show');
+         $('.addWhyunsafeactcommitteds').find('span').html('');
+         $('.addWhyunsafeactcommitteds').find('form')[0].reset();
+         $('.addWhyunsafeactcommitteds').modal('show');
     });
 
     window.addEventListener('CloseAddCountryModal', function(){
-        $('.addPotentialhazard').find('span').html('');
-        $('.addPotentialhazard').find('form')[0].reset();
-        $('.addPotentialhazard').modal('hide');
+        $('.addWhyunsafeactcommitteds').find('span').html('');
+        $('.addWhyunsafeactcommitteds').find('form')[0].reset();
+        $('.addWhyunsafeactcommitteds').modal('hide');
 
         Swal.fire(
             'Well Done!',
-            'New <b>Potentialhazard</b> Has been Saved Successfully !',
+            'New <b>Why was the unsafe act committed</b> Has been Saved Successfully !',
             'success'
             );
 
-        // alert('New Potentialhazard Has been Saved Successfully');
+        // alert('New Why was the unsafe act committed Has been Saved Successfully');
     });
 
     window.addEventListener('OpenEditCountryModal', function(event){
-        $('.editPotentialhazard').find('span').html('');
-        $('.editPotentialhazard').modal('show');
+        $('.editWhyunsafeactcommitteds').find('span').html('');
+        $('.editWhyunsafeactcommitteds').modal('show');
     });
 
     window.addEventListener('CloseEditCountryModal', function(event){
-        $('.editPotentialhazard').find('span').html('');
-        $('.editPotentialhazard').find('form')[0].reset();
-        $('.editPotentialhazard').modal('hide');
+        $('.editWhyunsafeactcommitteds').find('span').html('');
+        $('.editWhyunsafeactcommitteds').find('form')[0].reset();
+        $('.editWhyunsafeactcommitteds').modal('hide');
 
         Swal.fire(
             'Good job!',
-            '<b>Potentialhazard</b> Has been Updated Successfully !',
+            '<b>Why was the unsafe act committed</b> Has been Updated Successfully !',
             'success'
             );
-        // alert('Potentialhazard Has been Updated Successfully');
+        // alert('Why was the unsafe act committed Has been Updated Successfully');
     });
 
     window.addEventListener('SwalConfirm', function(event){
@@ -80,7 +80,7 @@
     })
 
     window.addEventListener('deleted', function(event){
-        alert('Potentialhazard record has been deleted');
+        alert('Why was the unsafe act committed record has been deleted');
     });
 
     window.addEventListener('swal:deleteCountries', function(event){

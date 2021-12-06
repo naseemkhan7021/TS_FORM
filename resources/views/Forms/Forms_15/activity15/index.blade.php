@@ -1,12 +1,12 @@
-@extends('template.vertical', ['title' => 'Forms - Activity'])
+@extends('template.vertical', ['title' => 'Forms 15 - Activity'])
 
 @section('content')
 
 <div class="container-fluid pl-3 pr-3">
 
     <!-- start page title -->
-        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 01 Activity' , 'page_title' => 'Form 01 Activity'  ])
-        @livewire('forms01.activity15')
+        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 15 Activity' , 'page_title' => 'Form 15 Activity'  ])
+        @livewire('forms15.activity15')
     <!-- end page title -->
 
 

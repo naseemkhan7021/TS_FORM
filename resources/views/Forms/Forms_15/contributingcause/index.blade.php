@@ -1,12 +1,12 @@
-@extends('template.vertical', ['title' => 'Forms - Administrative Control Preventive'])
+@extends('template.vertical', ['title' => 'Forms - Contributing cause'])
 
 @section('content')
 
 <div class="container-fluid pl-3 pr-3">
 
     <!-- start page title -->
-        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 01 Administrative Control Preventive' , 'page_title' => 'Form 01 Administrative Control Preventive'  ])
-        @livewire('forms01.administrative-control-preventive')
+        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 15 Contributing cause' , 'page_title' => 'Form 15 Contributing cause'  ])
+        @livewire('forms15.contributing-cause')
     <!-- end page title -->
 
 
@@ -21,41 +21,41 @@
 
 <script>
     window.addEventListener('OpenAddCountryModal', function(){
-         $('.addAdministrativeControlPreventive').find('span').html('');
-         $('.addAdministrativeControlPreventive').find('form')[0].reset();
-         $('.addAdministrativeControlPreventive').modal('show');
+         $('.addcontributingcause').find('span').html('');
+         $('.addcontributingcause').find('form')[0].reset();
+         $('.addcontributingcause').modal('show');
     });
 
     window.addEventListener('CloseAddCountryModal', function(){
-        $('.addAdministrativeControlPreventive').find('span').html('');
-        $('.addAdministrativeControlPreventive').find('form')[0].reset();
-        $('.addAdministrativeControlPreventive').modal('hide');
+        $('.addcontributingcause').find('span').html('');
+        $('.addcontributingcause').find('form')[0].reset();
+        $('.addcontributingcause').modal('hide');
 
         Swal.fire(
             'Well Done!',
-            'New Administrative Control <b>Preventive</b> Has been Saved Successfully !',
+            'New Contributingcause Has been Saved Successfully !',
             'success'
             );
 
-        // alert('New administrative control preventive Has been Saved Successfully');
+        // alert('New Cause Has been Saved Successfully');
     });
 
     window.addEventListener('OpenEditCountryModal', function(event){
-        $('.editAdministrativeControlPreventive').find('span').html('');
-        $('.editAdministrativeControlPreventive').modal('show');
+        $('.editcontributingcause').find('span').html('');
+        $('.editcontributingcause').modal('show');
     });
 
     window.addEventListener('CloseEditCountryModal', function(event){
-        $('.editAdministrativeControlPreventive').find('span').html('');
-        $('.editAdministrativeControlPreventive').find('form')[0].reset();
-        $('.editAdministrativeControlPreventive').modal('hide');
+        $('.editcontributingcause').find('span').html('');
+        $('.editcontributingcause').find('form')[0].reset();
+        $('.editcontributingcause').modal('hide');
 
         Swal.fire(
             'Good job!',
-            'Administrative Control <b>Preventive</b> Has been Updated Successfully !',
+            '<b>Contributingcause</b> Has been Updated Successfully !',
             'success'
             );
-        // alert('administrative control preventive Has been Updated Successfully');
+        // alert('Cause Has been Updated Successfully');
     });
 
     window.addEventListener('SwalConfirm', function(event){
@@ -80,7 +80,7 @@
     })
 
     window.addEventListener('deleted', function(event){
-        alert('administrative control preventive record has been deleted');
+        alert('<b>Contributingcause</b> record has been deleted');
     });
 
     window.addEventListener('swal:deleteCountries', function(event){

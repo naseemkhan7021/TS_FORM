@@ -1,12 +1,12 @@
-@extends('template.vertical', ['title' => 'Forms - administrative control mitigative'])
+@extends('template.vertical', ['title' => 'Forms - Causes'])
 
 @section('content')
 
 <div class="container-fluid pl-3 pr-3">
 
     <!-- start page title -->
-        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 01 Administrative Control Mitigative' , 'page_title' => 'Form 01 Administrative Control Mitigative'  ])
-        @livewire('forms01.administrative-control-mitigative')
+        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 15 Causes' , 'page_title' => 'Form 15 Causes'  ])
+        @livewire('forms15.cause15')
     <!-- end page title -->
 
 
@@ -21,41 +21,41 @@
 
 <script>
     window.addEventListener('OpenAddCountryModal', function(){
-         $('.addAdministrativeControlMitigative').find('span').html('');
-         $('.addAdministrativeControlMitigative').find('form')[0].reset();
-         $('.addAdministrativeControlMitigative').modal('show');
+         $('.addCause15').find('span').html('');
+         $('.addCause15').find('form')[0].reset();
+         $('.addCause15').modal('show');
     });
 
     window.addEventListener('CloseAddCountryModal', function(){
-        $('.addAdministrativeControlMitigative').find('span').html('');
-        $('.addAdministrativeControlMitigative').find('form')[0].reset();
-        $('.addAdministrativeControlMitigative').modal('hide');
+        $('.addCause15').find('span').html('');
+        $('.addCause15').find('form')[0].reset();
+        $('.addCause15').modal('hide');
 
         Swal.fire(
             'Well Done!',
-            'New Administrative Control <b>Mitigative</b> Has been Saved Successfully !',
+            'New Cause Has been Saved Successfully !',
             'success'
             );
 
-        // alert('New administrative control mitigative Has been Saved Successfully');
+        // alert('New Cause Has been Saved Successfully');
     });
 
     window.addEventListener('OpenEditCountryModal', function(event){
-        $('.editAdministrativeControlMitigative').find('span').html('');
-        $('.editAdministrativeControlMitigative').modal('show');
+        $('.editCause15').find('span').html('');
+        $('.editCause15').modal('show');
     });
 
     window.addEventListener('CloseEditCountryModal', function(event){
-        $('.editAdministrativeControlMitigative').find('span').html('');
-        $('.editAdministrativeControlMitigative').find('form')[0].reset();
-        $('.editAdministrativeControlMitigative').modal('hide');
+        $('.editCause15').find('span').html('');
+        $('.editCause15').find('form')[0].reset();
+        $('.editCause15').modal('hide');
 
         Swal.fire(
             'Good job!',
-            'Administrative Control <b>Mitigative</b> Has been Updated Successfully !',
+            '<b>Cause</b> Has been Updated Successfully !',
             'success'
             );
-        // alert('administrative control mitigative Has been Updated Successfully');
+        // alert('Cause Has been Updated Successfully');
     });
 
     window.addEventListener('SwalConfirm', function(event){
@@ -80,7 +80,7 @@
     })
 
     window.addEventListener('deleted', function(event){
-        alert('Administrative Control Mitigative record has been deleted');
+        alert('<b>Cause</b> record has been deleted');
     });
 
     window.addEventListener('swal:deleteCountries', function(event){

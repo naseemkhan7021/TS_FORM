@@ -18,8 +18,8 @@
                      </div>
                      <div class="form-group">
                          <label for="">Activity Abbrivation</label>
-                         <input type="text" class="form-control" placeholder="Activity Abbrivation" wire:model="upd_activity_abbr">
-                         <span class="text-danger"> @error('upd_activity_abbr') {{ $message }}@enderror</span>
+                         <input type="text" class="form-control" placeholder="Activity Abbrivation" wire:model="upd_activity15s_abbr">
+                         <span class="text-danger"> @error('upd_activity15s_abbr') {{ $message }}@enderror</span>
                      </div>
                      <div class="form-group">
                          <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
