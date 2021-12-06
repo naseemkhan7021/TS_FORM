@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class uploaddocument extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'uploaddocuments_id'; 
+    protected $table = 'uploaddocuments';
+    protected $fillable = [
+        'uploaddocuments_name',
+        'uploaddocuments_title',
+        'uploaddocuments_location',
+    ];
 }
