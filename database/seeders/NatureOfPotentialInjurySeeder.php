@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-
 use App\Models\forms_15\NatureOfPotentialInjury;
 use Illuminate\Database\Seeder;
 

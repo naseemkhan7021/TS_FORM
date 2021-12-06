@@ -407,21 +407,21 @@
                             <a href="{{ route('form15_cause15') }}"> Causes </a>
                         </li>
                         <li>
-                            <a href="{{ route('form15_imdaction') }}"> Imd. Action </a>
+                            <a href="{{ route('form15_imdaction') }}"> Immediate Action </a>
                         </li>
                         <li>
                             <a href="{{ route('form15_contributingcause') }}"> Contributing Cause</a>
                         </li>
                         <li>
-                            <a href="{{ route('form15_imdcorrection') }}"> Imd. Correction </a>
+                            <a href="{{ route('form15_imdcorrection') }}"> Immediate Correction </a>
                         </li>
                         <li>
                             <a href="{{ route('form15_natureofpotentialinjury') }}"> Nature Of Potential Injuries </a>
                         </li>
                         <li>
-                            <a href="{{ route('form15_whyunsafeactcommitted') }}"> Whyunsafeact Committeds </a>
+                            <a href="{{ route('form15_whyunsafeactcommitted') }}"> Why unsafe act Committed </a>
                         </li>
-                        
+
                     </ul>
                 </div>
             </li>
@@ -459,7 +459,7 @@
                         <li>
                             <a href="{{ route('form15_whyunsafeactcommitted') }}"> Whyunsafeact Committeds </a>
                         </li>
-                        
+
                     </ul>
                 </div>
             </li>
