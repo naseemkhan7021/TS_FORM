@@ -9,10 +9,10 @@ class ImdCorrection extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'ibc_id';
-    protected $table = 'companies';
+    protected $primaryKey = 'imd_corrections_id';
+    protected $table = 'imd_corrections';
     protected $fillable = [
-        'sbc_company_name', 'sbc_abbr','sbc_logo_small','sbc_logo_large','validupto_dt'
+        'imd_corrections_description', 'imd_corrections_abbr'
     ];
-    
+
 }

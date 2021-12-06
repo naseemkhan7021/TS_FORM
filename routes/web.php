@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommonController;
 use App\Http\Controllers\Forms\Form01Controller;
-// use App\Http\Controllers\RoutingController;
+use App\Http\Controllers\RoutingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,6 +91,6 @@ Route::group(['middleware' => 'auth', 'prefix' => '/'], function () {
 });
 
 // landing
-// Route::get('', 'RoutingController@index')->name('index');
+Route::get('', [RoutingController::class,'index'] )->name('index');
 
 
