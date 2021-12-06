@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Http\Livewire\Forms15;
-
-use App\Models\Form15\Activity15 as Form15Activity15;
+use App\Models\forms_15\Activity15 as Forms_15Activity15;
 use Livewire\Component;
 
 class Activity15 extends Component
@@ -21,7 +20,7 @@ class Activity15 extends Component
     public function render()
     {
 
-        $activity15data = Form15Activity15::when($this->searchQuery != '', function ($query) {
+        $activity15data = Forms_15Activity15::when($this->searchQuery != '', function ($query) {
             $query->where('bactive', '1')
                 ->where('activity15s_description', 'like', '%' . $this->searchQuery . '%')
                 ->orWhere('activity_abbr', 'like', '%' . $this->searchQuery . '%');
@@ -48,7 +47,7 @@ class Activity15 extends Component
             'activity_abbr' => 'required'
         ]);
 
-        $save = Form15Activity15::insert([
+        $save = Forms_15Activity15::insert([
             'activity15s_description' => $this->activity15s_description,
             'activity_abbr' => $this->activity_abbr,
         ]);
@@ -63,7 +62,7 @@ class Activity15 extends Component
 
     public function OpenEditCountryModal($activity15s_id)
     {
-        $info = Form15Activity15::find($activity15s_id);
+        $info = Forms_15Activity15::find($activity15s_id);
 
         $this->upd_activity15s_description = $info->activity15s_description;
         $this->upd_activity_abbr = $info->activity_abbr;
@@ -87,7 +86,7 @@ class Activity15 extends Component
             'upd_activity_abbr.required' => 'Activity Abbrivation require'
         ]);
 
-        $update = Form15Activity15::find($cid)->update([
+        $update = Forms_15Activity15::find($cid)->update([
             'activity15s_description' => $this->upd_activity15s_description,
             'activity_abbr' => $this->upd_activity_abbr
         ]);
@@ -102,7 +101,7 @@ class Activity15 extends Component
 
     public function deleteConfirm($activity15s_id)
     {
-        $info = Form15Activity15::find($activity15s_id);
+        $info = Forms_15Activity15::find($activity15s_id);
         $this->dispatchBrowserEvent('SwalConfirm', [
             'title' => 'Are you sure?',
             'html' => 'You want to delete <strong>' . $info->activity15s_description . '</strong>',
@@ -114,7 +113,7 @@ class Activity15 extends Component
 
     public function delete($activity15s_id)
     {
-        $del =  Form15Activity15::find($activity15s_id)->delete();
+        $del =  Forms_15Activity15::find($activity15s_id)->delete();
         if ($del) {
             $this->dispatchBrowserEvent('delete');
         }

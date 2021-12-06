@@ -3,13 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommonController;
 use App\Http\Controllers\Forms\Form01Controller;
-<<<<<<< HEAD
 use App\Http\Controllers\Forms\Forms15Controller;
 
 // use App\Http\Controllers\RoutingController;
-=======
-use App\Http\Controllers\RoutingController;
->>>>>>> 9d2ee657642f1d454a3c5605c36d36318443957b
 
 /*
 |--------------------------------------------------------------------------
