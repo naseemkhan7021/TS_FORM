@@ -5,12 +5,13 @@ namespace App\Http\Controllers\Forms;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class Form01Controller extends Controller
+class Forms15Controller extends Controller
 {
     // temp middleware
     public function __construct(){
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -91,87 +92,43 @@ class Form01Controller extends Controller
     // Sub Modules Used in the Main form
 
 
-    public function index_activity()
+    public function index_activity15()
     {
-        return view('forms.forms_01.activity.index');
+        return view('forms.forms_15.activity15.index');
     }
 
 
-    public function index_subactivity()
+    public function index_cause15()
     {
-        return view('forms.forms_01.subactivity.index');
+        return view('forms.forms_15.cause15.index');
     }
 
-    public function index_potentialhazard()
+    public function index_contributingcause()
     {
-        return view('forms.forms_01.potentialhazard.index');
+        return view('forms.forms_15.contributingcause.index');
     }
-    public function index_preventiveincidentcontrol()
+    public function index_formdata15()
     {
-        return view('forms.forms_01.preventiveincidentcontrol.index');
+        return view('forms.forms_15.formdata15.index');
     }
-    public function index_probable_consequence()
+    public function index_imdaction()
     {
-        return view('forms.forms_01.probableconsequence.index');
+        return view('forms.forms_15.imdaction.index');
     }
 
-    public function index_cause()
+    public function index_imdcorrection()
     {
-        return view('forms.forms_01.cause.index');
+        return view('forms.forms_15.imdcorrection.index');
     }
    
-    public function index_subcause()
+    public function index_natureofpotentialinjury()
     {
-        return view('forms.forms_01.subcause.index');
+        return view('forms.forms_15.natureofpotentialinjury.index');
     }
 
 
-    public function index_administrative_control_mitigative()
+    public function index_whyunsafeactcommitted()
     {
-        return view('forms.forms_01.administrativecontrolmitigative.index');
+        return view('forms.forms_15.whyunsafeactcommitted.index');
     }
-
-
-    public function index_administrative_control_preventive()
-    {
-        return view('forms.forms_01.administrativecontrolpreventive.index');
-    }
-
-
-    public function index_engineering_control()
-    {
-        return view('forms.forms_01.engineeringcontrol.index');
-    }
-    
-    public function index_risk_probability()
-    {
-        # code...
-        return view('forms.forms_01.riskprobability.index');
-    }
-
-    public function index_risk_consequence()
-    {
-        # code...
-        return view('forms.forms_01.riskconsequence.index');
-    }
-
-
-    public function index_consequences_control()
-    {
-        return view('forms.forms_01.consequencescontrol.index');
-    }
-    
-
-
-    public function index_duration_of_exposure()
-    {
-        return view('forms.forms_01.durationofexposure.index');
-    }
-
-
-
-
-
-
-
 }

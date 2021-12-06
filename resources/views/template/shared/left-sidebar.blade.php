@@ -395,6 +395,47 @@
                 </div>
             </li>
 
+            <li>
+                <a href="#sidebarForm15" data-toggle="collapse">
+                    <i data-feather="users"></i>
+                    <span> Form 15 </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarForm15">
+                    <ul class="nav-second-level">
+                        <li>
+                            <a href="#"> Forms 15 </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('form15_activity15') }}"> Activity </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('form01_subactivity') }}"> Sub Activity </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('form01_preventiveincidentcontrol') }}"> Preventive Incident Control</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('form01_potentialhazard') }}"> Potential Hazard </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('form01_probable_consequence') }}"> Probable Consequence </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('form01_cause') }}"> Causes </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('form01_subcause') }}"> Sub Causes </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('form01_risk_probability') }}"> Risk Probability </a>
+                        </li>
+                        
+
+
+                    </ul>
+                </div>
+            </li>
         @endif
 
 

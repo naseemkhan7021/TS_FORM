@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Form15\Activity15;
+use App\Models\forms_15\Activity15;
+// use App\Models\forms_15\Activity15;
 use Illuminate\Database\Seeder;
 
 class Activity15Seeder extends Seeder

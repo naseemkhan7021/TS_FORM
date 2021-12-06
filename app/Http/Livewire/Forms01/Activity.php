@@ -87,8 +87,8 @@ class Activity extends Component
             'upd_activity_abbr' => 'required'
         ], [
 
-            'upd_activity_description.required' => 'Enter Gender Description',
-            'upd_activity_abbr.required' => 'Gender Abbrivation require'
+            'upd_activity_description.required' => 'Enter Activity Description',
+            'upd_activity_abbr.required' => 'Activity Abbrivation require'
         ]);
 
         $update = ActivityModel::find($cid)->update([
