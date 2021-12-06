@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\forms_00;
+namespace App\Models\forms_15;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class formdata_00 extends Model
+class WhyunsafeactCommitted extends Model
 {
     use HasFactory;
 
