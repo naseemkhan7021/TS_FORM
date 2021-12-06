@@ -9,10 +9,10 @@ class NatureOfPotentialInjury extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'ibc_id';
-    protected $table = 'companies';
+    protected $primaryKey = 'nature_of_potential_injuries_id';
+    protected $table = 'nature_of_potential_injuries';
     protected $fillable = [
-        'sbc_company_name', 'sbc_abbr','sbc_logo_small','sbc_logo_large','validupto_dt'
+        'nature_of_potential_injuries_description', 'nature_of_potential_injuries_abbr'
     ];
-    
+
 }

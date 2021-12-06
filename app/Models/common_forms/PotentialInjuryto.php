@@ -9,10 +9,10 @@ class PotentialInjuryto extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'ibc_id';
-    protected $table = 'companies';
+    protected $primaryKey = 'potential_injurytos_id';
+    protected $table = 'potential_injurytos';
     protected $fillable = [
-        'sbc_company_name', 'sbc_abbr','sbc_logo_small','sbc_logo_large','validupto_dt'
+        'potential_injurytos_description', 'potential_injurytos_abbr'
     ];
-    
+
 }

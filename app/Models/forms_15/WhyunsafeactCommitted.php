@@ -9,10 +9,10 @@ class WhyunsafeactCommitted extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'ibc_id';
-    protected $table = 'companies';
+    protected $primaryKey = 'whyunsafeact_committeds_id';
+    protected $table = 'whyunsafeact_committeds';
     protected $fillable = [
-        'sbc_company_name', 'sbc_abbr','sbc_logo_small','sbc_logo_large','validupto_dt'
+        'whyunsafeact_committeds_description', 'whyunsafeact_committeds_abbr'
     ];
-    
+
 }

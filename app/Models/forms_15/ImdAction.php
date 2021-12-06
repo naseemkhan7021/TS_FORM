@@ -9,10 +9,10 @@ class ImdAction extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'ibc_id';
-    protected $table = 'companies';
+    protected $primaryKey = 'imd_actions_id';
+    protected $table = 'imd_actions';
     protected $fillable = [
-        'sbc_company_name', 'sbc_abbr','sbc_logo_small','sbc_logo_large','validupto_dt'
+        'imd_actions_description', 'imd_actions_abbr'
     ];
-    
+
 }
