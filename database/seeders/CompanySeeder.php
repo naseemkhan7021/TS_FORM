@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\common_forms\Company;
 use Illuminate\Database\Seeder;
 
 class CompanySeeder extends Seeder
@@ -13,6 +14,10 @@ class CompanySeeder extends Seeder
      */
     public function run()
     {
-        //
+        Company::create(
+            ['sbc_company_name' => 'Talib and Shamsi', 'sbc_abbr' => 'T&S']);
     }
 }
+
+
+
