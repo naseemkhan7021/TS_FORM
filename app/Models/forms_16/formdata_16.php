@@ -51,8 +51,8 @@ class formdata_16 extends Model
         'control_measure',
         'actions_taken',
         'site_enginner_name',
-        'signature',
+        'site_enginner_signature',
         'project_manager',
-        'signature',
+        'project_manager_signature',
     ];
 }
