@@ -168,24 +168,24 @@
                 @if (Auth::user()->current_role⁯_id == 1)
 
 
-                <li>
-                    <a href="#sidebarProjectCRM" data-toggle="collapse">
-                        <i data-feather="users"></i>
-                        <span> Project CRM </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarProjectCRM">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="{{ route('const_projects') }}">Project</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('projectwings') }}">Project Wings</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('projectunit') }}">Project Units</a>
-                            </li>
-                            {{-- <li>
+                    <li>
+                        <a href="#sidebarProjectCRM" data-toggle="collapse">
+                            <i data-feather="users"></i>
+                            <span> Project CRM </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sidebarProjectCRM">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href="{{ route('const_projects') }}">Project</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('projectwings') }}">Project Wings</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('projectunit') }}">Project Units</a>
+                                </li>
+                                {{-- <li>
                                 <a href="{{ route('dashboard_presales') }}">Sales  - Pre Sales </a>
                             </li>
                             <li>
@@ -202,268 +202,253 @@
                                 <a href="{{ route('secondarymember') }}">Secondary Member</a>
                             </li> --}}
 
-                        </ul>
-                    </div>
-                </li>
+                            </ul>
+                        </div>
+                    </li>
 
-            @endif
+                @endif
 
-            @if (Auth::user()->current_role⁯_id == 1)
+                @if (Auth::user()->current_role⁯_id == 1)
 
-                <li>
-                    <a href="#sidebarPreSales" data-toggle="collapse">
-                        <i data-feather="mail"></i>
-                        <span> Pre Sales </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarPreSales">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href={{ route('dashboard_presales') }}>Unit Quotes</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+                    <li>
+                        <a href="#sidebarPreSales" data-toggle="collapse">
+                            <i data-feather="mail"></i>
+                            <span> Pre Sales </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sidebarPreSales">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href={{ route('dashboard_presales') }}>Unit Quotes</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
 
-            @endif
+                @endif
 
-            @if (Auth::user()->current_role⁯_id == 1)
+                @if (Auth::user()->current_role⁯_id == 1)
 
-                <li>
-                    <a href="#sidebarSales" data-toggle="collapse">
-                        <i data-feather="mail"></i>
-                        <span> Sales </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarSales">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href={{ route('dashboard_presales') }}> Unit Availability </a>
-                            </li>
-                            <li>
-                                <a href={{ route('dashboard_presales') }}> Unit Details </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('leads') }}"> Leads </a>
-                            </li>
-                            <li>
-                                <a href={{ route('leadfollow') }}> Current Activities </a>
-                            </li>
+                    <li>
+                        <a href="#sidebarSales" data-toggle="collapse">
+                            <i data-feather="mail"></i>
+                            <span> Sales </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sidebarSales">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href={{ route('dashboard_presales') }}> Unit Availability </a>
+                                </li>
+                                <li>
+                                    <a href={{ route('dashboard_presales') }}> Unit Details </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('leads') }}"> Leads </a>
+                                </li>
+                                <li>
+                                    <a href={{ route('leadfollow') }}> Current Activities </a>
+                                </li>
 
-                            <li>
-                                <a href="{{ route('channelpartner') }}"> Channel Partner </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+                                <li>
+                                    <a href="{{ route('channelpartner') }}"> Channel Partner </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
 
-            @endif
-
-
-            @if (Auth::user()->current_role⁯_id == 1)
+                @endif
 
 
-                <li>
-                    <a href="#sidebarPostSales" data-toggle="collapse">
-                        <i data-feather="mail"></i>
-                        <span> Post Sales </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarPostSales">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="{{ route('primarymember') }}"> Primary Members </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('secondarymember') }}"> Secondary Members </a>
-                            </li>
-                            <li>
-                                <a href={{ route('dashboard_presales') }}> Summary </a>
-                            </li>
-                            <li>
-                                <a href={{ route('dashboard_presales') }}> Receipts </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-            @endif
+                @if (Auth::user()->current_role⁯_id == 1)
 
 
+                    <li>
+                        <a href="#sidebarPostSales" data-toggle="collapse">
+                            <i data-feather="mail"></i>
+                            <span> Post Sales </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sidebarPostSales">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href="{{ route('primarymember') }}"> Primary Members </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('secondarymember') }}"> Secondary Members </a>
+                                </li>
+                                <li>
+                                    <a href={{ route('dashboard_presales') }}> Summary </a>
+                                </li>
+                                <li>
+                                    <a href={{ route('dashboard_presales') }}> Receipts </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                @endif
 
 
 
 
 
-            @if (Auth::user()->current_role⁯_id == 1)
-
-            {{-- Form 00  --}}
-            <li>
-                <a href="#sidebarForm00" data-toggle="collapse">
-                    <i data-feather="users"></i>
-                    <span> Form 00 </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <div class="collapse" id="sidebarForm00">
-                    <ul class="nav-second-level">
-                        <li>
-                            <a href="{{ route('salesunit') }}"> Forms 00 </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('leadstatus') }}"> Lead Status </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('leadsource') }}"> Lead Source </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('paymentmode') }}"> Payment Mode </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('propertystatus') }}"> Property Status </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('paymenttemplate') }}"> Payment Template </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-            {{-- Form 01 --}}
-            <li>
-                <a href="#sidebarForm01" data-toggle="collapse">
-                    <i data-feather="users"></i>
-                    <span> Form 01 </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <div class="collapse" id="sidebarForm01">
-                    <ul class="nav-second-level">
-                        <li>
-                            <a href="#"> Forms 01 </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form01_activity') }}"> Activity </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form01_subactivity') }}"> Sub Activity </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form01_preventiveincidentcontrol') }}"> Preventive Incident Control</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form01_potentialhazard') }}"> Potential Hazard </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form01_probable_consequence') }}"> Probable Consequence </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form01_cause') }}"> Causes </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form01_subcause') }}"> Sub Causes </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form01_risk_probability') }}"> Risk Probability </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form01_risk_consequence') }}"> Risk Consequence </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form01_consequences_control') }}"> Consequences Control </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form01_engineering_control') }}"> Engineering Control </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form01_administrative_control_mitigative') }}"> Administrative Control Mitigative </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form01_administrative_control_preventive') }}"> Administrative Control Preventive </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form01_duration_of_exposure') }}"> Duration Of Exposure </a>
-                        </li>
 
 
-                    </ul>
-                </div>
-            </li>
+                @if (Auth::user()->current_role⁯_id == 1)
 
-            {{-- Form 15 --}}
-            <li>
-                <a href="#sidebarForm15" data-toggle="collapse">
-                    <i data-feather="users"></i>
-                    <span> Form 15 </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <div class="collapse" id="sidebarForm15">
-                    <ul class="nav-second-level">
-                        <li>
-                            <a href="#"> Forms 15 </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form15_activity15') }}"> Activity </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form15_cause15') }}"> Causes </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form15_imdaction') }}"> Immediate Action </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form15_contributingcause') }}"> Contributing Cause</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form15_imdcorrection') }}"> Immediate Correction </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form15_natureofpotentialinjury') }}"> Nature Of Potential Injuries </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form15_whyunsafeactcommitted') }}"> Why unsafe act Committed </a>
-                        </li>
+                    {{-- Form 00 --}}
+                    <li>
+                        <a href="#sidebarForm00" data-toggle="collapse">
+                            <i data-feather="users"></i>
+                            <span> Form 00 </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sidebarForm00">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href="{{ route('salesunit') }}"> Forms 00 </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('leadstatus') }}"> Lead Status </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('leadsource') }}"> Lead Source </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('paymentmode') }}"> Payment Mode </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('propertystatus') }}"> Property Status </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('paymenttemplate') }}"> Payment Template </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
 
-                    </ul>
-                </div>
-            </li>
+                    {{-- Form 01 --}}
+                    <li>
+                        <a href="#sidebarForm01" data-toggle="collapse">
+                            <i data-feather="users"></i>
+                            <span> Form 01 </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sidebarForm01">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href="#"> Forms 01 </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('form01_activity') }}"> Activity </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('form01_subactivity') }}"> Sub Activity </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('form01_preventiveincidentcontrol') }}"> Preventive Incident
+                                        Control</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('form01_potentialhazard') }}"> Potential Hazard </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('form01_probable_consequence') }}"> Probable Consequence </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('form01_cause') }}"> Causes </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('form01_subcause') }}"> Sub Causes </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('form01_risk_probability') }}"> Risk Probability </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('form01_risk_consequence') }}"> Risk Consequence </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('form01_consequences_control') }}"> Consequences Control </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('form01_engineering_control') }}"> Engineering Control </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('form01_administrative_control_mitigative') }}"> Administrative
+                                        Control Mitigative </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('form01_administrative_control_preventive') }}"> Administrative
+                                        Control Preventive </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('form01_duration_of_exposure') }}"> Duration Of Exposure </a>
+                                </li>
 
-            {{-- Form 16  --}}
-            <li>
-                <a href="#sidebarForm16" data-toggle="collapse">
-                    <i data-feather="users"></i>
-                    <span> Form 16 </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <div class="collapse" id="sidebarForm16">
-                    <ul class="nav-second-level">
-                        <li>
-                            <a href="#"> Forms 16 </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form15_activity15') }}"> Activity </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form15_cause15') }}"> Causes </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form15_imdaction') }}"> Imd. Action </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form15_contributingcause') }}"> Contributing Cause</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form15_imdcorrection') }}"> Imd. Correction </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form15_natureofpotentialinjury') }}"> Nature Of Potential Injuries </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('form15_whyunsafeactcommitted') }}"> Whyunsafeact Committeds </a>
-                        </li>
 
-                    </ul>
-                </div>
-            </li>
-        @endif
+                            </ul>
+                        </div>
+                    </li>
+
+                    {{-- Form 15 --}}
+                    <li>
+                        <a href="#sidebarForm15" data-toggle="collapse">
+                            <i data-feather="users"></i>
+                            <span> Form 15 </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sidebarForm15">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href="#"> Forms 15 </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('form15_activity15') }}"> Activity </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('form15_cause15') }}"> Causes </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('form15_imdaction') }}"> Immediate Action </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('form15_contributingcause') }}"> Contributing Cause</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('form15_imdcorrection') }}"> Immediate Correction </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('form15_natureofpotentialinjury') }}"> Nature Of Potential
+                                        Injuries </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('form15_whyunsafeactcommitted') }}"> Why unsafe act Committed
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+
+                    {{-- Form 16 --}}
+                    <li>
+                        <a href="#sidebarForm16" data-toggle="collapse">
+                            <i data-feather="users"></i>
+                            <span> Form 16 </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sidebarForm16">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href="{{ route('form16_formdata16') }}"> Forms 16 </a>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                    </li>
+                @endif
 
 
 
@@ -1051,17 +1036,17 @@
                                 </div>
                             </li>
                         </ul> --}}
-                    </div>
-                </li>
-            </ul>
-
         </div>
-        <!-- End Sidebar -->
-
-        <div class="clearfix"></div>
+        </li>
+        </ul>
 
     </div>
-    <!-- Sidebar -left -->
+    <!-- End Sidebar -->
+
+    <div class="clearfix"></div>
+
+</div>
+<!-- Sidebar -left -->
 
 </div>
 <!-- Left Sidebar End -->

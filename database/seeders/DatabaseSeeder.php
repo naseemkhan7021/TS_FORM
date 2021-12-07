@@ -3,10 +3,10 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Database\Seeders\CompanySeeder;
-use Database\Seeders\ProjectsSeeder;
-use Database\Seeders\DepartmentSeeder;
-use Database\Seeders\DefaultdataSeeder;
+// use Database\Seeders\CompanySeeder;
+// use Database\Seeders\ProjectsSeeder;
+// use Database\Seeders\DepartmentSeeder;
+// use Database\Seeders\DefaultdataSeeder;
 // use Database\Seeders\RoleSeeder;
 // use Database\Seeders\GenderSeeder;
 // use Database\Seeders\LanguageSeeder;
@@ -54,10 +54,12 @@ class DatabaseSeeder extends Seeder
             // NatureOfPotentialInjurySeeder::class,
             // WhyunsafeactCommittedSeeder::class,
 
-            CompanySeeder::class,
-            DepartmentSeeder::class,
-            ProjectsSeeder::class,
-            DefaultdataSeeder::class,
+            // CompanySeeder::class,
+            // DepartmentSeeder::class,
+            // ProjectsSeeder::class,
+            // DefaultdataSeeder::class,
+            // DocumentSeeder::class,
+            PotentialInjurytoSeeder::class,
 
         ]);
     }

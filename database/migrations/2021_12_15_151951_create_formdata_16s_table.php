@@ -32,50 +32,50 @@ class CreateFormdata16sTable extends Migration
             $table->unsignedBigInteger('potential_injurytos_fk')->default(1);
             $table->foreign('potential_injurytos_fk')->references('potential_injurytos_id')->on('potential_injurytos')->onDelete('cascade');
             // upload document join
-            $table->unsignedBigInteger('uploaddocuments_fk')->default(1);
-            $table->foreign('uploaddocuments_fk')->references('uploaddocuments_id')->on('uploaddocuments')->onDelete('cascade');
+            // $table->unsignedBigInteger('uploaddocuments_fk')->default(1);
+            // $table->foreign('uploaddocuments_fk')->references('uploaddocuments_id')->on('uploaddocuments')->onDelete('cascade');
             // Gender Table Ref
             $table->unsignedBigInteger('gender_fk')->default(1);
             $table->foreign('gender_fk')->references('gender_id')->on('genders')->onDelete('cascade');
 
 
             // ******* all Remaining data
-            $table->string('injuredvictim_name', 100);
-            $table->string('eml_id_no', 100);
-            $table->string('designation', 100);
-            $table->date('dob_dt');
-            $table->integer('age');
-            $table->date('doj_dt');
-            $table->boolean('safety_inducted');
-            $table->boolean('married');
-            $table->string('present_address',151);
-            $table->string('permanent_address',151);
-            $table->boolean('person_on_duty');
-            $table->boolean('person_authorized_2_incident_area');
-            $table->string('first_incident_reported_to',100);
-            $table->string('by_whom',100);
-            $table->date('date_time_reported_dt'); // auto data 
-            $table->string('witness1_name');
-            $table->string('witness2_name');
-            $table->string('designation_1');
-            $table->string('designation_2');
-            $table->boolean('first_aid_given_on_site');
-            $table->string('name_first_aider',100);
-            $table->boolean('victim_taken_hospital');
-            $table->string('name_hospital',100);
-            $table->boolean('victim_hospital_dischaged');
-            $table->date('return_to_work');
-            $table->boolean('victim_influence_alcohol');
-            $table->string('description_of_incident',500);
-            $table->string('extend_injury',100);
-            $table->string('activity16',100);
-            $table->string('relavebt_risk_referenceno',100);
-            $table->string('control_measure',100);
-            $table->string('actions_taken',100);
-            $table->string('site_enginner_name',100);
-            $table->string('site_enginner_signature',100);
-            $table->string('project_manager',100);
-            $table->string('project_manager_signature',100);
+            $table->string('injuredvictim_name', 100)->default(null);
+            $table->string('eml_id_no', 100)->default(null);
+            $table->string('designation', 100)->default(null);
+            $table->date('dob_dt')->default(null);
+            $table->integer('age')->default(null);
+            $table->date('doj_dt')->default(null);
+            $table->boolean('safety_inducted')->default(true);
+            $table->boolean('married')->default(true);
+            $table->string('present_address',151)->default(null);
+            $table->string('permanent_address',151)->default(null);
+            $table->boolean('person_on_duty')->default(true);
+            $table->boolean('person_authorized_2_incident_area')->default(true);
+            $table->string('first_incident_reported_to',100)->default(null);
+            $table->string('by_whom',100)->default(null);
+            $table->date('date_time_reported_dt')->default(null);; // auto data->default(null) 
+            $table->string('witness1_name')->default(null);
+            $table->string('witness2_name')->default(null);
+            $table->string('designation_1')->default(null);
+            $table->string('designation_2')->default(null);
+            $table->boolean('first_aid_given_on_site')->default(true);
+            $table->string('name_first_aider',100)->default(null);
+            $table->boolean('victim_taken_hospital')->default(true);
+            $table->string('name_hospital',100)->default(null);
+            $table->boolean('victim_hospital_dischaged')->default(true);
+            $table->date('return_to_work')->default(null);
+            $table->boolean('victim_influence_alcohol')->default(true);
+            $table->string('description_of_incident',500)->default(null);
+            $table->string('extend_injury',100)->default(null);
+            $table->string('activity16',100)->default(null);
+            $table->string('relavebt_risk_referenceno',100)->default(null);
+            $table->string('control_measure',100)->default(null);
+            $table->string('actions_taken',100)->default(null);
+            $table->string('site_enginner_name',100)->default(null);
+            $table->string('site_enginner_signature',100)->default(null);
+            $table->string('project_manager',100)->default(null);
+            $table->string('project_manager_signature',100)->default(null);
 
             
             // general values

@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Forms;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class Forms15Controller extends Controller
+class Forms16Controller extends Controller
 {
     // temp middleware
     public function __construct()
     {
         $this->middleware('auth');
     }
+
 
     /**
      * Display a listing of the resource.
@@ -90,46 +91,10 @@ class Forms15Controller extends Controller
     }
 
 
-    // Sub Modules Used in the Main form forms_15
+    // Sub Modules Used in the Main form forms_16
 
-
-    public function index_activity15()
+    public function index_formdata16()
     {
-        return view('forms.forms_15.activity15.index');
-    }
-
-
-    public function index_cause15()
-    {
-        return view('forms.forms_15.cause15.index');
-    }
-
-    public function index_contributingcause()
-    {
-        return view('forms.forms_15.contributingcause.index');
-    }
-    public function index_formdata15()
-    {
-        return view('forms.forms_15.formdata15.index');
-    }
-    public function index_imdaction()
-    {
-        return view('forms.forms_15.imdaction.index');
-    }
-
-    public function index_imdcorrection()
-    {
-        return view('forms.forms_15.imdcorrection.index');
-    }
-
-    public function index_natureofpotentialinjury()
-    {
-        return view('forms.forms_15.natureofpotentialinjury.index');
-    }
-
-
-    public function index_whyunsafeactcommitted()
-    {
-        return view('forms.forms_15.whyunsafeactcommitted.index');
+        return view('forms.forms_16.formdata16.index');
     }
 }
