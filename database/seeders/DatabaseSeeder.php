@@ -3,6 +3,10 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\CompanySeeder;
+use Database\Seeders\ProjectsSeeder;
+use Database\Seeders\DepartmentSeeder;
+use Database\Seeders\DefaultdataSeeder;
 // use Database\Seeders\RoleSeeder;
 // use Database\Seeders\GenderSeeder;
 // use Database\Seeders\LanguageSeeder;
@@ -42,13 +46,19 @@ class DatabaseSeeder extends Seeder
             // ReligionSeeder::class,
             // RoleSeeder::class,
             // SalesunitSeeder::class,
-            Activity15Seeder::class,
-            Cause15Seeder::class,
-            ContributingCauseSeeder::class,
-            ImdActionSeeder::class,
-            ImdCorrectionSeeder::class,
-            NatureOfPotentialInjurySeeder::class,
-            WhyunsafeactCommittedSeeder::class,
+            // Activity15Seeder::class,
+            // Cause15Seeder::class,
+            // ContributingCauseSeeder::class,
+            // ImdActionSeeder::class,
+            // ImdCorrectionSeeder::class,
+            // NatureOfPotentialInjurySeeder::class,
+            // WhyunsafeactCommittedSeeder::class,
+
+            CompanySeeder::class,
+            DepartmentSeeder::class,
+            ProjectsSeeder::class,
+            DefaultdataSeeder::class,
+
         ]);
     }
 }
