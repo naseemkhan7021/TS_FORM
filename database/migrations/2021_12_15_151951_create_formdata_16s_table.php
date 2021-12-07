@@ -15,7 +15,7 @@ class CreateFormdata16sTable extends Migration
     {
         Schema::create('formdata_16s', function (Blueprint $table) {
             $table->id('formdata_16s_id');
-
+            // companies
             $table->unsignedBigInteger('ibc_id_fk')->default(1);
             $table->foreign('ibc_id_fk')->references('ibc_id')->on('companies')->onDelete('cascade');
             // department
@@ -46,17 +46,15 @@ class CreateFormdata16sTable extends Migration
             $table->date('dob_dt');
             $table->integer('age');
             $table->date('doj_dt');
-            $table->date('doj_dt');
             $table->boolean('safety_inducted');
             $table->boolean('married');
-            $table->string('present_address1',151);
-            $table->string('present_address2',151);
-            $table->string('person_on_duty',100);
+            $table->string('present_address',151);
+            $table->string('permanent_address',151);
             $table->boolean('person_on_duty');
             $table->boolean('person_authorized_2_incident_area');
             $table->string('first_incident_reported_to',100);
             $table->string('by_whom',100);
-            $table->data('date_time_reported_dt'); // auto data 
+            $table->date('date_time_reported_dt'); // auto data 
             $table->string('witness1_name');
             $table->string('witness2_name');
             $table->string('designation_1');
@@ -75,9 +73,9 @@ class CreateFormdata16sTable extends Migration
             $table->string('control_measure',100);
             $table->string('actions_taken',100);
             $table->string('site_enginner_name',100);
-            $table->string('signature',100);
+            $table->string('site_enginner_signature',100);
             $table->string('project_manager',100);
-            $table->string('signature',100);
+            $table->string('project_manager_signature',100);
 
             
             // general values
