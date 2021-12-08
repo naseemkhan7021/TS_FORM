@@ -59,13 +59,13 @@ class CreateFormdata16sTable extends Migration
             $table->string('witness2_name')->default(null);
             $table->string('designation_1')->default(null);
             $table->string('designation_2')->default(null);
-            $table->boolean('first_aid_given_on_site')->default(true);
+            $table->boolean('first_aid_given_on_site')->default(1);
             $table->string('name_first_aider',100)->default(null);
-            $table->boolean('victim_taken_hospital')->default(true);
+            $table->boolean('victim_taken_hospital')->default(1);
             $table->string('name_hospital',100)->default(null);
-            $table->boolean('victim_hospital_dischaged')->default(true);
+            $table->boolean('victim_hospital_dischaged')->default(1);
             $table->date('return_to_work')->default(null);
-            $table->boolean('victim_influence_alcohol')->default(true);
+            $table->boolean('victim_influence_alcohol')->default(1);
             $table->string('description_of_incident',500)->default(null);
             $table->string('extend_injury',100)->default(null);
             $table->string('activity16',100)->default(null);

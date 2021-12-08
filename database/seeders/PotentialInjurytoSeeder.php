@@ -16,7 +16,13 @@ class PotentialInjurytoSeeder extends Seeder
     {
         //
         PotentialInjuryto::create(
-            ['potential_injurytos_description' => 'Staff', 'potential_injurytos_abbr' => 'sf']
+            ['potential_injurytos_description' => 'T&S Staff', 'potential_injurytos_abbr' => 'T&S']
+        );
+        PotentialInjuryto::create(
+            ['potential_injurytos_description' => 'Sub-Contractor', 'potential_injurytos_abbr' => 'SC']
+        );
+        PotentialInjuryto::create(
+            ['potential_injurytos_description' => 'Other', 'potential_injurytos_abbr' => 'OT']
         );
     }
 }

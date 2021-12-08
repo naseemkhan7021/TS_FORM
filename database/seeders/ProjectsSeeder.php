@@ -15,7 +15,9 @@ class ProjectsSeeder extends Seeder
     public function run()
     {
         Projects::create(
-            ['ibc_id_fk' => '1', 'idepartment_id_fk' => '1' , 'sproject_name' => 'PROJECT NO 1' , 'sproject_abbr' => 'PRO1' , 'sproject_location' => 'VASHI NAVI MUMBAI']);
+            ['ibc_id_fk' => '1', 'idepartment_id_fk' => '1' , 'sproject_name' => 'PROJECT NO 2' , 'sproject_abbr' => 'PRO2' , 'sproject_location' => 'KHARGHAR NAVI MUMBAI']);
+        Projects::create(
+            ['ibc_id_fk' => '1', 'idepartment_id_fk' => '1' , 'sproject_name' => 'PROJECT NO 3' , 'sproject_abbr' => 'PRO3' , 'sproject_location' => 'BELAPUR NAVI MUMBAI']);
     }
 }
 

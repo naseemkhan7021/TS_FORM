@@ -21,7 +21,7 @@
                 <th>Date of Incident / Time</th>
                 <th>Injured To</th>
                 <th>Injured Victim Name</th>
-                <th>To whom</th>
+                <th style="cursor: pointer"> <span class="cursor-pointer" title="To whom was the Incident Reported first">To whom</span></th>
                 <th>By whom </th>
                 <th>Was First Aid</th>
                 <th>Created Date</th>
