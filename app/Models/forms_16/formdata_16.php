@@ -17,6 +17,7 @@ class formdata_16 extends Model
         'iproject_id_fk',
         'document_id_fk',
         'potential_injurytos_fk',
+        'potential_injurytos_other',
         'gender_fk',
         'injuredvictim_name',
         'eml_id_no',

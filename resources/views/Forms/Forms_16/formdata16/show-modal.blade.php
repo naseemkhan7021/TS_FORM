@@ -1,7 +1,7 @@
 
 
 
-<div class="modal fade addForm16" wire:ignore.self tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade showForm1" wire:ignore.self tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
@@ -9,7 +9,7 @@
                 {{-- @php
                     # object oriented
                 @endphp --}}
-                <h5 class="modal-title" id="exampleModalLabel">Add New Form-16 Data</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add New Form-16 Data {{$role}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -672,9 +672,6 @@
                                                 </span> --}}
                             </div>
                         </div>
-
-                        
-                        {{--  hare we are add the fieldset --}}
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="project-manager-name"

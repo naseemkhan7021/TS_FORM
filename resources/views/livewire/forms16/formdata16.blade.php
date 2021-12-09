@@ -1,3 +1,19 @@
+@php
+if ($iproject_id_fk) {
+    # code...
+    $sproject_location_obj = DB::table('projects')
+        ->where('iproject_id', '=', $iproject_id_fk)
+        ->get();
+    $this->sproject_location = $sproject_location_obj[0]->sproject_location;
+}
+if ($dob_dt) {
+    # code...
+    # procedural
+    $this->age = date_diff(date_create($dob_dt), date_create('today'))->y;
+    // echo 'this is => ' . now();
+}
+@endphp
+
 <div>
     @php $button_title = 'Add New Form-16' @endphp
     @php $data_not_found = 'No Data Found' @endphp
@@ -14,7 +30,7 @@
         </div>
     </div>
 
-    <table class="table display table-bordered data-table" style="width:100%">
+    <table class="table display table-bordered data-table text-center" style="width:100%">
         <thead>
             <tr>
                 <th >#</th>
@@ -32,7 +48,8 @@
             @forelse ( $form16data as  $row )
                 <tr>
                     <td>{{ $row->formdata_16s_id }}</td>
-                    <td>{{ $row->doincident_dt  }}</td>
+                    <td>{{Carbon\Carbon::parse($row->doincident_dt)->diffForHumans()}}</td>
+                    {{-- <td>{{$row->doincident_dt}}</td> --}}
                     <td>{{ $row->potential_injurytos_description  }}</td>
                     <td>{{ $row->injuredvictim_name  }}</td>
                     <td>{{ $row->first_incident_reported_to }}</td>
@@ -43,7 +60,8 @@
                         <div class="btn-group">
                             <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->formdata_16s_id}})">Edit</button>
                             <button class="btn btn-danger btn-sm" wire:click="deleteConfirm({{$row->formdata_16s_id}})">Delete</button>
-
+                            {{-- Department Staff ,, current_role⁯_id   --}}
+                            <button class="btn btn-warning btn-sm" wire:click="OpenEditCountryModal({{$row->formdata_16s_id}},'manager')"">Approve</button>
                         </div>
                     </td>
 
@@ -61,5 +79,6 @@
 
     @include('Forms.Forms_16.formdata16.add-modal')
     @include('Forms.Forms_16.formdata16.edit-modal')
+    {{-- @include('Forms.Forms_16.formdata16.show-modal') --}}
 
 </div>

@@ -40,42 +40,43 @@ class CreateFormdata16sTable extends Migration
 
 
             // ******* all Remaining data
-            $table->string('injuredvictim_name', 100)->default(null);
-            $table->string('eml_id_no', 100)->default(null);
-            $table->string('designation', 100)->default(null);
-            $table->date('dob_dt')->default(null);
-            $table->integer('age')->default(null);
-            $table->date('doj_dt')->default(null);
+            $table->string('injuredvictim_name', 100)->nullable();
+            $table->string('potential_injurytos_other', 100)->nullable();
+            $table->string('eml_id_no', 100)->nullable();
+            $table->string('designation', 100)->nullable();
+            $table->date('dob_dt')->nullable();
+            $table->integer('age')->nullable();
+            $table->date('doj_dt')->nullable();
             $table->boolean('safety_inducted')->default(true);
             $table->boolean('married')->default(true);
-            $table->string('present_address',151)->default(null);
-            $table->string('permanent_address',151)->default(null);
+            $table->string('present_address',151)->nullable();
+            $table->string('permanent_address',151)->nullable();
             $table->boolean('person_on_duty')->default(true);
             $table->boolean('person_authorized_2_incident_area')->default(true);
-            $table->string('first_incident_reported_to',100)->default(null);
-            $table->string('by_whom',100)->default(null);
-            $table->date('date_time_reported_dt')->default(null);; // auto data->default(null) 
-            $table->string('witness1_name')->default(null);
-            $table->string('witness2_name')->default(null);
-            $table->string('designation_1')->default(null);
-            $table->string('designation_2')->default(null);
+            $table->string('first_incident_reported_to',100)->nullable();
+            $table->string('by_whom',100)->nullable();
+            $table->date('date_time_reported_dt')->nullable();; // auto data->nullable() 
+            $table->string('witness1_name')->nullable();
+            $table->string('witness2_name')->nullable();
+            $table->string('designation_1')->nullable();
+            $table->string('designation_2')->nullable();
             $table->boolean('first_aid_given_on_site')->default(1);
-            $table->string('name_first_aider',100)->default(null);
+            $table->string('name_first_aider',100)->nullable();
             $table->boolean('victim_taken_hospital')->default(1);
-            $table->string('name_hospital',100)->default(null);
+            $table->string('name_hospital',100)->nullable();
             $table->boolean('victim_hospital_dischaged')->default(1);
-            $table->date('return_to_work')->default(null);
+            $table->date('return_to_work')->nullable();
             $table->boolean('victim_influence_alcohol')->default(1);
-            $table->string('description_of_incident',500)->default(null);
-            $table->string('extend_injury',100)->default(null);
-            $table->string('activity16',100)->default(null);
-            $table->string('relavebt_risk_referenceno',100)->default(null);
-            $table->string('control_measure',100)->default(null);
-            $table->string('actions_taken',100)->default(null);
-            $table->string('site_enginner_name',100)->default(null);
-            $table->string('site_enginner_signature',100)->default(null);
-            $table->string('project_manager',100)->default(null);
-            $table->string('project_manager_signature',100)->default(null);
+            $table->string('description_of_incident',500)->nullable();
+            $table->string('extend_injury',100)->nullable();
+            $table->string('activity16',100)->nullable();
+            $table->string('relavebt_risk_referenceno',100)->nullable();
+            $table->string('control_measure',100)->nullable();
+            $table->string('actions_taken',100)->nullable();
+            $table->string('site_enginner_name',100)->nullable();
+            $table->string('site_enginner_signature',100)->nullable();
+            $table->string('project_manager',100)->nullable();
+            $table->string('project_manager_signature',100)->nullable();
 
             
             // general values

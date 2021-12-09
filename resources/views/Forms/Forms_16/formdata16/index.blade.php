@@ -22,15 +22,15 @@
 
     <script>
         window.addEventListener('OpenAddCountryModal', function() {
-            $('.addForm1').find('span').html('');
-            $('.addForm1').find('form')[0].reset();
-            $('.addForm1').modal('show');
+            $('.addForm16').find('span').html('');
+            $('.addForm16').find('form')[0].reset();
+            $('.addForm16').modal('show');
         });
 
         window.addEventListener('CloseAddCountryModal', function() {
-            $('.addForm1').find('span').html('');
-            $('.addForm1').find('form')[0].reset();
-            $('.addForm1').modal('hide');
+            $('.addForm16').find('span').html('');
+            $('.addForm16').find('form')[0].reset();
+            $('.addForm16').modal('hide');
 
             Swal.fire(
                 'Well Done!',
@@ -42,14 +42,31 @@
         });
 
         window.addEventListener('OpenEditCountryModal', function(event) {
-            $('.editForm1').find('span').html('');
-            $('.editForm1').modal('show');
+            $('.editForm16').find('span').html('');
+            $('.editForm16').modal('show');
         });
 
         window.addEventListener('CloseEditCountryModal', function(event) {
-            $('.editForm1').find('span').html('');
-            $('.editForm1').find('form')[0].reset();
-            $('.editForm1').modal('hide');
+            $('.editForm16').find('span').html('');
+            $('.editForm16').find('form')[0].reset();
+            $('.editForm16').modal('hide');
+
+            Swal.fire(
+                'Good job!',
+                '<b>Form16data</b> Has been Updated Successfully !',
+                'success'
+            );
+            // alert('Form16data Has been Updated Successfully');
+        });
+        window.addEventListener('OpenShowDataModal', function(event) {
+            $('.showForm16').find('span').html('');
+            $('.showForm16').modal('show');
+        });
+
+        window.addEventListener('CloseShowDataModal', function(event) {
+            $('.showForm16').find('span').html('');
+            $('.showForm16').find('form')[0].reset();
+            $('.showForm16').modal('hide');
 
             Swal.fire(
                 'Good job!',
