@@ -16,4 +16,10 @@ class uploaddocument extends Model
         'uploaddocuments_title',
         'uploaddocuments_location',
     ];
+
+    protected $casts = [
+        'uploaddocuments_name' => 'array',
+        'uploaddocuments_title' => 'array',
+        'uploaddocuments_location' => 'array',
+    ];
 }

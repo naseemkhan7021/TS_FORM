@@ -5,16 +5,24 @@ namespace App\Http\Livewire\Forms16;
 use App\Models\common\Gender;
 use App\Models\common_forms\PotentialInjuryto;
 use App\Models\forms_16\formdata_16;
+use App\Models\forms_16\uploaddocument;
 use App\Models\projcon\Project;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Formdata16 extends Component
 {
-    public $searchQuery, $showOtherInput, $showhospital, $victimDischargeorNot ,$role;
+    use WithFileUploads;
+
+    public $photos = [], $imgTitles = array();
+    public $oldphotosLocation = [], $oldimgTitles = array();
+    public $searchQuery, $showOtherInput, $showhospital, $victimDischargeorNot, $role, $firstaidgivenonsite;
     public $injuredvictim_name, $designation, $age, $sproject_location, $iproject_id_fk, $doincident_dt, $potential_injurytos_fk, $potential_injurytos_other, $eml_id_no, $dob_dt, $gender_fk, $doj_dt, $safety_inducted, $married, $person_on_duty, $person_authorized_2_incident_area, $present_address, $permanent_address, $by_whom, $first_incident_reported_to, $date_time_reported_dt, $witness1_name, $designation_1, $witness2_name, $designation_2, $first_aid_given_on_site, $name_first_aider, $victim_taken_hospital, $name_hospital, $victim_hospital_dischaged, $return_to_work, $victim_influence_alcohol, $description_of_incident, $uploaddocuments_fk, $extend_injury, $activity16, $relavebt_risk_referenceno, $control_measure, $actions_taken, $site_enginner_name, $site_enginner_signature, $project_manager, $project_manager_signature;
-    public $cid, $upd_injuredvictim_name, $upd_designation, $upd_age;
+    public $cid, $imgsId, $upd_injuredvictim_name, $upd_designation, $upd_age;
 
 
 
@@ -24,6 +32,11 @@ class Formdata16 extends Component
         $this->searchQuery = '';
         $this->showhospital = 'No';
         $this->victimDischargeorNot = 'No';
+        $this->firstaidgivenonsite = 'No';
+        // $this->photos = collect();
+
+
+        // $this->photos = [,...$this->photos];
     }
 
     public function render()
@@ -42,7 +55,7 @@ class Formdata16 extends Component
                     ->where('age', 'like', '%' . $this->searchQuery . '%')
                     ->orWhere('designation', 'like', '%' . $this->searchQuery . '%');
             })
-            ->orderBy('formdata_16s_id')->paginate(10);
+            ->orderBy('formdata_16s_id')->get();
 
         $prjectData = Project::all();
         $genderData = Gender::all();
@@ -61,7 +74,7 @@ class Formdata16 extends Component
         $this->age = '';
         $this->sproject_location = '';
         $this->iproject_id_fk = '';
-        $this->doincident_dt = Carbon::now()->format('Y-m-d')." ".Carbon::now()->format('H:i:s'); //Carbon::now();
+        $this->doincident_dt = Carbon::now()->format('Y-m-d') . " " . Carbon::now()->format('H:i:s'); //Carbon::now();
         $this->potential_injurytos_fk = '';
         $this->potential_injurytos_other = '';
         $this->eml_id_no = '';
@@ -103,7 +116,6 @@ class Formdata16 extends Component
         $this->dispatchBrowserEvent('OpenAddCountryModal');
     }
 
-
     public function save()
     {
         $this->validate([
@@ -132,7 +144,7 @@ class Formdata16 extends Component
             'witness2_name' => 'required',
             'designation_2' => 'required',
             'first_aid_given_on_site' => 'required',
-            'name_first_aider' => 'required',
+            // 'name_first_aider' => 'required',
             // 'victim_taken_hospital' => 'required',
             // 'name_hospital' => 'required',
             'victim_hospital_dischaged' => 'required',
@@ -147,11 +159,31 @@ class Formdata16 extends Component
             'actions_taken' => 'required',
             'site_enginner_name' => 'required',
             'site_enginner_signature' => 'required',
-            'project_manager' => 'required',
-            'project_manager_signature' => 'required',
+            // 'project_manager' => 'required',
+            // 'project_manager_signature' => 'required',
         ]);
 
-        $save = formdata_16::insert([
+
+        // foreach ($this->images as $key => $image) {
+        //     $this->images[$key] = $image->store('images','public');
+        // }
+
+        // $indx = 0;
+        // foreach ($this->photos as $key => $photo) {
+        //     // $filename = 'injuredDoc'.time();
+        //     // $name = $photo->getClientOriginalName();
+        //     $file=$photo->store('photos/injuredDoc');
+        //     $this->imgLocation[$key] = $file;
+        //     print_r($this->imgLocation);
+        //     // Storage::move('photos/injuredDoc/', 'photos/injuredDoc/');
+        // }
+        // $saveImage = uploaddocument::insert([
+        //     'uploaddocuments_location'=>$this->imgLocation,
+        //     'uploaddocuments_title'=>'NaN',
+        //     'uploaddocuments_name'=>'NaN',
+        // ]);
+
+        $save = DB::table('formdata_16s')->insert([
             'injuredvictim_name' => $this->injuredvictim_name,
             'designation' => $this->designation,
             'age' => $this->age,
@@ -196,18 +228,96 @@ class Formdata16 extends Component
             'project_manager' => $this->project_manager,
             'project_manager_signature' => $this->project_manager_signature,
         ]);
-
+        $this->resetValidation();
+        $id = DB::getPdo()->lastInsertId(); // finding last id
         if ($save) {
-            $this->dispatchBrowserEvent('CloseAddCountryModal');
-            // $this->checkedCountry = [];
+
+            if (count($this->photos) > 0) {
+                # code...
+                //Handle File Upload
+                $injurdImgsName = [];
+                $injurdImgsLocation = [];
+                foreach ($this->photos as $key => $file) {
+                    // Get FileName
+                    $filenameWithExt = $file->getClientOriginalName();
+                    //Get just filename
+                    $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME); // exp: exp.png
+                    //Get just extension
+                    $extension = $file->getClientOriginalExtension();
+                    //Filename to Store
+                    $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+                    //Upload Image
+                    $path = $file->storeAs('public/photos/injuredDoc', $fileNameToStore);
+                    // D:\xampp\htdocs\naseem_tsforms\storage\app\public\photos\injuredDoc
+                    array_push($injurdImgsLocation, $path);
+                    array_push($injurdImgsName, $fileNameToStore);
+                }
+                // make objet  (no need of this becose declare casts in model)
+                // $fileNameToStoreName = serialize($injurdImgsName);
+                // $fileNameToStorelocation = serialize($injurdImgsLocation);
+                // $fileTitel = serialize($this->imgTitles);
+
+                // store to database
+                $uploaddocument = new uploaddocument;
+                $uploaddocument->uploaddocuments_title = $this->imgTitles;
+                $uploaddocument->uploaddocuments_name = $injurdImgsName;
+                $uploaddocument->uploaddocuments_location = $injurdImgsLocation;
+                $uploaddocument->form_fk = $id;
+                $saveImage = $uploaddocument->save();
+
+                if ($saveImage) {
+                    # code...
+                    // clear veriable 
+                    $this->photos = [];
+                    $this->imgTitles = array();
+                    $this->dispatchBrowserEvent('CloseAddCountryModal');
+                    $this->resetValidation();
+                    return response()->json(array('success' => true, 'last_insert_id_imgs' => $uploaddocument->uploaddocuments_id, 'last_insert_id_form' => $id), 200);
+                }
+            } else {
+                $this->dispatchBrowserEvent('CloseAddCountryModal');
+                $this->resetValidation();
+            }
         }
+        // if ($save && $saveImage) {
+        //     $this->dispatchBrowserEvent('CloseAddCountryModal');
+        //     // $this->checkedCountry = [];
+        // }
     }
 
 
 
-    public function OpenEditCountryModal($formdata_16s_id ,$role='Staff')
+    public function OpenEditCountryModal($formdata_16s_id, $role = 'Staff')
     {
         $info = formdata_16::find($formdata_16s_id);
+        // $imgs = uploaddocument::find($formdata_16s_id);
+        $imgslist = uploaddocument::where('form_fk', $formdata_16s_id)->get();
+        // $imgs = DB::table('uploaddocuments')->where('form_fk', $formdata_16s_id);
+        // dd($imgs->uploaddocuments_location);
+        // dd($info->injuredvictim_name);
+        // dd($imgs->value('uploaddocuments_name'));
+        // dd(count($imgs));
+        // dd($imgs->uploaddocuments_name);
+        if (count($imgslist) > 0) {
+            $imgs = $imgslist[0];
+            # code...
+            // img render
+            $this->oldphotosLocation = $imgs->uploaddocuments_location;
+            $this->oldimgTitles = $imgs->uploaddocuments_title;
+            $this->oldimgName = $imgs->uploaddocuments_name;
+
+            // $this->imgTitles = $imgs->uploaddocuments_title;
+
+            $this->imgsId = $imgs->uploaddocuments_id;
+        } else {
+            $this->oldphotosLocation = [];
+            $this->oldimgTitles = array();
+            $this->oldimgName = [];   // img Name will remove after some time
+        }
+        // clear old photo location and title
+        $this->imgTitles = array();
+        $this->photos = [];
+
 
         $this->role = $role;
 
@@ -256,9 +366,8 @@ class Formdata16 extends Component
         $this->project_manager_signature = $info->project_manager_signature;
 
 
-
-
         $this->cid = $info->formdata_16s_id;
+
         $this->dispatchBrowserEvent('OpenEditCountryModal', [
             'formdata_16s_id' => $formdata_16s_id
         ]);
@@ -296,7 +405,7 @@ class Formdata16 extends Component
             'witness2_name' => 'required',
             'designation_2' => 'required',
             'first_aid_given_on_site' => 'required',
-            'name_first_aider' => 'required',
+            // 'name_first_aider' => 'required',
             // 'victim_taken_hospital' => 'required',
             // 'name_hospital' => 'required',
             'victim_hospital_dischaged' => 'required',
@@ -363,67 +472,105 @@ class Formdata16 extends Component
         ]);
 
         if ($update) {
-            $this->dispatchBrowserEvent('CloseEditCountryModal');
-            // $this->checkedCountry = [];
+
+            if (count($this->photos) > 0) {
+
+                //Handle File Upload
+                $injurdImgsName = [];
+                $injurdImgsLocation = [];
+                foreach ($this->photos as $key => $file) {
+                    // Get FileName
+                    $filenameWithExt = $file->getClientOriginalName();
+                    //Get just filename
+                    $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME); // exp: exp.png
+                    //Get just extension
+                    $extension = $file->getClientOriginalExtension();
+                    //Filename to Store
+                    $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+                    //Upload Image
+                    $path = $file->storeAs('public/photos/injuredDoc', $fileNameToStore);
+                    // D:\xampp\htdocs\naseem_tsforms\storage\app\public\photos\injuredDoc
+                    array_push($injurdImgsLocation, $path);
+                    array_push($injurdImgsName, $fileNameToStore);
+                }
+
+                // store to database
+                $uploaddocument = uploaddocument::find($this->imgsId)->update([
+                    'uploaddocuments_title' => $this->imgTitles,
+                    'uploaddocuments_name' => $injurdImgsName,
+                    'uploaddocuments_location' => $injurdImgsLocation
+                ]);
+                // $uploaddocument->form_fk = $id;
+                // $saveImage = $uploaddocument->save();
+                if ($uploaddocument) { 
+                    // clear veriable 
+                    $this->photos = [];
+                    $this->imgTitles = array();
+                    $this->dispatchBrowserEvent('CloseEditCountryModal');
+                    // $this->checkedCountry = [];
+                }
+            } else {
+                $this->dispatchBrowserEvent('CloseEditCountryModal');
+            }
         }
     }
 
-    public function headSignature()
-    {
-        $cid = $this->cid;
-        
-        $headSignature = formdata_16::find($cid)->update([
-            'injuredvictim_name' => $this->injuredvictim_name,
-            'age' => $this->age,
-            'designation' => $this->designation,
+    // public function headSignature()
+    // {
+    //     $cid = $this->cid;
 
-            'iproject_id_fk' => $this->iproject_id_fk,
-            'doincident_dt' => $this->doincident_dt,
-            'potential_injurytos_fk' => $this->potential_injurytos_fk,
-            'potential_injurytos_other' => $this->potential_injurytos_other,
-            'eml_id_no' => $this->eml_id_no,
-            'dob_dt' => $this->dob_dt,
-            'gender_fk' => $this->gender_fk,
-            'doj_dt' => $this->doj_dt,
-            'safety_inducted' => $this->safety_inducted,
-            'married' => $this->married,
-            'person_on_duty' => $this->person_on_duty,
-            'person_authorized_2_incident_area' => $this->person_authorized_2_incident_area,
-            'present_address' => $this->present_address,
-            'permanent_address' => $this->permanent_address,
-            'by_whom' => $this->by_whom,
-            'first_incident_reported_to' => $this->first_incident_reported_to,
-            'date_time_reported_dt' => $this->date_time_reported_dt,
-            'witness1_name' => $this->witness1_name,
-            'designation_1' => $this->designation_1,
-            'witness2_name' => $this->witness2_name,
-            'designation_2' => $this->designation_2,
-            'first_aid_given_on_site' => $this->first_aid_given_on_site,
-            'name_first_aider' => $this->name_first_aider,
-            'victim_taken_hospital' => $this->victim_taken_hospital,
-            'name_hospital' => $this->name_hospital,
-            'victim_hospital_dischaged' => $this->victim_hospital_dischaged,
-            'return_to_work' => $this->return_to_work,
-            'victim_influence_alcohol' => $this->victim_influence_alcohol,
-            'description_of_incident' => $this->description_of_incident,
-            'uploaddocuments_fk' => 0,
-            'extend_injury' => $this->extend_injury,
-            'activity16' => $this->activity16,
-            'relavebt_risk_referenceno' => $this->relavebt_risk_referenceno,
-            'control_measure' => $this->control_measure,
-            'actions_taken' => $this->actions_taken,
-            'site_enginner_name' => $this->site_enginner_name,
-            'site_enginner_signature' => $this->site_enginner_signature,
-            'project_manager' => $this->project_manager,
-            'project_manager_signature' => $this->project_manager_signature,
+    //     $headSignature = formdata_16::find($cid)->update([
+    //         'injuredvictim_name' => $this->injuredvictim_name,
+    //         'age' => $this->age,
+    //         'designation' => $this->designation,
 
-        ]);
+    //         'iproject_id_fk' => $this->iproject_id_fk,
+    //         'doincident_dt' => $this->doincident_dt,
+    //         'potential_injurytos_fk' => $this->potential_injurytos_fk,
+    //         'potential_injurytos_other' => $this->potential_injurytos_other,
+    //         'eml_id_no' => $this->eml_id_no,
+    //         'dob_dt' => $this->dob_dt,
+    //         'gender_fk' => $this->gender_fk,
+    //         'doj_dt' => $this->doj_dt,
+    //         'safety_inducted' => $this->safety_inducted,
+    //         'married' => $this->married,
+    //         'person_on_duty' => $this->person_on_duty,
+    //         'person_authorized_2_incident_area' => $this->person_authorized_2_incident_area,
+    //         'present_address' => $this->present_address,
+    //         'permanent_address' => $this->permanent_address,
+    //         'by_whom' => $this->by_whom,
+    //         'first_incident_reported_to' => $this->first_incident_reported_to,
+    //         'date_time_reported_dt' => $this->date_time_reported_dt,
+    //         'witness1_name' => $this->witness1_name,
+    //         'designation_1' => $this->designation_1,
+    //         'witness2_name' => $this->witness2_name,
+    //         'designation_2' => $this->designation_2,
+    //         'first_aid_given_on_site' => $this->first_aid_given_on_site,
+    //         'name_first_aider' => $this->name_first_aider,
+    //         'victim_taken_hospital' => $this->victim_taken_hospital,
+    //         'name_hospital' => $this->name_hospital,
+    //         'victim_hospital_dischaged' => $this->victim_hospital_dischaged,
+    //         'return_to_work' => $this->return_to_work,
+    //         'victim_influence_alcohol' => $this->victim_influence_alcohol,
+    //         'description_of_incident' => $this->description_of_incident,
+    //         'uploaddocuments_fk' => 0,
+    //         'extend_injury' => $this->extend_injury,
+    //         'activity16' => $this->activity16,
+    //         'relavebt_risk_referenceno' => $this->relavebt_risk_referenceno,
+    //         'control_measure' => $this->control_measure,
+    //         'actions_taken' => $this->actions_taken,
+    //         'site_enginner_name' => $this->site_enginner_name,
+    //         'site_enginner_signature' => $this->site_enginner_signature,
+    //         'project_manager' => $this->project_manager,
+    //         'project_manager_signature' => $this->project_manager_signature,
 
-        if ($headSignature) {
-            $this->dispatchBrowserEvent('CloseEditCountryModal');
-            // $this->checkedCountry = [];
-        }
-    }
+    //     ]);
+
+    //     if ($headSignature) {
+    //         $this->dispatchBrowserEvent('CloseEditCountryModal');
+    //         // $this->checkedCountry = [];
+    //     }
+    // }
 
 
 
@@ -446,5 +593,24 @@ class Formdata16 extends Component
             $this->dispatchBrowserEvent('delete');
         }
         // $this->checkedCountry = [];
+    }
+
+
+    public function removeImg($photoIndx = null)
+    {
+        # code...
+        if ($photoIndx >= 0) {
+            # code...
+            // array_splice(array, start, length, array)
+            array_splice($this->photos, $photoIndx, 1);
+            array_splice($this->imgTitles, $photoIndx, 1);
+            // unset($this->photos[$photoIndx]);
+        }
+    }
+
+    public function clearValidationf()
+    {
+        # code...
+        $this->resetValidation();
     }
 }

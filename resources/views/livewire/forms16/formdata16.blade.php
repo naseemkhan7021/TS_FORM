@@ -47,7 +47,8 @@ if ($dob_dt) {
         <tbody>
             @forelse ( $form16data as  $row )
                 <tr>
-                    <td>{{ $row->formdata_16s_id }}</td>
+                    {{-- <td>{{ $row->formdata_16s_id }}</td> --}}
+                    <td>{{ ++$loop->index }}</td>
                     <td>{{Carbon\Carbon::parse($row->doincident_dt)->diffForHumans()}}</td>
                     {{-- <td>{{$row->doincident_dt}}</td> --}}
                     <td>{{ $row->potential_injurytos_description  }}</td>
@@ -58,10 +59,10 @@ if ($dob_dt) {
                     <td>{{ $row->created_at->diffForHumans() }}</td>
                     <td>
                         <div class="btn-group">
-                            <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->formdata_16s_id}})">Edit</button>
+                            <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->formdata_16s_id}},'Project Manager')">Edit</button>
                             <button class="btn btn-danger btn-sm" wire:click="deleteConfirm({{$row->formdata_16s_id}})">Delete</button>
                             {{-- Department Staff ,, current_role⁯_id   --}}
-                            <button class="btn btn-warning btn-sm" wire:click="OpenEditCountryModal({{$row->formdata_16s_id}},'manager')"">Approve</button>
+                            <button class="btn btn-warning btn-sm" wire:click="OpenEditCountryModal({{$row->formdata_16s_id}},'Project Head')"">Approve</button>
                         </div>
                     </td>
 
@@ -73,9 +74,9 @@ if ($dob_dt) {
 
         </tbody>
     </table>
-    @if (count($form16data))
+    {{-- @if (count($form16data))
         {{ $form16data->links('livewire-pagination-links') }}
-    @endif
+    @endif --}}
 
     @include('Forms.Forms_16.formdata16.add-modal')
     @include('Forms.Forms_16.formdata16.edit-modal')

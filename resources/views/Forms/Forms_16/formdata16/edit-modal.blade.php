@@ -4,13 +4,13 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Edit / Update Form-16 Data {{ $role }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button wire:click='clearValidationf()' type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <form wire:submit.prevent="update">
-                    <fieldset class="row g-3" {{ $role == 'Project Manager' ? 'disabled' : '' }}>
+                    <fieldset class="row g-3" {{ $role == 'Project Head' ? 'disabled' : '' }}>
                         <input type="hidden" wire:model="cid">
 
 
@@ -568,7 +568,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
+                            {{-- <div class="col-md-3">
                                 <div class="form-group">
                                     <label title="Attach sketches/photos" for="browse-injury-photo">Attach
                                         sketches/photos</label>
@@ -582,7 +582,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
+
                             {{-- Extent of Injury --}}
                             <div class="col-md-3">
                                 <div class="form-group">
@@ -717,9 +718,111 @@
                             {{-- last info end --}}
 
 
+                            {{-- img upload start --}}
+                            <div class="col-md-12">
+                                <hr class="text-secondary w-100">
+                                <legend class="w-100"><strong>Upload Imgs</strong></legend>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label title="Attach sketches/photos" for="browse-injury-photo">Attach
+                                                sketches/photos</label>
+                                            <div class="input-group mb-3">
+                                                <div class="custom-file">
+                                                    <input wire:model='photos' type="file" class="custom-file-input"
+                                                        id="browse-injury-photo" aria-describedby="inputGroupFileAddon01">
+                                                    <label title="Attach sketches/photos" class="custom-file-label"
+                                                        for="browse-injury-photo">Upload
+                                                        Photo/sketche</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="browse-injury-photo" class="form-labeltext-danger"
+                                                title="Attach Name ">Attach Name</label>
+                                            <input type="text" class="form-control" id="browse-injury-photo">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+
+                                            <div class="row align-items-center">
+
+                                                {{-- new img  --}}
+                                                <div class="col-md-12">
+                                                    <label for="" title="image preview">{{count($oldphotosLocation)==0?'imgages preview':'New imgages preview'}}</label>
+                                                    <input type="text" wire:model='imgsId' hidden> {{-- access the img id--}}
+                                                </div>
+
+                                                @foreach ($photos as $key => $photo)
+                                                    <div class="col-md-3 img mb-4" style="height: 12rem">
+                                                        {{-- {{$key}} --}}
+                                                        <a href="{{ $photo->temporaryUrl() }}" class="h-100 d-block">
+                                                            <img src="{{ $photo->temporaryUrl() }}"
+                                                                alt="{{ $photo->temporaryUrl() }}"
+                                                                class="w-100 h-100" style="object-fit: contain">
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="col-md-3 mb-4">
+                                                        <div class="form-group">
+                                                            <label for="img title"> Image Title</label>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Img title"
+                                                                wire:model='imgTitles.{{ $key }}'>
+                                                        </div>
+                                                        <input type="button" wire:click='removeImg({{ $key }})'
+                                                            class="btn btn-outline-danger btn-sm rounded w-100"
+                                                            value="remove">
+                                                        {{-- <button wire:click='removeImg({{ $key }})' type=""
+                                                            class="btn btn-outline-danger btn-sm rounded w-100">remove</button> --}}
+                                                    </div>
+
+                                                @endforeach
+
+
+                                                {{-- old img  --}}
+                                                <div class="col-md-12">
+                                                    <label for="" title="image preview">{{count($oldphotosLocation)==0?'':'Old imgages preview'}}</label>
+                                                </div>
+                                                @foreach ($oldphotosLocation as $key => $photo)
+                                                    <div class="col-md-3 img mb-4" style="height: 12rem">
+                                                        {{-- {{$key}} --}}
+                                                        <a href="{{ Storage::url($photo) }}" class="h-100 d-block">
+                                                            <img src="{{ Storage::url($photo) }}"
+                                                                alt="{{ Storage::url($photo) }}" class="w-100 h-100"
+                                                                style="object-fit: contain">
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="col-md-3 mb-2">
+                                                        <div class="form-group">
+                                                            <label for="img title"> Image Title</label>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Img title"
+                                                                wire:model='oldimgTitles.{{ $key }}'>
+                                                        </div>
+                                                        {{-- <button wire:click='removeImg({{ $key }})' type=""
+                                                            class="btn btn-outline-danger btn-sm rounded w-100">remove</button> --}}
+                                                    </div>
+
+                                                @endforeach
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- img upload end --}}
+
                         </fieldset>
 
-                        <fieldset class="row g-3" {{ $role != 'Project Head' ? 'disabled' : '' }}>
+                        <fieldset class="row g-3">
                             {{-- only for head Employee --}}
                             <hr class="text-secondary w-100">
                             <div class="col-12">
@@ -782,7 +885,6 @@
                                             <input type="text" class="form-control" id="safety-officer-remark">
                                         </div>
                                     </div>
-
 
                                     {{-- Dy. Project Manager --}}
                                     <div class="col-12">
@@ -852,7 +954,7 @@
 
                         <div class="col-12">
                             <div class="form-group">
-                                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+                                <button wire:click='clearValidationf()' type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary btn-sm">Save</button>
                             </div>
                         </div>
