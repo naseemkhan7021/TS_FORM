@@ -352,43 +352,66 @@
             </a>
         </div>
 
-        <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
+        {{-- <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
             <li>
                 <button class="button-menu-mobile waves-effect waves-light">
                     <i class="fe-menu"></i>
                 </button>
             </li>
 
-            <li>
+            <li> --}}
                 <!-- Mobile menu toggle (Horizontal Layout)-->
-                <a class="navbar-toggle nav-link" data-toggle="collapse" data-target="#topnav-menu-content">
+                {{-- <a class="navbar-toggle nav-link" data-toggle="collapse" data-target="#topnav-menu-content">
                     <div class="lines">
                         <span></span>
                         <span></span>
                         <span></span>
                     </div>
-                </a>
+                </a> --}}
                 <!-- End mobile menu toggle-->
+            {{-- </li> --}}
+
+
+
+            @livewire('common-forms.headerdata')
+            {{-- <li class="d-none d-xl-block">
+                {{-- <input type="text" class="form-control" value="{{ $defaultvalues[0]->sbc_company_name }}"   placeholder="Company Name" wire:model="company_name">
+                <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    {{ $defaultvalues[0]->sbc_company_name }}
+                </a>
             </li>
 
-            <li class="dropdown d-none d-xl-block">
+            <li class="d-none d-xl-block">
+                {{-- <input type="text" class="form-control" value="{{ $defaultvalues[0]->sdepartment_name }}" placeholder="Company Name" wire:model="company_name">
                 <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    Create New
+                    {{ $defaultvalues[0]->sdepartment_name }}
+                </a>
+            </li> --}}
+
+            {{-- <li class="dropdown d-none d-xl-block">
+                <input type="text" class="form-control" placeholder="Company Name" wire:model="company_name">
+            </li> --}}
+
+
+            {{-- <li class="dropdown d-none d-xl-block">
+                <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <input type="text" class="form-control bg-none outline-none" placeholder="Company Name" wire:model="company_name">
                     <i class="mdi mdi-chevron-down"></i>
                 </a>
-                <div class="dropdown-menu">
+                <div class="dropdown-menu"> --}}
                     <!-- item-->
-                    <a href="{{ route('const_projects') }}" class="dropdown-item">
+                    {{-- <a href="{{ route('const_projects') }}" class="dropdown-item">
                         <i class="fe-briefcase mr-1"></i>
                         <span>New Projects</span>
-                    </a>
+                    </a> --}}
 
                     <!-- item-->
-                    <a href="{{ route('leads') }}" class="dropdown-item">
+                    {{-- <a href="{{ route('leads') }}" class="dropdown-item">
                         <i class="fe-user mr-1"></i>
                         <span>New Leads</span>
                     </a>
-
+                </div>
+            </li> --}}
                     <!-- item-->
                     {{-- <a href="javascript:void(0);" class="dropdown-item">
                         <i class="fe-bar-chart-line- mr-1"></i>
@@ -407,7 +430,7 @@
                     {{-- <a href="javascript:void(0);" class="dropdown-item">
                         <i class="fe-headphones mr-1"></i>
                         <span>Help & Support</span>
-                    </a> --}}
+                    </a>
 
                 </div>
             </li>
@@ -515,7 +538,7 @@
 
                 </div>
             </li> --}}
-        </ul>
+        {{-- </ul> --}}
         <div class="clearfix"></div>
     </div>
 </div>
