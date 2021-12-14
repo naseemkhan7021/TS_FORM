@@ -34,7 +34,7 @@ class CreateFormdata17sTable extends Migration
 
             $table->text('incident_description')->nullable();
             $table->text('coworker_statement')->nullable();
-            $table->text('incident_description')->nullable();
+            // $table->text('incident_description')->nullable();
             $table->text('concernedsupervisor_statement')->nullable();
             $table->text('root_cause')->nullable();
             $table->text('remedial_actions')->nullable();
