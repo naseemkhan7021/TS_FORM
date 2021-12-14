@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\common\Addresstype;
+use Illuminate\Database\Seeder;
 
 class AddresstypeSeeder extends Seeder
 {

@@ -59,7 +59,31 @@ class DatabaseSeeder extends Seeder
             // ProjectsSeeder::class,
             // DefaultdataSeeder::class,
             // DocumentSeeder::class,
+            // PotentialInjurytoSeeder::class,
+            Activity15Seeder::class,
+            Cause15Seeder::class,
+            // CompanySeeder::class,
+            ContributingCauseSeeder::class,
+            // ConverationSeeder::class,
+            DefaultdataSeeder::class,
+            DepartmentSeeder::class,
+            DocumentSeeder::class,
+            GenderSeeder::class,
+            ImdActionSeeder::class,
+            ImdCorrectionSeeder::class,
+            RoleSeeder::class,
+            // LeadsourceSeeder::class,
+            NatureOfPotentialInjurySeeder::class,
             PotentialInjurytoSeeder::class,
+            ProjectsSeeder::class,
+            WhyunsafeactCommittedSeeder::class,
+            AddresstypeSeeder::class, // *
+            DesignationSeeder::class, // *
+            LanguageSeeder::class, //*
+            NationalitySeeder::class, // **
+            OccupationSeeder::class, //*
+            QualificationSeeder::class, //*
+            RelationtypeSeeder::class, // *
 
         ]);
     }

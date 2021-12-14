@@ -15,25 +15,25 @@ class Cause15Seeder extends Seeder
     public function run()
     {
         Cause15::create(
-            ['Cause15s_description' => 'Failure to wear PPE', 'Cause15s_abbr' => 'FAILPPE']);
+            ['cause15s_description' => 'Failure to wear PPE', 'cause15s_abbr' => 'FAILPPE']);
         Cause15::create(
-            ['Cause15s_description' => 'Failure to follow Rules, Procedures', 'Cause15s_abbr' => 'FAILRUPRO']);
+            ['cause15s_description' => 'Failure to follow Rules, Procedures', 'cause15s_abbr' => 'FAILRUPRO']);
         Cause15::create(
-            ['Cause15s_description' => 'Poor Housekeeping', 'Cause15s_abbr' => 'POORHSE']);
+            ['cause15s_description' => 'Poor Housekeeping', 'cause15s_abbr' => 'POORHSE']);
         Cause15::create(
-            ['Cause15s_description' => 'Horseplay', 'Cause15s_abbr' => 'HORPLAY']);
+            ['cause15s_description' => 'Horseplay', 'cause15s_abbr' => 'HORPLAY']);
         Cause15::create(
-            ['Cause15s_description' => 'By-passing of Safety Devices', 'Cause15s_abbr' => 'SAFEDEVI']);
+            ['cause15s_description' => 'By-passing of Safety Devices', 'cause15s_abbr' => 'SAFEDEVI']);
         Cause15::create(
-            ['Cause15s_description' => 'Working on Dangerous Equipment/place', 'Cause15s_abbr' => 'DANGEQUPLA']);
+            ['cause15s_description' => 'Working on Dangerous Equipment/place', 'cause15s_abbr' => 'DANGEQUPLA']);
         Cause15::create(
-            ['Cause15s_description' => 'Improper use of Equipment', 'Cause15s_abbr' => 'IMPEQUP']);
+            ['cause15s_description' => 'Improper use of Equipment', 'cause15s_abbr' => 'IMPEQUP']);
         Cause15::create(
-            ['Cause15s_description' => 'External factor / Third party / weather', 'Cause15s_abbr' => 'EFTPWEA']);
+            ['cause15s_description' => 'External factor / Third party / weather', 'cause15s_abbr' => 'EFTPWEA']);
         Cause15::create(
-            ['Cause15s_description' => 'Unsafe condition / equipment', 'Cause15s_abbr' => 'UNSCONEQP']);
+            ['cause15s_description' => 'Unsafe condition / equipment', 'cause15s_abbr' => 'UNSCONEQP']);
         Cause15::create(
-            ['Cause15s_description' => 'Other', 'Cause15s_abbr' => 'OTHER']);
+            ['cause15s_description' => 'Other', 'cause15s_abbr' => 'OTHER']);
     }
 }
 
