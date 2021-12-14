@@ -13,6 +13,7 @@ class CreateCausesTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('causes')) {
         Schema::create('causes', function (Blueprint $table) {
             $table->id('causes_id');
             $table->string('causes_description', 150);
@@ -24,6 +25,7 @@ class CreateCausesTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

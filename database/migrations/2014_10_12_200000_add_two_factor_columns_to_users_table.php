@@ -13,6 +13,7 @@ class AddTwoFactorColumnsToUsersTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('users')) {
         Schema::table('users', function (Blueprint $table) {
             $table->text('two_factor_secret')
                     ->after('password')
@@ -22,6 +23,7 @@ class AddTwoFactorColumnsToUsersTable extends Migration
                     ->after('two_factor_secret')
                     ->nullable();
         });
+    }
     }
 
     /**

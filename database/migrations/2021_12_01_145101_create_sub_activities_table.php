@@ -13,6 +13,7 @@ class CreateSubActivitiesTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('sub_activities')) {
         Schema::create('sub_activities', function (Blueprint $table) {
             $table->id('sub_activity_id');
             $table->unsignedBigInteger('activity_id_fk')->default(1);
@@ -26,6 +27,7 @@ class CreateSubActivitiesTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

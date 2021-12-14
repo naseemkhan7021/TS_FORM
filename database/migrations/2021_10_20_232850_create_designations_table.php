@@ -13,6 +13,7 @@ class CreateDesignationsTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('designations')) {
         Schema::create('designations', function (Blueprint $table) {
             $table->id('designation_id');
             $table->string('designation_description', 100);
@@ -23,6 +24,7 @@ class CreateDesignationsTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

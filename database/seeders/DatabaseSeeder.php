@@ -32,27 +32,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            // AddresstypeSeeder::class,
-            // ConverationSeeder::class,
-            // DesignationSeeder::class,
-            // GenderSeeder::class,
-            // LanguageSeeder::class,
-            // LeadsourceSeeder::class,
-            // LeadstatusSeeder::class,
-            // NationalitySeeder::class,
-            // OccupationSeeder::class,
-            // PaymentmodeSeeder::class,
-            // QualificationSeeder::class,
-            // ReligionSeeder::class,
-            // RoleSeeder::class,
-            // SalesunitSeeder::class,
-            // Activity15Seeder::class,
-            // Cause15Seeder::class,
-            // ContributingCauseSeeder::class,
-            // ImdActionSeeder::class,
-            // ImdCorrectionSeeder::class,
-            // NatureOfPotentialInjurySeeder::class,
-            // WhyunsafeactCommittedSeeder::class,
 
             // CompanySeeder::class,
             // DepartmentSeeder::class,
@@ -60,30 +39,32 @@ class DatabaseSeeder extends Seeder
             // DefaultdataSeeder::class,
             // DocumentSeeder::class,
             // PotentialInjurytoSeeder::class,
-            Activity15Seeder::class,
-            Cause15Seeder::class,
-            // CompanySeeder::class,
-            ContributingCauseSeeder::class,
-            // ConverationSeeder::class,
-            DefaultdataSeeder::class,
-            DepartmentSeeder::class,
-            DocumentSeeder::class,
-            GenderSeeder::class,
-            ImdActionSeeder::class,
-            ImdCorrectionSeeder::class,
-            RoleSeeder::class,
-            // LeadsourceSeeder::class,
-            NatureOfPotentialInjurySeeder::class,
-            PotentialInjurytoSeeder::class,
-            ProjectsSeeder::class,
-            WhyunsafeactCommittedSeeder::class,
-            AddresstypeSeeder::class, // *
-            DesignationSeeder::class, // *
-            LanguageSeeder::class, //*
-            NationalitySeeder::class, // **
-            OccupationSeeder::class, //*
-            QualificationSeeder::class, //*
-            RelationtypeSeeder::class, // *
+            // Activity15Seeder::class,
+            // Cause15Seeder::class,
+            // // CompanySeeder::class,
+            // ContributingCauseSeeder::class,
+            // // ConverationSeeder::class,
+            // DefaultdataSeeder::class,
+            // DepartmentSeeder::class,
+            // DocumentSeeder::class,
+            // GenderSeeder::class,
+            // ImdActionSeeder::class,
+            // ImdCorrectionSeeder::class,
+            // RoleSeeder::class,
+            // // LeadsourceSeeder::class,
+            // NatureOfPotentialInjurySeeder::class,
+            // PotentialInjurytoSeeder::class,
+            // ProjectsSeeder::class,
+            // WhyunsafeactCommittedSeeder::class,
+            // AddresstypeSeeder::class, // *
+            // DesignationSeeder::class, // *
+            // LanguageSeeder::class, //*
+            // NationalitySeeder::class, // **
+            // OccupationSeeder::class, //*
+            // QualificationSeeder::class, //*
+            // RelationtypeSeeder::class, // *
+            SubstandActionSeeder::class,
+            SubstandConditionSeeder::class,
 
         ]);
     }

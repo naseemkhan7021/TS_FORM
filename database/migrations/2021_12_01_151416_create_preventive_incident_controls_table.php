@@ -13,6 +13,7 @@ class CreatePreventiveIncidentControlsTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('preventive_incident_controls')) {
         Schema::create('preventive_incident_controls', function (Blueprint $table) {
             $table->id('preventive_incident_control_id');
             $table->string('preventive_incident_control_description', 150);
@@ -24,6 +25,7 @@ class CreatePreventiveIncidentControlsTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

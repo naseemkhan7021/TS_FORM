@@ -13,16 +13,18 @@ class CreateGendersTable extends Migration
      */
     public function up()
     {
-        Schema::create('genders', function (Blueprint $table) {
-            $table->id('gender_id');
-            $table->string('gender_description', 20);
-            $table->string('gender_abbr',10);
-            $table->boolean('bactive')->default(true);
-            $table->integer('user_created')->default(0);
-            $table->integer('user_updated')->default(0);
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
-        });
+        if (!Schema::hasTable('genders')) {
+            Schema::create('genders', function (Blueprint $table) {
+                $table->id('gender_id');
+                $table->string('gender_description', 20);
+                $table->string('gender_abbr', 10);
+                $table->boolean('bactive')->default(true);
+                $table->integer('user_created')->default(0);
+                $table->integer('user_updated')->default(0);
+                $table->timestamp('created_at')->useCurrent();
+                $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+            });
+        }
     }
 
     /**

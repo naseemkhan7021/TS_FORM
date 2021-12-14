@@ -13,6 +13,7 @@ class CreateRelationtypesTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('relationtypes')) {
         Schema::create('relationtypes', function (Blueprint $table) {
             $table->id('relationtype_id');
             $table->string('relationtype_description', 50);
@@ -23,6 +24,7 @@ class CreateRelationtypesTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

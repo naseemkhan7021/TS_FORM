@@ -13,6 +13,7 @@ class CreateTeamUserTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('team_user')) {
         Schema::create('team_user', function (Blueprint $table) {
             $table->id();
             $table->foreignId('team_id');
@@ -22,6 +23,7 @@ class CreateTeamUserTable extends Migration
 
             $table->unique(['team_id', 'user_id']);
         });
+    }
     }
 
     /**

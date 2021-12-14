@@ -13,6 +13,7 @@ class CreateActivitiesTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('activities')) {
         Schema::create('activities', function (Blueprint $table) {
             $table->id('activity_id');
             $table->string('activity_description', 150);
@@ -24,6 +25,7 @@ class CreateActivitiesTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

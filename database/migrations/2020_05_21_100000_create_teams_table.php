@@ -13,6 +13,7 @@ class CreateTeamsTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('teams')) {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->index();
@@ -20,6 +21,7 @@ class CreateTeamsTable extends Migration
             $table->boolean('personal_team');
             $table->timestamps();
         });
+    }
     }
 
     /**

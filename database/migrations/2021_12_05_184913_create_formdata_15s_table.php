@@ -13,6 +13,7 @@ class CreateFormdata15sTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('formdata_15s')) {
         Schema::create('formdata_15s', function (Blueprint $table) {
             $table->id('formdata_15s_id');
             $table->string('formdata_15s_description',100);
@@ -25,6 +26,7 @@ class CreateFormdata15sTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

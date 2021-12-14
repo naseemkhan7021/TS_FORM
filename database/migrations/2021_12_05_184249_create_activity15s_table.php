@@ -13,6 +13,7 @@ class CreateActivity15sTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('activity15s')) {
         Schema::create('activity15s', function (Blueprint $table) {
             $table->id('activity15s_id');
             $table->string('activity15s_description',100);
@@ -25,6 +26,7 @@ class CreateActivity15sTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

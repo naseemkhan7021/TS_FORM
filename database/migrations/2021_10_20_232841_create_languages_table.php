@@ -13,6 +13,7 @@ class CreateLanguagesTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('languages')) {
         Schema::create('languages', function (Blueprint $table) {
             $table->id('language_id');
             $table->string('language_description', 50);
@@ -23,6 +24,7 @@ class CreateLanguagesTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

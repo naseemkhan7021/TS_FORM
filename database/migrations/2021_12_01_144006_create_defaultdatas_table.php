@@ -13,6 +13,7 @@ class CreateDefaultdatasTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('defaultdatas')) {
         Schema::create('defaultdatas', function (Blueprint $table) {
             $table->id('idefault_id');
             $table->string('description',150)->nullable();
@@ -33,6 +34,7 @@ class CreateDefaultdatasTable extends Migration
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
 
         });
+    }
     }
 
     /**

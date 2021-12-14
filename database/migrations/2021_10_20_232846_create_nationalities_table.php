@@ -13,6 +13,7 @@ class CreateNationalitiesTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('nationalities')) {
         Schema::create('nationalities', function (Blueprint $table) {
             $table->id('nationality_id');
             $table->string('nationality_description', 50);
@@ -23,6 +24,7 @@ class CreateNationalitiesTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

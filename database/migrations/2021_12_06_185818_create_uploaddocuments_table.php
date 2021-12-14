@@ -13,6 +13,7 @@ class CreateUploaddocumentsTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('uploaddocuments')) {
         Schema::create('uploaddocuments', function (Blueprint $table) {
             $table->id('uploaddocuments_id');
 
@@ -29,6 +30,7 @@ class CreateUploaddocumentsTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

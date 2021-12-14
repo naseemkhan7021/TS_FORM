@@ -13,6 +13,7 @@ class CreateDocumentsTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('documents')) {
         Schema::create('documents', function (Blueprint $table) {
             $table->id('document_id');
             // Issue No: Issue Date: Revision No: Revision Date
@@ -28,6 +29,7 @@ class CreateDocumentsTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

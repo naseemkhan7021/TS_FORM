@@ -13,6 +13,7 @@ class CreateAddresstypesTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('addresstypes')) {
         Schema::create('addresstypes', function (Blueprint $table) {
             $table->id('addresstype_id');
             $table->string('addresstype_description', 100);
@@ -23,6 +24,7 @@ class CreateAddresstypesTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

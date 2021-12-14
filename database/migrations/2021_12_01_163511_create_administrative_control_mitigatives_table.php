@@ -13,6 +13,7 @@ class CreateAdministrativeControlMitigativesTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('administrative_control_mitigatives')) {
         Schema::create('administrative_control_mitigatives', function (Blueprint $table) {
             $table->id('administrative_control_mitigative_id');
             $table->tinyInteger('administrative_control_mitigative_value');
@@ -25,6 +26,7 @@ class CreateAdministrativeControlMitigativesTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

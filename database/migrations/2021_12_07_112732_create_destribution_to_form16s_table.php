@@ -13,6 +13,7 @@ class CreateDestributionToForm16sTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('destribution_to_form16s')) {
         Schema::create('destribution_to_form16s', function (Blueprint $table) {
             $table->id('destribution_to_form16s_id');
 
@@ -29,6 +30,7 @@ class CreateDestributionToForm16sTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

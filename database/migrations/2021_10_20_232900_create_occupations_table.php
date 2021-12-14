@@ -13,6 +13,7 @@ class CreateOccupationsTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('occupations')) {
         Schema::create('occupations', function (Blueprint $table) {
             $table->id('occupation_id');
             $table->string('occupation_description', 100);
@@ -23,6 +24,7 @@ class CreateOccupationsTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

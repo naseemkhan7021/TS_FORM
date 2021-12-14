@@ -13,6 +13,7 @@ class CreateProjectsTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('projects')) {
         Schema::create('projects', function (Blueprint $table) {
             $table->id('iproject_id');
 
@@ -31,6 +32,7 @@ class CreateProjectsTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

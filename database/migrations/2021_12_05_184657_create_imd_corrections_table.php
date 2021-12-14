@@ -13,6 +13,7 @@ class CreateImdCorrectionsTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('imd_corrections')) {
         Schema::create('imd_corrections', function (Blueprint $table) {
             $table->id('imd_corrections_id');
             $table->string('imd_corrections_description',100);
@@ -25,6 +26,7 @@ class CreateImdCorrectionsTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

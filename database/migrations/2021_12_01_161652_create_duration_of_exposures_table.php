@@ -13,6 +13,7 @@ class CreateDurationOfExposuresTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('duration_of_exposures')) {
         Schema::create('duration_of_exposures', function (Blueprint $table) {
             $table->id('duration_of_exposure_id');
             $table->tinyInteger('duration_of_exposure_value');
@@ -25,6 +26,7 @@ class CreateDurationOfExposuresTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

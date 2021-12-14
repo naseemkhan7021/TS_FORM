@@ -13,6 +13,7 @@ class CreateConsequencesControlsTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('consequences_controls')) {
         Schema::create('consequences_controls', function (Blueprint $table) {
             $table->id('consequences_controls_id');
             $table->string('consequences_controls_description', 150);
@@ -24,6 +25,7 @@ class CreateConsequencesControlsTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

@@ -13,6 +13,7 @@ class CreateCompaniesTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('companies')) {
         Schema::create('companies', function (Blueprint $table) {
             $table->id('ibc_id');
             $table->string('sbc_company_name',150);
@@ -26,6 +27,7 @@ class CreateCompaniesTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

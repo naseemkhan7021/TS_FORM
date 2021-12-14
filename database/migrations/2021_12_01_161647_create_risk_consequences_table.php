@@ -13,6 +13,7 @@ class CreateRiskConsequencesTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('risk_consequences')) {
         Schema::create('risk_consequences', function (Blueprint $table) {
             $table->id('risk_consequence_id');
             $table->tinyInteger('risk_consequence_value');
@@ -25,6 +26,7 @@ class CreateRiskConsequencesTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

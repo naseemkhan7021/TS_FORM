@@ -13,6 +13,7 @@ class CreateNatureOfPotentialInjuriesTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('nature_of_potential_injuries')) {
         Schema::create('nature_of_potential_injuries', function (Blueprint $table) {
             $table->id('nature_of_potential_injuries_id');
             $table->string('nature_of_potential_injuries_description',100);
@@ -24,6 +25,7 @@ class CreateNatureOfPotentialInjuriesTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

@@ -13,6 +13,7 @@ class CreateWhyunsafeactCommittedsTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('whyunsafeact_committeds')) {
         Schema::create('whyunsafeact_committeds', function (Blueprint $table) {
             $table->id('whyunsafeact_committeds_id');
             $table->string('whyunsafeact_committeds_description',100);
@@ -25,6 +26,7 @@ class CreateWhyunsafeactCommittedsTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

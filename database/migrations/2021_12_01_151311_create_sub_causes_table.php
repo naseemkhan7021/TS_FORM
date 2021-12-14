@@ -13,6 +13,7 @@ class CreateSubCausesTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('sub_causes')) {
         Schema::create('sub_causes', function (Blueprint $table) {
             $table->id('sub_causes_id');
 
@@ -28,6 +29,7 @@ class CreateSubCausesTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

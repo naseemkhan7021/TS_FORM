@@ -13,6 +13,7 @@ class CreateSubstandactionsTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('substandactions')) {
         Schema::create('substandactions', function (Blueprint $table) {
             $table->id('substandaction_id');
             $table->string('substandcondition_description', 150);
@@ -26,6 +27,7 @@ class CreateSubstandactionsTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

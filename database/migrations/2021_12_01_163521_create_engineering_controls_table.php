@@ -13,6 +13,7 @@ class CreateEngineeringControlsTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('engineering_controls')) {
         Schema::create('engineering_controls', function (Blueprint $table) {
             $table->id('engineering_control_id');
             $table->tinyInteger('engineering_control_value');
@@ -25,6 +26,7 @@ class CreateEngineeringControlsTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

@@ -13,6 +13,7 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('roles')) {
         Schema::create('roles', function (Blueprint $table) {
             $table->id('role⁯_id',2)->unique();
             $table->string('role_title', 50);
@@ -21,7 +22,9 @@ class CreateRolesTable extends Migration
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
             $table->softDeletes('deleted_at');
         });
+
     }
+}
 
     /**
      * Reverse the migrations.

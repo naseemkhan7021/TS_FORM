@@ -13,6 +13,7 @@ class CreatePotentialInjurytosTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('potential_injurytos')) {
         Schema::create('potential_injurytos', function (Blueprint $table) {
             $table->id('potential_injurytos_id');
             $table->string('potential_injurytos_description',100);
@@ -25,6 +26,7 @@ class CreatePotentialInjurytosTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

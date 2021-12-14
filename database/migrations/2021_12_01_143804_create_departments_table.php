@@ -13,6 +13,7 @@ class CreateDepartmentsTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('departments')) {
         Schema::create('departments', function (Blueprint $table) {
             $table->id('idepartment_id');
             $table->unsignedBigInteger('ibc_id_fk')->default(1);
@@ -25,6 +26,7 @@ class CreateDepartmentsTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**

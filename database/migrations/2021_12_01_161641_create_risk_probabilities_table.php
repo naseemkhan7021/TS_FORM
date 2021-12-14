@@ -13,6 +13,7 @@ class CreateRiskProbabilitiesTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('risk_probabilities')) {
         Schema::create('risk_probabilities', function (Blueprint $table) {
             $table->id('risk_probability_id');
             $table->tinyInteger('risk_probability_value');
@@ -25,6 +26,7 @@ class CreateRiskProbabilitiesTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+    }
     }
 
     /**
