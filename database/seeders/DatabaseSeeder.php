@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
             // PotentialInjurytoSeeder::class,
             Activity15Seeder::class,
             Cause15Seeder::class,
-            CompanySeeder::class,
+            // CompanySeeder::class,
             ContributingCauseSeeder::class,
             // ConverationSeeder::class,
             DefaultdataSeeder::class,
