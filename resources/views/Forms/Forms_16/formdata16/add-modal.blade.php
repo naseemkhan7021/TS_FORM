@@ -1,6 +1,3 @@
-
-
-
 <div class="modal fade addForm16" wire:ignore.self tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-xl" role="document">
@@ -10,13 +7,14 @@
                     # object oriented
                 @endphp --}}
                 <h5 class="modal-title" id="exampleModalLabel">Add New Form-16 Data</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button wire:click='clearValidationf()' type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body ">
 
                 <form wire:submit.prevent="save" class="row g-3">
+
                     {{-- project detail start --}}
                     <div class="col-md-6 col-sm-6">
                         <div class="form-group">
@@ -53,8 +51,8 @@
                         <div class="form-controp">
                             <label for="" class="@error('doincident_dt') text-danger @enderror">Data/Time
                                 @error('doincident_dt') <i class="text-danger fas fa-times-circle"></i>@enderror</label>
-                            <input type="text" class="form-control" wire:model="doincident_dt"> 
-                            
+                            <input type="text" class="form-control" wire:model="doincident_dt">
+
                             {{-- <span class="text-danger"> 
                                 @error('doincident_dt')
                                     {{ $message }}@enderror</span> --}}
@@ -84,7 +82,8 @@
                                 @endforeach
                                 {{-- if other than disabled this input --}}
                                 <div class="input">
-                                    <input wire:model='potential_injurytos_other' {{ $showOtherInput != 'OT' ? 'disabled' : '' }} type="text"
+                                    <input wire:model='potential_injurytos_other'
+                                        {{ $showOtherInput != 'OT' ? 'disabled' : '' }} type="text"
                                         class="mx-1 form-control border" placeholder="what is other">
                                 </div>
 
@@ -384,14 +383,16 @@
                                 class="text-danger fas fa-times-circle"></i>@enderror</label>
                         <div class=" form-group">
                             <div class="form-group form-check-inline">
-                                <input wire:model='first_aid_given_on_site' class="form-check-input" name="firstaid"
+                                <input wire:click="$set('firstaidgivenonsite', 'Yes')"
+                                    wire:model='first_aid_given_on_site' class="form-check-input" name="firstaid"
                                     type="radio" value="1" id="wasfirstaidyes">
                                 <label class="form-check-label" for="wasfirstaidyes">
                                     YES
                                 </label>
                             </div>
                             <div class="form-group form-check-inline">
-                                <input wire:model='first_aid_given_on_site' class="form-check-input" name="firstaid"
+                                <input wire:click="$set('firstaidgivenonsite', 'No')"
+                                    wire:model='first_aid_given_on_site' class="form-check-input" name="firstaid"
                                     type="radio" value="0" id="wasfirstaidno">
                                 <label class="form-check-label" for="wasfirstaidno">
                                     NO
@@ -409,7 +410,8 @@
                                 class="form-label @error('name_first_aider') text-danger @enderror">Name of the First
                                 Aider @error('name_first_aider') <i
                                     class="text-danger fas fa-times-circle"></i>@enderror</label>
-                            <input wire:model='name_first_aider' type="text" class="form-control" id="nameofaider">
+                            <input {{ $firstaidgivenonsite == 'No' ? 'disabled' : '' }} wire:model='name_first_aider'
+                                type="text" class="form-control" id="nameofaider">
                             {{-- <span class="text-danger">
                                                 @error('name_first_aider') {{ $message }}@enderror
                                             </span> --}}
@@ -505,7 +507,7 @@
                                     victim... @error('return_to_work') <i
                                         class="text-danger fas fa-times-circle"></i>@enderror</label>
                                 <input {{ $victimDischargeorNot == 'No' ? 'disabled' : '' }} wire:model='return_to_work'
-                                    type="date" class="form-control" id="returntoworkifdt" >
+                                    type="date" class="form-control" id="returntoworkifdt">
                                 {{-- <span class="text-danger">
                                                     @error('return_to_work') {{ $message }}@enderror
                                                 </span> --}}
@@ -554,21 +556,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label title="Attach sketches/photos" for="browse-injury-photo">Attach
-                                    sketches/photos</label>
-                                <div class="input-group mb-3">
-                                    <div class="custom-file">
-                                        <input wire:model='uploaddocuments_fk' type="file" class="custom-file-input"
-                                            id="browse-injury-photo" aria-describedby="inputGroupFileAddon01">
-                                        <label title="Attach sketches/photos" class="custom-file-label"
-                                            for="browse-injury-photo">Upload
-                                            Photo/sketche</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                         {{-- Extent of Injury --}}
                         <div class="col-md-3">
                             <div class="form-group">
@@ -673,20 +661,84 @@
                             </div>
                         </div>
 
-                        
-                        {{--  hare we are add the fieldset --}}
-                        <div class="col-md-6">
+                        {{-- img upload start --}}
+                        <div class="col-md-12">
+                            <hr class="text-secondary w-100">
+                            <legend class="w-100"><strong>Upload Imgs</strong></legend>
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label title="Attach sketches/photos" for="browse-injury-photo">Attach
+                                            sketches/photos</label>
+                                        <div class="input-group mb-3">
+                                            <div class="custom-file">
+                                                <input wire:model='photos' type="file" class="custom-file-input"
+                                                    id="browse-injury-photo" aria-describedby="inputGroupFileAddon01">
+                                                <label title="Attach sketches/photos" class="custom-file-label"
+                                                    for="browse-injury-photo">Upload
+                                                    Photo/sketche</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="browse-injury-photo" class="form-labeltext-danger"
+                                            title="Attach Name ">Attach Name</label>
+                                        <input type="text" class="form-control" id="browse-injury-photo">
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+
+                                    <div class="row">
+                                            <div class="col-md-12">    
+                                                <label for="" title="image preview">imgages preview</label>
+                                            </div>
+                                            @foreach ($photos as $key => $photo)
+                                                <div class="col-md-3 img mb-4" style="height: 12rem">
+                                                    {{-- {{$key}} --}}
+                                                    <a href="{{ $photo->temporaryUrl() }}" class="h-100 d-block">
+                                                        <img src="{{ $photo->temporaryUrl() }}"
+                                                            alt="{{ $photo->temporaryUrl() }}" class="w-100 h-100"
+                                                            style="object-fit: contain">
+                                                    </a>
+                                                </div>
+
+                                                <div class="col-md-3 mb-4">
+                                                    <div class="form-group">
+                                                        <label for="img title"> Image Title</label>
+                                                        <input type="text" class="form-control" placeholder="Img title" wire:model='imgTitles.{{$key}}'>
+                                                    </div>
+                                                    <input type="button" wire:click='removeImg({{ $key }})'  class="btn btn-outline-danger btn-sm rounded w-100" value="remove">
+                                                    {{-- <button wire:click='removeImg({{ $key }})' type=""
+                                                        class="btn btn-outline-danger btn-sm rounded w-100">remove</button> --}}
+                                                </div>
+
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- img upload end --}}
+
+                        {{-- hare we are add the fieldset --}}
+                        {{-- <div class="col-md-6">
                             <div class="form-group">
                                 <label for="project-manager-name"
                                     class="form-label @error('project_manager') text-danger @enderror"
                                     title="Completed by (Site Engineer) Name">Project Manager @error('project_manager') <i
                                         class="text-danger fas fa-times-circle"></i>@enderror</label>
                                 <input wire:model='project_manager' type="text" class="form-control"
-                                    id="project-manager-name">
-                                {{-- <span class="text-danger">
+                                    id="project-manager-name"> --}}
+                        {{-- <span class="text-danger">
                                                     @error('project_manager') {{ $message }}@enderror
                                                 </span> --}}
-                            </div>
+                        {{-- </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
@@ -696,17 +748,17 @@
                                     @error('project_manager_signature') <i
                                         class="text-danger fas fa-times-circle"></i>@enderror</label>
                                 <input wire:model='project_manager_signature' type="text" class="form-control"
-                                    id="project-manager-signature">
-                                {{-- <span class="text-danger">
+                                    id="project-manager-signature"> --}}
+                        {{-- <span class="text-danger">
                                                     @error('project_manager_signature') {{ $message }}@enderror
                                                 </span> --}}
-                            </div>
-                        </div>
+                        {{-- </div>
+                        </div> --}}
                         {{-- last info end --}}
 
                         {{-- only for head Employee --}}
-                        <hr class="text-secondary w-100">
-                        <div class="col-12">
+                        {{-- <hr class="text-secondary w-100"> --}}
+                        {{-- <div class="col-12">
                             <legend class="w-100"><strong>Distribution To</strong></legend>
                             <div class="row px-2">
                                 <div class="col-12">
@@ -735,11 +787,11 @@
                                         <label for="project-head-remark">Remark</label>
                                         <input type="text" class="form-control" id="project-head-remark">
                                     </div>
-                                </div>
+                                </div> --}}
 
 
-                                {{-- Safety Officer --}}
-                                <div class="col-12">
+                        {{-- Safety Officer --}}
+                        {{-- <div class="col-12">
                                     <h4><strong>Safety Officer</strong></h4>
                                 </div><br><br>
                                 <div class="col-md-4">
@@ -765,11 +817,11 @@
                                         <label for="safety-officer-remark">Remark</label>
                                         <input type="text" class="form-control" id="safety-officer-remark">
                                     </div>
-                                </div>
+                                </div> --}}
 
 
-                                {{-- Dy. Project Manager --}}
-                                <div class="col-12">
+                        {{-- Dy. Project Manager --}}
+                        {{-- <div class="col-12">
                                     <h4><strong>Dy. Project Manager</strong></h4>
                                 </div><br><br>
                                 <div class="col-md-4">
@@ -795,12 +847,12 @@
                                         <label for="project-manager-remark">Remark</label>
                                         <input type="text" class="form-control" id="project-manager-remark">
                                     </div>
-                                </div>
+                                </div> --}}
 
 
 
-                                {{-- Site Admin Dept. --}}
-                                <div class="col-12">
+                        {{-- Site Admin Dept. --}}
+                        {{-- <div class="col-12">
                                     <h4><strong>Site Admin Dept.</strong></h4>
                                 </div><br><br>
                                 <div class="col-md-4">
@@ -827,14 +879,16 @@
                                         <input type="text" class="form-control" id="site-admin-remark">
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
-                        </div>
+                        {{-- </div> --}}
                         {{-- only for head Employee end --}}
-
+                        <br>
+                        <br>
+                        <br>
                         <div class="col-12">
                             <div class="form-group">
-                                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal" wire:click='clearValidationf()'>Close</button>
                                 <button type="submit" class="btn btn-primary btn-sm">Save</button>
                             </div>
                         </div>

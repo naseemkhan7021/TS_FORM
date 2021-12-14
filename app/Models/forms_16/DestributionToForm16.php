@@ -18,4 +18,6 @@ class DestributionToForm16 extends Model
         'destribution_acknowlage_dt',
         'destribution_remark',
     ];
+
+    
 }
