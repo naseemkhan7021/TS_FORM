@@ -71,11 +71,11 @@ class DatabaseSeeder extends Seeder
             GenderSeeder::class,
             ImdActionSeeder::class,
             ImdCorrectionSeeder::class,
+            RoleSeeder::class,
             // LeadsourceSeeder::class,
             NatureOfPotentialInjurySeeder::class,
             PotentialInjurytoSeeder::class,
             ProjectsSeeder::class,
-            RoleSeeder::class,
             WhyunsafeactCommittedSeeder::class,
             AddresstypeSeeder::class, // *
             DesignationSeeder::class, // *
