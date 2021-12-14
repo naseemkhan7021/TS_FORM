@@ -133,7 +133,7 @@
                 @if (Auth::user()->current_role⁯_id == 1)
 
 
-                    <li>
+                    {{-- <li>
                         <a href="#sidebarCrm" data-toggle="collapse">
                             <i data-feather="users"></i>
                             <span> Const. CRM </span>
@@ -161,14 +161,14 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
 
                 @endif
 
                 @if (Auth::user()->current_role⁯_id == 1)
 
 
-                    <li>
+                    {{-- <li>
                         <a href="#sidebarProjectCRM" data-toggle="collapse">
                             <i data-feather="users"></i>
                             <span> Project CRM </span>
@@ -184,7 +184,7 @@
                                 </li>
                                 <li>
                                     <a href="{{ route('projectunit') }}">Project Units</a>
-                                </li>
+                                </li> --}}
                                 {{-- <li>
                                 <a href="{{ route('dashboard_presales') }}">Sales  - Pre Sales </a>
                             </li>
@@ -202,14 +202,14 @@
                                 <a href="{{ route('secondarymember') }}">Secondary Member</a>
                             </li> --}}
 
-                            </ul>
+                            {{-- </ul>
                         </div>
-                    </li>
+                    </li> --}}
 
                 @endif
 
                 @if (Auth::user()->current_role⁯_id == 1)
-
+{{--
                     <li>
                         <a href="#sidebarPreSales" data-toggle="collapse">
                             <i data-feather="mail"></i>
@@ -223,13 +223,13 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
 
                 @endif
 
                 @if (Auth::user()->current_role⁯_id == 1)
 
-                    <li>
+                    {{-- <li>
                         <a href="#sidebarSales" data-toggle="collapse">
                             <i data-feather="mail"></i>
                             <span> Sales </span>
@@ -255,7 +255,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
 
                 @endif
 
@@ -263,7 +263,7 @@
                 @if (Auth::user()->current_role⁯_id == 1)
 
 
-                    <li>
+                    {{-- <li>
                         <a href="#sidebarPostSales" data-toggle="collapse">
                             <i data-feather="mail"></i>
                             <span> Post Sales </span>
@@ -285,10 +285,46 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
 
                 @endif
 
+                @if (Auth::user()->current_role⁯_id == 1)
+
+                    <li>
+                        <a href="#sidebarCommmon" data-toggle="collapse">
+                            <i data-feather="users"></i>
+                            <span> Common </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sidebarCommmon">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href="{{ route('index_company') }}"> Company </a>
+                                </li>
+                                <li>
+                                    <a href="#"> Document Serial </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('index_department') }}"> Department </a>
+                                </li>
+                                <li>
+                                    <a href="#"> Projects </a>
+                                </li>
+
+                                <li>
+                                    <a href="#"> Default Data </a>
+                                </li>
+
+                                <li>
+                                    <a href="#"> Potential Injury To </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+
+                @endif
 
 
 
@@ -307,23 +343,9 @@
                         <div class="collapse" id="sidebarForm00">
                             <ul class="nav-second-level">
                                 <li>
-                                    <a href="{{ route('salesunit') }}"> Forms 00 </a>
+                                    <a href="#"> Forms 00 </a>
                                 </li>
-                                <li>
-                                    <a href="{{ route('leadstatus') }}"> Lead Status </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('leadsource') }}"> Lead Source </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('paymentmode') }}"> Payment Mode </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('propertystatus') }}"> Property Status </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('paymenttemplate') }}"> Payment Template </a>
-                                </li>
+
                             </ul>
                         </div>
                     </li>

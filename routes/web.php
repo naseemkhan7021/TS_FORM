@@ -5,6 +5,7 @@ use App\Http\Controllers\CommonController;
 use App\Http\Controllers\Forms\Form01Controller;
 use App\Http\Controllers\Forms\Forms15Controller;
 use App\Http\Controllers\Forms\Forms16Controller;
+use App\Http\Controllers\Forms\CommonformController;
 
 // use App\Http\Controllers\RoutingController;
 
@@ -35,23 +36,36 @@ Route::get('/religion', [CommonController::class, 'index_religion'])->name('reli
 Route::get('/qualification', [CommonController::class, 'index_qualification'])->name('qualification');
 
 
-Route::get('/salesunit', [CommonController::class, 'index_salesunit'])->name('salesunit');
-Route::get('/leadstatus', [CommonController::class, 'index_leadstatus'])->name('leadstatus');
-Route::get('/leadsource', [CommonController::class, 'index_leadsource'])->name('leadsource');
-Route::get('/paymentmode', [CommonController::class, 'index_paymentmode'])->name('paymentmode');
-Route::get('/propertystatus', [CommonController::class, 'index_propertystatus'])->name('propertystatus');
-Route::get('/channelpartner', [CommonController::class, 'index_channelpartner'])->name('channelpartner');
-Route::get('/paymenttemplate', [CommonController::class, 'index_templatepayment'])->name('paymenttemplate');
 
-Route::get('/projects', [CommonController::class, 'index_projects'])->name('const_projects');
-Route::get('/projectwings', [CommonController::class, 'index_projectwings'])->name('projectwings');
-Route::get('/projectunit', [CommonController::class, 'index_projectunit'])->name('projectunit');
+Route::get('/company', [CommonformController::class, 'index_company'])->name('index_company');
+Route::get('/department', [CommonformController::class, 'index_department'])->name('index_department');
+Route::get('/defaultdata', [CommonformController::class, 'index_defaultdata'])->name('index_defaultdata');
+
+// Route::get('/form01_subactivity', [Form01Controller::class, 'index_subactivity'])->name('form01_subactivity');
+// Route::get('/form01_probable_consequence', [Form01Controller::class, 'index_probable_consequence'])->name('form01_probable_consequence');
+// Route::get('/form01_cause', [Form01Controller::class, 'index_cause'])->name('form01_cause');
+// Route::get('/form01_subcause', [Form01Controller::class, 'index_subcause'])->name('form01_subcause');
 
 
-Route::get('/leads', [CommonController::class, 'index_leads'])->name('leads');
-Route::get('/leadfollow', [CommonController::class, 'index_leadfollowup'])->name('leadfollow');
-Route::get('/primarymember', [CommonController::class, 'index_primarymember'])->name('primarymember');
-Route::get('/secondarymember', [CommonController::class, 'index_secondarymember'])->name('secondarymember');
+
+
+// Route::get('/salesunit', [CommonController::class, 'index_salesunit'])->name('salesunit');
+// Route::get('/leadstatus', [CommonController::class, 'index_leadstatus'])->name('leadstatus');
+// Route::get('/leadsource', [CommonController::class, 'index_leadsource'])->name('leadsource');
+// Route::get('/paymentmode', [CommonController::class, 'index_paymentmode'])->name('paymentmode');
+// Route::get('/propertystatus', [CommonController::class, 'index_propertystatus'])->name('propertystatus');
+// Route::get('/channelpartner', [CommonController::class, 'index_channelpartner'])->name('channelpartner');
+// Route::get('/paymenttemplate', [CommonController::class, 'index_templatepayment'])->name('paymenttemplate');
+
+// Route::get('/projects', [CommonController::class, 'index_projects'])->name('const_projects');
+// Route::get('/projectwings', [CommonController::class, 'index_projectwings'])->name('projectwings');
+// Route::get('/projectunit', [CommonController::class, 'index_projectunit'])->name('projectunit');
+
+
+// Route::get('/leads', [CommonController::class, 'index_leads'])->name('leads');
+// Route::get('/leadfollow', [CommonController::class, 'index_leadfollowup'])->name('leadfollow');
+// Route::get('/primarymember', [CommonController::class, 'index_primarymember'])->name('primarymember');
+// Route::get('/secondarymember', [CommonController::class, 'index_secondarymember'])->name('secondarymember');
 
 
 // Forms01 Routes
@@ -72,7 +86,7 @@ Route::get('/form01_duration_of_exposure', [Form01Controller::class, 'index_dura
 Route::get('/form01_risk_probability', [Form01Controller::class, 'index_risk_probability'])->name('form01_risk_probability');
 Route::get('/form01_risk_consequence', [Form01Controller::class, 'index_risk_consequence'])->name('form01_risk_consequence');
 
-// forms 15 
+// forms 15
 Route::get('/form15_activity15', [Forms15Controller::class, 'index_activity15'])->name('form15_activity15');
 Route::get('/form15_cause15', [Forms15Controller::class, 'index_cause15'])->name('form15_cause15');
 Route::get('/form15_contributingcause', [Forms15Controller::class, 'index_contributingcause'])->name('form15_contributingcause');

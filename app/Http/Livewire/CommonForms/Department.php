@@ -2,14 +2,15 @@
 
 namespace App\Http\Livewire\CommonForms;
 
+use App\Models\common_forms\Company;
 use App\Models\common_forms\Department as Formsdepartment;
 use Livewire\Component;
 
 class Department extends Component
 {
     public $searchQuery;
-    public $sdepartment_name, $sdepartment_abbr;
-    public $cid, $upd_sdepartment_name, $upd_sdepartment_abbr;
+    public $sdepartment_name, $sdepartment_abbr , $ibc_id_fk;
+    public $cid, $upd_sdepartment_name, $upd_sdepartment_abbr , $upd_ibc_id_fk;
 
     public function mount()
     {
@@ -19,18 +20,29 @@ class Department extends Component
 
     public function render()
     {
+        $companydata = Company::all();
+
         # render with search query
         $formsDepartment = Formsdepartment::join('companies', 'companies.ibc_id', '=', 'departments.ibc_id_fk')
             ->when($this->searchQuery != '', function ($query) {
                 $query->where('bactive', '1')
                     ->where('sdepartment_name', 'like', '%' . $this->searchQuery . '%')
                     ->orWhere('sdepartment_abbr', 'like', '%' . $this->searchQuery . '%');
-            })->orderBy('idepartment_id', 'dec')->paginate(10);
+            })->orderBy('idepartment_id', 'asc')->paginate(10);
 
         return view('livewire.common-forms.department',[
-            'formsDepartment'=>$formsDepartment
+            'formsDepartment'=>$formsDepartment ,'companydata' => $companydata ,
         ]);
     }
+
+
+    public function OpenAddCountryModal(){
+        $this->sdepartment_name = '';
+        $this->sdepartment_abbr = '';
+        $this->ibc_id_fk = 0;
+        $this->dispatchBrowserEvent('OpenAddCountryModal');
+    }
+
 
     public function save()
     {
@@ -43,6 +55,7 @@ class Department extends Component
         $save = Formsdepartment::insert([
             'sdepartment_abbr' => $this->sdepartment_abbr,
             'sdepartment_name' => $this->sdepartment_name,
+            'ibc_id_fk' => $this->ibc_id_fk,
         ]);
 
         if ($save) {
@@ -58,6 +71,7 @@ class Department extends Component
 
         $this->upd_sdepartment_name = $info->sdepartment_name;
         $this->upd_sdepartment_abbr = $info->sdepartment_abbr;
+
         $this->cid = $info->idepartment_id;
         $this->dispatchBrowserEvent('OpenEditCountryModal', [
             'idepartment_id' => $idepartment_id

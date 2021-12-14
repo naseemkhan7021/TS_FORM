@@ -25,14 +25,22 @@ class Company extends Component
         $formsCompany = Formscompany::when($this->searchQuery != '', function ($query) {
                 $query->where('bactive', '1')
                     ->where('sbc_company_name', 'like', '%' . $this->searchQuery . '%')
-                    ->orWhere('sbc_abbr', 'like', '%' . $this->searchQuery . '%')
-                    ->orWhere('validupto_dt', 'like', '%' . $this->searchQuery . '%')
-                    ->orWhere('sbc_logo_small', 'like', '%' . $this->searchQuery . '%');
-            })->orderBy('ibc_id', 'dec')->paginate(10);
+                    ->orWhere('sbc_abbr', 'like', '%' . $this->searchQuery . '%');
+            })->orderBy('ibc_id' )->get();
 
         return view('livewire.common-forms.company',[
             'formsCompany'=>$formsCompany
         ]);
+    }
+
+
+    public function OpenAddCountryModal(){
+        $this->sbc_company_name = '';
+        $this->sbc_abbr = '';
+        $this->validupto_dt = '';
+        $this->sbc_logo_small = '';
+        $this->sbc_logo_large = '';
+        $this->dispatchBrowserEvent('OpenAddCountryModal');
     }
 
     public function save()

@@ -19,7 +19,7 @@ class Headerdata extends Component
         ->where('defaultdatas.bactive','1')
         ->get();
 
-        $projects = Project::select('iproject_id','sproject_name','sproject_abbr')->get();
+        $projects = Project::all();
 
         return view('livewire.common-forms.headerdata',[
             'defaultvalues' => $defaultvalues,'projects'=>$projects
