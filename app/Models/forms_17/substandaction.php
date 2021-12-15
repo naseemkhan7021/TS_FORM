@@ -12,7 +12,7 @@ class substandaction extends Model
     protected $primaryKey = 'substandaction_id';
     protected $table = 'substandactions';
     protected $fillable = [
-        'substandcondition_description', 'substandcondition_abbr'
+        'substandaction_description', 'substandaction_abbr'
     ];
 
 

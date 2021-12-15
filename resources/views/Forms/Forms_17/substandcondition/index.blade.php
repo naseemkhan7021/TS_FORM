@@ -1,12 +1,12 @@
-@extends('template.vertical', ['title' => 'T&S Company'])
+@extends('template.vertical', ['title' => 'Forms 15 - substandcondition'])
 
 @section('content')
 
 <div class="container-fluid pl-3 pr-3">
 
     <!-- start page title -->
-        @livewire('page-title', [ 'sub_title' => 'Forms' , 'active_title' => 'Company' , 'page_title' => 'Company'  ])
-        @livewire('common-forms.company')
+        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 15 substandcondition' , 'page_title' => 'Form 15 substandcondition'  ])
+        @livewire('forms17.substand-condition')
     <!-- end page title -->
 
 
@@ -21,50 +21,42 @@
 
 <script>
     window.addEventListener('OpenAddCountryModal', function(){
-         $('.addCompany').find('span').html('');
-         $('.addCompany').find('form')[0].reset();
-         $('.addCompany').modal('show');
+         $('.addSubstandcondition').find('span').html('');
+         $('.addSubstandcondition').find('form')[0].reset();
+         $('.addSubstandcondition').modal('show');
     });
-    
 
     window.addEventListener('CloseAddCountryModal', function(){
-        $('.addCompany').find('span').html('');
-        $('.addCompany').find('form')[0].reset();
-        $('.addCompany').modal('hide');
+        $('.addSubstandcondition').find('span').html('');
+        $('.addSubstandcondition').find('form')[0].reset();
+        $('.addSubstandcondition').modal('hide');
 
         Swal.fire(
             'Well Done!',
-            'New Company Has been Saved Successfully !',
+            'New <b>Substandcondition</b> Has been Saved Successfully !',
             'success'
             );
 
-        // alert('New Company Has been Saved Successfully');
+        // alert('New Substandcondition Has been Saved Successfully');
     });
 
     window.addEventListener('OpenEditCountryModal', function(event){
-        $('.editCompany').find('span').html('');
-        $('.editCompany').modal('show');
+        $('.editSubstandcondition').find('span').html('');
+        $('.editSubstandcondition').modal('show');
     });
 
     window.addEventListener('CloseEditCountryModal', function(event){
-        $('.editCompany').find('span').html('');
-        $('.editCompany').find('form')[0].reset();
-        $('.editCompany').modal('hide');
+        $('.editSubstandcondition').find('span').html('');
+        $('.editSubstandcondition').find('form')[0].reset();
+        $('.editSubstandcondition').modal('hide');
 
         Swal.fire(
             'Good job!',
-            'Company Has been Updated Successfully !',
+            '<b>Substandcondition</b> Has been Updated Successfully !',
             'success'
             );
-        // alert('Company Has been Updated Successfully');
+        // alert('Substandcondition Has been Updated Successfully');
     });
-
-    // show img 
-    // window.addEventListener('OpenImgView', function(){
-    //      $('.showimg').find('span').html('');
-    //      $('.showimg').find('form')[0].reset();
-    //      $('.showimg').modal('show');
-    // });
 
     window.addEventListener('SwalConfirm', function(event){
         swal.fire({
@@ -88,7 +80,7 @@
     })
 
     window.addEventListener('deleted', function(event){
-        alert('Company record has been deleted');
+        alert('Substandcondition record has been deleted');
     });
 
     window.addEventListener('swal:deleteCountries', function(event){

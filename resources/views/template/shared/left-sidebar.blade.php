@@ -471,6 +471,29 @@
                             </ul>
                         </div>
                     </li>
+
+                    {{-- Form 17 --}}
+                    <li>
+                        <a href="#sidebarForm17" data-toggle="collapse">
+                            <i data-feather="users"></i>
+                            <span> Form 17 </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sidebarForm17">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href='{{route('form17_formdata17')}}'> Forms 17 </a>
+                                </li>
+                                <li>
+                                    <a href='{{route('form17_substandaction')}}'> Substandard Actions </a>
+                                </li>
+                                <li>
+                                    <a href='{{route('form17_substandcondition')}}'> Substandard Conditions </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
                 @endif
 
 

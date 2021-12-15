@@ -890,6 +890,7 @@
                             <div class="form-group">
                                 <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal" wire:click='clearValidationf()'>Close</button>
                                 <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                                
                             </div>
                         </div>
                     </form>

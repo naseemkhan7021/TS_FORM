@@ -82,4 +82,17 @@ class Forms17Controller extends Controller
     {
         //
     }
+
+    public function index_formdata17()
+    {
+        return view('forms.Forms_17.formdata17.index');
+    }
+    public function index_substandaction()
+    {
+        return view('forms.Forms_17.substandaction.index');
+    }
+    public function index_substandcondition()
+    {
+        return view('forms.Forms_17.substandcondition.index');
+    }
 }

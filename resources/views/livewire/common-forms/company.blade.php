@@ -15,8 +15,7 @@
         </div>
     </div>
 
-
-    <table class="table display table-bordered data-table" style="width:100%">
+    <table class="table display table-bordered data-table text-center" style="width:100%">
         <thead>
             <tr>
                 <th>#</th>
@@ -31,33 +30,51 @@
         </thead>
         <tbody>
             @forelse ( $formsCompany as  $row )
-                <tr>
-                    <td>{{ $row->ibc_id }}</td>
-                    <td>{{ $row->sbc_company_name }}</td>
-                    <td>{{ $row->sbc_abbr }}</td>
-                    <td>{{ $row->sbc_logo_small }}</td>
-                    <td>{{ $row->sbc_logo_large }}</td>
+            <tr style="overflow: hidden;">
+                <td>{{ $row->ibc_id }}</td>
+                <td>{{ $row->sbc_company_name }}</td>
+                <td>{{ $row->sbc_abbr }}</td>
+                    {{-- show imgs start --}}
+                    <td>
+                        
+                        @if ($row->sbc_logo_small && Storage::disk()->exists($row->sbc_logo_small))
+                        <a data-toggle="modal" data-target="#imgview" wire:click="$set('showimg','{{$row->sbc_logo_small}}')" style="height: 2rem" href="javascript:void(0)" class="d-block text-center"> <img class="h-100" src="{{Storage::url($row->sbc_logo_small)}}" alt="{{Storage::url($row->sbc_logo_small)}}"></a>
+                        @else
+                        No Image Selected
+                        @endif
+                    </td>
+                    <td>
+                        @if ($row->sbc_logo_large && Storage::disk()->exists($row->sbc_logo_large))
+                        <a data-toggle="modal" data-target="#imgview" wire:click="$set('showimg','{{$row->sbc_logo_large}}')" style="height: 2rem" href="javascript:void(0)" class="d-block text-center"> <img class="h-100" src="{{Storage::url($row->sbc_logo_large)}}" alt="{{Storage::url($row->sbc_logo_large)}}"></a>
+                        @else
+                        No Image Selected
+                        @endif
+                    </td>
+                    {{-- show imgs end --}}
+                    
+                    {{-- <td>{{ $row->sbc_logo_large }}</td> --}}
                     <td>{{ $row->validupto_dt }}</td>
                     <td>{{ $row->created_at }}</td>
                     <td>
                         <div class="btn-group">
                             <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->ibc_id}})">Edit</button>
                             <button class="btn btn-danger btn-sm" wire:click="deleteConfirm({{$row->ibc_id}})">Delete</button>
-
+                            
                         </div>
                     </td>
-
+                    
                 </tr>
-
-            @empty
+                
+                @empty
                 <tr><td colspan="8">'{{ $data_not_found }}</td></tr>
-            @endforelse
-
-        </tbody>
+                @endforelse
+                
+            </tbody>
     </table>
-
-
+    {{-- {{ $showimg}} --}}
+    <x-img-view-model :imgdata="$showimg" />
+    
     @include('common-forms.company.add-modal')
     @include('common-forms.company.edit-modal')
-
+    
 </div>

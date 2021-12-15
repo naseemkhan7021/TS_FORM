@@ -16,8 +16,8 @@ class CreateSubstandactionsTable extends Migration
         if (!Schema::hasTable('substandactions')) {
         Schema::create('substandactions', function (Blueprint $table) {
             $table->id('substandaction_id');
-            $table->string('substandcondition_description', 150);
-            $table->string('substandcondition_abbr',20);
+            $table->string('substandaction_description', 150);
+            $table->string('substandaction_abbr',20);
 
 
             // general values

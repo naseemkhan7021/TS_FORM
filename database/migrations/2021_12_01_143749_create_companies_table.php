@@ -20,7 +20,7 @@ class CreateCompaniesTable extends Migration
             $table->string('sbc_abbr',50);
             $table->string('sbc_logo_small',191);
             $table->string('sbc_logo_large',191);
-            $table->timestamp('validupto_dt')->useCurrent();
+            $table->date('validupto_dt')->nullable();
             $table->boolean('bactive')->default(true);
             $table->integer('user_created')->default(0);
             $table->integer('user_updated')->default(0);

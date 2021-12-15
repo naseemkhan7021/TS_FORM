@@ -3,14 +3,17 @@
 namespace App\Http\Livewire\CommonForms;
 
 use App\Models\common_forms\Company as Formscompany;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Company extends Component
 {
+    use WithFileUploads;
 
-    public $searchQuery;
-    public $sbc_company_name, $sbc_abbr, $sbc_logo_small ,$sbc_logo_large,$validupto_dt;
-    public $cid, $upd_sbc_company_name, $upd_sbc_abbr, $upd_sbc_logo_small ,$upd_sbc_logo_large,$upd_validupto_dt;
+    public $showimg, $searchQuery, $sbc_logo_small_path, $sbc_logo_large_path;
+    public $sbc_company_name, $sbc_abbr, $sbc_logo_small, $sbc_logo_large, $validupto_dt;
+    public $cid, $upd_sbc_company_name, $upd_sbc_abbr,$old_sbc_logo_small, $upd_sbc_logo_small, $upd_sbc_logo_large, $old_sbc_logo_large,$upd_validupto_dt;
 
     public function mount()
     {
@@ -23,18 +26,19 @@ class Company extends Component
 
         # render with search query
         $formsCompany = Formscompany::when($this->searchQuery != '', function ($query) {
-                $query->where('bactive', '1')
-                    ->where('sbc_company_name', 'like', '%' . $this->searchQuery . '%')
-                    ->orWhere('sbc_abbr', 'like', '%' . $this->searchQuery . '%');
-            })->orderBy('ibc_id' )->get();
+            $query->where('bactive', '1')
+                ->where('sbc_company_name', 'like', '%' . $this->searchQuery . '%')
+                ->orWhere('sbc_abbr', 'like', '%' . $this->searchQuery . '%');
+        })->orderBy('ibc_id')->get();
 
-        return view('livewire.common-forms.company',[
-            'formsCompany'=>$formsCompany
+        return view('livewire.common-forms.company', [
+            'formsCompany' => $formsCompany
         ]);
     }
 
 
-    public function OpenAddCountryModal(){
+    public function OpenAddCountryModal()
+    {
         $this->sbc_company_name = '';
         $this->sbc_abbr = '';
         $this->validupto_dt = '';
@@ -57,28 +61,37 @@ class Company extends Component
             'sbc_abbr' => $this->sbc_abbr,
             'sbc_company_name' => $this->sbc_company_name,
             'validupto_dt' => $this->validupto_dt,
-            'sbc_logo_small' => $this->sbc_logo_small,
-            'sbc_logo_large' => $this->sbc_logo_large,
+            'sbc_logo_small' => $this->sbc_logo_small_path,
+            'sbc_logo_large' => $this->sbc_logo_large_path,
 
 
         ]);
 
         if ($save) {
-            # code...
+
+            // clear variable value
+            $this->sbc_logo_small_path = '';
+            $this->sbc_logo_large_path = '';
+            $this->sbc_logo_small = '';
+            $this->sbc_logo_large = '';
+
             $this->dispatchBrowserEvent('CloseAddCountryModal');
         }
     }
 
     public function OpenEditCountryModal($ibc_id)
     {
-        # code...
         $info = Formscompany::find($ibc_id);
 
         $this->upd_sbc_company_name = $info->sbc_company_name;
         $this->upd_sbc_abbr = $info->sbc_abbr;
         $this->upd_validupto_dt = $info->validupto_dt;
-        $this->upd_sbc_logo_small = $info->sbc_logo_small;
-        $this->upd_sbc_logo_large = $info->sbc_logo_large;
+        $this->old_sbc_logo_small = $info->sbc_logo_small;
+        $this->old_sbc_logo_large = $info->sbc_logo_large;
+        // if user not update any of ( small or large ) img teck form here
+        $this->sbc_logo_small_path = $info->sbc_logo_small;
+        $this->sbc_logo_large_path = $info->sbc_logo_large;
+
         $this->cid = $info->ibc_id;
         $this->dispatchBrowserEvent('OpenEditCountryModal', [
             'ibc_id' => $ibc_id
@@ -104,11 +117,17 @@ class Company extends Component
             'sbc_company_name' => $this->upd_sbc_company_name,
             'sbc_abbr' => $this->upd_sbc_abbr,
             'validupto_dt' => $this->upd_validupto_dt,
-            'sbc_logo_small' => $this->upd_sbc_logo_small,
-            'sbc_logo_large' => $this->upd_sbc_logo_large,
+            'sbc_logo_small' => $this->sbc_logo_small_path,
+            'sbc_logo_large' => $this->sbc_logo_large_path,
         ]);
 
         if ($update) {
+            // clear variable value
+            $this->sbc_logo_small_path = '';
+            $this->sbc_logo_large_path = '';
+            $this->sbc_logo_small = '';
+            $this->sbc_logo_large = '';
+
             $this->dispatchBrowserEvent('CloseEditCountryModal');
         }
     }
@@ -132,5 +151,56 @@ class Company extends Component
             $this->dispatchBrowserEvent('delete');
         }
         // $this->checkedCountry = [];
+    }
+
+    // funtion to handle file upload small and large
+    public function handelfileupload($log_small_or_large_path = null, $size_small_or_large = null,$edit=null)
+    {
+        // print_r($log_small_or_large_path);
+        // handel small log 
+        // Get FileName
+        $filenameWithExt = $log_small_or_large_path->getClientOriginalName();
+        //Get just filename
+        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME); // exp: exp.png
+        //Get just extension
+        $extension = $log_small_or_large_path->getClientOriginalExtension();
+        //Filename to Store
+        $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+        if ($size_small_or_large == 'small') {
+
+            if ($edit=='edit' && Storage::disk()->exists($this->sbc_logo_small_path)) {
+                // if exit then delete it 
+                Storage::delete($this->sbc_logo_small_path);
+                // unlink("uploads/".$this->sbc_logo_small_path);
+            }
+            //small Image
+            $this->sbc_logo_small_path = $log_small_or_large_path->storeAs('public/photos/logo/small/', $fileNameToStore);
+        }
+        if ($size_small_or_large == 'large') {
+
+            if ($edit=='edit' && Storage::disk()->exists($this->sbc_logo_large_path)) {
+                Storage::delete($this->sbc_logo_large_path);
+                // dd($this->sbc_logo_large_path);
+            }
+            //large Image
+            $this->sbc_logo_large_path = $log_small_or_large_path->storeAs('public/photos/logo/large/', $fileNameToStore);
+        }
+    }
+
+    public function clearallValuesandValidation()
+    {
+        # validaton
+        $this->resetValidation();
+        # value
+        $this->sbc_company_name = '';
+        $this->sbc_logo_small = '';
+        $this->sbc_logo_large = '';
+        $this->sbc_logo_large_path = '';
+        $this->sbc_logo_small_path = '';
+        $this->sbc_abbr = '';
+        $this->upd_sbc_abbr = '';
+        $this->upd_sbc_company_name = '';
+        $this->validupto_dt = '';
+        $this->upd_validupto_dt ='';
     }
 }
