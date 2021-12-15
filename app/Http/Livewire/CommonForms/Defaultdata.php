@@ -26,7 +26,7 @@ class Defaultdata extends Component
             ->when($this->searchQuery != '', function ($query) {
                 $query->where('bactive', '1')
                     ->where('description', 'like', '%' . $this->searchQuery . '%');
-            })->orderBy('idefault_id', 'dec')->paginate(10);
+            })->get();
 
         return view('livewire.common-forms.defaultdata',[
             'formsDefaultdata'=>$formsDefaultdata

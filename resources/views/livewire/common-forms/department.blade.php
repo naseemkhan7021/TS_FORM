@@ -54,7 +54,7 @@
     </table>
 
 
-    @include('common-forms.company.add-modal')
-    @include('common-forms.company.edit-modal')
+    @include('common-forms.department.add-modal')
+    @include('common-forms.department.edit-modal')
 
 </div>

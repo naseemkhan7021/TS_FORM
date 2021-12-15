@@ -39,7 +39,7 @@ class Department extends Component
     public function OpenAddCountryModal(){
         $this->sdepartment_name = '';
         $this->sdepartment_abbr = '';
-        $this->ibc_id_fk = 0;
+        $this->ibc_id_fk = 1;
         $this->dispatchBrowserEvent('OpenAddCountryModal');
     }
 

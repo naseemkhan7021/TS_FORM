@@ -50,8 +50,7 @@ class Company extends Component
             'sbc_company_name' => 'required',
             'sbc_abbr' => 'required',
             'validupto_dt' => 'required',
-            'sbc_logo_small'=>'required',
-            'sbc_logo_large'=>'required',
+
         ]);
 
         $save = Formscompany::insert([
@@ -60,6 +59,8 @@ class Company extends Component
             'validupto_dt' => $this->validupto_dt,
             'sbc_logo_small' => $this->sbc_logo_small,
             'sbc_logo_large' => $this->sbc_logo_large,
+
+
         ]);
 
         if ($save) {
@@ -92,8 +93,7 @@ class Company extends Component
             'upd_sbc_company_name' => 'required',
             'upd_sbc_abbr' => 'required',
             'upd_validupto_dt' => 'required',
-            'upd_sbc_logo_small' => 'required',
-            'upd_sbc_logo_large' => 'required',
+
         ], [
             'upd_sbc_company_name.required' => 'Enter subactivity description',
             'upd_sbc_abbr.required' => 'subactivity Abbrivation require',

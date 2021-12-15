@@ -27,11 +27,22 @@ class Documents extends Component
                 ->orWhere('issue_dt', 'like', '%' . $this->searchQuery . '%')
                 ->orWhere('revision_no', 'like', '%' . $this->searchQuery . '%')
                 ->orWhere('revision_date', 'like', '%' . $this->searchQuery . '%');
-        })->orderBy('document_id', 'dec')->paginate(10);
+        })->get();
 
         return view('livewire.common-forms.documents', [
             'formsDocuments' => $formsDocuments
         ]);
+    }
+
+
+
+    public function OpenAddCountryModal(){
+        $this->document_description = '';
+        $this->issue_no = '';
+        $this->issue_dt = '';
+        $this->revision_date = '';
+        $this->revision_no = '';
+        $this->dispatchBrowserEvent('OpenAddCountryModal');
     }
 
 
@@ -87,11 +98,11 @@ class Documents extends Component
             'upd_revision_date' => 'required',
             'upd_revision_no' => 'required',
         ], [
-            'upd_document_description.required' => 'Enter subactivity description',
-            'upd_issue_no.required' => 'subactivity Abbrivation require',
-            'upd_issue_dt.required' => 'sproject location require',
-            'upd_revision_date.required' => 'sproject location require',
-            'upd_revision_no.required' => 'sproject location require',
+            'upd_document_description.required' => 'Enter Description Required'  ,
+            'upd_issue_no.required' => 'Issue No Required',
+            'upd_issue_dt.required' => 'Issue Date Required',
+            'upd_revision_date.required' => 'Revision Date Required',
+            'upd_revision_no.required' => 'Revision No. Required',
         ]);
 
         $update = Formsdocuments::find($cid)->update([
@@ -115,7 +126,7 @@ class Documents extends Component
         $this->dispatchBrowserEvent('SwalConfirm', [
             'titel' => 'Are you sure ?',
             'html' => 'You want to delete <strong>' . $info->document_description . '</string>',
-            'id' => $document_id
+            'document_id' => $document_id
         ]);
     }
 

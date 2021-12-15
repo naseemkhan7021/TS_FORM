@@ -40,6 +40,10 @@ Route::get('/qualification', [CommonController::class, 'index_qualification'])->
 Route::get('/company', [CommonformController::class, 'index_company'])->name('index_company');
 Route::get('/department', [CommonformController::class, 'index_department'])->name('index_department');
 Route::get('/defaultdata', [CommonformController::class, 'index_defaultdata'])->name('index_defaultdata');
+Route::get('/projects', [CommonformController::class, 'index_project'])->name('index_project');
+Route::get('/documentserial', [CommonformController::class, 'index_documentserial'])->name('index_documentserial');
+Route::get('/injuryto', [CommonformController::class, 'index_InjuryTo'])->name('index_InjuryTo');
+
 
 // Route::get('/form01_subactivity', [Form01Controller::class, 'index_subactivity'])->name('form01_subactivity');
 // Route::get('/form01_probable_consequence', [Form01Controller::class, 'index_probable_consequence'])->name('form01_probable_consequence');

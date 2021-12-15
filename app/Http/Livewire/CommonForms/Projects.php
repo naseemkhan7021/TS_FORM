@@ -27,7 +27,7 @@ class Projects extends Component
                     ->where('sproject_name', 'like', '%' . $this->searchQuery . '%')
                     ->orWhere('sproject_abbr', 'like', '%' . $this->searchQuery . '%')
                     ->orWhere('sproject_location', 'like', '%' . $this->searchQuery . '%');
-            })->orderBy('iproject_id', 'dec')->paginate(10);
+            })->get();
 
         return view('livewire.common-forms.projects',[
             'formsProjects'=>$formsProjects

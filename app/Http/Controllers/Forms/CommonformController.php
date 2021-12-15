@@ -30,5 +30,19 @@ class CommonformController extends Controller
 
     }
 
+    public function index_project()
+    {
+        return view('common-forms.project.index');
+    }
+
+    public function index_documentserial()
+    {
+        return view('common-forms.document_series.index');
+    }
+
+    public function index_InjuryTo()
+    {
+        return view('common-forms.Injuryto.index');
+    }
 
 }

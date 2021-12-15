@@ -294,7 +294,7 @@
                     <li>
                         <a href="#sidebarCommmon" data-toggle="collapse">
                             <i data-feather="users"></i>
-                            <span> Common </span>
+                            <span> Form Common </span>
                             <span class="menu-arrow"></span>
                         </a>
                         <div class="collapse" id="sidebarCommmon">
@@ -303,22 +303,23 @@
                                     <a href="{{ route('index_company') }}"> Company </a>
                                 </li>
                                 <li>
-                                    <a href="#"> Document Serial </a>
+                                    <a href="{{ route('index_documentserial') }}"> Document Serial </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('index_department') }}"> Department </a>
                                 </li>
                                 <li>
-                                    <a href="#"> Projects </a>
+                                    <a href="{{ route('index_project') }}"> Projects </a>
                                 </li>
 
                                 <li>
-                                    <a href="#"> Default Data </a>
+                                    <a href="{{ route('index_defaultdata') }}"> Default Data </a>
                                 </li>
 
                                 <li>
-                                    <a href="#"> Potential Injury To </a>
+                                    <a href="{{ route('index_InjuryTo') }}"> Potential Injury To </a>
                                 </li>
+
                             </ul>
                         </div>
                     </li>

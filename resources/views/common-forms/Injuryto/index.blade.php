@@ -1,12 +1,12 @@
-@extends('template.vertical', ['title' => 'T&S Document Series'])
+@extends('template.vertical', ['title' => 'T&S Company'])
 
 @section('content')
 
 <div class="container-fluid pl-3 pr-3">
 
     <!-- start page title -->
-        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Document Series' , 'page_title' => 'Document Series'  ])
-        @livewire('common-forms.documents')
+        @livewire('page-title', [ 'sub_title' => 'Forms' , 'active_title' => 'Company' , 'page_title' => 'Company'  ])
+        @livewire('common-forms.company')
     <!-- end page title -->
 
 
@@ -21,41 +21,41 @@
 
 <script>
     window.addEventListener('OpenAddCountryModal', function(){
-         $('.addDocument').find('span').html('');
-         $('.addDocument').find('form')[0].reset();
-         $('.addDocument').modal('show');
+         $('.addCompany').find('span').html('');
+         $('.addCompany').find('form')[0].reset();
+         $('.addCompany').modal('show');
     });
 
     window.addEventListener('CloseAddCountryModal', function(){
-        $('.addDocument').find('span').html('');
-        $('.addDocument').find('form')[0].reset();
-        $('.addDocument').modal('hide');
+        $('.addCompany').find('span').html('');
+        $('.addCompany').find('form')[0].reset();
+        $('.addCompany').modal('hide');
 
         Swal.fire(
             'Well Done!',
-            'New Document Series Has been Saved Successfully !',
+            'New Company Has been Saved Successfully !',
             'success'
             );
 
-        // alert('New Document Series Has been Saved Successfully');
+        // alert('New Company Has been Saved Successfully');
     });
 
     window.addEventListener('OpenEditCountryModal', function(event){
-        $('.editDocument').find('span').html('');
-        $('.editDocument').modal('show');
+        $('.editCompany').find('span').html('');
+        $('.editCompany').modal('show');
     });
 
     window.addEventListener('CloseEditCountryModal', function(event){
-        $('.editDocument').find('span').html('');
-        $('.editDocument').find('form')[0].reset();
-        $('.editDocument').modal('hide');
+        $('.editCompany').find('span').html('');
+        $('.editCompany').find('form')[0].reset();
+        $('.editCompany').modal('hide');
 
         Swal.fire(
             'Good job!',
-            'Document Series Has been Updated Successfully !',
+            'Company Has been Updated Successfully !',
             'success'
             );
-        // alert('Document Series Has been Updated Successfully');
+        // alert('Company Has been Updated Successfully');
     });
 
     window.addEventListener('SwalConfirm', function(event){
@@ -80,7 +80,7 @@
     })
 
     window.addEventListener('deleted', function(event){
-        alert('Document Series record has been deleted');
+        alert('Company record has been deleted');
     });
 
     window.addEventListener('swal:deleteCountries', function(event){

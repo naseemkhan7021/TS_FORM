@@ -1,12 +1,12 @@
-@extends('template.vertical', ['title' => 'Construction CRM - Gender'])
+@extends('template.vertical', ['title' => 'T&S - Default Data '])
 
 @section('content')
 
 <div class="container-fluid pl-3 pr-3">
 
     <!-- start page title -->
-        @livewire('page-title', [ 'sub_title' => 'CRM' , 'active_title' => 'Gender' , 'page_title' => 'Gender'  ])
-        @livewire('common.gender')
+        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Default Data' , 'page_title' => 'Default Data'  ])
+        @livewire('common-forms.defaultdata')
     <!-- end page title -->
 
 
