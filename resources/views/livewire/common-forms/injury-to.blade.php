@@ -1,6 +1,6 @@
 <div>
-    @php $button_title = 'Add New Company' @endphp
-    @php $data_not_found = 'No Company Data Found' @endphp
+    @php $button_title = 'Add New Potential Injury To ' @endphp
+    @php $data_not_found = 'No Potential Injury To Data Found' @endphp
 
 
     <div class="row">
@@ -20,29 +20,27 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Company Name</th>
-                <th>Department Name.</th>
-                <th>Project Name</th>
-                <th>Location.</th>
+                <th>Potential Injury To </th>
+                <th>Potential Injury To Abbr.</th>
+
 
                 <th>Created Date</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            @forelse ( $formsProjects as  $row )
+            @forelse ( $potentialinurydata as  $row )
                 <tr>
-                    <td>{{ $row->iproject_id }}</td>
-                    <td>{{ $row->sbc_company_name }}</td>
-                    <td>{{ $row->sdepartment_name }}</td>
-                    <td>{{ $row->sproject_name }}</td>
-                    <td>{{ $row->sproject_location }}</td>
+                    <td>{{ $row->potential_injurytos_id }}</td>
+                    <td>{{ $row->potential_injurytos_description }}</td>
+                    <td>{{ $row->potential_injurytos_abbr }}</td>
+
 
                     <td>{{ $row->created_at }}</td>
                     <td>
                         <div class="btn-group">
-                            <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->iproject_id}})">Edit</button>
-                            <button class="btn btn-danger btn-sm" wire:click="deleteConfirm({{$row->iproject_id}})">Delete</button>
+                            <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->potential_injurytos_id}})">Edit</button>
+                            <button class="btn btn-danger btn-sm" wire:click="deleteConfirm({{$row->potential_injurytos_id}})">Delete</button>
 
                         </div>
                     </td>
@@ -57,7 +55,7 @@
     </table>
 
 
-    @include('common-forms.project.add-modal')
-    @include('common-forms.project.edit-modal')
+    @include('common-forms.Injuryto.add-modal')
+    @include('common-forms.Injuryto.edit-modal')
 
 </div>

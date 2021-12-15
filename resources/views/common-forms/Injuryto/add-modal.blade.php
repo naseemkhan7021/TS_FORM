@@ -1,8 +1,8 @@
-<div class="modal fade addCompany" wire:ignore.self tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+<div class="modal fade addInjuryto " wire:ignore.self tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add New Company</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add New Potential Injury To</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -11,22 +11,16 @@
                  <form wire:submit.prevent="save">
 
                      <div class="form-group">
-                         <label for="">Company Name</label>
-                         <input type="text" class="form-control" placeholder="Company Name" wire:model="sbc_company_name">
-                         <span class="text-danger"> @error('sbc_company_name') {{ $message }}@enderror</span>
+                         <label for=""> Potential Injury To </label>
+                         <input type="text" class="form-control" placeholder="Potential Injury To" wire:model="potential_injurytos_description">
+                         <span class="text-danger"> @error('potential_injurytos_description') {{ $message }}@enderror</span>
                      </div>
 
                      <div class="form-group">
-                         <label for="">Company Abbrivation</label>
-                         <input type="text" class="form-control" placeholder="Company Abbrivation" wire:model="sbc_abbr">
-                         <span class="text-danger"> @error('sbc_abbr') {{ $message }}@enderror</span>
+                         <label for="">PIT Abbrivation</label>
+                         <input type="text" class="form-control" placeholder="PIT Abbrivation" wire:model="potential_injurytos_abbr">
+                         <span class="text-danger"> @error('potential_injurytos_abbr') {{ $message }}@enderror</span>
                      </div>
-
-                    <div class="form-group">
-                        <label for="">License Valid Till </label>
-                        <input type="date" class="form-control" placeholder="Company Abbrivation" wire:model="validupto_dt">
-                        <span class="text-danger"> @error('validupto_dt') {{ $message }}@enderror</span>
-                    </div>
 
 
                      <div class="form-group">

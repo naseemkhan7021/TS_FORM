@@ -21,41 +21,41 @@
 
 <script>
     window.addEventListener('OpenAddCountryModal', function(){
-         $('.addGender').find('span').html('');
-         $('.addGender').find('form')[0].reset();
-         $('.addGender').modal('show');
+         $('.addProject').find('span').html('');
+         $('.addProject').find('form')[0].reset();
+         $('.addProject').modal('show');
     });
 
     window.addEventListener('CloseAddCountryModal', function(){
-        $('.addGender').find('span').html('');
-        $('.addGender').find('form')[0].reset();
-        $('.addGender').modal('hide');
+        $('.addProject').find('span').html('');
+        $('.addProject').find('form')[0].reset();
+        $('.addProject').modal('hide');
 
         Swal.fire(
             'Well Done!',
-            'New Gender Has been Saved Successfully !',
+            'New Project Has been Saved Successfully !',
             'success'
             );
 
-        // alert('New Gender Has been Saved Successfully');
+        // alert('New Project Has been Saved Successfully');
     });
 
     window.addEventListener('OpenEditCountryModal', function(event){
-        $('.editGender').find('span').html('');
-        $('.editGender').modal('show');
+        $('.editProject').find('span').html('');
+        $('.editProject').modal('show');
     });
 
     window.addEventListener('CloseEditCountryModal', function(event){
-        $('.editGender').find('span').html('');
-        $('.editGender').find('form')[0].reset();
-        $('.editGender').modal('hide');
+        $('.editProject').find('span').html('');
+        $('.editProject').find('form')[0].reset();
+        $('.editProject').modal('hide');
 
         Swal.fire(
             'Good job!',
-            'Gender Has been Updated Successfully !',
+            'Project Has been Updated Successfully !',
             'success'
             );
-        // alert('Gender Has been Updated Successfully');
+        // alert('Project Has been Updated Successfully');
     });
 
     window.addEventListener('SwalConfirm', function(event){
@@ -80,7 +80,7 @@
     })
 
     window.addEventListener('deleted', function(event){
-        alert('Gender record has been deleted');
+        alert('Project record has been deleted');
     });
 
     window.addEventListener('swal:deleteCountries', function(event){

@@ -3,6 +3,9 @@
 namespace App\Http\Livewire\CommonForms;
 
 use App\Models\common_forms\Projects as Formsprojects;
+use App\Models\common_forms\Department as Formsdepartment;
+use App\Models\common_forms\Company;
+
 use Livewire\Component;
 
 class Projects extends Component
@@ -21,7 +24,12 @@ class Projects extends Component
     public function render()
     {
         # render with search query
+        $companydata = Company::all();
+
+        $formsDepartment = Formsdepartment::all();
+
         $formsProjects = Formsprojects::join('companies', 'companies.ibc_id', '=', 'projects.ibc_id_fk')
+            ->join('departments', 'departments.idepartment_id', '=', 'projects.idepartment_id_fk')
             ->when($this->searchQuery != '', function ($query) {
                 $query->where('bactive', '1')
                     ->where('sproject_name', 'like', '%' . $this->searchQuery . '%')
@@ -30,9 +38,19 @@ class Projects extends Component
             })->get();
 
         return view('livewire.common-forms.projects',[
-            'formsProjects'=>$formsProjects
+            'formsProjects'=>$formsProjects , 'companydata' => $companydata , 'formsDepartment' => $formsDepartment ,
         ]);
     }
+
+    public function OpenAddCountryModal(){
+        $this->sproject_name = '';
+        $this->sproject_abbr = '';
+        $this->sproject_location = '';
+        $this->ibc_id_fk = 1;
+
+        $this->dispatchBrowserEvent('OpenAddCountryModal');
+    }
+
 
     public function save()
     {
@@ -102,7 +120,7 @@ class Projects extends Component
         $this->dispatchBrowserEvent('SwalConfirm', [
             'titel' => 'Are you sure ?',
             'html' => 'You want to delete <strong>' . $info->sproject_name . '</string>',
-            'id' => $iproject_id
+            'iproject_id' => $iproject_id
         ]);
     }
 
