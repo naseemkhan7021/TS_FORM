@@ -17,7 +17,7 @@
           </button>
         </div>
         <div class="modal-body text-center">
-          <img style="height: 100%; width: 100%; object-fit: contain;" src="{{Storage::url($imgdata)}}" alt="{{Storage::url($imgdata)}}">
+          <img style="height: 100%; width: auto; object-fit: contain;" src="{{Storage::url($imgdata)}}" alt="{{Storage::url($imgdata)}}">
           {{-- img data is -> {{$imgdata}} --}}
         </div>
         <div class="modal-footer">
