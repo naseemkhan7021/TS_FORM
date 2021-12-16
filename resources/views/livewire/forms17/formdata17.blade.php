@@ -1,16 +1,21 @@
 @php
-// if ($iproject_id_fk) {
-//     # code...
-//     $sproject_location_obj = DB::table('projects')
-//         ->where('iproject_id', '=', $iproject_id_fk)
-//         ->get();
-//     $this->sproject_location = $sproject_location_obj[0]->sproject_location;
-// }
+if ($formdata_16s_id_fk) {
+    # code...
+    $form16_obj = DB::table('formdata_16s')
+        ->where('formdata_16s_id', '=', $formdata_16s_id_fk)->join('potential_injurytos', 'potential_injurytos.potential_injurytos_id', '=', 'formdata_16s.potential_injurytos_fk')
+        ->get();
+    $doincident_dt_f16 = $form16_obj[0]->doincident_dt;
+    $designation_f16 = $form16_obj[0]->designation;
+    $eml_id_no_f16 = $form16_obj[0]->eml_id_no;
+    $injury_to_f16 = $form16_obj[0]->potential_injurytos_description;
+    $potential_injurytos_other_f16=$form16_obj[0]->potential_injurytos_other;
+    // dd($this->injury_to_f16);
+}
 // if ($dob_dt) {
-//     # code...
-//     # procedural
-//     $this->age = date_diff(date_create($dob_dt), date_create('today'))->y;
-//     // echo 'this is => ' . now();
+    # code...
+    # procedural
+    // $this->age = date_diff(date_create($dob_dt), date_create('today'))->y;
+    // echo 'this is => ' . now();
 // }
 @endphp
 
@@ -34,14 +39,15 @@
         <thead>
             <tr>
                 <th >#</th>
-                {{-- <th>Date of Incident / Time</th> --}}
-                {{-- <th>Injured To</th> --}}
-                {{-- <th>Injured Victim Name</th> --}}
-                {{-- <th style="cursor: pointer"> <span class="cursor-pointer" title="To whom was the Incident Reported first">To whom</span></th> --}}
-                {{-- <th>By whom </th>
-                <th>Was First Aid</th> --}}
-                <th>Incident Description</th>
-                <th>Coworker Statement</th>
+                <th>Date of Investigation / Time</th>
+                <th>Date of Incident / Time</th>
+                <th>Injured To</th>
+                <th>Injured Victim Name</th>
+                <th style="cursor: pointer"> <span class="cursor-pointer" title="To whom was the Incident Reported first">To whom</span></th>
+                <th>By whom </th>
+                <th>Was First Aid</th>
+                {{-- <th>Incident Description</th>
+                <th>Coworker Statement</th> --}}
                 <th>Created Date</th>
                 <th>Action</th>
             </tr>
@@ -51,15 +57,16 @@
                 <tr>
                     {{-- <td>{{ $row->formdata_17s_id }}</td> --}}
                     <td>{{ ++$loop->index }}</td>
-                    {{-- <td>{{Carbon\Carbon::parse($row->doincident_dt)->diffForHumans()}}</td> --}}
+                    <td>{{ $row->updated_at }}</td>
+                    <td>{{Carbon\Carbon::parse($row->doincident_dt)->diffForHumans()}}</td>
                     {{-- <td>{{$row->doincident_dt}}</td> --}}
-                    {{-- <td>{{ $row->potential_injurytos_description  }}</td> --}}
-                    {{-- <td>{{ $row->injuredvictim_name  }}</td> --}}
-                    {{-- <td>{{ $row->first_incident_reported_to }}</td> --}}
-                    {{-- <td>{{ $row->by_whom }}</td> --}}
-                    {{-- <td>{{ $row->first_aid_given_on_site }}</td> --}}
-                    <td>{{$row->incident_description}}</td>
-                    <td>{{$row->coworker_statement}}</td>
+                    <td>{{ $row->potential_injurytos_description  }}</td>
+                    <td>{{ $row->injuredvictim_name  }}</td>
+                    <td>{{ $row->first_incident_reported_to }}</td>
+                    <td>{{ $row->by_whom }}</td>
+                    <td>{{ $row->first_aid_given_on_site }}</td>
+                    {{-- <td>{{$row->incident_description}}</td> --}}
+                    {{-- <td>{{$row->coworker_statement}}</td> --}}
                     <td>{{ $row->created_at->diffForHumans() }}</td>
                     <td>
                         <div class="btn-group">

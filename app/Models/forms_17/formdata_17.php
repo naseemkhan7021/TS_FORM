@@ -19,6 +19,8 @@ class formdata_17 extends Model
         'formdata_16s_id_fk',
         'substandaction_id_fk',
         'substandcondition_id_fk',
+        'substandaction_ids',
+        'substandcondition_ids',
         'incident_description',
         'coworker_statement',
         'concernedsupervisor_statement',
@@ -30,4 +32,10 @@ class formdata_17 extends Model
         'project_manager',
         'project_manager_signature',
     ];
+
+
+    // protected $casts = [
+    //     'substandcondition_ids' => 'array',
+    //     'substandaction_ids' => 'array',
+    // ];
 }
