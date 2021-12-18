@@ -16,7 +16,7 @@ class SubstandCondition extends Component
         $this->searchQuery = '';
     }
 
-    public function render()
+    public function render() 
     {
         $substandcondition = Forms_17Substandcondition::when($this->searchQuery != '', function ($query) {
             $query->where('bactive', '1')

@@ -51,15 +51,14 @@
                         <div class="form-controp">
                             <label for="" class="@error('doincident_dt') text-danger @enderror">Data/Time
                                 @error('doincident_dt') <i class="text-danger fas fa-times-circle"></i>@enderror</label>
-                            <input type="text" class="form-control" wire:model="doincident_dt">
+                            <input type="text" class="form-control" wire:model="doincident_dt" disabled>
 
-                            {{-- <span class="text-danger"> 
-                                @error('doincident_dt')
-                                    {{ $message }}@enderror</span> --}}
                         </div>
                     </div>
 
                     {{-- project detail end --}}
+
+
                     {{-- injured to who stuff or contrecter start --}}
                     <div class="col-md-6 col-sm-6">
                         <label class="@error('potential_injurytos_fk') text-danger @enderror">Injury To

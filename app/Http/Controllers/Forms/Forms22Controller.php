@@ -5,8 +5,15 @@ namespace App\Http\Controllers\Forms;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class Form22Controller extends Controller
+class Forms22Controller extends Controller
 {
+
+    // temp middleware
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -81,5 +88,18 @@ class Form22Controller extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function index_header()
+    {
+        return view('forms.Forms_22.header.index');
+    }
+    public function index_participant()
+    {
+        return view('forms.Forms_22.participant.index');
+    }
+    public function index_topicdiscussed()
+    {
+        return view('forms.Forms_22.topicdiscussed.index');
     }
 }

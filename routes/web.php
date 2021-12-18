@@ -7,6 +7,7 @@ use App\Http\Controllers\Forms\Forms15Controller;
 use App\Http\Controllers\Forms\Forms16Controller;
 use App\Http\Controllers\Forms\CommonformController;
 use App\Http\Controllers\Forms\Forms17Controller;
+use App\Http\Controllers\Forms\Forms22Controller;
 
 // use App\Http\Controllers\RoutingController;
 
@@ -103,12 +104,17 @@ Route::get('/form15_whyunsafeactcommitted', [Forms15Controller::class, 'index_wh
 
 
 // forms 16
-Route::get('/form16_formdata16', [Forms16Controller::class,'index_formdata16'])->name('form16_formdata16');
+Route::get('/form16_formdata16', [Forms16Controller::class, 'index_formdata16'])->name('form16_formdata16');
 
 // forms 17
-Route::get('/form17_formdata17', [Forms17Controller::class,'index_formdata17'])->name('form17_formdata17');
-Route::get('/form17_substandcondition', [Forms17Controller::class,'index_substandcondition'])->name('form17_substandcondition');
-Route::get('/form17_substandaction', [Forms17Controller::class,'index_substandaction'])->name('form17_substandaction');
+Route::get('/form17_formdata17', [Forms17Controller::class, 'index_formdata17'])->name('form17_formdata17');
+Route::get('/form17_substandcondition', [Forms17Controller::class, 'index_substandcondition'])->name('form17_substandcondition');
+Route::get('/form17_substandaction', [Forms17Controller::class, 'index_substandaction'])->name('form17_substandaction');
+// forms 22
+
+Route::get('/form22_header', [Forms22Controller::class, 'index_header'])->name('form22_header');
+Route::get('/form22_participant', [Forms22Controller::class, 'index_participant'])->name('form22_participant');
+Route::get('/form22_topicdiscussed', [Forms22Controller::class, 'index_topicdiscussed'])->name('form22_topicdiscussed');
 
 // dashboard_presales
 Route::get('/dashboard_presales', [CommonController::class, 'dashboard_presales'])->name('dashboard_presales');

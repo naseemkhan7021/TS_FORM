@@ -13,17 +13,19 @@ class CreateTopicDiscussedsTable extends Migration
      */
     public function up()
     {
-        Schema::create('topic_discusseds', function (Blueprint $table) {
-            $table->id('topic_discusseds_id');
-            $table->string('topic_discusseds_description', 150);
-            $table->string('topic_discusseds_abbr',20);
+        if (!Schema::hasTable('topic_discusseds')) {
+            Schema::create('topic_discusseds', function (Blueprint $table) {
+                $table->id('topic_discusseds_id');
+                $table->string('topic_discusseds_description', 150);
+                $table->string('topic_discusseds_abbr', 20);
 
-            $table->boolean('bactive')->default(true);
-            $table->integer('user_created')->default(0);
-            $table->integer('user_updated')->default(0);
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
-        });
+                $table->boolean('bactive')->default(true);
+                $table->integer('user_created')->default(0);
+                $table->integer('user_updated')->default(0);
+                $table->timestamp('created_at')->useCurrent();
+                $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+            });
+        }
     }
 
     /**

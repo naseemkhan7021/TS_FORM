@@ -509,10 +509,10 @@
                                     <a href='{{route('form17_formdata17')}}'> Forms 22 </a>
                                 </li>
                                 <li>
-                                    <a href='{{route('form17_substandaction')}}'> Substandard Actions </a>
+                                    <a href='{{route('form22_header')}}'> Form22 Header </a>
                                 </li>
                                 <li>
-                                    <a href='{{route('form17_substandcondition')}}'> Substandard Conditions </a>
+                                    <a href='{{route('form22_topicdiscussed')}}'> Topic Discussed </a>
                                 </li>
 
                             </ul>
