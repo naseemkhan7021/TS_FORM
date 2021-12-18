@@ -16,10 +16,10 @@ class Formdata17 extends Component
 
     use WithFileUploads;
 
-    public $inv_photos=[],$inv_imgTitles = [], $searchQuery,$role,$injury_to_f16,$eml_id_no_f16,$designation_f16,$doincident_dt_f16, $potential_injurytos_other_f16;
-    public$substandcondition_ids,$substandaction_ids, $substandaction_id_fk, $incident_description, $coworker_statement,$formdata_16s_id_fk,$concernedsupervisor_statement,$root_cause,$remedial_actions,$comment_remedial_actions,$site_safety_in_charge_name,$site_safety_in_charge_signature,$project_manager,$project_manager_signature;
-    public $upd_substandcondition_ids,$upd_substandaction_ids;
-    public $cid,$inv_oldimgTitles=[],$oldphotosLocation=[];
+    public $inv_photos = [], $inv_imgTitles = [], $searchQuery, $role, $injury_to_f16, $eml_id_no_f16, $designation_f16, $doincident_dt_f16, $potential_injurytos_other_f16;
+    public $substandcondition_ids, $substandaction_ids, $substandaction_id_fk, $incident_description, $coworker_statement, $formdata_16s_id_fk, $concernedsupervisor_statement, $root_cause, $remedial_actions, $comment_remedial_actions, $site_safety_in_charge_name, $site_safety_in_charge_signature, $project_manager, $project_manager_signature;
+    public $upd_substandcondition_ids, $upd_substandaction_ids;
+    public $cid, $imgsId, $inv_oldimgTitles = [], $oldphotosLocation = [],$oldimgName=[];
 
     public function mount()
     {
@@ -30,43 +30,48 @@ class Formdata17 extends Component
 
     public function render()
     {
-        
-        $form17data = formdata_17::join('formdata_16s', 'formdata_16s.formdata_16s_id', '=', 'formdata_17s.formdata_16s_id_fk')
-        ->join('potential_injurytos', 'potential_injurytos.potential_injurytos_id', '=', 'formdata_16s.potential_injurytos_fk')
-        ->when($this->searchQuery != '', function ($query) {
-            $query->where('bactive', '1')
-                ->where('incident_description', 'like', '%' . $this->searchQuery . '%')
-                ->orWhere('coworker_statement', 'like', '%' . $this->searchQuery . '%');
-        })
+
+        $form17data = formdata_17::select('formdata_17s.created_at as form17_creat', 'formdata_16s.created_at as form16_creat', 'formdata_17s.*', 'formdata_16s.*', 'potential_injurytos.*')
+            ->join('formdata_16s', 'formdata_16s.formdata_16s_id', '=', 'formdata_17s.formdata_16s_id_fk')
+            ->join('potential_injurytos', 'potential_injurytos.potential_injurytos_id', '=', 'formdata_16s.potential_injurytos_fk')
+            ->when($this->searchQuery != '', function ($query) {
+                $query->where('bactive', '1')
+                    ->where('incident_description', 'like', '%' . $this->searchQuery . '%')
+                    ->orWhere('coworker_statement', 'like', '%' . $this->searchQuery . '%');
+            })
             ->orderBy('formdata_17s_id')->paginate(10);
         // dd($form17data);
 
-        $form16data=formdata_16::where('bactive', '1')->get();
-        $substandactiondata=substandaction::all();
-        $substandconditiondata=substandcondition::all();
-        return view('livewire.forms17.formdata17',[
-            'form17data'=>$form17data,'form16data'=>$form16data,'substandconditiondata'=>$substandconditiondata,'substandactiondata'=>$substandactiondata
+        $form16data = formdata_16::where('bactive', '1')->get();
+        $substandactiondata = substandaction::all();
+        $substandconditiondata = substandcondition::all();
+        return view('livewire.forms17.formdata17', [
+            'form17data' => $form17data, 'form16data' => $form16data, 'substandconditiondata' => $substandconditiondata, 'substandactiondata' => $substandactiondata
         ]);
     }
 
-    
+
     public function OpenAddCountryModal()
     {
+        // clear old photo location and title
+        $this->inv_imgTitles = [];
+        $this->inv_photos = [];
+
         $this->incident_description = '';
         $this->coworker_statement = '';
         $this->formdata_16s_id_fk = '';
-        $this->substandaction_id_fk='';
-        $this->concernedsupervisor_statement='';
-        $this->root_cause='';
-        $this->remedial_actions='';
-        $this->comment_remedial_actions='';
-        $this->site_safety_in_charge_name='';
-        $this->site_safety_in_charge_signature='';
-        $this->project_manager='';
-        $this->project_manager_signature='';
-        $this->substandcondition_ids=collect();
-        $this->substandaction_ids=collect();
-        
+        $this->substandaction_id_fk = '';
+        $this->concernedsupervisor_statement = '';
+        $this->root_cause = '';
+        $this->remedial_actions = '';
+        $this->comment_remedial_actions = '';
+        $this->site_safety_in_charge_name = '';
+        $this->site_safety_in_charge_signature = '';
+        $this->project_manager = '';
+        $this->project_manager_signature = '';
+        $this->substandcondition_ids = collect();
+        $this->substandaction_ids = collect();
+
         $this->dispatchBrowserEvent('OpenAddCountryModal');
     }
 
@@ -78,13 +83,17 @@ class Formdata17 extends Component
             'coworker_statement' => 'required',
 
             // 'substandaction_id_fk'=>'required',
-            'formdata_16s_id_fk'=>'required|not_in:0',
-            'concernedsupervisor_statement'=>'required',
-            'root_cause'=>'required',
-            'remedial_actions'=>'required',
-            'comment_remedial_actions'=>'required',
-            'site_safety_in_charge_name'=>'required',
-            'site_safety_in_charge_signature'=>'required',
+            'substandcondition_ids' => 'required',
+            'substandaction_ids' => 'required',
+
+            'formdata_16s_id_fk' => 'required|not_in:0',
+            'concernedsupervisor_statement' => 'required',
+            'root_cause' => 'required',
+            'remedial_actions' => 'required',
+            'comment_remedial_actions' => 'required',
+            'site_safety_in_charge_name' => 'required',
+            'site_safety_in_charge_signature' => 'required',
+
             // 'project_manager'=>'required',
             // 'project_manager_signature'=>'required',
         ]);
@@ -93,15 +102,15 @@ class Formdata17 extends Component
             'incident_description' => $this->incident_description,
             'coworker_statement' => $this->coworker_statement,
             // 'substandaction_id_fk'=>$this->substandaction_id_fk,
-            'formdata_16s_id_fk'=>$this->formdata_16s_id_fk,
-            'substandaction_ids'=> implode(',',$this->substandaction_ids),
-            'substandcondition_ids'=> implode(',',$this->substandcondition_ids),
-            'concernedsupervisor_statement'=>$this->concernedsupervisor_statement,
-            'root_cause'=>$this->root_cause,
-            'remedial_actions'=>$this->remedial_actions,
-            'comment_remedial_actions'=>$this->comment_remedial_actions,
-            'site_safety_in_charge_name'=>$this->site_safety_in_charge_name,
-            'site_safety_in_charge_signature'=>$this->site_safety_in_charge_signature,
+            'formdata_16s_id_fk' => $this->formdata_16s_id_fk,
+            'substandaction_ids' => implode(',', $this->substandaction_ids),
+            'substandcondition_ids' => implode(',', $this->substandcondition_ids),
+            'concernedsupervisor_statement' => $this->concernedsupervisor_statement,
+            'root_cause' => $this->root_cause,
+            'remedial_actions' => $this->remedial_actions,
+            'comment_remedial_actions' => $this->comment_remedial_actions,
+            'site_safety_in_charge_name' => $this->site_safety_in_charge_name,
+            'site_safety_in_charge_signature' => $this->site_safety_in_charge_signature,
             // 'project_manager'=>$this->project_manager,
             // 'project_manager_signature'=>$this->project_manager_signature,
         ]);
@@ -155,7 +164,7 @@ class Formdata17 extends Component
 
 
 
-    public function OpenEditCountryModal($formdata_17s_id ,$role = 'Staff')
+    public function OpenEditCountryModal($formdata_17s_id, $role = 'Staff')
     {
         $info = formdata_17::find($formdata_17s_id);
 
@@ -178,24 +187,28 @@ class Formdata17 extends Component
             $this->oldimgName = [];   // img Name will remove after some time
         }
 
+        // clear old photo location and title
+        $this->inv_imgTitles = [];
+        $this->inv_photos = [];
+
         // dd($info);
         $this->role = $role;
 
         $this->incident_description = $info->incident_description;
         $this->coworker_statement = $info->coworker_statement;
 
-        $this->formdata_16s_id_fk=$info->formdata_16s_id_fk;
-        $this->substandaction_id_fk=$info->substandaction_id_fk;
-        $this->concernedsupervisor_statement=$info->concernedsupervisor_statement;
-        $this->root_cause=$info->root_cause;
-        $this->remedial_actions=$info->remedial_actions;
-        $this->comment_remedial_actions=$info->comment_remedial_actions;
-        $this->site_safety_in_charge_name=$info->site_safety_in_charge_name;
-        $this->site_safety_in_charge_signature=$info->site_safety_in_charge_signature;
-        $this->project_manager=$info->project_manager;
-        $this->project_manager_signature=$info->project_manager_signature;
-        $this->substandcondition_ids=explode(',',$info->substandcondition_ids);
-        $this->substandaction_ids=explode(',',$info->substandaction_ids);
+        $this->formdata_16s_id_fk = $info->formdata_16s_id_fk;
+        $this->substandaction_id_fk = $info->substandaction_id_fk;
+        $this->concernedsupervisor_statement = $info->concernedsupervisor_statement;
+        $this->root_cause = $info->root_cause;
+        $this->remedial_actions = $info->remedial_actions;
+        $this->comment_remedial_actions = $info->comment_remedial_actions;
+        $this->site_safety_in_charge_name = $info->site_safety_in_charge_name;
+        $this->site_safety_in_charge_signature = $info->site_safety_in_charge_signature;
+        $this->project_manager = $info->project_manager;
+        $this->project_manager_signature = $info->project_manager_signature;
+        $this->substandcondition_ids = explode(',', $info->substandcondition_ids);
+        $this->substandaction_ids = explode(',', $info->substandaction_ids);
 
         // dd('substandcondition_ids => ',$this->upd_substandcondition_ids, ' substandaction_ids => ',$this->upd_substandaction_ids);
 
@@ -212,34 +225,104 @@ class Formdata17 extends Component
         $cid = $this->cid;
         $this->validate([
             'incident_description' => 'required',
-            'coworker_statement' => 'required'
-        ], [
+            'coworker_statement' => 'required',
 
-            'incident_description.required' => 'Enter incident Description',
-            'coworker_statement.required' => 'coworker statement Abbrivation require'
+            'substandcondition_ids' => 'required',
+            'substandaction_ids' => 'required',
+            // 'substandaction_id_fk'=>'required',
+            'formdata_16s_id_fk' => 'required|not_in:0',
+            'concernedsupervisor_statement' => 'required',
+            'root_cause' => 'required',
+            'remedial_actions' => 'required',
+            'comment_remedial_actions' => 'required',
+            'site_safety_in_charge_name' => 'required',
+            'site_safety_in_charge_signature' => 'required',
+            'project_manager' => 'required',
+            'project_manager_signature' => 'required',
         ]);
 
         $update = formdata_17::find($cid)->update([
             'incident_description' => $this->incident_description,
             'coworker_statement' => $this->coworker_statement,
 
-            'formdata_16s_id_fk'=>$this->formdata_16s_id_fk ,
-            'substandaction_id_fk'=>$this->substandaction_id_fk,
-            'concernedsupervisor_statement'=>$this->concernedsupervisor_statement,
-            'root_cause'=>$this->root_cause,
-            'remedial_actions'=>$this->remedial_actions,
-            'comment_remedial_actions'=>$this->comment_remedial_actions,
-            'site_safety_in_charge_name'=>$this->site_safety_in_charge_name,
-            'site_safety_in_charge_signature'=>$this->site_safety_in_charge_signature,
-            'project_manager'=>$this->project_manager,
-            'project_manager_signature'=>$this->project_manager_signature,
-            'substandcondition_ids'=>implode(',',$this->substandcondition_ids),
-            'substandaction_ids'=>implode(',',$this->substandaction_ids),
+            'formdata_16s_id_fk' => $this->formdata_16s_id_fk,
+            'substandaction_id_fk' => $this->substandaction_id_fk,
+            'concernedsupervisor_statement' => $this->concernedsupervisor_statement,
+            'root_cause' => $this->root_cause,
+            'remedial_actions' => $this->remedial_actions,
+            'comment_remedial_actions' => $this->comment_remedial_actions,
+            'site_safety_in_charge_name' => $this->site_safety_in_charge_name,
+            'site_safety_in_charge_signature' => $this->site_safety_in_charge_signature,
+            'project_manager' => $this->project_manager,
+            'project_manager_signature' => $this->project_manager_signature,
+            'substandcondition_ids' => implode(',', $this->substandcondition_ids),
+            'substandaction_ids' => implode(',', $this->substandaction_ids),
         ]);
 
         if ($update) {
-            $this->dispatchBrowserEvent('CloseEditCountryModal');
-            // $this->checkedCountry = [];
+
+
+            if (count($this->inv_photos) > 0) {
+
+                //Handle File Upload
+                $investigationImgsName = [];
+                $investigationImgsLocation = [];
+                foreach ($this->inv_photos as $key => $file) {
+                    // Get FileName
+                    $filenameWithExt = $file->getClientOriginalName();
+                    //Get just filename
+                    $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME); // exp: exp.png
+                    //Get just extension
+                    $extension = $file->getClientOriginalExtension();
+                    //Filename to Store
+                    $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+                    //Upload Image
+                    $path = $file->storeAs('public/photos/investigationDoc', $fileNameToStore);
+                    // D:\xampp\htdocs\naseem_tsforms\storage\app\public\photos\injuredDoc
+                    array_push($investigationImgsLocation, $path);
+                    array_push($investigationImgsName, $fileNameToStore);
+                }
+                $uploaddocument = '';
+                $saveImage = '';
+                // store to database
+                if ($this->imgsId != null || $this->imgsId > 0) {
+                    # code...
+                    // dd('this is img id -> ',$this->imgsId);
+
+                    // mergeoldand new ims 
+                    // $imgTitl_merge = [...$this->inv_imgTitles,...$this->inv_oldimgTitles];
+                    // $imgsLocation_merge = [...$investigationImgsLocation,$this->oldphotosLocation];
+                    // $imgsName_merge = [...$investigationImgsName,...$this->oldimgName];
+                    // dd('new -> ',$imgTitl_merge,$imgsName_merge,$imgsLocation_merge);
+
+                    $uploaddocument = uploaddocument::find($this->imgsId)->update([
+                        'uploaddocuments_title' => $this->inv_imgTitles,
+                        'uploaddocuments_name' => $investigationImgsName,
+                        'uploaddocuments_location' => $investigationImgsLocation
+                    ]);
+                } else {
+                    // dd('this is img id els -> ',$this->imgsId);
+                    // store to database
+                    $uploaddocument = new uploaddocument();
+                    $uploaddocument->uploaddocuments_title = $this->inv_imgTitles;
+                    $uploaddocument->uploaddocuments_name = $investigationImgsName;
+                    $uploaddocument->uploaddocuments_location = $investigationImgsLocation;
+                    $uploaddocument->forms17_id = $this->cid;
+                    $saveImage = $uploaddocument->save();
+                }
+                // $uploaddocument->forms16_id = $id;
+                // $saveImage = $uploaddocument->save();
+                if ($uploaddocument || $saveImage) {
+                    // clear veriable 
+                    $this->inv_photos = [];
+                    $this->imgTitles = array();
+                    $this->dispatchBrowserEvent('CloseEditCountryModal');
+                    // $this->checkedCountry = [];
+                }
+            } else {
+                // dd('this is img id fnl els-> ',$this->imgsId);
+                $this->dispatchBrowserEvent('CloseEditCountryModal');
+            }
         }
     }
 
@@ -272,6 +355,7 @@ class Formdata17 extends Component
         $this->resetValidation();
         # value
         $this->formdata_16s_id_fk = '';
+        $this->imgsId = '';
     }
 
     public function removeImg($ind)

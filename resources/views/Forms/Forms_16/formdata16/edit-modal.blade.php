@@ -803,7 +803,7 @@
                                                     <div class="col-md-3 mb-2">
                                                         <div class="form-group">
                                                             <label for="img title"> Image Title</label>
-                                                            <input type="text" class="form-control"
+                                                            <input disabled type="text" class="form-control"
                                                                 placeholder="Img title"
                                                                 wire:model='oldimgTitles.{{ $key }}'>
                                                         </div>

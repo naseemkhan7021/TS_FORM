@@ -208,22 +208,19 @@
                                     class="text-danger fas fa-times-circle"></i>@enderror
                             </label>
                             <div class="row text-center">
-                                <div class="col-md-6 col-sm-12 border">
-                                    <label for="actions" class=""><b><u>SUBSTANDARD
+                                <div class="col-md-6 col-sm-12 border @error('substandaction_ids') border-danger @enderror">
+                                    <label for="actions" class="@error('substandaction_ids') text-danger @enderror"><b><u>SUBSTANDARD
                                                 ACTIONS</u></b></label>
 
                                     <div class="text-justify">
                                         @foreach ($substandactiondata as $item)
-                                            {{-- <ul>
-                                            <li><input type="checkbox" id="" v></li>
-                                        </ul> --}}
 
                                             <div class="form-check my-1 ml-2">
-                                                <input wire:model='substandaction_ids' class="form-check-input"
+                                                <input wire:model.defer='substandaction_ids' class="form-check-input"
                                                     type="checkbox" value="{{ $item->substandaction_id }}"
-                                                    id="subaction{{ $item->substandaction_id }}}">
+                                                    id="subaction{{ $item->substandaction_id }}_add">
                                                 <label class="ml-3 form-check-label"
-                                                    for="subaction{{ $item->substandaction_id }}}">
+                                                    for="subaction{{ $item->substandaction_id }}_add">
                                                     {{ $item->substandaction_id }}.
                                                     {{ $item->substandaction_description }}
                                                 </label>
@@ -231,8 +228,8 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-sm-12 border">
-                                    <label for="condition" class=""><b><u>SUBSTANDARD
+                                <div class="col-md-6 col-sm-12 border @error('substandcondition_ids') border-danger @enderror">
+                                    <label for="condition" class="@error('substandcondition_ids') text-danger @enderror"><b><u>SUBSTANDARD
                                                 CONDITIONS</u></b></label>
 
                                     <div class="text-justify">
@@ -242,11 +239,11 @@
                                                     </ul> --}}
 
                                             <div class="form-check my-1 ml-2">
-                                                <input wire:model='substandcondition_ids' class="form-check-input"
+                                                <input wire:model.defer='substandcondition_ids' class="form-check-input"
                                                     type="checkbox" value="{{ $item->substandcondition_id }}"
-                                                    id="subcondition{{ $item->substandcondition_id }}}">
+                                                    id="subcondition{{ $item->substandcondition_id }}_add">
                                                 <label class="ml-3 form-check-label"
-                                                    for="subcondition{{ $item->substandcondition_id }}}">
+                                                    for="subcondition{{ $item->substandcondition_id }}_add">
                                                     {{ $item->substandcondition_id }}.
                                                     {{ $item->substandcondition_description }}
                                                 </label>

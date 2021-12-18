@@ -109,6 +109,7 @@
                                 <label class="custom-file-label" for="inputGroupFile01"></label>
                             </div> --}}
                             <label for="invPhoto">Click to Upload file <b class="text-danger"> click </b></label>
+                            <input type="text" wire:model='imgsId' hidden> {{-- access the img id--}}
                             <input wire:model='inv_photos' type="file" id="invPhoto" hidden>
                             <div class="form-control" style="height: 10rem; overflow-y: auto;">
                                 @if (!$inv_photos)
@@ -150,13 +151,15 @@
                                 </div>
                             </div>
 
+                        </div>
+
+                        {{-- old img --}}
+                        <div class="form-group col-12 {{ count($oldphotosLocation) == 0 ? 'd-none' : '' }}">
+                            <label for="" title="image preview">Old imgages preview</label>
+                            <div class="form-control" style="height: 10rem; overflow-y: auto;">
+                                <div class="row">
 
 
-                            {{-- old img --}}
-                            <div class="" >
-                                <label for=""
-                                    title="image preview">{{ count($oldphotosLocation) == 0 ? '' : 'Old imgages preview' }}</label>
-                                <div class="row form-control" style="height: 10rem; overflow-y: auto;">
                                     @foreach ($oldphotosLocation as $key => $photo)
 
                                         <div class="col-md-4" style="margin-top: .5rem">
@@ -187,11 +190,11 @@
 
                                         </div>
                                     @endforeach
-
                                 </div>
                             </div>
                         </div>
                     </div>
+
 
 
                     <div class="col-12">
@@ -228,8 +231,8 @@
                                     class="text-danger fas fa-times-circle"></i>@enderror
                             </label>
                             <div class="row text-center">
-                                <div class="col-md-6 col-sm-12 border">
-                                    <label for="actions" class=""><b><u>SUBSTANDARD
+                                <div class="col-md-6 col-sm-12 border @error('substandaction_ids') border-danger @enderror">
+                                    <label for="actions" class="@error('substandaction_ids') text-danger @enderror"><b><u>SUBSTANDARD
                                                 ACTIONS</u></b></label>
 
                                     <div class="text-justify">
@@ -239,11 +242,11 @@
                                         </ul> --}}
 
                                             <div class="form-check my-1 ml-2">
-                                                <input wire:model='substandaction_ids' class="form-check-input"
+                                                <input wire:model.defer='substandaction_ids' class="form-check-input"
                                                     type="checkbox" value="{{ $item->substandaction_id }}"
-                                                    id="subaction{{ $item->substandaction_id }}}">
+                                                    id="subaction{{ $item->substandaction_id }}_edit">
                                                 <label class="ml-3 form-check-label"
-                                                    for="subaction{{ $item->substandaction_id }}}">
+                                                    for="subaction{{ $item->substandaction_id }}_edit">
                                                     {{ $item->substandaction_id }}.
                                                     {{ $item->substandaction_description }}
                                                 </label>
@@ -251,8 +254,8 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-sm-12 border">
-                                    <label for="condition" class=""><b><u>SUBSTANDARD
+                                <div class="col-md-6 col-sm-12 border @error('substandcondition_ids') border-danger @enderror">
+                                    <label for="condition" class="@error('substandcondition_ids') text-danger @enderror"><b><u>SUBSTANDARD
                                                 CONDITIONS</u></b></label>
 
                                     <div class="text-justify">
@@ -262,11 +265,11 @@
                                                     </ul> --}}
 
                                             <div class="form-check my-1 ml-2">
-                                                <input wire:model='substandcondition_ids' class="form-check-input"
+                                                <input wire:model.defer='substandcondition_ids' class="form-check-input"
                                                     type="checkbox" value="{{ $item->substandcondition_id }}"
-                                                    id="subcondition{{ $item->substandcondition_id }}}">
+                                                    id="subcondition{{ $item->substandcondition_id }}_edit">
                                                 <label class="ml-3 form-check-label"
-                                                    for="subcondition{{ $item->substandcondition_id }}}">
+                                                    for="subcondition{{ $item->substandcondition_id }}_edit">
                                                     {{ $item->substandcondition_id }}.
                                                     {{ $item->substandcondition_description }}
                                                 </label>
@@ -343,6 +346,28 @@
                         </div>
                     </div>
 
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="projectManagerName"
+                                class="form-label @error('project_manager') text-danger @enderror"
+                                title="Completed by (Site Engineer) Name">Project Manager @error('project_manager')
+                                <i class="text-danger fas fa-times-circle"></i>@enderror</label>
+                            <input wire:model='project_manager' type="text" class="form-control @error('project_manager') border-danger @enderror""
+                                id="projectManagerName">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="projectManagerSignature"
+                                class="form-label  @error('project_manager_signature') text-danger @enderror"
+                                title="Completed by (Site Engineer) signature">Signalture
+                                @error('project_manager_signature') <i
+                                    class="text-danger fas fa-times-circle"></i>@enderror</label>
+                            <input wire:model='project_manager_signature' type="text" class="form-control @error('project_manager_signature') border-danger @enderror"
+                                id="projectManagerSignature">
+                        </div>
+                    </div>
+                    {{-- last info end --}}
 
                     <div class="col-12">
                         <div class="form-group">

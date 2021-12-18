@@ -19,7 +19,7 @@ class Formdata16 extends Component
     use WithFileUploads;
 
     public $photos = [], $imgTitles = array();
-    public $oldphotosLocation = [], $oldimgTitles = array();
+    public $oldphotosLocation = [], $oldimgTitles = array(),$oldimgName=[];
     public $searchQuery, $showOtherInput, $showhospital, $victimDischargeorNot, $role, $firstaidgivenonsite;
     public $injuredvictim_name, $designation, $age, $sproject_location, $iproject_id_fk, $doincident_dt, $potential_injurytos_fk, $potential_injurytos_other, $eml_id_no, $dob_dt, $gender_fk, $doj_dt, $safety_inducted, $married, $person_on_duty, $person_authorized_2_incident_area, $present_address, $permanent_address, $by_whom, $first_incident_reported_to, $date_time_reported_dt, $witness1_name, $designation_1, $witness2_name, $designation_2, $first_aid_given_on_site, $name_first_aider, $victim_taken_hospital, $name_hospital, $victim_hospital_dischaged, $return_to_work, $victim_influence_alcohol, $description_of_incident, $uploaddocuments_fk, $extend_injury, $activity16, $relavebt_risk_referenceno, $control_measure, $actions_taken, $site_enginner_name, $site_enginner_signature, $project_manager, $project_manager_signature;
     public $cid, $imgsId, $upd_injuredvictim_name, $upd_designation, $upd_age;
@@ -69,6 +69,10 @@ class Formdata16 extends Component
 
     public function OpenAddCountryModal()
     {
+        // clear old photo location and title
+        $this->imgTitles = [];
+        $this->photos = [];
+
         $this->injuredvictim_name = '';
         $this->designation = '';
         $this->age = '';
@@ -262,7 +266,7 @@ class Formdata16 extends Component
                 $uploaddocument->uploaddocuments_title = $this->imgTitles;
                 $uploaddocument->uploaddocuments_name = $injurdImgsName;
                 $uploaddocument->uploaddocuments_location = $injurdImgsLocation;
-                $uploaddocument->form_fk = $id;
+                $uploaddocument->forms16_id = $id;
                 $saveImage = $uploaddocument->save();
 
                 if ($saveImage) {
@@ -291,8 +295,8 @@ class Formdata16 extends Component
     {
         $info = formdata_16::find($formdata_16s_id);
         // $imgs = uploaddocument::find($formdata_16s_id);
-        $imgslist = uploaddocument::where('form_fk', $formdata_16s_id)->get();
-        // $imgs = DB::table('uploaddocuments')->where('form_fk', $formdata_16s_id);
+        $imgslist = uploaddocument::where('forms16_id', $formdata_16s_id)->get();
+        // $imgs = DB::table('uploaddocuments')->where('forms16_id', $formdata_16s_id);
         // dd($imgs->uploaddocuments_location);
         // dd($info->injuredvictim_name);
         // dd($imgs->value('uploaddocuments_name'));
@@ -494,15 +498,35 @@ class Formdata16 extends Component
                     array_push($injurdImgsName, $fileNameToStore);
                 }
 
+                $uploaddocument = '';
+                $saveImage = '';
                 // store to database
-                $uploaddocument = uploaddocument::find($this->imgsId)->update([
-                    'uploaddocuments_title' => $this->imgTitles,
-                    'uploaddocuments_name' => $injurdImgsName,
-                    'uploaddocuments_location' => $injurdImgsLocation
-                ]);
-                // $uploaddocument->form_fk = $id;
+                if ($this->imgsId != null || $this->imgsId > 0) {
+                    # code...
+
+                    // mergeoldand new ims 
+                    // $imgTitl_merge = [...$this->inv_imgTitles,...$this->inv_oldimgTitles];
+                    // $imgsLocation_merge = [...$investigationImgsLocation,$this->oldphotosLocation];
+                    // $imgsName_merge = [...$investigationImgsName,...$this->oldimgName];
+                    // dd('new -> ',$imgTitl_merge,$imgsName_merge,$imgsLocation_merge);
+
+                    // dd('this is img id -> ',$this->imgsId);
+                    $uploaddocument = uploaddocument::find($this->imgsId)->update([
+                        'uploaddocuments_title' => $this->imgTitles,
+                        'uploaddocuments_name' => $injurdImgsName,
+                        'uploaddocuments_location' => $injurdImgsLocation
+                    ]);
+                } else {
+                    $uploaddocument = new uploaddocument;
+                    $uploaddocument->uploaddocuments_title = $this->imgTitles;
+                    $uploaddocument->uploaddocuments_name = $injurdImgsName;
+                    $uploaddocument->uploaddocuments_location = $injurdImgsLocation;
+                    $uploaddocument->forms16_id = $this->cid;
+                    $saveImage = $uploaddocument->save();
+                }
+                // $uploaddocument->forms16_id = $id;
                 // $saveImage = $uploaddocument->save();
-                if ($uploaddocument) { 
+                if ($uploaddocument || $saveImage) {
                     // clear veriable 
                     $this->photos = [];
                     $this->imgTitles = array();
@@ -612,5 +636,6 @@ class Formdata16 extends Component
     {
         # code...
         $this->resetValidation();
+        $this->imgsId = '';
     }
 }

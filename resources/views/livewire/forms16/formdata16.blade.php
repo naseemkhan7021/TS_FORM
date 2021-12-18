@@ -51,7 +51,7 @@ if ($dob_dt) {
                     <td>{{ ++$loop->index }}</td>
                     <td>{{Carbon\Carbon::parse($row->doincident_dt)->diffForHumans()}}</td>
                     {{-- <td>{{$row->doincident_dt}}</td> --}}
-                    <td>{{ $row->potential_injurytos_description  }}</td>
+                    <td>{{ $row->potential_injurytos_description  }} {{ $row->potential_injurytos_other ? '- ' . $row->potential_injurytos_other : '' }}</td>
                     <td>{{ $row->injuredvictim_name  }}</td>
                     <td>{{ $row->first_incident_reported_to }}</td>
                     <td>{{ $row->by_whom }}</td>

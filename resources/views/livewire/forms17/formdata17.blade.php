@@ -35,7 +35,7 @@ if ($formdata_16s_id_fk) {
         </div>
     </div>
 
-    <table class="table display table-bordered data-table text-center" style="width:100%">
+    <table class="table display table-bordered data-table " style="width:100%">
         <thead>
             <tr>
                 <th >#</th>
@@ -48,26 +48,27 @@ if ($formdata_16s_id_fk) {
                 <th>Was First Aid</th>
                 {{-- <th>Incident Description</th>
                 <th>Coworker Statement</th> --}}
-                <th>Created Date</th>
+                {{-- <th>Created Date</th> --}}
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
+            {{-- {{dd($form17data)}} --}}
             @forelse ( $form17data as  $row )
                 <tr>
                     {{-- <td>{{ $row->formdata_17s_id }}</td> --}}
                     <td>{{ ++$loop->index }}</td>
-                    <td>{{ $row->updated_at }}</td>
+                    <td> {{Carbon\Carbon::parse($row->form17_creat)->diffForHumans()}} </td>
                     <td>{{Carbon\Carbon::parse($row->doincident_dt)->diffForHumans()}}</td>
                     {{-- <td>{{$row->doincident_dt}}</td> --}}
-                    <td>{{ $row->potential_injurytos_description  }}</td>
+                    <td>{{ $row->potential_injurytos_description  }} {{ $row->potential_injurytos_other ? '- ' . $row->potential_injurytos_other : '' }}</td>
                     <td>{{ $row->injuredvictim_name  }}</td>
                     <td>{{ $row->first_incident_reported_to }}</td>
                     <td>{{ $row->by_whom }}</td>
                     <td>{{ $row->first_aid_given_on_site }}</td>
                     {{-- <td>{{$row->incident_description}}</td> --}}
                     {{-- <td>{{$row->coworker_statement}}</td> --}}
-                    <td>{{ $row->created_at->diffForHumans() }}</td>
+                    {{-- <td>{{ $row->created_at->diffForHumans() }}</td> --}}
                     <td>
                         <div class="btn-group">
                             <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->formdata_17s_id}},'Project Manager')">Edit</button>

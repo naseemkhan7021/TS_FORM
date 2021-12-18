@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class Forms17Controller extends Controller
 {
+
+    // temp middleware
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
