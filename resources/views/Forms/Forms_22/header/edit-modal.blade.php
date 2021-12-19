@@ -70,12 +70,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="duration">Duration</label>
-                            <input id="duration" type="text" class="form-control  @error('duration') border-danger @enderror" placeholder="Duration" wire:model="duration">
-                        </div>
-                    </div>
+                    
 
                     <div class="col-md-6">
                         <div class="form-group">
@@ -96,6 +91,50 @@
                         <div class="form-group">
                             <label for="site_safety_in_charge_sign">Site Safety In Charge Sign</label>
                             <input id="site_safety_in_charge_sign" type="text" class="form-control  @error('site_safety_in_charge_sign') border-danger @enderror" placeholder="Site Safety In Charge Sign" wire:model="site_safety_in_charge_sign">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="duration">Duration</label>
+                            <input id="duration" type="text" class="form-control  @error('duration') border-danger @enderror" placeholder="Duration" wire:model="duration">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6"></div>
+
+                    <div class="col-12">
+
+                        <label for=""><strong><u class="">Undertaking</u></strong>
+                            <p class="mb-1">
+                                I, the undersigned, have attended the EHS Induction Training and understood the
+                                requirements of following Health & Safety rules in work place and agreed to follow them.
+                                My signature is appended below.
+                                The following Staff / Technicians / Contractor / Labour have joined and commenced work
+                                at site. They have been imparted EHS Induction Training. The Points covered in the
+                                training are:
+
+                            </p>
+                            <strong class="ml-5">Topics Discussed:</strong> ( Tick ✓ in the Boxes ) @error('topic_discusseds_ids') <strong class="ml-5 text-danger">Please Select At Least One</strong>  @enderror
+                        </label>
+                        <div class="row g-3">
+                            @foreach ($topicData as $item)
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-check my-1 ml-2">
+                                            <input wire:model.defer='topic_discusseds_ids' class="form-check-input"
+                                                type="checkbox" value="{{ $item->topic_discusseds_id }}"
+                                                id="topic{{ $item->topic_discusseds_id }}_edit">
+                                            <label class="ml-3 form-check-label @error('topic_discusseds_ids') text-danger
+                                            @enderror"
+                                                for="topic{{ $item->topic_discusseds_id }}_edit">
+                                                {{ $item->topic_discusseds_id }}.
+                                                {{ $item->topic_discusseds_description }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
 

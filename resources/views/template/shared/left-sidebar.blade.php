@@ -506,10 +506,10 @@
                         <div class="collapse" id="sidebarForm22">
                             <ul class="nav-second-level">
                                 <li>
-                                    <a href='{{route('form17_formdata17')}}'> Forms 22 </a>
+                                    <a href='{{route('form22_participant')}}'> Participants </a>
                                 </li>
                                 <li>
-                                    <a href='{{route('form22_header')}}'> Form22 Header </a>
+                                    <a href='{{route('form22_header')}}'> Header </a>
                                 </li>
                                 <li>
                                     <a href='{{route('form22_topicdiscussed')}}'> Topic Discussed </a>

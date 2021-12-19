@@ -20,9 +20,9 @@ class CreateFormdata22ParticipantsTable extends Migration
                 $table->unsignedBigInteger('formdata_22s_id_fk')->default(1);
                 $table->foreign('formdata_22s_id_fk')->references('formdata_22s_id')->on('formdata_22_headers')->onDelete('cascade');
 
-                $table->integer('id_no')->default(0);
+                $table->string('id_no');
                 $table->string('participant_name', 100);
-                $table->integer('age')->default(0);
+                $table->string('age');
                 $table->string('desgination')->nullable();
                 $table->boolean('signature')->default(0);
 

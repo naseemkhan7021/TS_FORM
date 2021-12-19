@@ -26,4 +26,8 @@ class formdata_22_header extends Model
         'site_safety_in_charge_sign',
         'topic_discusseds_ids'
     ];
+
+//     protected $casts = [
+//         'topic_discusseds_ids' => 'array',
+//     ];
 }

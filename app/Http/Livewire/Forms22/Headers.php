@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Forms22;
 
 use App\Models\common_forms\Projects;
 use App\Models\forms_22\formdata_22_header;
+use App\Models\forms_22\topic_discussed;
 use Carbon\Carbon;
 use Livewire\Component;
 
@@ -11,12 +12,13 @@ class Headers extends Component
 {
     
     public $searchQuery,$role;
-    public $contractor_name, $faculty_name,$iproject_id_fk,$venue,$duration,$topic_discusseds_ids=[],$faculty_sign,$site_safety_in_charge_sign,$site_safety_in_charge_name, $sproject_location,$ehsind_dt;
+    public $contractor_name, $faculty_name,$iproject_id_fk,$venue,$duration,$topic_discusseds_ids,$faculty_sign,$site_safety_in_charge_sign,$site_safety_in_charge_name, $sproject_location,$ehsind_dt;
     public $cid;
 
     public function mount()
     {
         $this->searchQuery = '';
+        $this->topic_discusseds_ids = collect();
     }
 
     public function render()
@@ -29,8 +31,9 @@ class Headers extends Component
         })->get();
 
         $projectData = Projects::all();
+        $topicData = topic_discussed::all();
         return view('livewire.forms22.headers',[
-            'headerdata'=>$headerdata,'projectData'=>$projectData
+            'headerdata'=>$headerdata,'projectData'=>$projectData,'topicData'=>$topicData
         ]);
     }
     
@@ -45,7 +48,7 @@ class Headers extends Component
         $this->iproject_id_fk='';
         $this->venue='';
         $this->duration='';
-        $this->topic_discusseds_ids='';
+        $this->topic_discusseds_ids = [];
         $this->faculty_sign='';
         $this->site_safety_in_charge_sign='';
         $this->site_safety_in_charge_name='';
@@ -64,7 +67,7 @@ class Headers extends Component
             'ehsind_dt'=>'required',
             'venue'=>'required',
             'duration'=>'required',
-            // 'topic_discusseds_ids'=>'required',
+            'topic_discusseds_ids'=>'required',
             'faculty_sign'=>'required',
             'site_safety_in_charge_sign'=>'required',
             'site_safety_in_charge_name'=>'required',
@@ -78,7 +81,7 @@ class Headers extends Component
             'ehsind_dt'=>$this->ehsind_dt,
             'venue'=>$this->venue,
             'duration'=>$this->duration,
-            // 'topic_discusseds_ids'=>$this->topic_discusseds_ids,
+            'topic_discusseds_ids'=>implode(',',$this->topic_discusseds_ids),
             'faculty_sign'=>$this->faculty_sign,
             'site_safety_in_charge_sign'=>$this->site_safety_in_charge_sign,
             'site_safety_in_charge_name'=>$this->site_safety_in_charge_name
@@ -96,6 +99,7 @@ class Headers extends Component
     {
         $info = formdata_22_header::find($formdata_22s_id);
 
+        // dd($info->topic_discusseds_ids);
         $this->role = $role;
 
         $this->contractor_name = $info->contractor_name;
@@ -104,7 +108,7 @@ class Headers extends Component
         $this->ehsind_dt=$info->ehsind_dt;
         $this->venue=$info->venue;
         $this->duration=$info->duration;
-        $this->topic_discusseds_ids=$info->topic_discusseds_ids;
+        $this->topic_discusseds_ids=explode(',',$info->topic_discusseds_ids);
         $this->faculty_sign=$info->faculty_sign;
         $this->site_safety_in_charge_sign=$info->site_safety_in_charge_sign;
         $this->site_safety_in_charge_name=$info->site_safety_in_charge_name;
@@ -129,7 +133,7 @@ class Headers extends Component
             'ehsind_dt'=>'required',
             'venue'=>'required',
             'duration'=>'required',
-            // 'topic_discusseds_ids'=>'required',
+            'topic_discusseds_ids'=>'required',
             'faculty_sign'=>'required',
             'site_safety_in_charge_sign'=>'required',
             'site_safety_in_charge_name'=>'required',
@@ -143,7 +147,7 @@ class Headers extends Component
             'ehsind_dt'=>$this->ehsind_dt,
             'venue'=>$this->venue,
             'duration'=>$this->duration,
-            // 'topic_discusseds_ids'=>$this->topic_discusseds_ids,
+            'topic_discusseds_ids'=>implode(',',$this->topic_discusseds_ids),
             'faculty_sign'=>$this->faculty_sign,
             'site_safety_in_charge_sign'=>$this->site_safety_in_charge_sign,
             'site_safety_in_charge_name'=>$this->site_safety_in_charge_name
@@ -176,5 +180,12 @@ class Headers extends Component
             $this->dispatchBrowserEvent('delete');
         }
         // $this->checkedCountry = [];
+    }
+
+    public function clearValidationf()
+    {
+        # code...
+        $this->resetValidation();
+        // $this->imgsId = '';
     }
 }
