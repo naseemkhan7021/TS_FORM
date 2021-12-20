@@ -12,13 +12,13 @@
 
                      <div class="form-group">
                          <label for="">Nature Of Potential Injuries Description</label>
-                         <input type="text" class="form-control" placeholder="Nature Of Potential Injuries Description" wire:model="imd_corrections_description">
-                         <span class="text-danger"> @error('imd_corrections_description') {{ $message }}@enderror</span>
+                         <input type="text" class="form-control" placeholder="Nature Of Potential Injuries Description" wire:model="nature_of_potential_injuries_description">
+                         <span class="text-danger"> @error('nature_of_potential_injuries_description') {{ $message }}@enderror</span>
                      </div>
                      <div class="form-group">
                          <label for="">Nature Of Potential Injuries Abbrivation</label>
-                         <input type="text" class="form-control" placeholder="Nature Of Potential Injuries Abbrivation" wire:model="imd_corrections_abbr">
-                         <span class="text-danger"> @error('imd_corrections_abbr') {{ $message }}@enderror</span>
+                         <input type="text" class="form-control" placeholder="Nature Of Potential Injuries Abbrivation" wire:model="nature_of_potential_injuries_abbr">
+                         <span class="text-danger"> @error('nature_of_potential_injuries_abbr') {{ $message }}@enderror</span>
                      </div>
                      <div class="form-group">
                          <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>

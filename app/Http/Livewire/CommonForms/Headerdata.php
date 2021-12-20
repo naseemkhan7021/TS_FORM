@@ -21,8 +21,11 @@ class Headerdata extends Component
 
         $projects = Project::all();
 
+        // dd($defaultvalues);
+
         return view('livewire.common-forms.headerdata',[
             'defaultvalues' => $defaultvalues,'projects'=>$projects
         ]);
+        
     }
 }

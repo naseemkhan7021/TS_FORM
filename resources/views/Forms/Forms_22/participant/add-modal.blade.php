@@ -42,7 +42,7 @@
                         <div class="form-controp">
                             <label for="" class="@error('totalNumberOfParticipant') text-danger @enderror">Total number
                                 of Participants</label>
-                            <input style="width: unset" type="text" {{ $formdata_22s_id_fk >= 1 ? '' : 'disabled' }}
+                            <input style="width: unset" type="number" {{ $formdata_22s_id_fk >= 1 ? '' : 'disabled' }}
                                 class="form-control d-inline  @error('totalNumberOfParticipant') border-danger @enderror"
                                 wire:model="totalNumberOfParticipant">
                             <input style="height: calc(1.5em + 0.9rem + 4px);" type="button"

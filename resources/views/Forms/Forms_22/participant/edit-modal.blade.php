@@ -40,7 +40,7 @@
                         <div class="form-controp">
                             <label for="" class="@error('totalNumberOfParticipant') text-danger @enderror">Total number
                                 of Participants</label>
-                            <input style="width: unset" type="text"
+                            <input style="width: unset" type="number"
                                 {{$formdata_22s_id_fk >= 1 ? '' : 'disabled'}} class="form-control d-inline  @error('totalNumberOfParticipant') border-danger @enderror"
                                 wire:model="totalNumberOfParticipant">
                             <input style="height: calc(1.5em + 0.9rem + 4px);" type="button"
@@ -82,13 +82,13 @@
                         @forelse (range(0,$totalNumberOfParticipant) as $item => $index)
                             {{-- {{$totalNumberOfParticipant}} --}}
                             <div class="col-md-2">
-                                <input required type="text" class="form-control @error('id_no') border-danger @enderror"
+                                <input required type="number" class="form-control @error('id_no') border-danger @enderror"
                                     wire:model="id_no.{{$index}}" placeholder="Participant Id {{$item}}">
                             </div>
 
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <input required type="number"
+                                    <input required type="text"
                                         class="form-control  @error('participant_name') border-danger @enderror"
                                         placeholder="Participant Name {{$item}}" wire:model="participant_name.{{$index}}">
                                 </div>

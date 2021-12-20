@@ -1,119 +1,119 @@
 <!DOCTYPE html>
-    <html lang="en">
+<html lang="en">
 
-    <head>
-        @include('template.shared/title-meta', ['title' => $title])
-        @include('template.shared/head-css')
-        {{-- @include('layouts.shared/head-css', ["demo" => "modern"]) --}}
-        <link rel="stylesheet" href="{{  asset('sweetalert2/sweetalert2.min.css') }}">
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
-        @livewireStyles()
-        @yield('css')
-    </head>
+<head>
+    @include('template.shared/title-meta', ['title' => $title])
+    @include('template.shared/head-css')
+    {{-- @include('layouts.shared/head-css', ["demo" => "modern"]) --}}
+    <link rel="stylesheet" href="{{ asset('sweetalert2/sweetalert2.min.css') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/smalllogo.png') }}">
 
-    <body @yield('body-extra')>
-        <!-- Begin page -->
-        <div id="wrapper">
-            @include('template.shared/topbar')
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+    @livewireStyles()
+    @yield('css')
+</head>
 
-            @include('template.shared/left-sidebar')
+<body @yield('body-extra')>
+    <!-- Begin page -->
+    <div id="wrapper">
+        @include('template.shared/topbar')
 
-            <!-- ============================================================== -->
-            <!-- Start Page Content here -->
-            <!-- ============================================================== -->
+        @include('template.shared/left-sidebar')
 
-            <div class="content-page">
-                <div class="content">
-                    @yield('content')
-                </div>
-                <!-- content -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
 
-                @include('template.shared/footer')
-
+        <div class="content-page">
+            <div class="content">
+                @yield('content')
             </div>
+            <!-- content -->
 
-            <!-- ============================================================== -->
-            <!-- End Page content -->
-            <!-- ============================================================== -->
+            @include('template.shared/footer')
 
         </div>
-        <!-- END wrapper -->
 
-        @include('template.shared/right-sidebar')
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
 
-        @include('template.shared/footer-script')
-        <script src="{{ asset('sweetalert2/sweetalert2.min.js') }}"></script>
+    </div>
+    <!-- END wrapper -->
 
-        @livewireScripts()
-        <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+    @include('template.shared/right-sidebar')
 
-        <!--jQuery-->
-        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> --}}
+    @include('template.shared/footer-script')
+    <script src="{{ asset('sweetalert2/sweetalert2.min.js') }}"></script>
 
-        <!--Plugin JavaScript file-->
-        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script> --}}
+    @livewireScripts()
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
 
+    <!--jQuery-->
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> --}}
 
-        <script>
-
-
-            // $(".js-range-slider").ionRangeSlider({
-            //     type: "double",
-            //     min: 50,
-            //     max: 500,
-            //     from: 50,
-            //     to: 150,
-            //     grid: false,
-
-            //     onStart: function(data) {
-            //       // Called right after range slider instance initialised
-
-            //       // console.log(data.input);        // jQuery-link to input
-            //       // console.log(data.slider);       // jQuery-link to range sliders container
-            //       // console.log(data.min);          // MIN value
-            //       // console.log(data.max);          // MAX values
-            //       console.log(data.from);
-            //       // FROM value.
-            //       // $('#iMinBD').val(data.from);
-            //       // $('#IMaxBD').val(data.to);
+    <!--Plugin JavaScript file-->
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script> --}}
 
 
-            //       // console.log(data.from_percent); // FROM value in percent
-            //       // console.log(data.from_value);   // FROM index in values array (if used)
-            //       console.log(data.to); // TO value
-            //       // console.log(data.to_percent);   // TO value in percent
-            //       // console.log(data.to_value);     // TO index in values array (if used)
-            //       // console.log(data.min_pretty);   // MIN prettified (if used)
-            //       // console.log(data.max_pretty);   // MAX prettified (if used)
-            //       // console.log(data.from_pretty);  // FROM prettified (if used)
-            //       // console.log(data.to_pretty);    // TO prettified (if used)
-            //     },
+    <script>
+        // $(".js-range-slider").ionRangeSlider({
+        //     type: "double",
+        //     min: 50,
+        //     max: 500,
+        //     from: 50,
+        //     to: 150,
+        //     grid: false,
 
-            //     onChange: function(data) {
-            //       // Called every time handle position is changed
+        //     onStart: function(data) {
+        //       // Called right after range slider instance initialised
 
-            //       console.log(data.from);
-            //       $('#iMinBD').val(data.from);
-            //     },
-
-            //     onFinish: function(data) {
-            //       // Called then action is done and mouse is released
-
-            //       console.log(data.to);
-            //       $('#iMaxBD').val(data.to);
-            //     },
-
-            //     onUpdate: function(data) {
-            //       // Called then slider is changed using Update public method
-
-            //       // console.log(data.from_percent);
-            //     }
-            //   });
-
-            </script>
+        //       // console.log(data.input);        // jQuery-link to input
+        //       // console.log(data.slider);       // jQuery-link to range sliders container
+        //       // console.log(data.min);          // MIN value
+        //       // console.log(data.max);          // MAX values
+        //       console.log(data.from);
+        //       // FROM value.
+        //       // $('#iMinBD').val(data.from);
+        //       // $('#IMaxBD').val(data.to);
 
 
-        @yield('scripts')
+        //       // console.log(data.from_percent); // FROM value in percent
+        //       // console.log(data.from_value);   // FROM index in values array (if used)
+        //       console.log(data.to); // TO value
+        //       // console.log(data.to_percent);   // TO value in percent
+        //       // console.log(data.to_value);     // TO index in values array (if used)
+        //       // console.log(data.min_pretty);   // MIN prettified (if used)
+        //       // console.log(data.max_pretty);   // MAX prettified (if used)
+        //       // console.log(data.from_pretty);  // FROM prettified (if used)
+        //       // console.log(data.to_pretty);    // TO prettified (if used)
+        //     },
 
-    </body>
+        //     onChange: function(data) {
+        //       // Called every time handle position is changed
+
+        //       console.log(data.from);
+        //       $('#iMinBD').val(data.from);
+        //     },
+
+        //     onFinish: function(data) {
+        //       // Called then action is done and mouse is released
+
+        //       console.log(data.to);
+        //       $('#iMaxBD').val(data.to);
+        //     },
+
+        //     onUpdate: function(data) {
+        //       // Called then slider is changed using Update public method
+
+        //       // console.log(data.from_percent);
+        //     }
+        //   });
+    </script>
+
+
+    @yield('scripts')
+
+</body>
+
 </html>

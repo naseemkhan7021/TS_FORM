@@ -1,4 +1,4 @@
-@extends('template.vertical', ['title' => 'Construction CRM'])
+@extends('template.vertical', ['title' => ' Dashboard'])
 
 @section('content')
 

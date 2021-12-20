@@ -47,7 +47,9 @@
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <div class="media">
-                                        <img class="d-flex mr-2 rounded-circle" src="{{asset('assets/images/users/user-2.jpg')}}" alt="Generic placeholder image" height="32">
+                                        <img class="d-flex mr-2 rounded-circle"
+                                            src="{{ asset('assets/images/users/user-2.jpg') }}"
+                                            alt="Generic placeholder image" height="32">
                                         <div class="media-body">
                                             <h5 class="m-0 font-14">Erwin E. Brown</h5>
                                             <span class="font-12 mb-0">UI Designer</span>
@@ -58,7 +60,9 @@
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <div class="media">1
-                                        <img class="d-flex mr-2 rounded-circle" src="{{ Auth::user()->profile_photo_url }}" alt="Generic placeholder image" height="32">
+                                        <img class="d-flex mr-2 rounded-circle"
+                                            src="{{ Auth::user()->profile_photo_url }}"
+                                            alt="Generic placeholder image" height="32">
                                         <div class="media-body">
                                             <h5 class="m-0 font-14">Jacob Deo</h5>
                                             <span class="font-12 mb-0">Developer</span>
@@ -73,24 +77,28 @@
             </li>
 
             <li class="dropdown d-inline-block d-lg-none">
-                <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-toggle="dropdown" href="#"
+                    role="button" aria-haspopup="false" aria-expanded="false">
                     <i class="fe-search noti-icon"></i>
                 </a>
                 <div class="dropdown-menu dropdown-lg dropdown-menu-right p-0">
                     <form class="p-3">
-                        <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                        <input type="text" class="form-control" placeholder="Search ..."
+                            aria-label="Recipient's username">
                     </form>
                 </div>
             </li>
 
             <li class="dropdown d-none d-lg-inline-block">
-                <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-toggle="fullscreen" href="#">
+                <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-toggle="fullscreen"
+                    href="#">
                     <i class="fe-maximize noti-icon"></i>
                 </a>
             </li>
 
             <li class="dropdown d-none d-lg-inline-block topbar-dropdown">
-                <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-toggle="dropdown" href="#"
+                    role="button" aria-haspopup="false" aria-expanded="false">
                     <i class="fe-grid noti-icon"></i>
                 </a>
                 <div class="dropdown-menu dropdown-lg dropdown-menu-right">
@@ -99,19 +107,19 @@
                         <div class="row no-gutters">
                             <div class="col">
                                 <a class="dropdown-icon-item" href="{{ env('OWNER_YOUTUBE_URL') }}" target="_blank">
-                                    <img src="{{asset('assets/images/brands/youtube.png')}}"alt="slack">
+                                    <img src="{{ asset('assets/images/brands/youtube.png') }}" alt="slack">
                                     <span>Youtube</span>
                                 </a>
                             </div>
                             <div class="col">
                                 <a class="dropdown-icon-item" href="{{ env('OWNER_TWITTER_URL') }}" target="_blank">
-                                    <img src="{{asset('assets/images/brands/twitter.png')}}"alt="Github">
+                                    <img src="{{ asset('assets/images/brands/twitter.png') }}" alt="Github">
                                     <span>Twitter</span>
                                 </a>
                             </div>
                             <div class="col">
                                 <a class="dropdown-icon-item" href="{{ env('OWNER_FACEBOOK_URL') }}" target="_blank">
-                                    <img src="{{asset('assets/images/brands/facebook.png')}}"alt="dribbble">
+                                    <img src="{{ asset('assets/images/brands/facebook.png') }}" alt="dribbble">
                                     <span>Facebook</span>
                                 </a>
                             </div>
@@ -120,19 +128,20 @@
                         <div class="row no-gutters">
                             <div class="col">
                                 <a class="dropdown-icon-item" href="{{ env('OWNER_SNAPCHAT_URL') }}" target="_blank">
-                                    <img src="{{asset('assets/images/brands/snapchat.png')}}"alt="bitbucket">
+                                    <img src="{{ asset('assets/images/brands/snapchat.png') }}" alt="bitbucket">
                                     <span>Snapchat</span>
                                 </a>
                             </div>
                             <div class="col">
                                 <a class="dropdown-icon-item" href="{{ env('OWNER_LINKEDIN_URL') }}" target="_blank">
-                                    <img src="{{asset('assets/images/brands/linkedin.png')}}"alt="dropbox">
+                                    <img src="{{ asset('assets/images/brands/linkedin.png') }}" alt="dropbox">
                                     <span>LinkedIn</span>
                                 </a>
                             </div>
                             <div class="col">
-                                <a class="dropdown-icon-item" href="{{ env('OWNER_INSTAGRAM_URL') }}" target="_blank">
-                                    <img src="{{asset('assets/images/brands/instagram.png')}}"alt="G Suite">
+                                <a class="dropdown-icon-item" href="{{ env('OWNER_INSTAGRAM_URL') }}"
+                                    target="_blank">
+                                    <img src="{{ asset('assets/images/brands/instagram.png') }}" alt="G Suite">
                                     <span>Instagram</span>
                                 </a>
                             </div>
@@ -144,8 +153,9 @@
             </li>
 
             <li class="dropdown d-none d-lg-inline-block topbar-dropdown">
-                <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <img src="{{asset('assets/images/flags/in.jpg')}}" alt="user-image" height="16">
+                <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-toggle="dropdown" href="#"
+                    role="button" aria-haspopup="false" aria-expanded="false">
+                    <img src="{{ asset('assets/images/flags/in.jpg') }}" alt="user-image" height="16">
                 </a>
                 {{-- <div class="dropdown-menu dropdown-menu-right">
 
@@ -173,7 +183,8 @@
             </li>
 
             <li class="dropdown notification-list topbar-dropdown">
-                <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"
+                    role="button" aria-haspopup="false" aria-expanded="false">
                     <i class="fe-bell noti-icon"></i>
                     <span class="badge badge-danger rounded-circle noti-icon-badge">9</span>
                 </a>
@@ -195,7 +206,9 @@
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item active">
                             <div class="notify-icon">
-                                <img src="{{asset('assets/images/users/user-1.jpg')}}" class="img-fluid rounded-circle" alt="" /> </div>
+                                <img src="{{ asset('assets/images/users/user-1.jpg') }}"
+                                    class="img-fluid rounded-circle" alt="" />
+                            </div>
                             <p class="notify-details">Cristina Pride</p>
                             <p class="text-muted mb-0 user-msg">
                                 <small>Hi, How are you? What about our next meeting</small>
@@ -215,7 +228,9 @@
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item">
                             <div class="notify-icon">
-                                <img src="{{asset('assets/images/users/user-4.jpg')}}" class="img-fluid rounded-circle" alt="" /> </div>
+                                <img src="{{ asset('assets/images/users/user-4.jpg') }}"
+                                    class="img-fluid rounded-circle" alt="" />
+                            </div>
                             <p class="notify-details">Karen Robinson</p>
                             <p class="text-muted mb-0 user-msg">
                                 <small>Wow ! this admin looks good and awesome design</small>
@@ -255,7 +270,8 @@
                     </div>
 
                     <!-- All-->
-                    <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
+                    <a href="javascript:void(0);"
+                        class="dropdown-item text-center text-primary notify-item notify-all">
                         View all
                         <i class="fe-arrow-right"></i>
                     </a>
@@ -265,10 +281,11 @@
 
 
             <li class="dropdown notification-list topbar-dropdown">
-                <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown"
+                    href="#" role="button" aria-haspopup="false" aria-expanded="false">
                     <img src="{{ Auth::user()->profile_photo_url }}" alt="user-image" class="rounded-circle">
                     <span class="pro-user-name ml-1">
-                        {{auth()->user()->name}} <i class="mdi mdi-chevron-down"></i>
+                        {{ auth()->user()->name }} <i class="mdi mdi-chevron-down"></i>
                     </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
@@ -301,22 +318,17 @@
                     {{-- <a href="javascript:void(0);" class="dropdown-item notify-item">
                         <i class="fe-log-out"></i>
                         <span>Logout</span>
-                    </a>
-                     --}}
-                    <a class="dropdown-item notify-item"
-
-                        href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();"
-                    >
+                    </a> --}}
+                    <a class="dropdown-item notify-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
                         <i class="fe-log-out"></i>
                         <span>Logout</span>
 
                     </a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" >
-                    @csrf
-                </form>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                        @csrf
+                    </form>
 
                 </div>
             </li>
@@ -329,28 +341,8 @@
 
         </ul>
 
-        <!-- LOGO -->
-        <div class="logo-box">
-            <a href="{{route('any', ['dashboard'])}}" class="logo logo-dark text-center">
-                <span class="logo-sm">
-                    <img src="{{asset('assets/images/logo-sm.png')}}"alt="" height="22">
-                    <!-- <span class="logo-lg-text-light">UBold</span> -->
-                </span>
-                <span class="logo-lg">
-                    <img src="{{asset('assets/images/logo-dark.png')}}"alt="" height="20">
-                    <!-- <span class="logo-lg-text-light">U</span> -->
-                </span>
-            </a>
-
-            <a href="{{route('any', ['dashboard'])}}" class="logo logo-light text-center">
-                <span class="logo-sm">
-                    <img src="{{asset('assets/images/logo-sm.png')}}"alt="" height="22">
-                </span>
-                <span class="logo-lg">
-                    <img src="{{asset('assets/images/logo-light.png')}}"alt="" height="20">
-                </span>
-            </a>
-        </div>
+        
+       
 
         {{-- <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
             <li>
@@ -360,21 +352,21 @@
             </li>
 
             <li> --}}
-                <!-- Mobile menu toggle (Horizontal Layout)-->
-                {{-- <a class="navbar-toggle nav-link" data-toggle="collapse" data-target="#topnav-menu-content">
+        <!-- Mobile menu toggle (Horizontal Layout)-->
+        {{-- <a class="navbar-toggle nav-link" data-toggle="collapse" data-target="#topnav-menu-content">
                     <div class="lines">
                         <span></span>
                         <span></span>
                         <span></span>
                     </div>
                 </a> --}}
-                <!-- End mobile menu toggle-->
-            {{-- </li> --}}
+        <!-- End mobile menu toggle-->
+        {{-- </li> --}}
 
 
 
-            @livewire('common-forms.headerdata')
-            {{-- <li class="d-none d-xl-block">
+        @livewire('common-forms.headerdata')
+        {{-- <li class="d-none d-xl-block">
                 {{-- <input type="text" class="form-control" value="{{ $defaultvalues[0]->sbc_company_name }}"   placeholder="Company Name" wire:model="company_name">
                 <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                     {{ $defaultvalues[0]->sbc_company_name }}
@@ -388,46 +380,46 @@
                 </a>
             </li> --}}
 
-            {{-- <li class="dropdown d-none d-xl-block">
+        {{-- <li class="dropdown d-none d-xl-block">
                 <input type="text" class="form-control" placeholder="Company Name" wire:model="company_name">
             </li> --}}
 
 
-            {{-- <li class="dropdown d-none d-xl-block">
+        {{-- <li class="dropdown d-none d-xl-block">
                 <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                     <input type="text" class="form-control bg-none outline-none" placeholder="Company Name" wire:model="company_name">
                     <i class="mdi mdi-chevron-down"></i>
                 </a>
                 <div class="dropdown-menu"> --}}
-                    <!-- item-->
-                    {{-- <a href="{{ route('const_projects') }}" class="dropdown-item">
+        <!-- item-->
+        {{-- <a href="{{ route('const_projects') }}" class="dropdown-item">
                         <i class="fe-briefcase mr-1"></i>
                         <span>New Projects</span>
                     </a> --}}
 
-                    <!-- item-->
-                    {{-- <a href="{{ route('leads') }}" class="dropdown-item">
+        <!-- item-->
+        {{-- <a href="{{ route('leads') }}" class="dropdown-item">
                         <i class="fe-user mr-1"></i>
                         <span>New Leads</span>
                     </a>
                 </div>
             </li> --}}
-                    <!-- item-->
-                    {{-- <a href="javascript:void(0);" class="dropdown-item">
+        <!-- item-->
+        {{-- <a href="javascript:void(0);" class="dropdown-item">
                         <i class="fe-bar-chart-line- mr-1"></i>
                         <span>Revenue Report</span>
                     </a> --}}
 
-                    <!-- item-->
-                    {{-- <a href="javascript:void(0);" class="dropdown-item">
+        <!-- item-->
+        {{-- <a href="javascript:void(0);" class="dropdown-item">
                         <i class="fe-settings mr-1"></i>
                         <span>Settings</span>
                     </a> --}}
 
-                    {{-- <div class="dropdown-divider"></div> --}}
+        {{-- <div class="dropdown-divider"></div> --}}
 
-                    <!-- item-->
-                    {{-- <a href="javascript:void(0);" class="dropdown-item">
+        <!-- item-->
+        {{-- <a href="javascript:void(0);" class="dropdown-item">
                         <i class="fe-headphones mr-1"></i>
                         <span>Help & Support</span>
                     </a>

@@ -1,13 +1,13 @@
-@extends('template.vertical', ['title' => 'Forms - Causes'])
+@extends('template.vertical', ['title' => 'Forms - NEARMISS REPORTING'])
 
 @section('content')
 
 <div class="container-fluid pl-3 pr-3">
 
     <!-- start page title -->
-        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 01 Causes' , 'page_title' => 'Form 01 Causes'  ])
-        @livewire('forms01.cause')
-    <!-- end page title -->
+        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 15 - NEARMISS REPORTING' , 'page_title' => 'Form 15 - NEARMISS REPORTING'  ])
+        @livewire('forms15.formdata15')
+    <!-- end page title --> 
 
 
 </div>
@@ -21,41 +21,41 @@
 
 <script>
     window.addEventListener('OpenAddCountryModal', function(){
-         $('.addCause').find('span').html('');
-         $('.addCause').find('form')[0].reset();
-         $('.addCause').modal('show');
+         $('.addNearmissreporting').find('span').html('');
+         $('.addNearmissreporting').find('form')[0].reset();
+         $('.addNearmissreporting').modal('show');
     });
 
     window.addEventListener('CloseAddCountryModal', function(){
-        $('.addCause').find('span').html('');
-        $('.addCause').find('form')[0].reset();
-        $('.addCause').modal('hide');
+        $('.addNearmissreporting').find('span').html('');
+        $('.addNearmissreporting').find('form')[0].reset();
+        $('.addNearmissreporting').modal('hide');
 
         Swal.fire(
             'Well Done!',
-            'New Cause Has been Saved Successfully !',
+            'New Nearmiss reporting Has been Saved Successfully !',
             'success'
             );
 
-        // alert('New Cause Has been Saved Successfully');
+        // alert('New Nearmissreporting Has been Saved Successfully');
     });
 
     window.addEventListener('OpenEditCountryModal', function(event){
-        $('.editCause').find('span').html('');
-        $('.editCause').modal('show');
+        $('.editNearmissreporting').find('span').html('');
+        $('.editNearmissreporting').modal('show');
     });
 
     window.addEventListener('CloseEditCountryModal', function(event){
-        $('.editCause').find('span').html('');
-        $('.editCause').find('form')[0].reset();
-        $('.editCause').modal('hide');
+        $('.editNearmissreporting').find('span').html('');
+        $('.editNearmissreporting').find('form')[0].reset();
+        $('.editNearmissreporting').modal('hide');
 
         Swal.fire(
             'Good job!',
-            '<b>Cause</b> Has been Updated Successfully !',
+            '<b>Nearmiss reporting</b> Has been Updated Successfully !',
             'success'
             );
-        // alert('Cause Has been Updated Successfully');
+        // alert('Nearmissreporting Has been Updated Successfully');
     });
 
     window.addEventListener('SwalConfirm', function(event){
@@ -80,7 +80,7 @@
     })
 
     window.addEventListener('deleted', function(event){
-        alert('<b>Cause</b> record has been deleted');
+        alert('<b>Nearmiss reporting</b> record has been deleted');
     });
 
     window.addEventListener('swal:deleteCountries', function(event){

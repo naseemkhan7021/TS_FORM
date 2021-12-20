@@ -4,7 +4,7 @@
             <div class="page-title-box">
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">T&S</a></li>
                         <li class="breadcrumb-item"><a href="javascript: void(0);">{{  $sub_title  }}</a></li>
                         <li class="breadcrumb-item active">{{  $active_title  }}</li>
                     </ol>

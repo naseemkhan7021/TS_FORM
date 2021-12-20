@@ -302,14 +302,16 @@
                                 <li>
                                     <a href="{{ route('index_company') }}"> Company </a>
                                 </li>
-                                <li>
-                                    <a href="{{ route('index_documentserial') }}"> Document Serial </a>
-                                </li>
+                                
                                 <li>
                                     <a href="{{ route('index_department') }}"> Department </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('index_project') }}"> Projects </a>
+                                </li>
+
+                                <li>
+                                    <a href="{{ route('index_documentserial') }}"> Document Serial </a>
                                 </li>
 
                                 <li>
@@ -424,7 +426,7 @@
                         <div class="collapse" id="sidebarForm15">
                             <ul class="nav-second-level">
                                 <li>
-                                    <a href="#"> Forms 15 </a>
+                                    <a href="{{route('form15_formdata15')}}"> Forms 15 </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('form15_activity15') }}"> Activity </a>

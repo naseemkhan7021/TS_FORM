@@ -8,6 +8,7 @@ use App\Http\Controllers\Forms\Forms16Controller;
 use App\Http\Controllers\Forms\CommonformController;
 use App\Http\Controllers\Forms\Forms17Controller;
 use App\Http\Controllers\Forms\Forms22Controller;
+use App\Models\common_forms\Company;
 
 // use App\Http\Controllers\RoutingController;
 
@@ -23,7 +24,9 @@ use App\Http\Controllers\Forms\Forms22Controller;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $defaltLogo = Company::all();
+    // dd($defaltLogo);
+    return view('welcome',['defaltLogo'=>$defaltLogo[0]]);
 });
 
 
@@ -93,6 +96,7 @@ Route::get('/form01_risk_probability', [Form01Controller::class, 'index_risk_pro
 Route::get('/form01_risk_consequence', [Form01Controller::class, 'index_risk_consequence'])->name('form01_risk_consequence');
 
 // forms 15
+Route::get('/form15_formdata15', [Forms15Controller::class, 'index_formdata15'])->name('form15_formdata15');
 Route::get('/form15_activity15', [Forms15Controller::class, 'index_activity15'])->name('form15_activity15');
 Route::get('/form15_cause15', [Forms15Controller::class, 'index_cause15'])->name('form15_cause15');
 Route::get('/form15_contributingcause', [Forms15Controller::class, 'index_contributingcause'])->name('form15_contributingcause');
