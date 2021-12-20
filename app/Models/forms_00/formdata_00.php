@@ -9,10 +9,20 @@ class formdata_00 extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'ibc_id';
-    protected $table = 'companies';
+    protected $primaryKey = 'formdata_00s_id';
+    protected $table = 'formdata_00s';
     protected $fillable = [
-        'sbc_company_name', 'sbc_abbr','sbc_logo_small','sbc_logo_large','validupto_dt'
+        'ibc_id_fk', 'idepartment_id_fk','iproject_id_fk','document_id_fk','sr_no' , 'document_name' , 'document_code'
     ];
-    
+
 }
+
+
+
+
+
+
+
+
+
+

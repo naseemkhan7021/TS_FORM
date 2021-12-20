@@ -19,6 +19,12 @@ class Forms17Controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     // temp middleware
+     public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         //
