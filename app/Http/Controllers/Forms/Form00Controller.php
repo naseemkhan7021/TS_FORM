@@ -12,6 +12,13 @@ class Form00Controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+      // temp middleware
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
+
     public function index()
     {
         //
@@ -81,5 +88,12 @@ class Form00Controller extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+
+    public function index_formdata()
+    {
+        return view('Forms.Forms_00.formdata00.index');
     }
 }

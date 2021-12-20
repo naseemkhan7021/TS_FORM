@@ -1,12 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\CommonController;
+use App\Http\Controllers\Forms\Form00Controller;
 use App\Http\Controllers\Forms\Form01Controller;
 use App\Http\Controllers\Forms\Forms15Controller;
 use App\Http\Controllers\Forms\Forms16Controller;
 use App\Http\Controllers\Forms\CommonformController;
 use App\Http\Controllers\Forms\Forms17Controller;
+
+
 
 // use App\Http\Controllers\RoutingController;
 
@@ -74,6 +78,8 @@ Route::get('/injuryto', [CommonformController::class, 'index_InjuryTo'])->name('
 
 
 // Forms01 Routes
+
+Route::get('/form00_data', [Form00Controller::class, 'index_formdata'])->name('form00_data');
 
 Route::get('/form01_activity', [Form01Controller::class, 'index_activity'])->name('form01_activity');
 Route::get('/form01_preventiveincidentcontrol', [Form01Controller::class, 'index_preventiveincidentcontrol'])->name('form01_preventiveincidentcontrol');
