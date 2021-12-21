@@ -111,6 +111,9 @@ class ContributingCause extends Component
             'html' => 'You want to delete <strong>' . $info->contributing_causes_description . '</strong>',
             'id' => $contributing_causes_id
         ]);
+        
+        // dd($YN);
+        $this->delete($contributing_causes_id);
     }
 
 

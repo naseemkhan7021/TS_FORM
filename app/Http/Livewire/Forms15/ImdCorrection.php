@@ -110,13 +110,16 @@ class ImdCorrection extends Component
             'id' => $imd_corrections_id
         ]);
         
+        // dd($YN);
+        // $this->deleteItem($imd_corrections_id);
+        
     }
     
     
     
     public function deleteItem($imd_corrections_id)
     {
-        echo 'confirm =>';
+        // echo 'confirm =>';
         $del =  Forms_15ImdCorrection::find($imd_corrections_id)->delete();
         if ($del) {
             $this->dispatchBrowserEvent('delete');

@@ -108,6 +108,8 @@ class ImdAction extends Component
             'html' => 'You want to delete <strong>' . $info->imd_actions_description . '</strong>',
             'id' => $imd_actions_id
         ]);
+        // dd($YN);
+        // $this->delete($imd_actions_id);
     }
 
 

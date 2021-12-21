@@ -17,7 +17,7 @@ use Livewire\Component;
 
 class Formdata15 extends Component
 {
-    public $searchQuery, $role, $doincident_dt, $sproject_location, $showOtherInput;
+    public $searchQuery, $role, $doincident_dt, $sproject_location, $showOtherInput,$d;
     public $iproject_id_fk, $potential_injurytos_fk, $report_no, $potential_injurytos_other, $nature_of_potential_injuries_ids, $nature_of_potential_injuries_other, $activity15s_ids, $details_of_nearmiss, $imdcause15s_ids, $imdcause15s_other, $contributing_causes_ids, $contributing_causes_other, $whyunsafeact_committeds_ids, $whyunsafeact_committeds_other, $imd_actions_ids, $imd_corrections_ids, $further_recommended_action, $completed_by_name, $completed_by_signature, $completed_date;
 
     public $cid;
@@ -25,14 +25,6 @@ class Formdata15 extends Component
     public function mount()
     {
         $this->searchQuery = '';
-
-        $this->nature_of_potential_injuries_ids = collect();
-        $this->activity15s_ids = collect();
-        $this->imdcause15s_ids = collect();
-        $this->contributing_causes_ids = collect();
-        $this->whyunsafeact_committeds_ids = collect();
-        $this->imd_actions_ids = collect();
-        $this->imd_corrections_ids = collect();
     }
 
     public function render()
@@ -85,6 +77,13 @@ class Formdata15 extends Component
         $this->completed_by_name = '';
         $this->completed_by_signature = '';
         $this->completed_date = '';
+        $this->nature_of_potential_injuries_ids = collect();
+        $this->activity15s_ids = collect();
+        $this->imdcause15s_ids = collect();
+        $this->contributing_causes_ids = collect();
+        $this->whyunsafeact_committeds_ids = collect();
+        $this->imd_actions_ids = collect();
+        $this->imd_corrections_ids = collect();
 
         $this->dispatchBrowserEvent('OpenAddCountryModal');
     }
@@ -253,6 +252,8 @@ class Formdata15 extends Component
             'html' => 'You want to delete <strong>' . $info->completed_by_name . '</strong>',
             'id' => $formdata_15s_id
         ]);
+        // dd()
+        // $this->delete($formdata_15s_id);
     }
 
 

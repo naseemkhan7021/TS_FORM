@@ -86,6 +86,7 @@
                             </div>
                         </div>
                     </div>
+                    {{-- injured to who stuff or contrecter end --}}
 
                     <div class="col-md-3">
 
@@ -95,14 +96,14 @@
                         <div class="form-group">
                             <label for="" class="@error('report_no') text-danger @enderror">Report No
                                 @error('report_no') <i class="text-danger fas fa-times-circle"></i>@enderror</label>
-                            <input type="text" class="form-control" placeholder="ID No" wire:model="report_no">
+                            <input type="text" class="form-control  @error('report_no') border-danger @enderror" placeholder="ID No" wire:model="report_no">
                         </div>
 
                     </div>
 
                     {{-- Nature of Potential Injury start --}}
                     <div class="col-12 form-group">
-                        <label for=""><strong>Nature of Potential Injury:</strong> ( Tick ✓ in the Boxes )</label>
+                        <label for="" class="@error('nature_of_potential_injuries_ids') text-danger @enderror"><strong>Nature of Potential Injury:</strong> ( Tick ✓ in the Boxes ) @error('nature_of_potential_injuries_ids') <i class="text-danger fas fa-times-circle"></i>@enderror</label>
 
                         <div class="row">
                             @foreach ($NatureofpotentialData as $index => $item)
@@ -119,7 +120,7 @@
                             <div class="col-md-4 mt-2">
                                 <div class="form-check form-check-inline w-100">
                                     {{-- <label class="form-check-label" for="otherNatrue"> </label> --}}
-                                    <input disabled wire:model='nature_of_potential_injuries_other'
+                                    <input wire:model='nature_of_potential_injuries_other'
                                         class="form-check-input form-control " type="text" id="otherNatrue"
                                         placeholder="Details if required:">
                                 </div>
@@ -131,7 +132,7 @@
 
                     {{-- Activity: ( Tick ✓ in the Boxes ) start --}}
                     <div class="col-12 form-group">
-                        <label for=""><strong>Activity:</strong> ( Tick ✓ in the Boxes )</label>
+                        <label for="" class="@error('activity15s_ids') text-danger @enderror"><strong>Activity:</strong> ( Tick ✓ in the Boxes ) @error('activity15s_ids') <i class="text-danger fas fa-times-circle"></i>@enderror</label>
 
                         <div class="row">
                             @foreach ($activityData as $index => $item)
@@ -151,8 +152,8 @@
 
                     {{-- Details of Nearmiss start --}}
                     <div class="col-12 form-group">
-                        <label for="details"><strong>Details of Nearmiss:</strong></label>
-                        <textarea wire:model='details_of_nearmiss' id="details" class="form-control"
+                        <label for="details" class="@error('details_of_nearmiss') text-danger @enderror"><strong>Details of Nearmiss:</strong></label>
+                        <textarea wire:model='details_of_nearmiss' id="details" class="form-control @error('details_of_nearmiss') border-danger @enderror"
                             rows="5"></textarea>
                     </div>
                     {{-- Details of Nearmiss end --}}
@@ -185,7 +186,7 @@
                                         @endforeach
 
                                         <div class="form-check form-check-inline my-1 ml-4">
-                                            <input disabled wire:model='imdcause15s_other' class="form-control "
+                                            <input wire:model='imdcause15s_other' class="form-control "
                                                 type="text" id="otherNatrue" placeholder="Details if required:">
                                         </div>
                                     </div>
@@ -209,8 +210,8 @@
                                             </label>
                                         </div>
                                         @endforeach
-                                        <div class="form-check form-check-inline disabled my-1 ml-4">
-                                            <input disabled wire:model='contributing_causes_other'
+                                        <div class="form-check form-check-inline my-1 ml-4">
+                                            <input wire:model='contributing_causes_other'
                                                 class="form-check-input form-control " type="text" id="otherNatrue"
                                                 placeholder="Details if required:">
                                         </div>
@@ -224,23 +225,23 @@
                     {{-- Why was the unsafe act committed:  start --}}
 
                     <div class="col-12 form-group">
-                        <label for=""><strong>Why was the unsafe act committed:</strong> ( Tick ✓ in the Boxes )</label>
+                        <label for="" class="@error('whyunsafeact_committeds_ids') text-danger @enderror"><strong>Why was the unsafe act committed:</strong> ( Tick ✓ in the Boxes )@error('whyunsafeact_committeds_ids') <i class="text-danger fas fa-times-circle"></i>@enderror</label>
 
                         <div class="row">
                             @foreach ($whyunsafeactcommittedsData as $index => $item)
                                 <div class="col-md-4 mt-2">
                                     <div class="form-check form-check-inline">
                                         <input wire:model='whyunsafeact_committeds_ids' class="form-check-input"
-                                            type="checkbox" id="nature_{{ $item->whyunsafeact_committeds_id }}"
+                                            type="checkbox" id="whyunsafeact_{{ $item->whyunsafeact_committeds_id }}"
                                             value="{{ $item->whyunsafeact_committeds_id }}">
                                         <label class="form-check-label"
-                                            for="nature_{{ $item->whyunsafeact_committeds_id }}">{{ $item->whyunsafeact_committeds_description }}</label>
+                                            for="whyunsafeact_{{ $item->whyunsafeact_committeds_id }}">{{ $item->whyunsafeact_committeds_description }}</label>
                                     </div>
                                 </div>
                             @endforeach
                             <div class="col-md-7 mt-2">
-                                <div class="form-check form-check-inline disabled w-100">
-                                    <input disabled wire:model='whyunsafeact_committeds_other'
+                                <div class="form-check form-check-inline w-100">
+                                    <input wire:model='whyunsafeact_committeds_other'
                                         class="form-check-input form-control " type="text" id="otherNatrue"
                                         placeholder="Details if required:">
                                 </div>
@@ -268,9 +269,9 @@
                                         <div class="form-check my-1 ml-2">
                                             <input wire:model='imd_actions_ids' class="form-check-input" type="checkbox"
                                                 value="{{ $item->imd_actions_id }}"
-                                                id="imdcouses_{{ $item->imd_actions_id }}_add">
+                                                id="imdactions_{{ $item->imd_actions_id }}_add">
                                             <label class="ml-3 form-check-label"
-                                                for="imdcouses_{{ $item->imd_actions_id }}_add">
+                                                for="imdactions_{{ $item->imd_actions_id }}_add">
                                                 {{ $item->imd_actions_id }}.
                                                 {{ $item->imd_actions_description }}
                                             </label>
@@ -291,9 +292,9 @@
                                         <div class="form-check my-1 ml-2">
                                             <input wire:model='imd_corrections_ids' class="form-check-input"
                                                 type="checkbox" value="{{ $item->imd_corrections_id }}"
-                                                id="subcondition{{ $item->imd_corrections_id }}_add">
+                                                id="imdcorrections_{{ $item->imd_corrections_id }}_add">
                                             <label class="ml-3 form-check-label"
-                                                for="subcondition{{ $item->imd_corrections_id }}_add">
+                                                for="imdcorrections_{{ $item->imd_corrections_id }}_add">
                                                 {{ $item->imd_corrections_id }}.
                                                 {{ $item->imd_corrections_description }}
                                             </label>

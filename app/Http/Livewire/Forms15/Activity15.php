@@ -102,11 +102,13 @@ class Activity15 extends Component
     public function deleteConfirm($activity15s_id)
     {
         $info = Forms_15Activity15::find($activity15s_id);
-        $this->dispatchBrowserEvent('SwalConfirm', [
+        $YN = $this->dispatchBrowserEvent('SwalConfirm', [
             'title' => 'Are you sure?',
             'html' => 'You want to delete <strong>' . $info->activity15s_description . '</strong>',
             'id' => $activity15s_id
         ]);
+        // dd($YN);
+        // $this->delete($activity15s_id);
     }
 
 

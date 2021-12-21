@@ -110,13 +110,15 @@ class NatureOfPotentialInjury extends Component
             'id' => $nature_of_potential_injuries_id
         ]);
         
+        // dd($YN);
+        // $this->deleteItem($nature_of_potential_injuries_id);
     }
     
     
     
     public function deleteItem($nature_of_potential_injuries_id)
     {
-        echo 'confirm =>';
+        // echo 'confirm =>';
         $del =  Form15NatureOfPotentialInjury::find($nature_of_potential_injuries_id)->delete();
         if ($del) {
             $this->dispatchBrowserEvent('delete');

@@ -8,10 +8,12 @@ use Illuminate\Support\Facades\DB;
 
 class Headerdata extends Component
 {
-    // public $defaultvalues;
+
 
     public function render()
     {
+        // $this->emit('projectId', 1);
+
         $defaultvalues = DB::table('defaultdatas')
         ->join('companies','companies.ibc_id','=','defaultdatas.ibc_id_fk' )
         ->join('departments','departments.idepartment_id','=','defaultdatas.idepartment_id_fk' )

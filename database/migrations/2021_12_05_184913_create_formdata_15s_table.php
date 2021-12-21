@@ -53,7 +53,7 @@ class CreateFormdata15sTable extends Migration
                 $table->string('completed_by_name')->nullable();
                 $table->boolean('completed_by_signature')->default(1);
                 $table->date('completed_date')->nullable();
-                $table->date('doincident_dt')->nullable();
+                $table->dateTime('doincident_dt')->nullable();
 
 
                 $table->boolean('bactive')->default(true);

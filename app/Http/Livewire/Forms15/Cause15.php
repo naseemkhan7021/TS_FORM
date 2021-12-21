@@ -108,6 +108,8 @@ class Cause15 extends Component
             'html' => 'You want to delete <strong>' . $info->cause15s_description . '</strong>',
             'id' => $cause15s_id
         ]);
+        // dd($YN);
+        // $this->delete($cause15s_id);
     }
 
 

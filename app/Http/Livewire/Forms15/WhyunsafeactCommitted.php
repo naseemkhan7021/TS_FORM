@@ -111,6 +111,10 @@ class WhyunsafeactCommitted extends Component
             'html' => 'You want to delete <strong>' . $info->whyunsafeact_committeds_description . '</strong>',
             'id' => $whyunsafeact_committeds_id
         ]);
+
+        
+        // dd($YN);
+        $this->deleteItem($whyunsafeact_committeds_id);
         
     }
     
