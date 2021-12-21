@@ -157,7 +157,7 @@ class Company extends Component
     public function handelfileupload($log_small_or_large_path = null, $size_small_or_large = null,$edit=null)
     {
         // print_r($log_small_or_large_path);
-        // handel small log 
+        // handel small log
         // Get FileName
         $filenameWithExt = $log_small_or_large_path->getClientOriginalName();
         //Get just filename
@@ -169,12 +169,12 @@ class Company extends Component
         if ($size_small_or_large == 'small') {
 
             if ($edit=='edit' && Storage::disk()->exists($this->sbc_logo_small_path)) {
-                // if exit then delete it 
+                // if exit then delete it
                 Storage::delete($this->sbc_logo_small_path);
                 // unlink("uploads/".$this->sbc_logo_small_path);
             }
             //small Image
-            $this->sbc_logo_small_path = $log_small_or_large_path->storeAs('public/photos/logo/small/', $fileNameToStore);
+            $this->sbc_logo_small_path = $log_small_or_large_path->storeAs('public/photos/logo/small', $fileNameToStore);
         }
         if ($size_small_or_large == 'large') {
 
@@ -183,7 +183,7 @@ class Company extends Component
                 // dd($this->sbc_logo_large_path);
             }
             //large Image
-            $this->sbc_logo_large_path = $log_small_or_large_path->storeAs('public/photos/logo/large/', $fileNameToStore);
+            $this->sbc_logo_large_path = $log_small_or_large_path->storeAs('public/photos/logo/large', $fileNameToStore);
         }
     }
 

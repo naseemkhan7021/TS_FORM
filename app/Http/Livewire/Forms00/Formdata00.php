@@ -8,12 +8,19 @@ use App\models\forms_00\formdata_00;
 class Formdata00 extends Component
 {
 
+    protected $listeners = ['selectedProjectID'];
+    public $searchQuery,$selectedProjectID;
 
-    public $searchQuery;
+    public function selectedProjectID($id)
+    {
+        # code...
+        $this->selectedProjectID = $id;
+    }
 
     public function mount()
     {
         $this->searchQuery = '';
+        $this->selectedProjectID = 1;
     }
 
 
@@ -24,6 +31,7 @@ class Formdata00 extends Component
             ->join('departments','departments.idepartment_id','=','formdata_00s.idepartment_id_fk')
             ->join('documents','documents.document_id','=','formdata_00s.document_id_fk')
             ->join('projects','projects.iproject_id','=','formdata_00s.iproject_id_fk')
+            ->where('formdata_00s.iproject_id_fk', $this->selectedProjectID)
             ->when($this->searchQuery != '', function ($query) {
                 $query->where('formdata_00s.bactive', '1')
                     ->where('document_name', 'like', '%' . $this->searchQuery . '%')

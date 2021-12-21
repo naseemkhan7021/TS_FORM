@@ -21,19 +21,19 @@
 
 <script>
     window.addEventListener('OpenAddCountryModal', function(){
-         $('.addCompany').find('span').html('');
-         $('.addCompany').find('form')[0].reset();
-         $('.addCompany').modal('show');
+         $('.addInjuryto').find('span').html('');
+         $('.addInjuryto').find('form')[0].reset();
+         $('.addInjuryto').modal('show');
     });
 
     window.addEventListener('CloseAddCountryModal', function(){
-        $('.addCompany').find('span').html('');
-        $('.addCompany').find('form')[0].reset();
-        $('.addCompany').modal('hide');
+        $('.addInjuryto').find('span').html('');
+        $('.addInjuryto').find('form')[0].reset();
+        $('.addInjuryto').modal('hide');
 
         Swal.fire(
             'Well Done!',
-            'New Company Has been Saved Successfully !',
+            'New Potential Injury To Has been Saved Successfully !',
             'success'
             );
 
@@ -41,18 +41,18 @@
     });
 
     window.addEventListener('OpenEditCountryModal', function(event){
-        $('.editCompany').find('span').html('');
-        $('.editCompany').modal('show');
+        $('.editInjuryto').find('span').html('');
+        $('.editInjuryto').modal('show');
     });
 
     window.addEventListener('CloseEditCountryModal', function(event){
-        $('.editCompany').find('span').html('');
-        $('.editCompany').find('form')[0].reset();
-        $('.editCompany').modal('hide');
+        $('.editInjuryto').find('span').html('');
+        $('.editInjuryto').find('form')[0].reset();
+        $('.editInjuryto').modal('hide');
 
         Swal.fire(
             'Good job!',
-            'Company Has been Updated Successfully !',
+            'Potential Injury To Has been Updated Successfully !',
             'success'
             );
         // alert('Company Has been Updated Successfully');

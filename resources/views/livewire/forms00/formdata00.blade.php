@@ -2,7 +2,7 @@
     @php $button_title = 'Add New Section Index' @endphp
     @php $data_not_found = 'No Section Index Data Found' @endphp
 
-
+    {{-- {{  $selectedProjectID }} --}}
     <div class="row">
         <div class="col-sm-8">
             <div class="text-sm-left">
@@ -15,11 +15,13 @@
         </div>
     </div>
 
+    {{-- projectid -> {{ $selectedProjectID }} --}}
 
     <table class="table display table-bordered data-table" style="width:100%">
         <thead>
             <tr>
                 <th>#</th>
+                <th>Project Name</th>
                 <th>Document Name</th>
                 <th>Document Code.</th>
                 <th>Counter</th>
@@ -31,6 +33,7 @@
             @forelse ( $formdata00 as  $row )
                 <tr>
                     <td>{{ $row->sr_no }}</td>
+                    <td>{{ $row->sproject_name  }}</td>
                     <td>{{ $row->document_name  }}</td>
                     <td>{{ $row->document_code }}</td>
                     <td>{{ $row->counter }}</td>
