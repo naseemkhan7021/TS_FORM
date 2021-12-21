@@ -12,7 +12,7 @@ class formdata_00 extends Model
     protected $primaryKey = 'formdata_00s_id';
     protected $table = 'formdata_00s';
     protected $fillable = [
-        'ibc_id_fk', 'idepartment_id_fk','iproject_id_fk','document_id_fk','sr_no' , 'document_name' , 'document_code'
+        'ibc_id_fk', 'idepartment_id_fk','iproject_id_fk','document_id_fk','sr_no' , 'document_name' , 'document_code','counter'
     ];
 
 }

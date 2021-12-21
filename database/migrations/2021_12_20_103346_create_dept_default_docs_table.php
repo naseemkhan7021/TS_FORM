@@ -13,18 +13,20 @@ class CreateDeptDefaultDocsTable extends Migration
      */
     public function up()
     {
-        Schema::create('dept_default_docs', function (Blueprint $table) {
-            $table->id('ddd_id');
-            $table->integer('sr_no')->default(0);
-            $table->string('document_name', 191)->nullable();
-            $table->string('document_code', 10)->nullable();
+        if (!Schema::hasTable('dept_default_docs')) {
+            Schema::create('dept_default_docs', function (Blueprint $table) {
+                $table->id('ddd_id');
+                $table->integer('sr_no')->default(0);
+                $table->string('document_name', 191)->nullable();
+                $table->string('document_code', 10)->nullable();
 
-            $table->boolean('bactive')->default(true);
-            $table->integer('user_created')->default(0);
-            $table->integer('user_updated')->default(0);
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
-        });
+                $table->boolean('bactive')->default(true);
+                $table->integer('user_created')->default(0);
+                $table->integer('user_updated')->default(0);
+                $table->timestamp('created_at')->useCurrent();
+                $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+            });
+        }
     }
 
     /**

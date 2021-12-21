@@ -17,6 +17,8 @@
 
     {{-- projectid -> {{ $selectedProjectID }} --}}
 
+    session -> {{session('globleSelectedProjectID')}}
+
     <table class="table display table-bordered data-table" style="width:100%">
         <thead>
             <tr>

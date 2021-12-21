@@ -5,6 +5,9 @@ if ($iproject_id_fk) {
         ->where('iproject_id', '=', $iproject_id_fk)
         ->get();
     $this->sproject_location = $sproject_location_obj[0]->sproject_location;
+    // session_start();
+    // $_SESSION['favcolor'] = 'green';
+    // echo $_SESSION['favcolor']
 }
 @endphp
 
@@ -23,6 +26,8 @@ if ($iproject_id_fk) {
             <input wire:model="searchQuery" type="text" placeholder="Search..." class="form-control" >
         </div>
     </div>
+
+    session -> {{session('globleSelectedProjectID')}}
 
     <table class="table display table-bordered data-table text-center" style="width:100%">
         <thead>

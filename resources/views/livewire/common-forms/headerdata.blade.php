@@ -73,12 +73,12 @@
                 {{-- {{  $projects }} --}}
 
 
-                <li class="d-none d-xl-block" style="line-height: 5">
+                <li class="d-none d-xl-block " style="line-height: 5">
                     <select wire:change='setProjectId()'
                         style="text-transform: capitalize ;background: none;letter-spacing: 1px; border: unset; color: rgba(255, 255, 255, 0.6); font-weight: 800; font-size: 1rem"
                         name="" id="" wire:model="selectedProjectID">
                         @foreach ($projects as $item)
-                            <option style="background: #6c757d; padding: 1rem" value="{{ $item->iproject_id }}">
+                            <option  style="background: #6c757d; padding: 1rem" value="{{ $item->iproject_id }}">
                                 {{ $item->sproject_name }} {{ $item->sproject_location }} </option>
                         @endforeach
                     </select>

@@ -13,10 +13,12 @@ class CreateFormdata18sTable extends Migration
      */
     public function up()
     {
-        Schema::create('formdata_18s', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('formdata_18s')) {
+            Schema::create('formdata_18s', function (Blueprint $table) {
+                $table->id();
+                $table->timestamps();
+            });
+        }
     }
 
     /**

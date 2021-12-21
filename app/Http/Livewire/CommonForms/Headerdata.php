@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class Headerdata extends Component
 {
-    public $selectedProjectID = 1;
+    public $selectedProjectID;
 
     public  function mount()
     {
-        $this->selectedProjectID = 1;
+        $this->selectedProjectID = session()->has('globleSelectedProjectID') && session('globleSelectedProjectID') ? session('globleSelectedProjectID') : 1;
     }
 
     public function render()
@@ -40,5 +40,6 @@ class Headerdata extends Component
     {
         # code...
         $this->emit('selectedProjectID',$this->selectedProjectID);
+        session(['globleSelectedProjectID'=>$this->selectedProjectID]);
     }
 }
