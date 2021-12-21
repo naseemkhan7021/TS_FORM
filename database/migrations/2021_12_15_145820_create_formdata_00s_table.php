@@ -32,6 +32,7 @@ class CreateFormdata00sTable extends Migration
                 $table->tinyInteger('sr_no');
                 $table->string('document_name', 150);
                 $table->string('document_code', 20);
+                $table->tinyInteger('counter');
 
 
                 // general values

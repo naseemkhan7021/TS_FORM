@@ -346,7 +346,7 @@
                         <div class="collapse" id="sidebarForm00">
                             <ul class="nav-second-level">
                                 <li>
-                                    <a href="#"> Forms 00 </a>
+                                    <a href="{{ route('form00_data') }}"> Forms 00 </a>
                                 </li>
 
                             </ul>
@@ -484,13 +484,13 @@
                         <div class="collapse" id="sidebarForm17">
                             <ul class="nav-second-level">
                                 <li>
-                                    <a href='{{route('form17_formdata17')}}'> Forms 17 </a>
+                                    <a href=#'> Forms 17 </a>
                                 </li>
                                 <li>
-                                    <a href='{{route('form17_substandaction')}}'> Substandard Actions </a>
+                                    <a href='#'> Substandard Actions </a>
                                 </li>
                                 <li>
-                                    <a href='{{route('form17_substandcondition')}}'> Substandard Conditions </a>
+                                    <a href='#'> Substandard Conditions </a>
                                 </li>
 
                             </ul>

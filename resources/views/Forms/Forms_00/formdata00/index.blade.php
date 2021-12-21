@@ -1,12 +1,12 @@
-@extends('template.vertical', ['title' => 'T&S Potential Injury To'])
+@extends('template.vertical', ['title' => 'T&S - Section Form'])
 
 @section('content')
 
 <div class="container-fluid pl-3 pr-3">
 
     <!-- start page title -->
-        @livewire('page-title', [ 'sub_title' => 'Forms' , 'active_title' => 'Potential Injury To' , 'page_title' => 'Potential Injury To'  ])
-        @livewire('common-forms.injury-to')
+        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Section Form' , 'page_title' => 'Section Form'  ])
+        @livewire('forms00.formdata00')
     <!-- end page title -->
 
 
@@ -21,41 +21,41 @@
 
 <script>
     window.addEventListener('OpenAddCountryModal', function(){
-         $('.addInjuryto').find('span').html('');
-         $('.addInjuryto').find('form')[0].reset();
-         $('.addInjuryto').modal('show');
+         $('.addFormdata').find('span').html('');
+         $('.addFormdata').find('form')[0].reset();
+         $('.addFormdata').modal('show');
     });
 
     window.addEventListener('CloseAddCountryModal', function(){
-        $('.addInjuryto').find('span').html('');
-        $('.addInjuryto').find('form')[0].reset();
-        $('.addInjuryto').modal('hide');
+        $('.addFormdata').find('span').html('');
+        $('.addFormdata').find('form')[0].reset();
+        $('.addFormdata').modal('hide');
 
         Swal.fire(
             'Well Done!',
-            'New Potential Injury To Has been Saved Successfully !',
+            'New <b>Section Form</b> Has been Saved Successfully !',
             'success'
             );
 
-        // alert('New Company Has been Saved Successfully');
+        // alert('New Activity Has been Saved Successfully');
     });
 
     window.addEventListener('OpenEditCountryModal', function(event){
-        $('.editInjuryto').find('span').html('');
-        $('.editInjuryto').modal('show');
+        $('.editFormdata').find('span').html('');
+        $('.editFormdata').modal('show');
     });
 
     window.addEventListener('CloseEditCountryModal', function(event){
-        $('.editInjuryto').find('span').html('');
-        $('.editInjuryto').find('form')[0].reset();
-        $('.editInjuryto').modal('hide');
+        $('.editFormdata').find('span').html('');
+        $('.editFormdata').find('form')[0].reset();
+        $('.editFormdata').modal('hide');
 
         Swal.fire(
             'Good job!',
-            'Potential Injury To Has been Updated Successfully !',
+            '<b>Section Form</b> Has been Updated Successfully !',
             'success'
             );
-        // alert('Company Has been Updated Successfully');
+        // alert('Activity Has been Updated Successfully');
     });
 
     window.addEventListener('SwalConfirm', function(event){
@@ -80,7 +80,7 @@
     })
 
     window.addEventListener('deleted', function(event){
-        alert('Company record has been deleted');
+        alert('Section Form record has been deleted');
     });
 
     window.addEventListener('swal:deleteCountries', function(event){

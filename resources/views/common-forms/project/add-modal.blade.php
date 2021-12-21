@@ -27,31 +27,31 @@
 
                     <div class="form-group">
                         <label for="">Department</label>
-                        <select class="form-control" wire:model="ibc_id_fk">
+                        <select class="form-control" wire:model="idepartment_id_fk">
                             <option value="">No selected</option>
-                            @foreach ($companydata as $comdata )
-                                <option value="{{ $comdata->ibc_id }}">{{ $comdata->sbc_company_name }}</option>
+                            @foreach ($formsDepartment as $deptdata )
+                                <option value="{{ $deptdata->idepartment_id }}">{{ $deptdata->sdepartment_name }}</option>
                             @endforeach
 
                         </select>
-                        <span class="text-danger"> @error('ibc_id_fk') {{ $message }} @enderror</span>
+                        <span class="text-danger"> @error('idepartment_id_fk') {{ $message }} @enderror</span>
                     </div>
 
 
                      <div class="form-group">
                          <label for="">Project Description</label>
-                         <input type="text" class="form-control" placeholder="Project Description" wire:model="Project_description">
-                         <span class="text-danger"> @error('Project_description') {{ $message }}@enderror</span>
+                         <input type="text" class="form-control" placeholder="Project Description" wire:model="sproject_name">
+                         <span class="text-danger"> @error('sproject_name') {{ $message }}@enderror</span>
                      </div>
                      <div class="form-group">
                          <label for="">Project Abbrivation</label>
-                         <input type="text" class="form-control" placeholder="Project Abbrivation" wire:model="Project_abbr">
-                         <span class="text-danger"> @error('Project_abbr') {{ $message }}@enderror</span>
+                         <input type="text" class="form-control" placeholder="Project Abbrivation" wire:model="sproject_abbr">
+                         <span class="text-danger"> @error('sproject_abbr') {{ $message }}@enderror</span>
                      </div>
                      <div class="form-group">
                         <label for="">Project Location</label>
-                        <input type="text" class="form-control" placeholder="Project Location" wire:model="upd_Project_abbr">
-                        <span class="text-danger"> @error('upd_Project_abbr') {{ $message }}@enderror</span>
+                        <input type="text" class="form-control" placeholder="Project Location" wire:model="sproject_location">
+                        <span class="text-danger"> @error('sproject_location') {{ $message }}@enderror</span>
                     </div>
 
                      <div class="form-group">

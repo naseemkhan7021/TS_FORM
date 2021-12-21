@@ -52,14 +52,14 @@
             @forelse ( $defaultvalues as  $dv )
 
 
-                <li class="d-none d-xl-block">
-                    {{-- <input type="text" class="form-control" value="{{ $defaultvalues[0]->sbc_company_name }}"   placeholder="Company Name" wire:model="company_name"> --}}
+                {{-- <li class="d-none d-xl-block">
+                    <input type="text" class="form-control" value="{{ $defaultvalues[0]->sbc_company_name }}"   placeholder="Company Name" wire:model="company_name">
                     <a style="text-transform: capitalize ;color: rgb(0, 162, 255);letter-spacing: 1px; font-weight: 800; font-size: 1rem;"
                         class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"
                         role="button" aria-haspopup="false" aria-expanded="false">
                         {{ $dv->sbc_company_name }}
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="d-none d-xl-block">
                     {{-- <input type="text" class="form-control" value="{{ $defaultvalues[0]->sdepartment_name }}" placeholder="Company Name" wire:model="company_name"> --}}
@@ -70,17 +70,20 @@
                     </a>
                 </li>
 
+                {{-- {{  $projects }} --}}
+
+
                 <li class="d-none d-xl-block" style="line-height: 5">
-                    <select
+                    <select wire:change='setProjectId()'
                         style="text-transform: capitalize ;background: none;letter-spacing: 1px; border: unset; color: rgba(255, 255, 255, 0.6); font-weight: 800; font-size: 1rem"
-                        name="" id="">
+                        name="" id="" wire:model="selectedProjectID">
                         @foreach ($projects as $item)
                             <option style="background: #6c757d; padding: 1rem" value="{{ $item->iproject_id }}">
                                 {{ $item->sproject_name }} {{ $item->sproject_location }} </option>
                         @endforeach
                     </select>
                 </li>
-
+                {{-- {{ $selectedProjectID }} --}}
         </ul>
     @empty
 

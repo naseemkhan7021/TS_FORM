@@ -2,18 +2,21 @@
 
 namespace App\Http\Livewire\CommonForms;
 
-use App\Models\common_forms\Projects as Formsprojects;
-use App\Models\common_forms\Department as Formsdepartment;
+use Livewire\Component;
+use Illuminate\Support\Facades\DB;
 use App\Models\common_forms\Company;
 
-use Livewire\Component;
+use App\Models\common_forms\Projects as Formsprojects;
+use App\Models\common_forms\Department as Formsdepartment;
+use App\Models\forms_00\formdata_00;
+use PHPUnit\TextUI\XmlConfiguration\CodeCoverage\Report\Php;
 
 class Projects extends Component
 {
 
     public $searchQuery;
-    public $sproject_name, $sproject_abbr,$sproject_location;
-    public $cid, $upd_sproject_name, $upd_sproject_abbr,$upd_sproject_location;
+    public $sproject_name, $sproject_abbr,$sproject_location ,$idepartment_id_fk ,$ibc_id_fk;
+    public $cid, $upd_sproject_name, $upd_sproject_abbr,$upd_sproject_location , $upd_idepartment_id_fk ,$upd_ibc_id_fk;
 
     public function mount()
     {
@@ -58,14 +61,51 @@ class Projects extends Component
         $this->validate([
             'sproject_name' => 'required',
             'sproject_abbr' => 'required',
-            'sproject_location'=>'required'
+            'sproject_location'=>'required',
+            'ibc_id_fk'=>'required',
+            'idepartment_id_fk'=>'required',
+
         ]);
 
         $save = Formsprojects::insert([
+            'ibc_id_fk' => $this->ibc_id_fk,
+            'idepartment_id_fk' => $this->idepartment_id_fk,
             'sproject_abbr' => $this->sproject_abbr,
             'sproject_name' => $this->sproject_name,
             'sproject_location' => $this->sproject_location,
         ]);
+
+
+
+        // Add data to form 00 Section V
+        $usp_paytempID = DB::getPdo()->lastInsertId();
+        $templatedata = DB::table('dept_default_docs')->get();
+        $iCounter = 1;
+
+
+
+        foreach( $templatedata as $tempdate )
+        {
+            $savebody = formdata_00::insert([
+                'ibc_id_fk' => $this->ibc_id_fk,
+                'idepartment_id_fk' => $this->idepartment_id_fk,
+                'iproject_id_fk' => $usp_paytempID,
+                'document_id_fk' => 1,
+                'sr_no' => $iCounter,
+                'document_name' => $tempdate->document_name,
+                'document_code' => $tempdate->document_code,
+                'counter' => 0,
+
+            ]);
+            $iCounter = $iCounter + 1;
+        }
+
+
+
+
+
+
+
 
         if ($save) {
             # code...
@@ -77,6 +117,8 @@ class Projects extends Component
     {
         # code...
         $info = Formsprojects::find($iproject_id);
+        $this->upd_idepartment_id_fk = $info->idepartment_id_fk;
+        $this->upd_ibc_id_fk = $info->ibc_id_fk;
 
         $this->upd_sproject_name = $info->sproject_name;
         $this->upd_sproject_abbr = $info->sproject_abbr;
