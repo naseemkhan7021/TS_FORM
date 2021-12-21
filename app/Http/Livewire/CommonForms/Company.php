@@ -174,7 +174,7 @@ class Company extends Component
                 // unlink("uploads/".$this->sbc_logo_small_path);
             }
             //small Image
-            $this->sbc_logo_small_path = $log_small_or_large_path->storeAs('public/photos/logo/small/', $fileNameToStore);
+            $this->sbc_logo_small_path = $log_small_or_large_path->storeAs('public/photos/logo/small', $fileNameToStore);
         }
         if ($size_small_or_large == 'large') {
 
@@ -183,7 +183,7 @@ class Company extends Component
                 // dd($this->sbc_logo_large_path);
             }
             //large Image
-            $this->sbc_logo_large_path = $log_small_or_large_path->storeAs('public/photos/logo/large/', $fileNameToStore);
+            $this->sbc_logo_large_path = $log_small_or_large_path->storeAs('public/photos/logo/large', $fileNameToStore);
         }
     }
 
