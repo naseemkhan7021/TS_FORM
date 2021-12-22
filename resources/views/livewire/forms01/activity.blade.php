@@ -29,7 +29,7 @@
         <tbody>
             @forelse ( $activitydata as  $row )
                 <tr>
-                    <td>{{ $row->activity_id }}</td>
+                    <td>{{ $activitydata->firstItem()+$loop->index}}</td>
                     <td>{{ $row->activity_description  }}</td>
                     <td>{{ $row->activity_abbr }}</td>
                     <td>{{ $row->created_at }}</td>

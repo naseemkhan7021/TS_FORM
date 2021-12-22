@@ -8,6 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
+                <div class="" wire:loading.delay.longest>Loading....</div>
                  <form wire:submit.prevent="save">
 
 

@@ -15,6 +15,5 @@ class sub_activity extends Model
         'sub_activity_description',
         'sub_activity_abbr',
         'activity_id_fk',
-
      ];
 }

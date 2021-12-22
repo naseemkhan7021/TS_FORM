@@ -1,6 +1,6 @@
 @php
 $obj =  DB::table('companies')
-        ->where('ibc_id', '=', $defaultCompany)
+        ->where('ibc_id', '=', 1)
         ->get();
 // DB::table('companies')->get()
 $logo = $obj[0]->sbc_logo_small;

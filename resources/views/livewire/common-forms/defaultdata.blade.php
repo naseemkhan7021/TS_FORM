@@ -1,12 +1,12 @@
 <div>
     @php $button_title = 'Add New Default Data' @endphp
     @php $data_not_found = 'No Default Data Found' @endphp
-
+    @php($AddWarningMassege = 'If_Want_Another_Data_Than_First_Delete_Below_Data')
 
     <div class="row">
         <div class="col-sm-8">
             <div class="text-sm-left">
-                <button class="btn btn-danger waves-effect waves-light mb-2" wire:click="OpenAddCountryModal()"> {{ $button_title }} </button>
+                <button {{$addDefaultdata == false ? "disabled title={$AddWarningMassege}" : ''}}  class="btn btn-danger waves-effect waves-light mb-2" wire:click="OpenAddCountryModal()"> {{ $button_title }} </button>
                 <button type="button" class="btn btn-success waves-effect waves-light mb-2 mr-1"><i class="mdi mdi-cog"></i></button>
             </div>
         </div>
@@ -21,8 +21,9 @@
             <tr>
                 <th>#</th>
                 <th>Company Name</th>
-                <th>Department Name.</th>
+                <th>Department Name</th>
                 <th>Project Name</th>
+                <th>Description</th>
 
                 <th>Created Date</th>
                 <th>Action</th>
@@ -31,17 +32,16 @@
         <tbody>
             @forelse ( $formsDefaultdata as  $row )
                 <tr>
-                    <td>{{ $row->ibc_id }}</td>
+                    <td>{{ ++$loop->index }}</td>
                     <td>{{ $row->sbc_company_name }}</td>
-                    <td>{{ $row->sbc_abbr }}</td>
-                    <td>{{ $row->sbc_logo_small }}</td>
-                    <td>{{ $row->sbc_logo_large }}</td>
-                    <td>{{ $row->validupto_dt }}</td>
+                    <td>{{ $row->sdepartment_name }}</td>
+                    <td>{{ $row->sproject_name }}</td>
+                    <td>{{ $row->description}}</td>
                     <td>{{ $row->created_at }}</td>
                     <td>
                         <div class="btn-group">
-                            <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->ibc_id}})">Edit</button>
-                            <button class="btn btn-danger btn-sm" wire:click="deleteConfirm({{$row->ibc_id}})">Delete</button>
+                            <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->idefault_id}})">Edit</button>
+                            <button class="btn btn-danger btn-sm" wire:click="deleteConfirm({{$row->idefault_id}})">Delete</button>
 
                         </div>
                     </td>
@@ -56,7 +56,7 @@
     </table>
 
 
-    @include('common-forms.company.add-modal')
-    @include('common-forms.company.edit-modal')
+    @include('common-forms.defaultdata.add-modal')
+    @include('common-forms.defaultdata.edit-modal')
 
 </div>

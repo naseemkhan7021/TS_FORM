@@ -363,7 +363,7 @@
                         <div class="collapse" id="sidebarForm01">
                             <ul class="nav-second-level">
                                 <li>
-                                    <a href="#"> Forms 01 </a>
+                                    <a href="{{route('form01_formdata01')}}"> Forms 01 </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('form01_activity') }}"> Activity </a>

@@ -4,10 +4,12 @@ namespace App\Http\Livewire\Forms01;
 
 use Livewire\Component;
 use App\Models\forms_01\Activity as ActivityModel;
+use Livewire\WithPagination;
 
 class Activity extends Component
 {
 
+    use WithPagination;
     public $searchQuery;
     public $activity_description, $activity_abbr;
     public $cid, $upd_activity_description, $upd_activity_abbr;
@@ -28,7 +30,7 @@ class Activity extends Component
                 ->where('activity_description', 'like', '%' . $this->searchQuery . '%')
                 ->orWhere('activity_abbr', 'like', '%' . $this->searchQuery . '%');
         })
-            ->orderBy('activity_id', 'desc')->paginate(10);
+            ->orderBy('activity_id', 'asc')->paginate(30);
 
 
         return view('livewire.forms01.activity', [

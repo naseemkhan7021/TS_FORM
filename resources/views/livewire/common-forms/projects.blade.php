@@ -1,6 +1,6 @@
 <div>
-    @php $button_title = 'Add New Company' @endphp
-    @php $data_not_found = 'No Company Data Found' @endphp
+    @php $button_title = 'Add New Projects' @endphp
+    @php $data_not_found = 'No Projects Data Found' @endphp
 
 
     <div class="row">

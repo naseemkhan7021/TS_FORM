@@ -12,7 +12,8 @@ class Headerdata extends Component
 
     public  function mount()
     {
-        $this->selectedProjectID = session()->has('globleSelectedProjectID') && session('globleSelectedProjectID') ? session('globleSelectedProjectID') : 1;
+        $this->selectedProjectID = session()->has('globleSelectedProjectID') && session('globleSelectedProjectID') ? session('globleSelectedProjectID') : Project::get()[0]->iproject_id;
+        
     }
 
     public function render()
@@ -26,8 +27,8 @@ class Headerdata extends Component
         ->where('defaultdatas.bactive','1')
         ->get();
 
-        $projects = Project::all();
-
+        $projects = Project::get();
+        // dd($this->selectedProjectID);
         // dd($defaultvalues);
 
         return view('livewire.common-forms.headerdata',[

@@ -85,6 +85,7 @@ Route::get('/injuryto', [CommonformController::class, 'index_InjuryTo'])->name('
 
 Route::get('/form00_data', [Form00Controller::class, 'index_formdata'])->name('form00_data');
 
+Route::get('/form01_formdata01', [Form01Controller::class, 'index_formdata01'])->name('form01_formdata01');
 Route::get('/form01_activity', [Form01Controller::class, 'index_activity'])->name('form01_activity');
 Route::get('/form01_preventiveincidentcontrol', [Form01Controller::class, 'index_preventiveincidentcontrol'])->name('form01_preventiveincidentcontrol');
 Route::get('/form01_potentialhazard', [Form01Controller::class, 'index_potentialhazard'])->name('form01_potentialhazard');

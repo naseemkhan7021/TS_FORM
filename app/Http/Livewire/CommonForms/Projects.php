@@ -15,8 +15,8 @@ class Projects extends Component
 {
 
     public $searchQuery;
-    public $sproject_name, $sproject_abbr,$sproject_location ,$idepartment_id_fk ,$ibc_id_fk;
-    public $cid, $upd_sproject_name, $upd_sproject_abbr,$upd_sproject_location , $upd_idepartment_id_fk ,$upd_ibc_id_fk;
+    public $sproject_name, $sproject_abbr, $sproject_location, $idepartment_id_fk, $ibc_id_fk;
+    public $cid, $upd_sproject_name, $upd_sproject_abbr, $upd_sproject_location, $upd_idepartment_id_fk, $upd_ibc_id_fk;
 
     public function mount()
     {
@@ -40,12 +40,13 @@ class Projects extends Component
                     ->orWhere('sproject_location', 'like', '%' . $this->searchQuery . '%');
             })->get();
 
-        return view('livewire.common-forms.projects',[
-            'formsProjects'=>$formsProjects , 'companydata' => $companydata , 'formsDepartment' => $formsDepartment ,
+        return view('livewire.common-forms.projects', [
+            'formsProjects' => $formsProjects, 'companydata' => $companydata, 'formsDepartment' => $formsDepartment,
         ]);
     }
 
-    public function OpenAddCountryModal(){
+    public function OpenAddCountryModal()
+    {
         $this->sproject_name = '';
         $this->sproject_abbr = '';
         $this->sproject_location = '';
@@ -61,9 +62,9 @@ class Projects extends Component
         $this->validate([
             'sproject_name' => 'required',
             'sproject_abbr' => 'required',
-            'sproject_location'=>'required',
-            'ibc_id_fk'=>'required',
-            'idepartment_id_fk'=>'required',
+            'sproject_location' => 'required',
+            'ibc_id_fk' => 'required',
+            'idepartment_id_fk' => 'required',
 
         ]);
 
@@ -75,41 +76,31 @@ class Projects extends Component
             'sproject_location' => $this->sproject_location,
         ]);
 
-
-
-        // Add data to form 00 Section V
-        $usp_paytempID = DB::getPdo()->lastInsertId();
-        $templatedata = DB::table('dept_default_docs')->get();
-        $iCounter = 1;
-
-
-
-        foreach( $templatedata as $tempdate )
-        {
-            $savebody = formdata_00::insert([
-                'ibc_id_fk' => $this->ibc_id_fk,
-                'idepartment_id_fk' => $this->idepartment_id_fk,
-                'iproject_id_fk' => $usp_paytempID,
-                'document_id_fk' => 1,
-                'sr_no' => $iCounter,
-                'document_name' => $tempdate->document_name,
-                'document_code' => $tempdate->document_code,
-                'counter' => 0,
-
-            ]);
-            $iCounter = $iCounter + 1;
-        }
-
-
-
-
-
-
-
-
         if ($save) {
             # code...
-            $this->dispatchBrowserEvent('CloseAddCountryModal');
+            // Add data to form 00 Section V
+            $usp_paytempID = DB::getPdo()->lastInsertId();
+            $templatedata = DB::table('dept_default_docs')->get();
+            $iCounter = 1;
+
+            foreach ($templatedata as $tempdate) {
+                $savebody = formdata_00::insert([
+                    'ibc_id_fk' => $this->ibc_id_fk,
+                    'idepartment_id_fk' => $this->idepartment_id_fk,
+                    'iproject_id_fk' => $usp_paytempID,
+                    'document_id_fk' => 1,
+                    'sr_no' => $iCounter,
+                    'document_name' => $tempdate->document_name,
+                    'document_code' => $tempdate->document_code,
+                    'counter' => 0,
+
+                ]);
+                ++$iCounter;
+            }
+            if ($savebody) {
+                # code...
+                $this->dispatchBrowserEvent('CloseAddCountryModal');
+            }
         }
     }
 
@@ -164,6 +155,7 @@ class Projects extends Component
             'html' => 'You want to delete <strong>' . $info->sproject_name . '</string>',
             'iproject_id' => $iproject_id
         ]);
+        $this->delete($iproject_id);
     }
 
     public function delete($iproject_id)

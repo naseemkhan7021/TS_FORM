@@ -22,7 +22,7 @@ class Formdata15 extends Component
 
     public $searchQuery, $role, $doincident_dt, $sproject_location, $showOtherInput,$d;
     public $iproject_id_fk, $potential_injurytos_fk, $report_no, $potential_injurytos_other, $nature_of_potential_injuries_ids, $nature_of_potential_injuries_other, $activity15s_ids, $details_of_nearmiss, $imdcause15s_ids, $imdcause15s_other, $contributing_causes_ids, $contributing_causes_other, $whyunsafeact_committeds_ids, $whyunsafeact_committeds_other, $imd_actions_ids, $imd_corrections_ids, $further_recommended_action, $completed_by_name, $completed_by_signature, $completed_date;
-    public $cid;
+    public $cid,$selectedProjectID;
 
 
     public function selectedProjectID($id)

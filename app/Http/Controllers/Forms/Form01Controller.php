@@ -91,6 +91,10 @@ class Form01Controller extends Controller
     // Sub Modules Used in the Main form
 
 
+    public function index_formdata01()
+    {
+        return view('forms.forms_01.formdata01.index');
+    }
     public function index_activity()
     {
         return view('forms.forms_01.activity.index');

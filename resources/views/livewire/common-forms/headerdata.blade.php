@@ -17,7 +17,13 @@
                 <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
             </span>
             <span class="logo-lg">
-                <img src="{{ Storage::url($defaultvalues[0]->sbc_logo_small) }}" alt="" height="20">
+
+                @if (count($defaultvalues) > 0)
+                    <img src="{{ Storage::url($defaultvalues[0]->sbc_logo_small) }}" alt="companylogo" height="20">
+                @else
+                    No Default logo
+                @endif
+
             </span>
         </a>
     </div>
@@ -47,48 +53,36 @@
                 <!-- End mobile menu toggle-->
             </li>
 
-
-            {{-- {{  $defaultvalues }} --}}
-            @forelse ( $defaultvalues as  $dv )
-
-
-                {{-- <li class="d-none d-xl-block">
-                    <input type="text" class="form-control" value="{{ $defaultvalues[0]->sbc_company_name }}"   placeholder="Company Name" wire:model="company_name">
-                    <a style="text-transform: capitalize ;color: rgb(0, 162, 255);letter-spacing: 1px; font-weight: 800; font-size: 1rem;"
-                        class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"
-                        role="button" aria-haspopup="false" aria-expanded="false">
-                        {{ $dv->sbc_company_name }}
-                    </a>
-                </li> --}}
-
-                <li class="d-none d-xl-block">
-                    {{-- <input type="text" class="form-control" value="{{ $defaultvalues[0]->sdepartment_name }}" placeholder="Company Name" wire:model="company_name"> --}}
-                    <a style="text-transform: capitalize ;color: red;letter-spacing: 1px; font-weight: 800; font-size: 1rem"
-                        class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"
-                        role="button" aria-haspopup="false" aria-expanded="false">
-                        {{ $dv->sdepartment_name }}
-                    </a>
-                </li>
-
-                {{-- {{  $projects }} --}}
+            <li class="d-none d-xl-block">
+                <a style="text-transform: capitalize ;color: red;letter-spacing: 1px; font-weight: 800; font-size: 1rem"
+                    class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"
+                    role="button" aria-haspopup="false" aria-expanded="false">
+                    {{ count($defaultvalues) > 0 ? $defaultvalues[0]->sdepartment_name : 'No Default Comapany' }}
+                    {{-- {{}} --}}
+                </a>
+            </li>
+            {{-- {{  dd($projects) }} --}}
 
 
-                <li class="d-none d-xl-block " style="line-height: 5">
-                    <select wire:change='setProjectId()'
-                        style="text-transform: capitalize ;background: none;letter-spacing: 1px; border: unset; color: rgba(255, 255, 255, 0.6); font-weight: 800; font-size: 1rem"
-                        name="" id="" wire:model="selectedProjectID">
-                        @foreach ($projects as $item)
-                            <option  style="background: #6c757d; padding: 1rem" value="{{ $item->iproject_id }}">
-                                {{ $item->sproject_name }} {{ $item->sproject_location }} </option>
-                        @endforeach
-                    </select>
-                </li>
-                {{-- {{ $selectedProjectID }} --}}
+            <li class="d-none d-xl-block " style="line-height: 5">
+                <select wire:change='setProjectId()'
+                    style="text-transform: capitalize ;background: none;letter-spacing: 1px; border: unset; color: rgba(255, 255, 255, 0.6); font-weight: 800; font-size: 1rem"
+                    name="" id="" wire:model="selectedProjectID">
+                    {{-- @foreach ($projects as $item)
+                        <option style="background: #6c757d; padding: 1rem" value="{{ $item->iproject_id }}">
+                            {{ $item->sproject_name }} {{ $item->sproject_location }} </option>
+                    @endforeach --}}
+
+                    @forelse ($projects as $item)
+                        <option style="background: #6c757d; padding: 1rem" value="{{ $item->iproject_id }}">
+                            {{ $item->sproject_name }} {{ $item->sproject_location }} </option>
+                    @empty
+                        <option value="0">No project add</option>
+                    @endforelse
+                </select>
+            </li>
+            {{-- {{ $selectedProjectID }} --}}
         </ul>
-    @empty
-
-        @endforelse
-
     </div>
 
 </div>

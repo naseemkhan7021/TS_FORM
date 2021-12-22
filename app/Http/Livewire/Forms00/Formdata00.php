@@ -20,7 +20,7 @@ class Formdata00 extends Component
     public function mount()
     {
         $this->searchQuery = '';
-        $this->selectedProjectID = 1;
+        // $this->selectedProjectID = 1;
     }
 
 
@@ -31,21 +31,13 @@ class Formdata00 extends Component
             ->join('departments','departments.idepartment_id','=','formdata_00s.idepartment_id_fk')
             ->join('documents','documents.document_id','=','formdata_00s.document_id_fk')
             ->join('projects','projects.iproject_id','=','formdata_00s.iproject_id_fk')
-            ->where('formdata_00s.iproject_id_fk', $this->selectedProjectID)
+            ->where('formdata_00s.iproject_id_fk', session('globleSelectedProjectID'))
             ->when($this->searchQuery != '', function ($query) {
                 $query->where('formdata_00s.bactive', '1')
                     ->where('document_name', 'like', '%' . $this->searchQuery . '%')
                     ->orWhere('document_code', 'like', '%' . $this->searchQuery . '%');
             })
             ->orderBy('sr_no')->get();
-
-
-        // $formdata00 = formdata_00::when($this->searchQuery != '', function ($query) {
-        //     $query->where('formdata_00s.bactive', '1')
-        //         ->where('document_name', 'like', '%' . $this->searchQuery . '%')
-        //         ->orWhere('document_code', 'like', '%' . $this->searchQuery . '%');
-        // })
-        // ->get();
 
 
 

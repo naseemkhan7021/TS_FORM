@@ -21,41 +21,41 @@
 
 <script>
     window.addEventListener('OpenAddCountryModal', function(){
-         $('.addGender').find('span').html('');
-         $('.addGender').find('form')[0].reset();
-         $('.addGender').modal('show');
+         $('.addDefaultdata').find('span').html('');
+         $('.addDefaultdata').find('form')[0].reset();
+         $('.addDefaultdata').modal('show');
     });
 
     window.addEventListener('CloseAddCountryModal', function(){
-        $('.addGender').find('span').html('');
-        $('.addGender').find('form')[0].reset();
-        $('.addGender').modal('hide');
+        $('.addDefaultdata').find('span').html('');
+        $('.addDefaultdata').find('form')[0].reset();
+        $('.addDefaultdata').modal('hide');
 
         Swal.fire(
             'Well Done!',
-            'New Gender Has been Saved Successfully !',
+            'New Defaultdata Has been Saved Successfully !',
             'success'
             );
 
-        // alert('New Gender Has been Saved Successfully');
+        // alert('New Defaultdata Has been Saved Successfully');
     });
 
     window.addEventListener('OpenEditCountryModal', function(event){
-        $('.editGender').find('span').html('');
-        $('.editGender').modal('show');
+        $('.editDefaultdata').find('span').html('');
+        $('.editDefaultdata').modal('show');
     });
 
     window.addEventListener('CloseEditCountryModal', function(event){
-        $('.editGender').find('span').html('');
-        $('.editGender').find('form')[0].reset();
-        $('.editGender').modal('hide');
+        $('.editDefaultdata').find('span').html('');
+        $('.editDefaultdata').find('form')[0].reset();
+        $('.editDefaultdata').modal('hide');
 
         Swal.fire(
             'Good job!',
-            'Gender Has been Updated Successfully !',
+            'Defaultdata Has been Updated Successfully !',
             'success'
             );
-        // alert('Gender Has been Updated Successfully');
+        // alert('Defaultdata Has been Updated Successfully');
     });
 
     window.addEventListener('SwalConfirm', function(event){
@@ -74,13 +74,13 @@
             allowOutsideClick:false
         }).then(function(result){
             if(result.value){
-                window.livewire.emit('delete',event.detail.gender_id);
+                window.livewire.emit('delete',event.detail.id);
             }
         })
     })
 
     window.addEventListener('deleted', function(event){
-        alert('Gender record has been deleted');
+        alert('Defaultdata record has been deleted');
     });
 
     window.addEventListener('swal:deleteCountries', function(event){
@@ -98,7 +98,7 @@
             allowOutsideClick:false
         }).then(function(result){
             if(result.value){
-                window.livewire.emit('deleteCheckedCountries',event.detail.checkedIDs);
+                window.livewire.emit('deleteCheckedCountries',event.detail.idefault_id);
             }
         });
     });
