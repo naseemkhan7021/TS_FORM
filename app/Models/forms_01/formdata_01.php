@@ -23,6 +23,7 @@ class formdata_01 extends Model
         'F_probable_consequence_id_fk',
         'G_causes_id_fk',
         'G1_sub_causes_id_fk',
+        'G1_sub_causes_id_fks',
         'H_preventive_incident_control_id_fk',
         'I_consequences_controls_id_fk',
         'J_risk_probability_id_fk',
@@ -39,6 +40,7 @@ class formdata_01 extends Model
         'R_risk_probability',
         'S_risk_consequence',
         'T_duration',
-        'U_risk_quantum', 'V_risk_acceptable_non_acceptable',
+        'U_risk_quantum', 
+        'V_risk_acceptable_non_acceptable',
     ];
 }

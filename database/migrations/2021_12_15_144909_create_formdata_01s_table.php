@@ -81,6 +81,7 @@ class CreateFormdata01sTable extends Migration
 
 
                 // ******* all Remaining data
+                $table->mediumText('G1_sub_causes_id_fks');
                 // Any Legal Obligation to the risk Assessment
                 $table->enum('M_any_legal_obligation_to_the_risk_assessment', array('YES', 'NO'))->default('NO');
                 // Risk Quantum
@@ -90,7 +91,7 @@ class CreateFormdata01sTable extends Migration
                 // For Non acceptable risk, No. of person believed to be affected
                 $table->integer('P_no_of_person_believed_to_be_affected');
                 // Actions as per hierarchy of control (Refer Guideword)
-                $table->string('Q_actions_as_per_hierarchy_of_control', 50);
+                $table->mediumText('Q_actions_as_per_hierarchy_of_control');
                 // Risk Probability
                 $table->integer('R_risk_probability');
                 // Risk Consequence

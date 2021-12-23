@@ -15,6 +15,9 @@ if ($J_risk_probability_id_fk && $K_risk_consequence_id_fk && $L_duration_of_exp
     $durationExp_obj = DB::table('duration_of_exposures')->where('duration_of_exposure_id','=',$L_duration_of_exposure_id_fk)->get();
 
     $this->N_risk_quantum = ($rProbability_obj[0]->risk_probability_value ? $rProbability_obj[0]->risk_probability_value : 1) *             ($rConsequence_obj[0]->risk_consequence_value ? $rConsequence_obj[0]->risk_consequence_value : 1 ) * ($durationExp_obj[0]->duration_of_exposure_value ? $durationExp_obj[0]->duration_of_exposure_value : 1 );
+
+    $this->O_risk_acceptable_non_acceptable = $this->N_risk_quantum > 29 ? 'Non Acceptable' : 'Acceptable';
+    $this->ifnotAcceptable = $this->N_risk_quantum > 29 ? true : false;
 }
 
 if ($R_risk_probability && $S_risk_consequence && $T_duration) {
@@ -24,6 +27,9 @@ if ($R_risk_probability && $S_risk_consequence && $T_duration) {
     $durationExp_obj = DB::table('duration_of_exposures')->where('duration_of_exposure_id','=',$T_duration)->get();
 
     $this->U_risk_quantum = ($rProbability_obj[0]->risk_probability_value ? $rProbability_obj[0]->risk_probability_value : 1) *             ($rConsequence_obj[0]->risk_consequence_value ? $rConsequence_obj[0]->risk_consequence_value : 1 ) * ($durationExp_obj[0]->duration_of_exposure_value ? $durationExp_obj[0]->duration_of_exposure_value : 1 );
+    
+    $this->V_risk_acceptable_non_acceptable = $this->U_risk_quantum > 29 ? 'Non Acceptable' : 'Acceptable';
+
 }
 @endphp
 
@@ -93,6 +99,6 @@ if ($R_risk_probability && $S_risk_consequence && $T_duration) {
     @endif
 
     @include('Forms.Forms_01.formdata01.add-modal')
-    {{-- @include('Forms.Forms_01.activity.edit-modal') --}}
+    @include('Forms.Forms_01.formdata01.edit-modal')
 
 </div>

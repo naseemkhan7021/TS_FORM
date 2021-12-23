@@ -3,9 +3,12 @@
 namespace App\Http\Livewire\Forms01;
 
 use App\Models\forms_01\activity;
+use App\Models\forms_01\administrative_control_mitigative;
+use App\Models\forms_01\administrative_control_preventive;
 use App\Models\forms_01\cause;
 use App\Models\forms_01\consequences_control;
 use App\Models\forms_01\duration_of_exposure;
+use App\Models\forms_01\engineering_control;
 use App\Models\forms_01\Formdata_01;
 use App\Models\forms_01\potential_hazard;
 use App\Models\forms_01\preventive_incident_control;
@@ -30,28 +33,18 @@ class Formdata01 extends Component
     public $ibc_id_fk, $idepartment_id_fk, $iproject_id_fk, $document_id_fk, $B_activity_id_fk, $C_sub_activity_id_fk, $E_potential_hazard_id_fk, $F_probable_consequence_id_fk, $G_causes_id_fk, $G1_sub_causes_id_fk, $H_preventive_incident_control_id_fk, $I_consequences_controls_id_fk, $J_risk_probability_id_fk, $K_risk_consequence_id_fk, $L_duration_of_exposure_id_fk, $engineering_control_id_fk, $administrative_control_preventive_id_fk, $administrative_control_mitigative_id_fk;
 
     // collect property 
-    public $G1_sub_causes_id_fks=[];
+    public $G1_sub_causes_id_fks = [];
 
-    public $searchQuery, $sproject_location, $currentData;
-
-
-    // public $upd_M_any_legal_obligation_to_the_risk_assessment,
-    //        $upd_N_risk_quantum,
-    //        $upd_O_risk_acceptable_non_acceptable,
-    //        $upd_P_no_of_person_believed_to_be_affected,
-    //        $upd_Q_actions_as_per_hierarchy_of_control,
-    //        $upd_R_risk_probability,
-    //        $upd_S_risk_consequence,
-    //        $upd_T_duration,
-    //        $upd_U_risk_quantum,
-    //        $upd_V_risk_acceptable_non_acceptable;
+    public $searchQuery, $sproject_location, $currentData, $ifnotAcceptable;
 
 
     public function mount()
     {
         $this->searchQuery = '';
-        $this->G1_sub_causes_id_fks = collect();
-        
+        $this->ifnotAcceptable = false;
+        // $this->G1_sub_causes_id_fks = collect();
+        $this->Q_actions_as_per_hierarchy_of_control = collect();
+
         // $this->iproject_id_fk = session('globleSelectedProjectID');
 
 
@@ -124,9 +117,12 @@ class Formdata01 extends Component
         $riskConsequenceData = risk_consequence::get();
         $durationOfExpData = duration_of_exposure::get();
         $referGuidewordData = refer_guideword::get();
+        $adminstrativeCtrPreData = administrative_control_preventive::get();
+        $adminstrativeCtrMitData = administrative_control_mitigative::get();
+        $engineeringCtrData = engineering_control::get();
         // dd($subactivity01Data);
         return view('livewire.forms01.formdata01', [
-            'formdata01' => $formdata01, 'prjectData' => $prjectData, 'activity01Data' => $activity01Data, 'subactivity01Data' => $subactivity01Data, 'potentialHazardData' => $potentialHazardData, 'probableConsequenceData' => $probableConsequenceData, 'preventiveinciData' => $preventiveinciData, 'consequencesCrlData' => $consequencesCrlData,'riskPorbabilityData'=>$riskPorbabilityData,'riskConsequenceData'=>$riskConsequenceData,'durationOfExpData'=>$durationOfExpData,'cause01Data'=>$cause01Data,'subcause01Data'=>$subcause01Data,'referGuidewordData'=>$referGuidewordData
+            'formdata01' => $formdata01, 'prjectData' => $prjectData, 'activity01Data' => $activity01Data, 'subactivity01Data' => $subactivity01Data, 'potentialHazardData' => $potentialHazardData, 'probableConsequenceData' => $probableConsequenceData, 'preventiveinciData' => $preventiveinciData, 'consequencesCrlData' => $consequencesCrlData, 'riskPorbabilityData' => $riskPorbabilityData, 'riskConsequenceData' => $riskConsequenceData, 'durationOfExpData' => $durationOfExpData, 'cause01Data' => $cause01Data, 'subcause01Data' => $subcause01Data, 'referGuidewordData' => $referGuidewordData, 'adminstrativeCtrMitData' => $adminstrativeCtrMitData, 'adminstrativeCtrPreData' => $adminstrativeCtrPreData, 'engineeringCtrData' => $engineeringCtrData
         ]);
     }
 
@@ -138,31 +134,222 @@ class Formdata01 extends Component
         $this->M_any_legal_obligation_to_the_risk_assessment = 'NO';
         // $this->ibc_id_fk='';
         // $this->idepartment_id_fk='';
-        $this->O_risk_acceptable_non_acceptable=0;
-        $this->V_risk_acceptable_non_acceptable=0;
-        $this->iproject_id_fk='0';
-        $this->sproject_location='';
+        $this->O_risk_acceptable_non_acceptable = 0;
+        $this->V_risk_acceptable_non_acceptable = 0;
+        $this->iproject_id_fk = '0';
+        $this->sproject_location = '';
         // $this->document_id_fk='0';
-        $this->B_activity_id_fk='0';
-        $this->C_sub_activity_id_fk='0';
-        $this->E_potential_hazard_id_fk='0';
-        $this->F_probable_consequence_id_fk='0';
-        $this->G_causes_id_fk='0';
-        $this->G1_sub_causes_id_fk='0';
-        $this->H_preventive_incident_control_id_fk='0';
-        $this->I_consequences_controls_id_fk='0';
-        $this->J_risk_probability_id_fk='0';
-        $this->K_risk_consequence_id_fk='0';
-        $this->L_duration_of_exposure_id_fk='0';
-        $this->engineering_control_id_fk='0';
-        $this->administrative_control_preventive_id_fk='0';
-        $this->administrative_control_mitigative_id_fk='0';
+        $this->B_activity_id_fk = '0';
+        $this->C_sub_activity_id_fk = '0';
+        $this->E_potential_hazard_id_fk = '0';
+        $this->F_probable_consequence_id_fk = '0';
+        $this->G_causes_id_fk = '0';
+        $this->G1_sub_causes_id_fk = '0';
+        $this->H_preventive_incident_control_id_fk = '0';
+        $this->I_consequences_controls_id_fk = '0';
+        $this->J_risk_probability_id_fk = '0';
+        $this->K_risk_consequence_id_fk = '0';
+        $this->L_duration_of_exposure_id_fk = '0';
+        $this->engineering_control_id_fk = '0';
+        $this->administrative_control_preventive_id_fk = '0';
+        $this->administrative_control_mitigative_id_fk = '0';
         $this->R_risk_probability = '0';
         $this->S_risk_consequence = '0';
         $this->T_duration = '0';
-        
+
         $this->dispatchBrowserEvent('OpenAddCountryModal');
     }
+
+    // insert
+    public function save()
+    {
+        $this->validate([
+
+            //  'ibc_id_fk'=>'require',
+            //  'idepartment_id_fk'=>'require',
+            'iproject_id_fk' => 'required|not_in:0',
+            //  'document_id_fk'=>'required',
+            'B_activity_id_fk' => 'required|not_in:0',
+            'C_sub_activity_id_fk' => 'required|not_in:0',
+            'D_routine' => 'required',
+            'E_potential_hazard_id_fk' => 'required|not_in:0',
+            'F_probable_consequence_id_fk' => 'required|not_in:0',
+            'G_causes_id_fk' => 'required|not_in:0',
+            // 'G1_sub_causes_id_fk' => 'required',
+            'H_preventive_incident_control_id_fk' => 'required|not_in:0',
+            'I_consequences_controls_id_fk' => 'required|not_in:0',
+            'J_risk_probability_id_fk' => 'required|not_in:0',
+            'K_risk_consequence_id_fk' => 'required|not_in:0',
+            'L_duration_of_exposure_id_fk' => 'required|not_in:0',
+            'engineering_control_id_fk' => 'required|not_in:0',
+            'administrative_control_preventive_id_fk' => 'required|not_in:0',
+            'administrative_control_mitigative_id_fk' => 'required|not_in:0',
+            'M_any_legal_obligation_to_the_risk_assessment' => 'required',
+            'N_risk_quantum' => 'required',
+            'O_risk_acceptable_non_acceptable' => 'required',
+            // 'P_no_of_person_believed_to_be_affected' => 'required',
+            // 'Q_actions_as_per_hierarchy_of_control' => 'required',
+            // 'R_risk_probability' => 'required',
+            // 'S_risk_consequence' => 'required',
+            // 'T_duration' => 'required',
+            // 'U_risk_quantum' => 'required',
+            // 'V_risk_acceptable_non_acceptable' => 'required',
+        ]);
+
+        $save = Formdata_01::insert([
+            // ibc_id_fk
+            // idepartment_id_fk
+            'iproject_id_fk' => $this->iproject_id_fk,
+            // 'document_id_fk'=>$this->document_id_fk,
+            'B_activity_id_fk' => $this->B_activity_id_fk,
+            'C_sub_activity_id_fk' => $this->C_sub_activity_id_fk,
+            'D_routine' => $this->D_routine,
+            'E_potential_hazard_id_fk' => $this->E_potential_hazard_id_fk,
+            'F_probable_consequence_id_fk' => $this->F_probable_consequence_id_fk,
+            'G_causes_id_fk' => $this->G_causes_id_fk,
+            // 'G1_sub_causes_id_fk'=>$this->G1_sub_causes_id_fk,
+            'G1_sub_causes_id_fks' => implode(',', $this->G1_sub_causes_id_fks),
+            'H_preventive_incident_control_id_fk' => $this->H_preventive_incident_control_id_fk,
+            'I_consequences_controls_id_fk' => $this->I_consequences_controls_id_fk,
+            'J_risk_probability_id_fk' => $this->J_risk_probability_id_fk,
+            'K_risk_consequence_id_fk' => $this->K_risk_consequence_id_fk,
+            'L_duration_of_exposure_id_fk' => $this->L_duration_of_exposure_id_fk,
+            'engineering_control_id_fk' => $this->engineering_control_id_fk,
+            'administrative_control_preventive_id_fk' => $this->administrative_control_preventive_id_fk,
+            'administrative_control_mitigative_id_fk' => $this->administrative_control_mitigative_id_fk,
+            'M_any_legal_obligation_to_the_risk_assessment' => $this->M_any_legal_obligation_to_the_risk_assessment,
+            'N_risk_quantum' => $this->N_risk_quantum,
+            'O_risk_acceptable_non_acceptable' => $this->O_risk_acceptable_non_acceptable,
+            'P_no_of_person_believed_to_be_affected' => $this->P_no_of_person_believed_to_be_affected,
+            'Q_actions_as_per_hierarchy_of_control' => implode(',', $this->Q_actions_as_per_hierarchy_of_control),
+            'R_risk_probability' => $this->R_risk_probability,
+            'S_risk_consequence' => $this->S_risk_consequence,
+            'T_duration' => $this->T_duration,
+            'U_risk_quantum' => $this->U_risk_quantum,
+            'V_risk_acceptable_non_acceptable' => $this->V_risk_acceptable_non_acceptable,
+        ]);
+
+        if ($save) {
+            $this->dispatchBrowserEvent('CloseAddCountryModal');
+            // $this->checkedCountry = [];
+        }
+    }
+
+
+    public function OpenEditCountryModal($formdata_01s_id)
+    {
+        $info = Formdata_01::find($formdata_01s_id);
+
+        // dd($info); 
+        $this->currentData = Carbon::parse($info->created_at)->format('Y-m-d H:i:s');
+        $this->iproject_id_fk = $info->iproject_id_fk;
+        $this->B_activity_id_fk = $info->B_activity_id_fk;
+        $this->C_sub_activity_id_fk = $info->C_sub_activity_id_fk;
+        $this->D_routine = $info->D_routine;
+        $this->E_potential_hazard_id_fk = $info->E_potential_hazard_id_fk;
+        $this->F_probable_consequence_id_fk = $info->F_probable_consequence_id_fk;
+        $this->G_causes_id_fk = $info->G_causes_id_fk;
+        $this->G1_sub_causes_id_fks = explode(',', $info->G1_sub_causes_id_fks);
+        $this->H_preventive_incident_control_id_fk = $info->H_preventive_incident_control_id_fk;
+        $this->I_consequences_controls_id_fk = $info->I_consequences_controls_id_fk;
+        $this->J_risk_probability_id_fk = $info->J_risk_probability_id_fk;
+        $this->K_risk_consequence_id_fk = $info->K_risk_consequence_id_fk;
+        $this->L_duration_of_exposure_id_fk = $info->L_duration_of_exposure_id_fk;
+        $this->engineering_control_id_fk = $info->engineering_control_id_fk;
+        $this->administrative_control_preventive_id_fk = $info->administrative_control_preventive_id_fk;
+        $this->administrative_control_mitigative_id_fk = $info->administrative_control_mitigative_id_fk;
+        $this->M_any_legal_obligation_to_the_risk_assessment = $info->M_any_legal_obligation_to_the_risk_assessment;
+        $this->N_risk_quantum = $info->N_risk_quantum;
+        $this->O_risk_acceptable_non_acceptable = $info->O_risk_acceptable_non_acceptable;
+        $this->P_no_of_person_believed_to_be_affected = $info->P_no_of_person_believed_to_be_affected;
+        $this->Q_actions_as_per_hierarchy_of_control = explode(',', $info->Q_actions_as_per_hierarchy_of_control);
+        $this->R_risk_probability = $info->R_risk_probability;
+        $this->S_risk_consequence = $info->S_risk_consequence;
+        $this->T_duration = $info->T_duration;
+        $this->U_risk_quantum = $info->U_risk_quantum;
+        $this->V_risk_acceptable_non_acceptable = $info->V_risk_acceptable_non_acceptable;
+
+
+        $this->cid = $info->formdata_01s_id;
+        $this->dispatchBrowserEvent('OpenEditCountryModal', [
+            'formdata_01s_id' => $formdata_01s_id
+        ]);
+    }
+
+    //  update
+    public function update()
+    {
+        $cid = $this->cid;
+        $this->validate([
+            //  'ibc_id_fk'=>'require',
+            //  'idepartment_id_fk'=>'require',
+            'iproject_id_fk' => 'required|not_in:0',
+            //  'document_id_fk'=>'required',
+            'B_activity_id_fk' => 'required|not_in:0',
+            'C_sub_activity_id_fk' => 'required|not_in:0',
+            'D_routine' => 'required',
+            'E_potential_hazard_id_fk' => 'required|not_in:0',
+            'F_probable_consequence_id_fk' => 'required|not_in:0',
+            'G_causes_id_fk' => 'required|not_in:0',
+            // 'G1_sub_causes_id_fk' => 'required',
+            'H_preventive_incident_control_id_fk' => 'required|not_in:0',
+            'I_consequences_controls_id_fk' => 'required|not_in:0',
+            'J_risk_probability_id_fk' => 'required|not_in:0',
+            'K_risk_consequence_id_fk' => 'required|not_in:0',
+            'L_duration_of_exposure_id_fk' => 'required|not_in:0',
+            'engineering_control_id_fk' => 'required|not_in:0',
+            'administrative_control_preventive_id_fk' => 'required|not_in:0',
+            'administrative_control_mitigative_id_fk' => 'required|not_in:0',
+            'M_any_legal_obligation_to_the_risk_assessment' => 'required',
+            'N_risk_quantum' => 'required',
+            'O_risk_acceptable_non_acceptable' => 'required',
+            // 'P_no_of_person_believed_to_be_affected' => 'required',
+            // 'Q_actions_as_per_hierarchy_of_control' => 'required',
+            // 'R_risk_probability' => 'required',
+            // 'S_risk_consequence' => 'required',
+            // 'T_duration' => 'required',
+            // 'U_risk_quantum' => 'required',
+            // 'V_risk_acceptable_non_acceptable' => 'required',
+        ]);
+
+        $update = Formdata_01::find($cid)->update([
+            'iproject_id_fk' => $this->iproject_id_fk,
+            // 'document_id_fk'=>$this->document_id_fk,
+            'B_activity_id_fk' => $this->B_activity_id_fk,
+            'C_sub_activity_id_fk' => $this->C_sub_activity_id_fk,
+            'D_routine' => $this->D_routine,
+            'E_potential_hazard_id_fk' => $this->E_potential_hazard_id_fk,
+            'F_probable_consequence_id_fk' => $this->F_probable_consequence_id_fk,
+            'G_causes_id_fk' => $this->G_causes_id_fk,
+            // 'G1_sub_causes_id_fk'=>$this->G1_sub_causes_id_fk,
+            'G1_sub_causes_id_fks' => implode(',', $this->G1_sub_causes_id_fks),
+            'H_preventive_incident_control_id_fk' => $this->H_preventive_incident_control_id_fk,
+            'I_consequences_controls_id_fk' => $this->I_consequences_controls_id_fk,
+            'J_risk_probability_id_fk' => $this->J_risk_probability_id_fk,
+            'K_risk_consequence_id_fk' => $this->K_risk_consequence_id_fk,
+            'L_duration_of_exposure_id_fk' => $this->L_duration_of_exposure_id_fk,
+            'engineering_control_id_fk' => $this->engineering_control_id_fk,
+            'administrative_control_preventive_id_fk' => $this->administrative_control_preventive_id_fk,
+            'administrative_control_mitigative_id_fk' => $this->administrative_control_mitigative_id_fk,
+            'M_any_legal_obligation_to_the_risk_assessment' => $this->M_any_legal_obligation_to_the_risk_assessment,
+            'N_risk_quantum' => $this->N_risk_quantum,
+            'O_risk_acceptable_non_acceptable' => $this->O_risk_acceptable_non_acceptable,
+            'P_no_of_person_believed_to_be_affected' => $this->P_no_of_person_believed_to_be_affected,
+            'Q_actions_as_per_hierarchy_of_control' => implode(',', $this->Q_actions_as_per_hierarchy_of_control),
+            'R_risk_probability' => $this->R_risk_probability,
+            'S_risk_consequence' => $this->S_risk_consequence,
+            'T_duration' => $this->T_duration,
+            'U_risk_quantum' => $this->U_risk_quantum,
+            'V_risk_acceptable_non_acceptable' => $this->V_risk_acceptable_non_acceptable,
+        ]);
+
+        if ($update) {
+            $this->dispatchBrowserEvent('CloseEditCountryModal');
+            // $this->checkedCountry = [];
+        }
+    }
+
+
 
     public function clearValuesandValidation()
     {

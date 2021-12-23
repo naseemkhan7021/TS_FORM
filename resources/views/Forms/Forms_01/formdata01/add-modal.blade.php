@@ -168,9 +168,9 @@
                             <div class="">
                                 <label for=""
                                     class="form-label @error('G1_sub_causes_id_fks') text-danger @enderror">G1_Sub_Causes</label>
-                                <select name="sub_cause" data-placeholder="Select Sub Causes"
-                                   wire:model='G1_sub_causes_id_fks'
-                                    class="form-control @error('G1_sub_causes_id_fks') border border-danger @enderror"
+                                <select size="1" name="sub_cause" data-placeholder="Select Sub Causes"
+                                    wire:model='G1_sub_causes_id_fks'
+                                    class="form-control custom-select @error('G1_sub_causes_id_fks') border border-danger @enderror"
                                     id="select2-dropdown" multiple>
                                     {{-- <option selected disabled value="0">Select Sub Causes</option> --}}
                                     @foreach ($subcause01Data as $item)
@@ -181,8 +181,6 @@
                                     @endforeach
                                 </select>
                             </div>
-
-
                         </div>
                     </div>
 
@@ -229,7 +227,7 @@
                     </div>
 
                     {{-- J_risk_probability_id_fk --}}
-                    <div class="col-md-2 col-sm-6">
+                    <div class="col-md-3 col-sm-6">
                         <div class="form-group">
                             <label for=""
                                 class="form-label @error('J_risk_probability_id_fk') text-danger @enderror">J_Risk
@@ -250,7 +248,7 @@
                     </div>
 
                     {{-- K_risk_consequence_id_fk --}}
-                    <div class="col-md-2 col-sm-6">
+                    <div class="col-md-3 col-sm-6">
                         <div class="form-group">
                             <label for=""
                                 class="form-label @error('K_risk_consequence_id_fk') text-danger @enderror">K_Risk
@@ -270,7 +268,7 @@
                     </div>
 
                     {{-- L_duration_of_exposure_id_fk --}}
-                    <div class="col-md-2 col-sm-6">
+                    <div class="col-md-3 col-sm-6">
                         <div class="form-group">
                             <label for=""
                                 class="form-label @error('L_duration_of_exposure_id_fk') text-danger @enderror">L_Duration
@@ -319,7 +317,7 @@
                     {{-- N_risk_quantum --}}
                     <div class="col-md-1 col-sm-6">
                         <div class="form-controp">
-                            <label for="" class="@error('N_risk_quantum') text-danger @enderror"> N_risk_quantum
+                            <label for="" title="Risk_Quantum" class="@error('N_risk_quantum') text-danger @enderror"> N_RQ...
                                 @error('N_risk_quantum') <i
                                     class="text-danger fas fa-times-circle"></i>@enderror</label>
                             <input type="text" class="form-control" wire:model="N_risk_quantum" readonly>
@@ -337,16 +335,20 @@
                             <div
                                 class="form-control text-white {{ $this->N_risk_quantum && $this->N_risk_quantum > 29 ? 'btn-danger' : 'btn-success' }} ">
                                 <span class="">
-                                    {{ $this->N_risk_quantum && $this->N_risk_quantum > 29 ? 'Non Acceptable' : 'Acceptable' }}
+                                    {{ $this->O_risk_acceptable_non_acceptable }}
                                 </span>
                             </div>
                         </div>
                     </div>
 
+                    <hr class="text-secondary w-100">
+
+
                     {{-- if not Acceptable --}}
-                    <div class="col-12">
+                    {{-- {{$this->ifnotAcceptable ? 'd-block' : 'd-none'}} <-- this code will use after cunfirm from T&S --}} 
+                    <div class="col-12" >
                         <h5><strong>If Not Acceptable</strong></h5>
-                        <div class="row g-3">
+                        <div class="row g-3 ">
                             {{-- P_no_of_person_believed_to_be_affected --}}
                             <div class="col-md-1">
                                 <div class="form-controp">
@@ -362,14 +364,25 @@
 
                             {{-- Q_actions_as_per_hierarchy_of_control  here will see --}}
 
-                            <div class="col-md-2">
-
-                                
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="" title="Actions_As_Per_Hierarchy_Of_Control">Q_Actions_As...</label>
+                                    <div class="form-control">
+                                        @foreach ($referGuidewordData as $item)
+                                            
+                                        <div class="form-check form-check-inline">
+                                            <input wire:model='Q_actions_as_per_hierarchy_of_control' class="form-check-input" type="checkbox" id="action_hirarchy_{{$item->refer_guidewords_id}}" 
+                                            value="{{$item->refer_guidewords_id}}">
+                                            <label title="{{$item->refer_guidewords_desc}}" class="form-check-label" for="action_hirarchy_{{$item->refer_guidewords_id}}">{{$item->refer_guidewords_abbr}}</label>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div>
 
                             </div>
 
                             {{-- R_risk_probability --}}
-                            <div class="col-md-2 col-sm-6">
+                            <div class="col-md-3 col-sm-6">
                                 <div class="form-group">
                                     <label for=""
                                         class="form-label @error('R_risk_probability') text-danger @enderror">R_Risk
@@ -390,7 +403,7 @@
                             </div>
 
                             {{-- S_risk_consequence --}}
-                            <div class="col-md-2 col-sm-6">
+                            <div class="col-md-3 col-sm-6">
                                 <div class="form-group">
                                     <label for=""
                                         class="form-label @error('S_risk_consequence') text-danger @enderror">S_Risk
@@ -410,7 +423,7 @@
                             </div>
 
                             {{-- T_duration --}}
-                            <div class="col-md-2 col-sm-6">
+                            <div class="col-md-3 col-sm-6">
                                 <div class="form-group">
                                     <label for=""
                                         class="form-label @error('T_duration') text-danger @enderror">T_Duration
@@ -434,7 +447,7 @@
                                 <div class="form-group">
                                     <label title="Risk Quantum" for=""
                                         class=" @error('U_risk_quantum') text-danger @enderror">
-                                        U_Risk.Q..
+                                        U_R.Q...
                                         @error('U_risk_quantum') <i
                                             class="text-danger fas fa-times-circle"></i>@enderror</label>
                                     <input type="text" class="form-control" wire:model="U_risk_quantum" readonly>
@@ -453,12 +466,67 @@
                                     <div
                                         class="form-control text-white {{ $this->U_risk_quantum && $this->U_risk_quantum > 29 ? 'btn-danger' : 'btn-success' }} ">
                                         <span class="">
-                                            {{ $this->U_risk_quantum && $this->U_risk_quantum > 29 ? 'Non Acceptable' : 'Acceptable' }}
+                                            {{ $this->V_risk_acceptable_non_acceptable }}
                                         </span>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
 
+                    <hr class="text-secondary w-100">
+                    
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for=""
+                                class="form-label">Administrative_Control_Preventive</label>
+                            <select  wire:model="administrative_control_preventive_id_fk"
+                                class="form-control @error('administrative_control_preventive_id_fk') border border-denager @enderror">
+                                <option selected disabled value="0">Select Administrative Ctr Pre</option>
+                                @foreach ($adminstrativeCtrPreData as $item)
+                                    <option wire:key='tRisk_Durations_{{ $item->administrative_control_preventive_id }}'
+                                        value="{{ $item->administrative_control_preventive_id }}">
+                                        {{ $item->administrative_control_preventive_description }} -
+                                        {{ $item->administrative_control_preventive_value }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for=""
+                                class="form-label">Administrative_Control_Mitigative</label>
+                            <select  wire:model="administrative_control_mitigative_id_fk"
+                                class="form-control @error('administrative_control_mitigative_id_fk') border border-denager @enderror">
+                                <option selected disabled value="0">Select Administrative Ctr Pre</option>
+                                @foreach ($adminstrativeCtrMitData as $item)
+                                    <option wire:key='tRisk_Durations_{{ $item->administrative_control_mitigative_id }}'
+                                        value="{{ $item->administrative_control_mitigative_id }}">
+                                        {{ $item->administrative_control_mitigative_description }} -
+                                        {{ $item->administrative_control_mitigative_value }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for=""
+                                class="form-label">Engineering Control</label>
+                            <select  wire:model="engineering_control_id_fk"
+                                class="form-control @error('engineering_control_id_fk') border border-denager @enderror">
+                                <option selected disabled value="0">Select Administrative Ctr Pre</option>
+                                @foreach ($engineeringCtrData as $item)
+                                    <option wire:key='tRisk_Durations_{{ $item->engineering_control_id }}'
+                                        value="{{ $item->engineering_control_id }}">
+                                        {{ $item->engineering_control_description }} -
+                                        {{ $item->engineering_control_value }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 
