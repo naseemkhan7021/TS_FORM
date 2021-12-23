@@ -3,12 +3,17 @@
 namespace App\Http\Livewire\Forms01;
 
 use App\Models\forms_01\activity;
+use App\Models\forms_01\cause;
 use App\Models\forms_01\consequences_control;
+use App\Models\forms_01\duration_of_exposure;
 use App\Models\forms_01\Formdata_01;
 use App\Models\forms_01\potential_hazard;
 use App\Models\forms_01\preventive_incident_control;
 use App\Models\forms_01\probable_consequence;
+use App\Models\forms_01\risk_consequence;
+use App\Models\forms_01\risk_probability;
 use App\Models\forms_01\sub_activity;
+use App\Models\forms_01\sub_cause;
 use App\Models\projcon\Project;
 use Carbon\Carbon;
 use Livewire\Component;
@@ -18,14 +23,17 @@ class Formdata01 extends Component
 {
     use WithPagination;
     // normal field 
-    public $M_any_legal_obligation_to_the_risk_assessment,$D_routine,$N_risk_quantum,$O_risk_acceptable_non_acceptable,$P_no_of_person_believed_to_be_affected,$Q_actions_as_per_hierarchy_of_control,$R_risk_probability,$S_risk_consequence,$T_duration,$U_risk_quantum,$V_risk_acceptable_non_acceptable;
+    public $M_any_legal_obligation_to_the_risk_assessment, $D_routine, $N_risk_quantum, $O_risk_acceptable_non_acceptable, $P_no_of_person_believed_to_be_affected, $Q_actions_as_per_hierarchy_of_control, $R_risk_probability, $S_risk_consequence, $T_duration, $U_risk_quantum, $V_risk_acceptable_non_acceptable;
 
     // all fk 
-    public $ibc_id_fk,$idepartment_id_fk,$iproject_id_fk,$document_id_fk,$B_activity_id_fk,$C_sub_activity_id_fk,$E_potential_hazard_id_fk,$F_probable_consequence_id_fk,$G_causes_id_fk,$G1_sub_causes_id_fk,$H_preventive_incident_control_id_fk,$I_consequences_controls_id_fk,$J_risk_probability_id_fk,$K_risk_consequence_id_fk,$L_duration_of_exposure_id_fk,$engineering_control_id_fk,$administrative_control_preventive_id_fk,$administrative_control_mitigative_id_fk;
+    public $ibc_id_fk, $idepartment_id_fk, $iproject_id_fk, $document_id_fk, $B_activity_id_fk, $C_sub_activity_id_fk, $E_potential_hazard_id_fk, $F_probable_consequence_id_fk, $G_causes_id_fk, $G1_sub_causes_id_fk, $H_preventive_incident_control_id_fk, $I_consequences_controls_id_fk, $J_risk_probability_id_fk, $K_risk_consequence_id_fk, $L_duration_of_exposure_id_fk, $engineering_control_id_fk, $administrative_control_preventive_id_fk, $administrative_control_mitigative_id_fk;
 
-    public $searchQuery,$sproject_location,$currentData;
-    
-    
+    // collect property 
+    public $G1_sub_causes_id_fks=[];
+
+    public $searchQuery, $sproject_location, $currentData;
+
+
     // public $upd_M_any_legal_obligation_to_the_risk_assessment,
     //        $upd_N_risk_quantum,
     //        $upd_O_risk_acceptable_non_acceptable,
@@ -41,7 +49,10 @@ class Formdata01 extends Component
     public function mount()
     {
         $this->searchQuery = '';
+        $this->G1_sub_causes_id_fks = collect();
+        
         // $this->iproject_id_fk = session('globleSelectedProjectID');
+
 
     }
 
@@ -101,23 +112,60 @@ class Formdata01 extends Component
 
         $prjectData = Project::get();
         $activity01Data = activity::get();
-        $subactivity01Data = sub_activity::where('activity_id_fk','=',$this->B_activity_id_fk)->get();
+        $subactivity01Data = sub_activity::where('activity_id_fk', '=', $this->B_activity_id_fk)->get();
+        $cause01Data = cause::get();
+        $subcause01Data = sub_cause::where('sub_causes_fk', '=', $this->G_causes_id_fk)->get();
         $potentialHazardData = potential_hazard::get();
         $probableConsequenceData = probable_consequence::get();
         $preventiveinciData = preventive_incident_control::get();
         $consequencesCrlData = consequences_control::get();
-            // dd($subactivity01Data);
+        $riskPorbabilityData = risk_probability::get();
+        $riskConsequenceData = risk_consequence::get();
+        $durationOfExpData = duration_of_exposure::get();
+        // dd($subactivity01Data);
         return view('livewire.forms01.formdata01', [
-            'formdata01' => $formdata01, 'prjectData' => $prjectData,'activity01Data'=>$activity01Data,'subactivity01Data'=>$subactivity01Data,'potentialHazardData'=>$potentialHazardData,'probableConsequenceData'=>$probableConsequenceData,'preventiveinciData'=>$preventiveinciData,'consequencesCrlData'=>$consequencesCrlData
+            'formdata01' => $formdata01, 'prjectData' => $prjectData, 'activity01Data' => $activity01Data, 'subactivity01Data' => $subactivity01Data, 'potentialHazardData' => $potentialHazardData, 'probableConsequenceData' => $probableConsequenceData, 'preventiveinciData' => $preventiveinciData, 'consequencesCrlData' => $consequencesCrlData,'riskPorbabilityData'=>$riskPorbabilityData,'riskConsequenceData'=>$riskConsequenceData,'durationOfExpData'=>$durationOfExpData,'cause01Data'=>$cause01Data,'subcause01Data'=>$subcause01Data
         ]);
     }
 
     public function OpenAddCountryModal()
     {
-        $this->currentData = Carbon::now()->format('Y-m-d') ." ". Carbon::now()->format('H:i:s');
+        $this->currentData = Carbon::now()->format('Y-m-d') . " " . Carbon::now()->format('H:i:s');
         // $this->iproject_id_fk = session('globleSelectedProjectID');
         $this->D_routine = 'R';
-
+        $this->M_any_legal_obligation_to_the_risk_assessment = 'NO';
+        // $this->ibc_id_fk='';
+        // $this->idepartment_id_fk='';
+        $this->O_risk_acceptable_non_acceptable=0;
+        $this->V_risk_acceptable_non_acceptable=0;
+        $this->iproject_id_fk='0';
+        $this->sproject_location='';
+        // $this->document_id_fk='0';
+        $this->B_activity_id_fk='0';
+        $this->C_sub_activity_id_fk='0';
+        $this->E_potential_hazard_id_fk='0';
+        $this->F_probable_consequence_id_fk='0';
+        $this->G_causes_id_fk='0';
+        $this->G1_sub_causes_id_fk='0';
+        $this->H_preventive_incident_control_id_fk='0';
+        $this->I_consequences_controls_id_fk='0';
+        $this->J_risk_probability_id_fk='0';
+        $this->K_risk_consequence_id_fk='0';
+        $this->L_duration_of_exposure_id_fk='0';
+        $this->engineering_control_id_fk='0';
+        $this->administrative_control_preventive_id_fk='0';
+        $this->administrative_control_mitigative_id_fk='0';
+        $this->R_risk_probability = '0';
+        $this->S_risk_consequence = '0';
+        $this->T_duration = '0';
+        
         $this->dispatchBrowserEvent('OpenAddCountryModal');
+    }
+
+    public function clearValuesandValidation()
+    {
+        # code...
+        $this->resetValidation();
+        // $this->imgsId = '';
     }
 }

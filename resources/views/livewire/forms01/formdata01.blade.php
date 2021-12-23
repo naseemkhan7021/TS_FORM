@@ -6,6 +6,25 @@ if ($iproject_id_fk) {
         ->get();
     $this->sproject_location = $sproject_location_obj[0]->sproject_location;
 }
+
+// N_risk_quantum
+if ($J_risk_probability_id_fk && $K_risk_consequence_id_fk && $L_duration_of_exposure_id_fk) {
+    # code...
+    $rProbability_obj = DB::table('risk_probabilities')->where('risk_probability_id','=',$J_risk_probability_id_fk)->get();
+    $rConsequence_obj = DB::table('risk_consequences')->where('risk_consequence_id','=',$K_risk_consequence_id_fk)->get();
+    $durationExp_obj = DB::table('duration_of_exposures')->where('duration_of_exposure_id','=',$L_duration_of_exposure_id_fk)->get();
+
+    $this->N_risk_quantum = ($rProbability_obj[0]->risk_probability_value ? $rProbability_obj[0]->risk_probability_value : 1) *             ($rConsequence_obj[0]->risk_consequence_value ? $rConsequence_obj[0]->risk_consequence_value : 1 ) * ($durationExp_obj[0]->duration_of_exposure_value ? $durationExp_obj[0]->duration_of_exposure_value : 1 );
+}
+
+if ($R_risk_probability && $S_risk_consequence && $T_duration) {
+    # code...
+    $rProbability_obj = DB::table('risk_probabilities')->where('risk_probability_id','=',$R_risk_probability)->get();
+    $rConsequence_obj = DB::table('risk_consequences')->where('risk_consequence_id','=',$S_risk_consequence)->get();
+    $durationExp_obj = DB::table('duration_of_exposures')->where('duration_of_exposure_id','=',$T_duration)->get();
+
+    $this->U_risk_quantum = ($rProbability_obj[0]->risk_probability_value ? $rProbability_obj[0]->risk_probability_value : 1) *             ($rConsequence_obj[0]->risk_consequence_value ? $rConsequence_obj[0]->risk_consequence_value : 1 ) * ($durationExp_obj[0]->duration_of_exposure_value ? $durationExp_obj[0]->duration_of_exposure_value : 1 );
+}
 @endphp
 
 <div>
@@ -64,7 +83,7 @@ if ($iproject_id_fk) {
                 </tr>
 
             @empty
-                <tr><td colspan="5">'{{ $data_not_found }}</td></tr>
+                <tr><td colspan="10">'{{ $data_not_found }}</td></tr>
             @endforelse
 
         </tbody>

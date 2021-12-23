@@ -9,6 +9,14 @@
     <link rel="shortcut icon" href="{{ asset('assets/images/smalllogo.png') }}">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    
+    <!--jQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     @livewireStyles()
     @yield('css')
 </head>
@@ -48,15 +56,18 @@
 
     @livewireScripts()
     <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
-
-    <!--jQuery-->
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> --}}
+    
 
     <!--Plugin JavaScript file-->
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script> --}}
 
 
     <script>
+        // if($('#select2-sub_cause').select2() == null){
+        //     console.log('this');
+        // }
+        
+
         // $(".js-range-slider").ionRangeSlider({
         //     type: "double",
         //     min: 50,

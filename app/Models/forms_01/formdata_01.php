@@ -39,6 +39,6 @@ class formdata_01 extends Model
         'R_risk_probability',
         'S_risk_consequence',
         'T_duration',
-        'U_risk_quantum','V_risk_acceptable_non_acceptable',
-     ];
+        'U_risk_quantum', 'V_risk_acceptable_non_acceptable',
+    ];
 }
