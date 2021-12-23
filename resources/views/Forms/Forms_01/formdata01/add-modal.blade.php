@@ -364,6 +364,8 @@
 
                             <div class="col-md-2">
 
+                                
+
                             </div>
 
                             {{-- R_risk_probability --}}

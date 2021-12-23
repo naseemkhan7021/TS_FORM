@@ -13,17 +13,19 @@ class CreateReferGuidewordsTable extends Migration
      */
     public function up()
     {
-        Schema::create('refer_guidewords', function (Blueprint $table) {
-            $table->id('refer_guidewords_id');
-            $table->string('refer_guidewords_desc');
-            $table->string('refer_guidewords_abbr');
+        if (!Schema::hasTable('refer_guidewords')) {
+            Schema::create('refer_guidewords', function (Blueprint $table) {
+                $table->id('refer_guidewords_id');
+                $table->string('refer_guidewords_desc');
+                $table->string('refer_guidewords_abbr');
 
-            $table->boolean('bactive')->default(true);
-            $table->integer('user_created')->default(0);
-            $table->integer('user_updated')->default(0);
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
-        });
+                $table->boolean('bactive')->default(true);
+                $table->integer('user_created')->default(0);
+                $table->integer('user_updated')->default(0);
+                $table->timestamp('created_at')->useCurrent();
+                $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+            });
+        }
     }
 
     /**

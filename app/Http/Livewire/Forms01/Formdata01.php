@@ -10,6 +10,7 @@ use App\Models\forms_01\Formdata_01;
 use App\Models\forms_01\potential_hazard;
 use App\Models\forms_01\preventive_incident_control;
 use App\Models\forms_01\probable_consequence;
+use App\Models\forms_01\refer_guideword;
 use App\Models\forms_01\risk_consequence;
 use App\Models\forms_01\risk_probability;
 use App\Models\forms_01\sub_activity;
@@ -122,9 +123,10 @@ class Formdata01 extends Component
         $riskPorbabilityData = risk_probability::get();
         $riskConsequenceData = risk_consequence::get();
         $durationOfExpData = duration_of_exposure::get();
+        $referGuidewordData = refer_guideword::get();
         // dd($subactivity01Data);
         return view('livewire.forms01.formdata01', [
-            'formdata01' => $formdata01, 'prjectData' => $prjectData, 'activity01Data' => $activity01Data, 'subactivity01Data' => $subactivity01Data, 'potentialHazardData' => $potentialHazardData, 'probableConsequenceData' => $probableConsequenceData, 'preventiveinciData' => $preventiveinciData, 'consequencesCrlData' => $consequencesCrlData,'riskPorbabilityData'=>$riskPorbabilityData,'riskConsequenceData'=>$riskConsequenceData,'durationOfExpData'=>$durationOfExpData,'cause01Data'=>$cause01Data,'subcause01Data'=>$subcause01Data
+            'formdata01' => $formdata01, 'prjectData' => $prjectData, 'activity01Data' => $activity01Data, 'subactivity01Data' => $subactivity01Data, 'potentialHazardData' => $potentialHazardData, 'probableConsequenceData' => $probableConsequenceData, 'preventiveinciData' => $preventiveinciData, 'consequencesCrlData' => $consequencesCrlData,'riskPorbabilityData'=>$riskPorbabilityData,'riskConsequenceData'=>$riskConsequenceData,'durationOfExpData'=>$durationOfExpData,'cause01Data'=>$cause01Data,'subcause01Data'=>$subcause01Data,'referGuidewordData'=>$referGuidewordData
         ]);
     }
 
