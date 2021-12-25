@@ -11,6 +11,9 @@ class Company extends Component
 {
     use WithFileUploads;
 
+    protected $listeners = ['delete'];
+
+
     public $showimg, $searchQuery, $sbc_logo_small_path, $sbc_logo_large_path;
     public $sbc_company_name, $sbc_abbr, $sbc_logo_small, $sbc_logo_large, $validupto_dt;
     public $cid, $upd_sbc_company_name, $upd_sbc_abbr,$old_sbc_logo_small, $upd_sbc_logo_small, $upd_sbc_logo_large, $old_sbc_logo_large,$upd_validupto_dt;

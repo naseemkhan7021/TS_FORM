@@ -42,7 +42,7 @@ if ($iproject_id_fk) {
         <tbody>
             @forelse ( $headerdata as  $row )
                 <tr>
-                    <td>{{ $row->formdata_22s_id }}</td>
+                    <td>{{ ++$loop->index  }}</td>
                     <td>{{ $row->sproject_name  }}</td>
                     <td>{{ $row->contractor_name }}</td>
                     <td>{{ $row->faculty_name  }}</td>

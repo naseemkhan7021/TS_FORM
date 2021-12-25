@@ -9,7 +9,7 @@ class Formdata00 extends Component
 {
 
     protected $listeners = ['selectedProjectID'];
-    public $searchQuery,$selectedProjectID;
+    public $searchQuery, $selectedProjectID;
 
     public function selectedProjectID($id)
     {
@@ -27,11 +27,16 @@ class Formdata00 extends Component
     public function render()
     {
 
-        $formdata00 = formdata_00::join('companies','companies.ibc_id','=','formdata_00s.ibc_id_fk')
-            ->join('departments','departments.idepartment_id','=','formdata_00s.idepartment_id_fk')
-            ->join('documents','documents.document_id','=','formdata_00s.document_id_fk')
-            ->join('projects','projects.iproject_id','=','formdata_00s.iproject_id_fk')
-            ->where('formdata_00s.iproject_id_fk', session('globleSelectedProjectID'))
+        $formdata00 = formdata_00::join('companies', 'companies.ibc_id', '=', 'formdata_00s.ibc_id_fk')
+            ->join('departments', 'departments.idepartment_id', '=', 'formdata_00s.idepartment_id_fk')
+            ->join('documents', 'documents.document_id', '=', 'formdata_00s.document_id_fk')
+            ->join('projects', 'projects.iproject_id', '=', 'formdata_00s.iproject_id_fk')
+            ->when(session('globleSelectedProjectID') != '*', function ($data) {
+                # code...
+                $data->where('iproject_id_fk', '=', session('globleSelectedProjectID'));
+            })
+            // ->where('iproject_id_fk', '=', session('globleSelectedProjectID'))
+            // ->where('formdata_00s.iproject_id_fk', session('globleSelectedProjectID'))
             ->when($this->searchQuery != '', function ($query) {
                 $query->where('formdata_00s.bactive', '1')
                     ->where('document_name', 'like', '%' . $this->searchQuery . '%')
@@ -41,8 +46,8 @@ class Formdata00 extends Component
 
 
 
-        return view('livewire.forms00.formdata00' , [
-            'formdata00' => $formdata00 ,
+        return view('livewire.forms00.formdata00', [
+            'formdata00' => $formdata00,
         ]);
     }
 
@@ -135,9 +140,4 @@ class Formdata00 extends Component
         }
         // $this->checkedCountry = [];
     }
-
-
-
-
-
 }
