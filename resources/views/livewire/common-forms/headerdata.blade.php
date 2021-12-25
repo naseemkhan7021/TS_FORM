@@ -73,6 +73,7 @@
                             {{ $item->sproject_name }} {{ $item->sproject_location }} </option>
                     @endforeach --}}
 
+                    <option  style="background: #6c757d; padding: 1rem" value="*">See all Projects</option>
                     @forelse ($projects as $item)
                         <option style="background: #6c757d; padding: 1rem" value="{{ $item->iproject_id }}">
                             {{ $item->sproject_name }} {{ $item->sproject_location }} </option>

@@ -82,7 +82,7 @@
             allowOutsideClick:false
         }).then(function(result){
             if(result.value){
-                window.livewire.emit('delete',event.detail.gender_id);
+                window.livewire.emit('delete',event.detail.id);
             }
         })
     })

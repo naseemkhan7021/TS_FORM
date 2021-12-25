@@ -11,17 +11,18 @@ class Participants extends Component
     public $searchQuery, $role;
     public $participant_name, $age, $desgination, $signature, $id_no, $formdata_22s_id_fk;
     public $header_ehsind_dt;
-    public $cid, $totalNumberOfParticipant;
+    public $cid, $totalNumberOfParticipant,$OpenModelAuto;
 
     public function mount()
     {
         $this->searchQuery = '';
         $this->totalNumberOfParticipant = 1;
-
+        $this->OpenModelAuto = false;
         $this->age = collect();
         $this->desgination = collect();
         $this->id_no = collect();
         $this->participant_name = collect();
+
     }
 
     public function render()
@@ -34,6 +35,7 @@ class Participants extends Component
                     ->orWhere('age', 'like', '%' . $this->searchQuery . '%');
             })->get();
         $form22HeadData = formdata_22_header::all();
+        
         return view('livewire.forms22.participants', [
             'participantsdata' => $participantsdata, 'form22HeadData' => $form22HeadData
         ]);
@@ -99,10 +101,10 @@ class Participants extends Component
         $this->desgination = explode(',', $info->desgination);
         $this->id_no = explode(',', $info->id_no);
 
-
+        
         $this->cid = $info->formdata_22_participants_id;
         $this->dispatchBrowserEvent('OpenEditCountryModal', [
-            'formdata_22_participants_id' => $formdata_22_participants_id
+            'formdata_22_participants_id' => $formdata_22_participants_id,
         ]);
     }
 
@@ -180,5 +182,20 @@ class Participants extends Component
         array_splice($this->desgination, $index, 1);
         array_splice($this->id_no, $index, 1);
         --$this->totalNumberOfParticipant;
+    }
+
+    public function openModalRD()
+    {
+
+        // dd(session('goTo'));
+        # code...
+        if (session('partisipanceId') && $this->OpenModelAuto) {
+            # code...
+            // dd(session('partisipanceId'));
+            $id=session('partisipanceId');
+            $this->OpenEditCountryModal($id);
+            // dd(url()->previous())
+        }
+        // $this->emit('show');
     }
 }

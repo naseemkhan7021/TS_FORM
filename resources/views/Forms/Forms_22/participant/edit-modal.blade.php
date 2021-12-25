@@ -1,4 +1,12 @@
-<div class="modal fade editParticipants" wire:ignore.self tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+@php
+    if (session('goTo')) {
+        # code...
+        // echo 'this';
+        $this->OpenModelAuto = true;
+    }
+@endphp
+
+<div wire:init="openModalRD" class="modal fade editParticipants" wire:ignore.self tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog  modal-xl modal-dialog-scrollable" role="document">
         <div class="modal-content">

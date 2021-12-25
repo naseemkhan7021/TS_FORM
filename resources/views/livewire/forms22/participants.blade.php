@@ -26,7 +26,6 @@ if ($formdata_22s_id_fk) {
         </div>
     </div>
 
-
     <table class="table display table-bordered data-table" style="width:100%">
         <thead>
             <tr>
@@ -42,7 +41,7 @@ if ($formdata_22s_id_fk) {
         <tbody>
             @forelse ( $participantsdata  as  $row )
                 <tr>
-                    <td>{{ $row->formdata_22_participants_id }}</td>
+                    <td>{{ ++$loop->index }}</td>
                     <td>{{ $row->sproject_name  }}</td>
                     <td>{{ count(explode(',',$row->participant_name)) }}</td>
                     <td>{{ $row->age  }}</td>
@@ -52,10 +51,8 @@ if ($formdata_22s_id_fk) {
                         <div class="btn-group">
                             <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->formdata_22_participants_id}})">Edit</button>
                             <button class="btn btn-danger btn-sm" wire:click="deleteConfirm({{$row->formdata_22_participants_id}})">Delete</button>
-
                         </div>
                     </td>
-
                 </tr>
 
             @empty

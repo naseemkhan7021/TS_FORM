@@ -33,7 +33,7 @@
                         <div class="form-controp">
 
                             <label for="" class="">Location
-                                </label>
+                            </label>
                             <input type="text" class="form-control" placeholder="Location"
                                 wire:model="sproject_location" readonly>
                             {{-- <span class="text-danger"> 
@@ -53,29 +53,35 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Contractor Name</label>
-                            <input type="text" class="form-control  @error('contractor_name') border-danger @enderror" placeholder="Contractor Name" wire:model="contractor_name">
+                            <input type="text" class="form-control  @error('contractor_name') border-danger @enderror"
+                                placeholder="Contractor Name" wire:model="contractor_name">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="venue">Venue</label>
-                            <input id="venue" type="text" class="form-control  @error('venue') border-danger @enderror" placeholder="venue" wire:model="venue">
+                            <input id="venue" type="text" class="form-control  @error('venue') border-danger @enderror"
+                                placeholder="venue" wire:model="venue">
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="faculty_name">Faculty Name</label>
-                            <input id="faculty_name" type="text" class="form-control  @error('faculty_name') border-danger @enderror" placeholder="Faculty Name" wire:model="faculty_name">
+                            <input id="faculty_name" type="text"
+                                class="form-control  @error('faculty_name') border-danger @enderror"
+                                placeholder="Faculty Name" wire:model="faculty_name">
                         </div>
                     </div>
 
-                    
+
 
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="faculty_sign">Faculty Sign</label>
-                            <input id="faculty_sign" type="text" class="form-control  @error('faculty_sign') border-danger @enderror" placeholder="Faculty_Sign" wire:model="faculty_sign">
+                            <input id="faculty_sign" type="text"
+                                class="form-control  @error('faculty_sign') border-danger @enderror"
+                                placeholder="Faculty_Sign" wire:model="faculty_sign">
                         </div>
                     </div>
 
@@ -83,21 +89,27 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="site_safety_in_charge_name">Site Safety In Charge Name</label>
-                            <input id="site_safety_in_charge_name" type="text" class="form-control  @error('site_safety_in_charge_name') border-danger @enderror" placeholder="Site Safety In Charge Name" wire:model="site_safety_in_charge_name">
+                            <input id="site_safety_in_charge_name" type="text"
+                                class="form-control  @error('site_safety_in_charge_name') border-danger @enderror"
+                                placeholder="Site Safety In Charge Name" wire:model="site_safety_in_charge_name">
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="site_safety_in_charge_sign">Site Safety In Charge Sign</label>
-                            <input id="site_safety_in_charge_sign" type="text" class="form-control  @error('site_safety_in_charge_sign') border-danger @enderror" placeholder="Site Safety In Charge Sign" wire:model="site_safety_in_charge_sign">
+                            <input id="site_safety_in_charge_sign" type="text"
+                                class="form-control  @error('site_safety_in_charge_sign') border-danger @enderror"
+                                placeholder="Site Safety In Charge Sign" wire:model="site_safety_in_charge_sign">
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="duration">Duration</label>
-                            <input id="duration" type="text" class="form-control  @error('duration') border-danger @enderror" placeholder="Duration" wire:model="duration">
+                            <input id="duration" type="text"
+                                class="form-control  @error('duration') border-danger @enderror" placeholder="Duration"
+                                wire:model="duration">
                         </div>
                     </div>
 
@@ -115,7 +127,9 @@
                                 training are:
 
                             </p>
-                            <strong class="ml-5">Topics Discussed:</strong> ( Tick ✓ in the Boxes ) @error('topic_discusseds_ids') <strong class="ml-5 text-danger">Please Select At Least One</strong>  @enderror
+                            <strong class="ml-5">Topics Discussed:</strong> ( Tick ✓ in the Boxes )
+                            @error('topic_discusseds_ids') <strong class="ml-5 text-danger">Please Select At Least
+                                One</strong> @enderror
                         </label>
                         <div class="row g-3">
                             @foreach ($topicData as $item)
@@ -125,7 +139,8 @@
                                             <input wire:model.defer='topic_discusseds_ids' class="form-check-input"
                                                 type="checkbox" value="{{ $item->topic_discusseds_id }}"
                                                 id="topic{{ $item->topic_discusseds_id }}_edit">
-                                            <label class="ml-3 form-check-label @error('topic_discusseds_ids') text-danger
+                                            <label
+                                                class="ml-3 form-check-label @error('topic_discusseds_ids') text-danger
                                             @enderror"
                                                 for="topic{{ $item->topic_discusseds_id }}_edit">
                                                 {{ $item->topic_discusseds_id }}.
@@ -140,10 +155,50 @@
 
                     {{-- project detail end --}}
 
+                    {{-- Show Partisipance start --}}
+
+                    {{-- {{dd($partisipanceData)}} --}}
+                    <div class="col-12">
+
+                        <table class="table text-center">
+                            <h4 class="text-center">ALL Added Member <a wire:click='openParticipantsModel({{$partisipanceId}})' href="#"> Edit</a></h4>
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>name</th>
+                                    <th>age</th>
+                                    <th>Designation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php($len = count($id_no))
+                                @forelse ($partisipanceData as $row)
+                                    @forelse (range(0,$len-1) as $item)
+                                        <tr>
+                                            <td>{{ explode(',', $row->id_no)[$item] }}</td>
+                                            <td>{{ explode(',', $row->participant_name)[$item] }}</td>
+                                            <td>{{ explode(',', $row->age)[$item] }}</td>
+                                            <td>{{ explode(',', $row->desgination)[$item] }}</td>
+                                        </tr>
+                                    @empty
+
+                                    @endforelse
+                                @empty
+                                    No Participant Here
+                                @endforelse
+                                <tr>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {{-- no partisipance at {{$dum}} --}}
+                    {{-- Show Partisipance end --}}
+
                     <div class="col-12">
                         <div class="form-group">
-                            <button type="button"
-                                class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary btn-sm">Update</button>
                         </div>
                     </div>
