@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Forms;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class Forms17Controller extends Controller
+class Forms18Controller extends Controller
 {
 
     // temp middleware
@@ -19,7 +18,6 @@ class Forms17Controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
         //
@@ -91,16 +89,9 @@ class Forms17Controller extends Controller
         //
     }
 
-    public function index_formdata17()
+    public function index_formdata18()
     {
-        return view('forms.Forms_17.formdata17.index');
-    }
-    public function index_substandaction()
-    {
-        return view('forms.Forms_17.substandaction.index');
-    }
-    public function index_substandcondition()
-    {
-        return view('forms.Forms_17.substandcondition.index');
+        # code...
+        return view('forms.Forms_18.formsdata18.index');
     }
 }

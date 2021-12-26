@@ -4,26 +4,32 @@
         <a href="{{ route('any', ['dashboard']) }}" class="logo logo-dark text-center">
             <span class="logo-sm">
                 <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
-                <!-- <span class="logo-lg-text-light">UBold</span> -->
+                <span class="logo-lg-text-light">T&S</span> 
             </span>
             <span class="logo-lg">
                 <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" height="20">
-                <!-- <span class="logo-lg-text-light">U</span> -->
+                 <span class="logo-lg-text-light">U</span>
+                 <span class="logo-lg-text-light">T&S</span> 
             </span>
         </a>
 
         <a href="{{ route('any', ['dashboard']) }}" class="logo logo-light text-center">
             <span class="logo-sm">
-                <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
+                @if (count($defaultvalues) > 0)
+                    <img src="{{ Storage::url($defaultvalues[0]->sbc_logo_small) }}" alt="companylogo" height="20">
+                    {{-- <span class="logo-lg-text-light">T&S</span>  --}}
+                @else
+                    No logo
+                @endif
             </span>
             <span class="logo-lg">
 
                 @if (count($defaultvalues) > 0)
                     <img src="{{ Storage::url($defaultvalues[0]->sbc_logo_small) }}" alt="companylogo" height="20">
+                    {{-- <span class="logo-lg-text-light">T&S</span>  --}}
                 @else
                     No Default logo
                 @endif
-
             </span>
         </a>
     </div>

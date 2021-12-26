@@ -83,12 +83,12 @@
                             <div class="form-control">
                                 <div class="form-check form-check-inline">
                                     <input checked wire:model='D_routine' value="R" class="form-check-input"
-                                        name="routine" type="radio" id="routine" value="option1">
+                                        name="routine" type="radio" id="routine">
                                     <label class="form-check-label" for="routine">Routine</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input wire:model='D_routine' value="N" class="form-check-input" name="routine"
-                                        type="radio" id="none-routine" value="option1">
+                                        type="radio" id="none-routine">
                                     <label class="form-check-label" for="none-routine">Non-Routine</label>
                                 </div>
                             </div>
@@ -277,13 +277,13 @@
                                 <div class="form-check form-check-inline">
                                     <input wire:model='M_any_legal_obligation_to_the_risk_assessment' value="YES"
                                         class="form-check-input" name="legal-obligation" type="radio"
-                                        id="legal-obligation-ys" value="option1">
+                                        id="legal-obligation-ys">
                                     <label class="form-check-label" for="legal-obligation-ys">YES</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input checked wire:model='M_any_legal_obligation_to_the_risk_assessment' value="NO"
                                         class="form-check-input" name="legal-obligation" type="radio"
-                                        id="legal-obligation-n" value="option1">
+                                        id="legal-obligation-n">
                                     <label class="form-check-label" for="legal-obligation-n">NO</label>
                                 </div>
                             </div>
