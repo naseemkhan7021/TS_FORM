@@ -45,4 +45,10 @@ class CommonformController extends Controller
         return view('common-forms.Injuryto.index');
     }
 
+    public function index_Prioritytimescale()
+    {
+        return view('common-forms.prioritytimescale.index');
+    }
+
+
 }

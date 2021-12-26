@@ -1,16 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Models\common_forms\Company;
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommonController;
 use App\Http\Controllers\Forms\Form00Controller;
 use App\Http\Controllers\Forms\Form01Controller;
 use App\Http\Controllers\Forms\Forms15Controller;
 use App\Http\Controllers\Forms\Forms16Controller;
-use App\Http\Controllers\Forms\CommonformController;
 use App\Http\Controllers\Forms\Forms17Controller;
 use App\Http\Controllers\Forms\Forms22Controller;
-use App\Models\common_forms\Company;
+use App\Http\Controllers\Forms\Forms28Controller;
+use App\Http\Controllers\Forms\CommonformController;
 
 
 
@@ -52,6 +53,12 @@ Route::get('/defaultdata', [CommonformController::class, 'index_defaultdata'])->
 Route::get('/projects', [CommonformController::class, 'index_project'])->name('index_project');
 Route::get('/documentserial', [CommonformController::class, 'index_documentserial'])->name('index_documentserial');
 Route::get('/injuryto', [CommonformController::class, 'index_InjuryTo'])->name('index_InjuryTo');
+
+// Used in Form 28
+Route::get('/prioritytimescale', [CommonformController::class, 'index_prioritytimescale'])->name('index_prioritytimescale');
+
+
+
 
 
 // Route::get('/form01_subactivity', [Form01Controller::class, 'index_subactivity'])->name('form01_subactivity');
@@ -126,6 +133,11 @@ Route::get('/form17_substandaction', [Forms17Controller::class, 'index_substanda
 Route::get('/form22_header', [Forms22Controller::class, 'index_header'])->name('form22_header');
 Route::get('/form22_participant', [Forms22Controller::class, 'index_participant'])->name('form22_participant');
 Route::get('/form22_topicdiscussed', [Forms22Controller::class, 'index_topicdiscussed'])->name('form22_topicdiscussed');
+
+
+Route::get('form28_fromdata28', [Forms28Controller::class, 'index_formdata28'])->name('index_formdata28');
+
+
 
 // dashboard_presales
 Route::get('/dashboard_presales', [CommonController::class, 'dashboard_presales'])->name('dashboard_presales');
