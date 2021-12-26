@@ -83,12 +83,12 @@
                             <div class="form-control">
                                 <div class="form-check form-check-inline">
                                     <input checked wire:model='D_routine' value="R" class="form-check-input"
-                                        name="routine" type="radio" id="routine_edit" value="option1">
+                                        name="routine" type="radio" id="routine_edit">
                                     <label class="form-check-label" for="routine_edit">Routine</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input wire:model='D_routine' value="N" class="form-check-input" name="routine"
-                                        type="radio" id="none-routine_edit" value="option1">
+                                        type="radio" id="none-routine_edit">
                                     <label class="form-check-label" for="none-routine_edit">Non-Routine</label>
                                 </div>
                             </div>
@@ -277,13 +277,13 @@
                                 <div class="form-check form-check-inline">
                                     <input wire:model='M_any_legal_obligation_to_the_risk_assessment' value="YES"
                                         class="form-check-input" name="legal-obligation_edit" type="radio"
-                                        id="legal-obligation_edit-ys" value="option1">
+                                        id="legal-obligation_edit-ys">
                                     <label class="form-check-label" for="legal-obligation_edit-ys">YES</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input checked wire:model='M_any_legal_obligation_to_the_risk_assessment' value="NO"
                                         class="form-check-input" name="legal-obligation_edit" type="radio"
-                                        id="legal-obligation_edit-n" value="option1">
+                                        id="legal-obligation_edit-n">
                                     <label class="form-check-label" for="legal-obligation_edit-n">NO</label>
                                 </div>
                             </div>
