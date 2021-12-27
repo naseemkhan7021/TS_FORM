@@ -30,10 +30,10 @@ class Formdata01 extends Component
     // normal field 
     public $M_any_legal_obligation_to_the_risk_assessment, $D_routine, $N_risk_quantum, $O_risk_acceptable_non_acceptable, $P_no_of_person_believed_to_be_affected, $Q_actions_as_per_hierarchy_of_control, $R_risk_probability, $S_risk_consequence, $T_duration, $U_risk_quantum, $V_risk_acceptable_non_acceptable;
 
-    // all fk 
+    // all fk
     public $ibc_id_fk, $idepartment_id_fk, $iproject_id_fk, $document_id_fk, $B_activity_id_fk, $C_sub_activity_id_fk, $E_potential_hazard_id_fk, $F_probable_consequence_id_fk, $G_causes_id_fk, $G1_sub_causes_id_fk, $H_preventive_incident_control_id_fk, $I_consequences_controls_id_fk, $J_risk_probability_id_fk, $K_risk_consequence_id_fk, $L_duration_of_exposure_id_fk, $engineering_control_id_fk, $administrative_control_preventive_id_fk, $administrative_control_mitigative_id_fk;
 
-    // collect property 
+    // collect property
     public $G1_sub_causes_id_fks = [];
 
     public $searchQuery, $sproject_location, $currentData, $ifnotAcceptable;
@@ -42,7 +42,7 @@ class Formdata01 extends Component
 
     public function selectedProjectID($id)
     {
-        // $id && $id == '*' ? dd($id) : ''; 
+        // $id && $id == '*' ? dd($id) : '';
         # code...
         $this->selectedProjectID = $id;
     }
@@ -254,7 +254,7 @@ class Formdata01 extends Component
     {
         $info = Formdata_01::find($formdata_01s_id);
 
-        // dd($info); 
+        // dd($info);
         $this->currentData = Carbon::parse($info->created_at)->format('Y-m-d H:i:s');
         $this->iproject_id_fk = $info->iproject_id_fk;
         $this->B_activity_id_fk = $info->B_activity_id_fk;

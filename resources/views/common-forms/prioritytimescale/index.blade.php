@@ -21,15 +21,15 @@
 
 <script>
     window.addEventListener('OpenAddCountryModal', function(){
-         $('.addInjuryto').find('span').html('');
-         $('.addInjuryto').find('form')[0].reset();
-         $('.addInjuryto').modal('show');
+         $('.addPrioritytimescale').find('span').html('');
+         $('.addPrioritytimescale').find('form')[0].reset();
+         $('.addPrioritytimescale').modal('show');
     });
 
     window.addEventListener('CloseAddCountryModal', function(){
-        $('.addInjuryto').find('span').html('');
-        $('.addInjuryto').find('form')[0].reset();
-        $('.addInjuryto').modal('hide');
+        $('.addPrioritytimescale').find('span').html('');
+        $('.addPrioritytimescale').find('form')[0].reset();
+        $('.addPrioritytimescale').modal('hide');
 
         Swal.fire(
             'Well Done!',
@@ -41,14 +41,14 @@
     });
 
     window.addEventListener('OpenEditCountryModal', function(event){
-        $('.editInjuryto').find('span').html('');
-        $('.editInjuryto').modal('show');
+        $('.editPrioritytimescale').find('span').html('');
+        $('.editPrioritytimescale').modal('show');
     });
 
     window.addEventListener('CloseEditCountryModal', function(event){
-        $('.editInjuryto').find('span').html('');
-        $('.editInjuryto').find('form')[0].reset();
-        $('.editInjuryto').modal('hide');
+        $('.editPrioritytimescale').find('span').html('');
+        $('.editPrioritytimescale').find('form')[0].reset();
+        $('.editPrioritytimescale').modal('hide');
 
         Swal.fire(
             'Good job!',
