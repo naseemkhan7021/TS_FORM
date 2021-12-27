@@ -185,7 +185,7 @@
                                 <li>
                                     <a href="{{ route('projectunit') }}">Project Units</a>
                                 </li> --}}
-                                {{-- <li>
+                    {{-- <li>
                                 <a href="{{ route('dashboard_presales') }}">Sales  - Pre Sales </a>
                             </li>
                             <li>
@@ -202,15 +202,14 @@
                                 <a href="{{ route('secondarymember') }}">Secondary Member</a>
                             </li> --}}
 
-                            {{-- </ul>
+                    {{-- </ul>
                         </div>
                     </li> --}}
 
                 @endif
 
                 @if (Auth::user()->current_role⁯_id == 1)
-{{--
-                    <li>
+                    {{-- <li>
                         <a href="#sidebarPreSales" data-toggle="collapse">
                             <i data-feather="mail"></i>
                             <span> Pre Sales </span>
@@ -302,7 +301,7 @@
                                 <li>
                                     <a href="{{ route('index_company') }}"> Company </a>
                                 </li>
-                                
+
                                 <li>
                                     <a href="{{ route('index_department') }}"> Department </a>
                                 </li>
@@ -363,7 +362,7 @@
                         <div class="collapse" id="sidebarForm01">
                             <ul class="nav-second-level">
                                 <li>
-                                    <a href="{{route('form01_formdata01')}}"> Forms 01 </a>
+                                    <a href="{{ route('form01_formdata01') }}"> Forms 01 </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('form01_activity') }}"> Activity </a>
@@ -426,7 +425,7 @@
                         <div class="collapse" id="sidebarForm15">
                             <ul class="nav-second-level">
                                 <li>
-                                    <a href="{{route('form15_formdata15')}}"> Forms 15 </a>
+                                    <a href="{{ route('form15_formdata15') }}"> Forms 15 </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('form15_activity15') }}"> Activity </a>
@@ -484,13 +483,13 @@
                         <div class="collapse" id="sidebarForm17">
                             <ul class="nav-second-level">
                                 <li>
-                                    <a href='{{route('form17_formdata17')}}'> Forms 17 </a>
+                                    <a href='{{ route('form17_formdata17') }}'> Forms 17 </a>
                                 </li>
                                 <li>
-                                    <a href='{{route('form17_substandcondition')}}'> Substandard Actions </a>
+                                    <a href='{{ route('form17_substandcondition') }}'> Substandard Actions </a>
                                 </li>
                                 <li>
-                                    <a href='{{route('form17_substandaction')}}'> Substandard Conditions </a>
+                                    <a href='{{ route('form17_substandaction') }}'> Substandard Conditions </a>
                                 </li>
 
                             </ul>
@@ -506,7 +505,7 @@
                         <div class="collapse" id="sidebarForm18">
                             <ul class="nav-second-level">
                                 <li>
-                                    <a href='{{route('form18_formdata18')}}'> Forms 18 </a>
+                                    <a href='{{ route('form18_formdata18') }}'> Forms 18 </a>
                                 </li>
 
                             </ul>
@@ -524,15 +523,56 @@
                         <div class="collapse" id="sidebarForm22">
                             <ul class="nav-second-level">
                                 <li>
-                                    <a href='{{route('form22_participant')}}'> Participants </a>
+                                    <a href='{{ route('form22_participant') }}'> Participants </a>
                                 </li>
                                 <li>
-                                    <a href='{{route('form22_header')}}'> Header </a>
+                                    <a href='{{ route('form22_header') }}'> Header </a>
                                 </li>
                                 <li>
-                                    <a href='{{route('form22_topicdiscussed')}}'> Topic Discussed </a>
+                                    <a href='{{ route('form22_topicdiscussed') }}'> Topic Discussed </a>
                                 </li>
 
+                            </ul>
+                        </div>
+                    </li>
+
+
+                    {{-- Form 01 --}}
+                    <li>
+                        <a href="#sidebarForm66" data-toggle="collapse">
+                            <i data-feather="users"></i>
+                            <span> Form 66 </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sidebarForm66">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href=#> Forms 66 *</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('form66_activity') }}"> Activity </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('form66_subactivity') }}"> Sub Activity </a>
+                                </li>
+                                <li>
+                                    <a href="#"> Environmental Impact *</a>
+                                </li>
+                                <li>
+                                    <a href="#"> Organization Requirements *</a>
+                                </li>
+                                <li>
+                                    <a href="#"> Scale of Impact *</a>
+                                </li>
+                                <li>
+                                    <a href="#"> Severity of Impact *</a>
+                                </li>
+                                <li>
+                                    <a href="#"> Duration of Impact *</a>
+                                </li>
+                                <li>
+                                    <a href="#"> Probability * </a>
+                                </li>
                             </ul>
                         </div>
                     </li>

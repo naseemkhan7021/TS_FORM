@@ -2,6 +2,7 @@
 
 namespace App\Models\forms_15;
 
+use App\Models\projcon\Project;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -37,4 +38,9 @@ class formdata_15 extends Model
         'completed_date',
         'doincident_dt',
     ];
+    public function project()
+    {
+        # code...
+        return $this->hasOne(Project::class, 'iproject_id','iproject_id_fk');
+    }
 }

@@ -11,6 +11,7 @@ use App\Http\Controllers\Forms\Forms16Controller;
 use App\Http\Controllers\Forms\CommonformController;
 use App\Http\Controllers\Forms\Forms17Controller;
 use App\Http\Controllers\Forms\Forms22Controller;
+use App\Http\Controllers\Forms\Forms66Controller;
 use App\Models\common_forms\Company;
 
 
@@ -138,7 +139,9 @@ Route::get('/dashboard_unitavailable', [CommonController::class, 'dashboard_unit
 Route::get('/dashboard_management', [CommonController::class, 'dashboard_management'])->name('dashboard_management');
 
 
-
+// forms 66
+Route::get('/form66_activity', [Forms66Controller::class, 'index_activity66'])->name('form66_activity');
+Route::get('/form66_subactivity', [Forms66Controller::class, 'index_subactivity66'])->name('form66_subactivity');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
