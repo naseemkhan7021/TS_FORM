@@ -1,12 +1,12 @@
-@extends('template.vertical', ['title' => 'Forms 66 - Sub-activity'])
+@extends('template.vertical', ['title' => 'Forms - Organization Requirement'])
 
 @section('content')
 
 <div class="container-fluid pl-3 pr-3">
 
     <!-- start page title -->
-        @livewire('page-title', [ 'sub_title' => 'FORMS 66' , 'active_title' => 'Form 66 subactivity' , 'page_title' => 'Form 66 Sub-activity'  ])
-        @livewire('forms66.duration-of-impact')
+        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 66 Organization Requirement' , 'page_title' => 'Form 66 Organization Requirement'  ])
+        @livewire('forms66.organization-requirement')
     <!-- end page title -->
 
 
@@ -21,41 +21,41 @@
 
 <script>
     window.addEventListener('OpenAddCountryModal', function(){
-         $('.addSubactivity').find('span').html('');
-         $('.addSubactivity').find('form')[0].reset();
-         $('.addSubactivity').modal('show');
+         $('.addOrganizationrequirment').find('span').html('');
+         $('.addOrganizationrequirment').find('form')[0].reset();
+         $('.addOrganizationrequirment').modal('show');
     });
 
     window.addEventListener('CloseAddCountryModal', function(){
-        $('.addSubactivity').find('span').html('');
-        $('.addSubactivity').find('form')[0].reset();
-        $('.addSubactivity').modal('hide');
+        $('.addOrganizationrequirment').find('span').html('');
+        $('.addOrganizationrequirment').find('form')[0].reset();
+        $('.addOrganizationrequirment').modal('hide');
 
         Swal.fire(
             'Well Done!',
-            'New <b>Subactivity</b> Has been Saved Successfully !',
+            'New <b>Organization Requirment</b> Has been Saved Successfully !',
             'success'
             );
 
-        // alert('New Subactivity Has been Saved Successfully');
+        // alert('New administrative control preventive Has been Saved Successfully');
     });
 
     window.addEventListener('OpenEditCountryModal', function(event){
-        $('.editSubactivity').find('span').html('');
-        $('.editSubactivity').modal('show');
+        $('.editOrganizationrequirment').find('span').html('');
+        $('.editOrganizationrequirment').modal('show');
     });
 
     window.addEventListener('CloseEditCountryModal', function(event){
-        $('.editSubactivity').find('span').html('');
-        $('.editSubactivity').find('form')[0].reset();
-        $('.editSubactivity').modal('hide');
+        $('.editOrganizationrequirment').find('span').html('');
+        $('.editOrganizationrequirment').find('form')[0].reset();
+        $('.editOrganizationrequirment').modal('hide');
 
         Swal.fire(
             'Good job!',
-            '<b>Subactivity</b> Has been Updated Successfully !',
+            '<b>Organization Requirment</b> Has been Updated Successfully !',
             'success'
             );
-        // alert('Subactivity Has been Updated Successfully');
+        // alert('administrative control preventive Has been Updated Successfully');
     });
 
     window.addEventListener('SwalConfirm', function(event){
@@ -74,13 +74,13 @@
             allowOutsideClick:false
         }).then(function(result){
             if(result.value){
-                window.livewire.emit('delete',event.detail.gender_id);
+                window.livewire.emit('delete',event.detail.id);
             }
         })
     })
 
     window.addEventListener('deleted', function(event){
-        alert('Subactivity record has been deleted');
+        alert('Organization Requirment record has been deleted');
     });
 
     window.addEventListener('swal:deleteCountries', function(event){

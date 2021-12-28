@@ -1,11 +1,11 @@
-@extends('template.vertical', ['title' => 'Forms 66 - Sub-activity'])
+@extends('template.vertical', ['title' => 'Forms - Duration of Impacat'])
 
 @section('content')
 
 <div class="container-fluid pl-3 pr-3">
 
     <!-- start page title -->
-        @livewire('page-title', [ 'sub_title' => 'FORMS 66' , 'active_title' => 'Form 66 subactivity' , 'page_title' => 'Form 66 Sub-activity'  ])
+        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 66 Duration of Impacat' , 'page_title' => 'Form 66 Duration of Impacat'  ])
         @livewire('forms66.duration-of-impact')
     <!-- end page title -->
 
@@ -21,41 +21,41 @@
 
 <script>
     window.addEventListener('OpenAddCountryModal', function(){
-         $('.addSubactivity').find('span').html('');
-         $('.addSubactivity').find('form')[0].reset();
-         $('.addSubactivity').modal('show');
+         $('.addDurationofImpact').find('span').html('');
+         $('.addDurationofImpact').find('form')[0].reset();
+         $('.addDurationofImpact').modal('show');
     });
 
     window.addEventListener('CloseAddCountryModal', function(){
-        $('.addSubactivity').find('span').html('');
-        $('.addSubactivity').find('form')[0].reset();
-        $('.addSubactivity').modal('hide');
+        $('.addDurationofImpact').find('span').html('');
+        $('.addDurationofImpact').find('form')[0].reset();
+        $('.addDurationofImpact').modal('hide');
 
         Swal.fire(
             'Well Done!',
-            'New <b>Subactivity</b> Has been Saved Successfully !',
+            'New <b>Duration of Impact</b> Has been Saved Successfully !',
             'success'
             );
 
-        // alert('New Subactivity Has been Saved Successfully');
+        // alert('New administrative control preventive Has been Saved Successfully');
     });
 
     window.addEventListener('OpenEditCountryModal', function(event){
-        $('.editSubactivity').find('span').html('');
-        $('.editSubactivity').modal('show');
+        $('.editDurationofImpact').find('span').html('');
+        $('.editDurationofImpact').modal('show');
     });
 
     window.addEventListener('CloseEditCountryModal', function(event){
-        $('.editSubactivity').find('span').html('');
-        $('.editSubactivity').find('form')[0].reset();
-        $('.editSubactivity').modal('hide');
+        $('.editDurationofImpact').find('span').html('');
+        $('.editDurationofImpact').find('form')[0].reset();
+        $('.editDurationofImpact').modal('hide');
 
         Swal.fire(
             'Good job!',
-            '<b>Subactivity</b> Has been Updated Successfully !',
+            '<b>Duration of Impact</b> Has been Updated Successfully !',
             'success'
             );
-        // alert('Subactivity Has been Updated Successfully');
+        // alert('administrative control preventive Has been Updated Successfully');
     });
 
     window.addEventListener('SwalConfirm', function(event){
@@ -74,13 +74,13 @@
             allowOutsideClick:false
         }).then(function(result){
             if(result.value){
-                window.livewire.emit('delete',event.detail.gender_id);
+                window.livewire.emit('delete',event.detail.id);
             }
         })
     })
 
     window.addEventListener('deleted', function(event){
-        alert('Subactivity record has been deleted');
+        alert('Duration of Impact record has been deleted');
     });
 
     window.addEventListener('swal:deleteCountries', function(event){

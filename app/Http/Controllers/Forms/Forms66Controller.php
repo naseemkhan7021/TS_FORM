@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class Forms66Controller extends Controller
 {
+
+
+    // temp middleware
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -83,6 +91,10 @@ class Forms66Controller extends Controller
         //
     }
 
+    public function index_formdata66()
+    {
+        return view('forms.forms_66.formdata66.index');
+    }
     public function index_activity66()
     {
         return view('forms.forms_66.activity.index');
@@ -92,5 +104,34 @@ class Forms66Controller extends Controller
     public function index_subactivity66()
     {
         return view('forms.forms_66.subactivity.index');
+    }
+
+    public function index_durationofimpact66()
+    {
+        return view('forms.forms_66.durationofimpact.index');
+    }
+    public function index_environmentalimpact66()
+    {
+        return view('forms.forms_66.environmentalimpact.index');
+    }
+
+    public function index_organizationrequirement66()
+    {
+        return view('forms.forms_66.organizationrequirement.index');
+    }
+
+    public function index_scaleofimpact66()
+    {
+        return view('forms.forms_66.scaleofimpact.index');
+    }
+
+    public function index_severtyofimpact66()
+    {
+        return view('forms.forms_66.severtyofimpact.index');
+    }
+
+    public function index_probability66()
+    {
+        return view('forms.forms_66.probability.index');
     }
 }

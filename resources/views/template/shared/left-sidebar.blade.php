@@ -547,31 +547,32 @@
                         <div class="collapse" id="sidebarForm66">
                             <ul class="nav-second-level">
                                 <li>
-                                    <a href=#> Forms 66 *</a>
+                                    <a href={{route('form66_formdata')}}> Forms 66</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('form66_activity') }}"> Activity </a>
+                                    <a href="{{ route('form66_activity') }}"> Activity</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('form66_subactivity') }}"> Sub Activity </a>
+                                    <a href="{{ route('form66_subactivity') }}"> Sub Activity</a>
                                 </li>
                                 <li>
-                                    <a href="#"> Environmental Impact *</a>
+                                    <a href="{{ route('form66_environmentalimpact') }}"> Environmental Impact</a>
                                 </li>
                                 <li>
-                                    <a href="#"> Organization Requirements *</a>
+                                    <a href="{{ route('form66_organizationrequirement') }}"> Organization
+                                        Requirements</a>
                                 </li>
                                 <li>
-                                    <a href="#"> Scale of Impact *</a>
+                                    <a href="{{ route('form66_scaleofimpact') }}"> Scale of Impact</a>
                                 </li>
                                 <li>
-                                    <a href="#"> Severity of Impact *</a>
+                                    <a href="{{ route('form66_severtyofimpact') }}"> Severity of Impact</a>
                                 </li>
                                 <li>
-                                    <a href="#"> Duration of Impact *</a>
+                                    <a href="{{ route('form66_durationofimpact') }}"> Duration of Impact</a>
                                 </li>
                                 <li>
-                                    <a href="#"> Probability * </a>
+                                    <a href="{{ route('form66_probability') }}"> Probability</a>
                                 </li>
                             </ul>
                         </div>
@@ -580,24 +581,24 @@
 
 
 
-                  {{-- Form 28 --}}
-                  <li>
-                        <a href="#sidebarForm28" data-toggle="collapse">
-                            <i data-feather="users"></i>
-                            <span> Form 28 </span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <div class="collapse" id="sidebarForm28">
-                            <ul class="nav-second-level">
-                                <li>
-                                    <a href={{route('index_formdata28')}}'> Forms 28 </a>
-                                </li>
-                                <li>
-                                    <a href='{{route('index_prioritytimescale')}}'> Priority 2 Timescales </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
+                {{-- Form 28 --}}
+                <li>
+                    <a href="#sidebarForm28" data-toggle="collapse">
+                        <i data-feather="users"></i>
+                        <span> Form 28 </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarForm28">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href={{ route('index_formdata28') }}> Forms 28 </a>
+                            </li>
+                            <li>
+                                <a href='{{ route('index_prioritytimescale') }}'> Priority 2 Timescales </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
 
 
 

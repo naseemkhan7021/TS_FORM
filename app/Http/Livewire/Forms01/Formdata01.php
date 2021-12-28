@@ -61,7 +61,7 @@ class Formdata01 extends Component
 
     public function render()
     {
-        $formdata01 = Formdata_01::select('formdata_01s.created_at as hiraCreate','formdata_01s.*','projects.sproject_name','activities.activity_description','sub_activities.sub_activity_description','potential_hazards.potential_hazard_description','probable_consequences.probable_consequence_description','causes.causes_description','consequences_controls.consequences_controls_description')
+        $formdata01 = Formdata_01::select('formdata_01s.created_at as hiraCreate', 'formdata_01s.*', 'projects.sproject_name', 'activities.activity_description', 'sub_activities.sub_activity_description', 'potential_hazards.potential_hazard_description', 'probable_consequences.probable_consequence_description', 'causes.causes_description', 'consequences_controls.consequences_controls_description')
             // ->join('companies', 'companies.ibc_id', '=', 'formdata_01s.ibc_id_fk')
             // idepartment_id_fk
             // ->join('departments', 'departments.idepartment_id', '=', 'formdata_01s.idepartment_id_fk')
@@ -113,27 +113,26 @@ class Formdata01 extends Component
                     ->orWhere('consequences_controls.consequences_controls_description', 'like', '%', $this->searchQuery . '%')
                     ->orWhere('O_risk_acceptable_non_acceptable', 'like', '%', $this->searchQuery . '%');
             })->orderBy('formdata_01s_id', 'asc')->paginate(10);
-
-        $prjectData = Project::get();
-        $activity01Data = activity::get();
-        $subactivity01Data = sub_activity::where('activity_id_fk', '=', $this->B_activity_id_fk)->get();
-        $cause01Data = cause::get();
-        $subcause01Data = sub_cause::where('sub_causes_fk', '=', $this->G_causes_id_fk)->get();
-        $potentialHazardData = potential_hazard::get();
-        $probableConsequenceData = probable_consequence::get();
-        $preventiveinciData = preventive_incident_control::get();
-        $consequencesCrlData = consequences_control::get();
-        $riskPorbabilityData = risk_probability::get();
-        $riskConsequenceData = risk_consequence::get();
-        $durationOfExpData = duration_of_exposure::get();
-        $referGuidewordData = refer_guideword::get();
-        $adminstrativeCtrPreData = administrative_control_preventive::get();
-        $adminstrativeCtrMitData = administrative_control_mitigative::get();
-        $engineeringCtrData = engineering_control::get();
-        // dd($subactivity01Data);
-        return view('livewire.forms01.formdata01', [
-            'formdata01' => $formdata01, 'prjectData' => $prjectData, 'activity01Data' => $activity01Data, 'subactivity01Data' => $subactivity01Data, 'potentialHazardData' => $potentialHazardData, 'probableConsequenceData' => $probableConsequenceData, 'preventiveinciData' => $preventiveinciData, 'consequencesCrlData' => $consequencesCrlData, 'riskPorbabilityData' => $riskPorbabilityData, 'riskConsequenceData' => $riskConsequenceData, 'durationOfExpData' => $durationOfExpData, 'cause01Data' => $cause01Data, 'subcause01Data' => $subcause01Data, 'referGuidewordData' => $referGuidewordData, 'adminstrativeCtrMitData' => $adminstrativeCtrMitData, 'adminstrativeCtrPreData' => $adminstrativeCtrPreData, 'engineeringCtrData' => $engineeringCtrData
-        ]);
+        $data = [
+            'formdata01' => $formdata01,
+            'prjectData' => Project::get(),
+            'activity01Data' => activity::get(),
+            'subactivity01Data' => sub_activity::where('activity_id_fk', '=', $this->B_activity_id_fk)->get(),
+            'cause01Data' => cause::get(),
+            'subcause01Data' => sub_cause::where('sub_causes_fk', '=', $this->G_causes_id_fk)->get(),
+            'potentialHazardData' => potential_hazard::get(),
+            'probableConsequenceData' => probable_consequence::get(),
+            'preventiveinciData' => preventive_incident_control::get(),
+            'consequencesCrlData' => consequences_control::get(),
+            'riskPorbabilityData' => risk_probability::get(),
+            'riskConsequenceData' => risk_consequence::get(),
+            'durationOfExpData' => duration_of_exposure::get(),
+            'referGuidewordData' => refer_guideword::get(),
+            'adminstrativeCtrPreData' => administrative_control_preventive::get(),
+            'adminstrativeCtrMitData' => administrative_control_mitigative::get(),
+            'engineeringCtrData' => engineering_control::get(),
+        ];
+        return view('livewire.forms01.formdata01')->with($data);
     }
 
     public function OpenAddCountryModal()
@@ -146,8 +145,8 @@ class Formdata01 extends Component
         // $this->idepartment_id_fk='';
         $this->O_risk_acceptable_non_acceptable = 'unset';
         $this->V_risk_acceptable_non_acceptable = 'unset';
-        $this->U_risk_quantum=0;
-        $this->N_risk_quantum=0;
+        $this->U_risk_quantum = 0;
+        $this->N_risk_quantum = 0;
         $this->iproject_id_fk = '0';
         $this->sproject_location = '';
         $this->B_activity_id_fk = '0';

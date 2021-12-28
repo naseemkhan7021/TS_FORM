@@ -23,7 +23,7 @@
                 <th>Sub Activities Description</th>
                 <th>Sub Activities Abbrivartion.</th>
                 <th>Activities Description</th>
-                <th>Created Date</th>
+                <th style="width: 12%;">Created Date</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -34,7 +34,7 @@
                     <td>{{ $row->sub_activity_description  }}</td>
                     <td>{{ $row->sub_activity_abbr }}</td>
                     <td>{{ $row->activity_description }}</td>
-                    <td>{{ $row->created_at }}</td>
+                    <td>{{  Carbon\Carbon::parse($row->created_at)->format(env('DATE_FORMAT1')) }}</td>
                     <td>
                         <div class="btn-group">
                             <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->sub_activity_id}})">Edit</button>

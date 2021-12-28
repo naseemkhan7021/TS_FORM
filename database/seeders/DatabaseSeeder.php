@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Database\Seeders\SubstandActionSeeder;
-use Database\Seeders\PotentialInjurytoSeeder;
-use Database\Seeders\SubstandConditionSeeder;
+// use Database\Seeders\SubstandActionSeeder;
+// use Database\Seeders\PotentialInjurytoSeeder;
+// use Database\Seeders\SubstandConditionSeeder;
 // use Database\Seeders\CompanySeeder;
 // use Database\Seeders\ProjectsSeeder;
 // use Database\Seeders\DepartmentSeeder;
@@ -66,9 +66,15 @@ class DatabaseSeeder extends Seeder
             // OccupationSeeder::class, //*
             // QualificationSeeder::class, //*
             // RelationtypeSeeder::class, // *
-            SubstandActionSeeder::class,
-            SubstandConditionSeeder::class,
-            PotentialInjurytoSeeder::class,
+            // SubstandActionSeeder::class,
+            // SubstandConditionSeeder::class,
+            // PotentialInjurytoSeeder::class,
+            // DurationOfImpactSeeder::class,
+            // EnvironmentalImpactSeeder::class,
+            // ProbabilitySeeder::class,
+            // ScaleOfImpactSeeder::class,
+            SevertyOfImpactSeeder::class
+
 
         ]);
     }

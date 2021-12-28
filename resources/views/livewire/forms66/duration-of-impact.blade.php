@@ -1,6 +1,6 @@
 <div>
-    @php $button_title = 'Add New Activity' @endphp
-    @php $data_not_found = 'No Activities Data Found' @endphp
+    @php $button_title = 'Add New Duration of Impact' @endphp
+    @php $data_not_found = 'No Duration of Impact Data Found' @endphp
 
 
     <div class="row">
@@ -20,40 +20,42 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Activity Description</th>
-                <th>Activity Abbrivartion.</th>
+                <th>Duration of Impact Value</th>
+                <th>Duration of Impact Description</th>
+                <th>Duration of Impact Abbrivartion</th>
+                <th>Duration of Impact Detail</th>
                 <th style="width: 12%;">Created Date</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            @forelse ( $activitydata as  $row )
+            @forelse ( $durationimpacatData as  $row )
                 <tr>
-                    <td>{{ $activitydata->firstItem()+$loop->index}}</td>
-                    <td>{{ $row->activity_description  }}</td>
-                    <td>{{ $row->activity_abbr }}</td>
+                    <td>{{ ++$loop->index }}</td>
+                    <td>{{ $row->duration_of_impact_value }}</td>
+                    <td>{{ $row->duration_of_impact_description  }}</td>
+                    <td>{{ $row->duration_of_impact_abbr }}</td>
+                    <td>{{ $row->duration_of_impact_detail }}</td>
                     <td>{{  Carbon\Carbon::parse($row->created_at)->format(env('DATE_FORMAT1')) }}</td>
                     <td>
                         <div class="btn-group">
-                            <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->activity_id}})">Edit</button>
-                            <button class="btn btn-danger btn-sm" wire:click="deleteConfirm({{$row->activity_id}})">Delete</button>
+                            <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->duration_of_impact_id}})">Edit</button>
+                            <button class="btn btn-danger btn-sm" wire:click="deleteConfirm({{$row->duration_of_impact_id}})">Delete</button>
 
                         </div>
                     </td>
-
                 </tr>
-
             @empty
                 <tr><td colspan="5">'{{ $data_not_found }}</td></tr>
             @endforelse
 
         </tbody>
     </table>
-    @if (count($activitydata))
-        {{ $activitydata->links('livewire-pagination-links') }}
+    @if (count($durationimpacatData))
+        {{ $durationimpacatData->links('livewire-pagination-links') }}
     @endif
 
-    @include('Forms.Forms_66.activity.add-modal')
-    @include('Forms.Forms_66.activity.edit-modal')
+    @include('Forms.Forms_66.durationofimpact.add-modal')
+    @include('Forms.Forms_66.durationofimpact.edit-modal')
 
 </div>

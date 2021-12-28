@@ -26,7 +26,6 @@
                          <button type="submit" class="btn btn-primary btn-sm">Save Changes</button>
                      </div>
                  </form>
-
             </div>
         </div>
     </div>
