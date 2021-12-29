@@ -57,11 +57,13 @@ class CreateFormdata66sTable extends Migration
                 $table->foreign('M_probability_id_fk')->references('probability_id')->on('probabilities')->onDelete('cascade');
                 
                 // ganeral
+                $table->mediumText('C_sub_activity_id_fks')->nullable(true);
                 $table->enum('F_condition_of_impact', array('A', 'N','E'))->default('A');
                 $table->enum('O_significance_score_level', array('Nonsignificant', 'Significant'))->default('Nonsignificant');
                 $table->string('D_environmental_aspect',191)->nullable(true);
                 $table->string('G_existing_controls_as_per_hierarchy')->nullable(true);
                 $table->integer('L_consequence')->nullable(true);
+                $table->integer('P1_cut_off_value')->nullable(true);
                 $table->integer('N_impact_score')->nullable(true);
                 $table->string('P_additional_control')->nullable(true);
                 $table->integer('Q_risk_rating_priority')->nullable(true);

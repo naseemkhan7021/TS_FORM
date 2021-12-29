@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\forms66;
+namespace App\Models\forms_66;
 
 use App\Models\forms_66\Activity66;
 use App\Models\forms_66\SubActivity66;
@@ -19,6 +19,7 @@ class formdata66 extends Model
         // *
         'B_activity_id_fk',
         'C_sub_activity_id_fk',
+        'C_sub_activity_id_fks',
         'E_environmental_impact_id_fk',
         'H_organization_requirement_id_fk',
         'I_scale_of_impact_id_fk',
@@ -31,13 +32,14 @@ class formdata66 extends Model
         'L_consequence',
         'N_impact_score',
         'O_significance_score_level',
+        'P1_cut_off_value',
         'P_additional_control',
         'Q_risk_rating_priority',
     ];
 
 
-    // public function sub_activity()
-    // {
-    //     return $this->hasManyThrough(SubActivity66::class,Activity66::class,);
-    // }
+    public function sub_activity()
+    {
+        return $this->hasManyThrough(SubActivity66::class,Activity66::class,);
+    }
 }

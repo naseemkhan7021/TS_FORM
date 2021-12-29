@@ -113,6 +113,7 @@ class Formdata01 extends Component
                     ->orWhere('consequences_controls.consequences_controls_description', 'like', '%', $this->searchQuery . '%')
                     ->orWhere('O_risk_acceptable_non_acceptable', 'like', '%', $this->searchQuery . '%');
             })->orderBy('formdata_01s_id', 'asc')->paginate(10);
+            // dd($formdata01);
         $data = [
             'formdata01' => $formdata01,
             'prjectData' => Project::get(),

@@ -1,10 +1,11 @@
-<div class="modal fade addForm01" wire:ignore.self tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade addForm66" wire:ignore.self tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add New Hira</h5>
-                <button wire:click='clearValuesandValidation()' type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title" id="exampleModalLabel">Add New Data</h5>
+                <button wire:click='clearValuesandValidation()' type="button" class="close" data-dismiss="modal"
+                    aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -17,7 +18,8 @@
                             <label for="project name"
                                 class="form-label @error('iproject_id_fk') text-danger @enderror">Project</label>
 
-                            <select wire:model="iproject_id_fk" class="form-control @error('iproject_id_fk') border border-danger @enderror">
+                            <select wire:model.defer="iproject_id_fk"
+                                class="form-control @error('iproject_id_fk') border border-danger @enderror">
                                 <option selected disabled value="0">Project name</option>
                                 @foreach ($prjectData as $item)
                                     <option value="{{ $item->iproject_id }}">{{ $item->sproject_name }}</option>
@@ -32,14 +34,14 @@
 
                             <label for="" class="">Location</label>
                             <input type="text" class="form-control" placeholder="Location"
-                                wire:model="sproject_location" readonly>
+                                wire:model.defer="sproject_location" readonly>
                         </div>
                     </div>
 
                     <div class="col-md-3 col-sm-6">
                         <div class="form-controp">
                             <label for="" class="">Data/Time</label>
-                            <input type="text" class="form-control" wire:model="currentData" readonly>
+                            <input type="text" class="form-control" wire:model.defer="currentDate" readonly>
 
                         </div>
                     </div>
@@ -48,11 +50,13 @@
                     {{-- activity --}}
                     <div class="col-md-3 col-sm-6">
                         <div class="form-group">
-                            <label for="" class="form-label @error('B_activity_id_fk') text-danger @enderror">B_Activity</label>
+                            <label for=""
+                                class="form-label @error('B_activity_id_fk') text-danger @enderror">B_Activity</label>
 
-                            <select wire:model="B_activity_id_fk" class="form-control  @error('B_activity_id_fk') border border-danger @enderror">
+                            <select wire:model.defer="B_activity_id_fk"
+                                class="form-control  @error('B_activity_id_fk') border border-danger @enderror">
                                 <option selected disabled value="0">Select Activity</option>
-                                @foreach ($activity01Data as $item)
+                                @foreach ($activityData as $item)
                                     <option wire:key='Activeity_{{ $item->activity_id }}'
                                         value="{{ $item->activity_id }}">{{ $item->activity_description }}</option>
                                 @endforeach
@@ -64,9 +68,10 @@
                         <div class="form-group">
                             <label for=""
                                 class="form-label @error('C_sub_activity_id_fk') text-danger @enderror">C_Sub-Activity</label>
-                            <select wire:model="C_sub_activity_id_fk" class="form-control @error('C_sub_activity_id_fk') border border-danger @enderror">
+                            <select wire:model.defer="C_sub_activity_id_fk"
+                                class="form-control @error('C_sub_activity_id_fk') border border-danger @enderror">
                                 <option selected disabled value="0">Select Sub Activity</option>
-                                @foreach ($subactivity01Data as $item)
+                                @foreach ($subactivityData as $item)
                                     <option wire:key='subActiveity_{{ $item->sub_activity_id }}'
                                         value="{{ $item->sub_activity_id }}">{{ $item->sub_activity_description }}
                                     </option>
@@ -75,433 +80,247 @@
                         </div>
                     </div>
 
-                    {{-- D_routine --}}
+                    {{-- D_environmental_aspect --}}
                     <div class="col-md-3 col-sm-6">
                         <div class="form-group">
-                            <label for="" class="form-label @error('D_routine') text-danger @enderror">D_Routine</label>
-
-                            <div class="form-control">
-                                <div class="form-check form-check-inline">
-                                    <input checked wire:model='D_routine' value="R" class="form-check-input"
-                                        name="routine" type="radio" id="routine">
-                                    <label class="form-check-label" for="routine">Routine</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input wire:model='D_routine' value="N" class="form-check-input" name="routine"
-                                        type="radio" id="none-routine">
-                                    <label class="form-check-label" for="none-routine">Non-Routine</label>
-                                </div>
-                            </div>
+                            <label for="environmental_aspect_add"
+                                class="@error('D_environmental_aspect') text-danger @enderror">D_Environmental_Aspect</label>
+                            <textarea wire:model.defer='D_environmental_aspect' name="environmental_aspect"
+                                id="environmental_aspect_add"
+                                class="form-control @error('D_environmental_aspect') border border-danger @enderror"
+                                rows="1"></textarea>
                         </div>
                     </div>
 
-                    {{-- E_potential_hazard_id_fk --}}
+
+                    {{-- E_environmental_impact_id_fk --}}
                     <div class="col-md-3 col-sm-6">
                         <div class="form-group">
                             <label for=""
-                                class="form-label @error('E_potential_hazard_id_fk') text-danger @enderror">E_Potential</label>
-                            <select wire:model="E_potential_hazard_id_fk" class="form-control @error('E_potential_hazard_id_fk') border border-danger @enderror">
-                                <option selected disabled value="0">Select Potential Hazard</option>
-                                @foreach ($potentialHazardData as $item)
-                                    <option wire:key='potensialH_{{ $item->potential_hazard_id }}'
-                                        value="{{ $item->potential_hazard_id }}">
-                                        {{ $item->potential_hazard_description }}
+                                class="form-label @error('E_environmental_impact_id_fk') text-danger @enderror">E_Environmental_Impact</label>
+                            <select wire:model.defer="E_environmental_impact_id_fk"
+                                class="form-control @error('E_environmental_impact_id_fk') border border-danger @enderror">
+                                <option selected disabled value="0">Select Environmetal impact</option>
+                                @foreach ($environmetalimpactData as $item)
+                                    <option wire:key='environmental_{{ $item->environmental_impact_id }}_add'
+                                        value="{{ $item->environmental_impact_id }}">
+                                        {{ $item->environmental_impact_value }}.
+                                        {{ $item->environmental_impact_description }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
 
-                    {{-- F_probable_consequence_id_fk --}}
-                    <div class="col-md-3 col-sm-6">
-                        <div class="form-group">
-                            <label for=""
-                                class="form-label @error('F_probable_consequence_id_fk') text-danger @enderror">F_Probable</label>
-                            <select wire:model="F_probable_consequence_id_fk" class="form-control @error('F_probable_consequence_id_fk') border border-danger @enderror">
-                                <option selected disabled value="0">Select Probable Consequence</option>
-                                @foreach ($probableConsequenceData as $item)
-                                    <option wire:key='Probable_Consequences_{{ $item->probable_consequence_id }}'
-                                        value="{{ $item->probable_consequence_id }}">
-                                        {{ $item->probable_consequence_description }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-                    {{-- G_causes_id_fk    ****** yaha couses ayega ****** --}}
-                    <div class="col-md-3 col-sm-6">
-                        <div class="form-group">
-                            <label for=""
-                                class="form-label @error('G_causes_id_fk') text-danger @enderror">G_Causes</label>
-                            <select wire:model="G_causes_id_fk"
-                                class="form-control @error('G_causes_id_fk') border border-danger @enderror">
-                                <option selected disabled value="0">Select Causes</option>
-                                @foreach ($cause01Data as $item)
-                                    <option wire:key='Causes_{{ $item->causes_id }}'
-                                        value="{{ $item->causes_id }}">
-                                        {{ $item->causes_description }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    {{-- G1_sub_causes_id_fk --}}
-                    <div class="col-md-3 col-sm-6">
-                        <div class="form-group">
-                            <div class="">
-                                <label for=""
-                                    class="form-label @error('G1_sub_causes_id_fks') text-danger @enderror">G1_Sub_Causes</label>
-                                <select size="1" name="sub_cause" data-placeholder="Select Sub Causes"
-                                    wire:model='G1_sub_causes_id_fks'
-                                    class="form-control custom-select @error('G1_sub_causes_id_fks') border border-danger @enderror"
-                                    id="select2-dropdown" multiple>
-                                    {{-- <option selected disabled value="0">Select Sub Causes</option> --}}
-                                    @foreach ($subcause01Data as $item)
-                                        <option wire:key='Sub_Causes_{{ $item->sub_causes_id }}'
-                                            value="{{ $item->sub_causes_id }}">
-                                            {{ $item->sub_causes_description }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- H_preventive_incident_control_id_fk --}}
-                    <div class="col-md-3 col-sm-6">
-                        <div class="form-group">
-                            <label for=""
-                                class="form-label @error('H_preventive_incident_control_id_fk') text-danger @enderror">H_Preventive</label>
-                            <select wire:model="H_preventive_incident_control_id_fk" class="form-control @error('H_preventive_incident_control_id_fk') border border-danger @enderror">
-                                <option selected disabled value="0">Select Preventive Incident Control</option>
-                                @foreach ($preventiveinciData as $item)
-                                    <option
-                                        wire:key='Preventive_Incident_{{ $item->preventive_incident_control_id }}'
-                                        value="{{ $item->preventive_incident_control_id }}">
-                                        {{ $item->preventive_incident_control_description }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-                    {{-- I_consequences_controls_id_fk --}}
+                    {{-- F_condition_of_impact --}}
                     <div class="col-md-2 col-sm-6">
                         <div class="form-group">
                             <label for=""
-                                class="form-label @error('I_consequences_controls_id_fk') text-danger @enderror">I_Consequences</label>
-                            <select wire:model="I_consequences_controls_id_fk"
-                                class="form-control  @error('I_consequences_controls_id_fk') border border-danger @enderror">
-                                <option selected disabled value="0">Select Consequences Controls</option>
-                                @foreach ($consequencesCrlData as $item)
-                                    <option wire:key='Consequences_Controls_{{ $item->consequences_controls_id }}'
-                                        value="{{ $item->consequences_controls_id }}">
-                                        {{ $item->consequences_controls_description }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
+                                class="form-label @error('F_condition_of_impact') text-danger @enderror">F_condition of
+                                impact</label>
 
-                    {{-- J_risk_probability_id_fk --}}
-                    <div class="col-md-3 col-sm-6">
-                        <div class="form-group">
-                            <label for=""
-                                class="form-label @error('J_risk_probability_id_fk') text-danger @enderror">J_Risk
-                                Probability</label>
-                            <select wire:model="J_risk_probability_id_fk"
-                                class="form-control @error('J_risk_probability_id_fk') border border-danger @enderror">
-                                <option selected disabled value="0">Select Risk Probability Number</option>
-
-                                @foreach ($riskPorbabilityData as $item)
-                                    <option wire:key='jRisk_Probability_{{ $item->risk_probability_id }}'
-                                        value="{{ $item->risk_probability_id }}">
-                                        {{ $item->risk_probability_description }} -
-                                        {{ $item->risk_probability_value }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-                    {{-- K_risk_consequence_id_fk --}}
-                    <div class="col-md-3 col-sm-6">
-                        <div class="form-group">
-                            <label for=""
-                                class="form-label @error('K_risk_consequence_id_fk') text-danger @enderror">K_Risk
-                                Consequence</label>
-                            <select wire:model="K_risk_consequence_id_fk"
-                                class="form-control @error('K_risk_consequence_id_fk') border border-danger @enderror">
-                                <option selected disabled value="0">Select Risk Consequence Number</option>
-                                @foreach ($riskConsequenceData as $item)
-                                    <option wire:key='rRisk_Consequences_{{ $item->risk_consequence_id }}'
-                                        value="{{ $item->risk_consequence_id }}">
-                                        {{ $item->risk_consequence_description }} -
-                                        {{ $item->risk_consequence_value }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-                    {{-- L_duration_of_exposure_id_fk --}}
-                    <div class="col-md-3 col-sm-6">
-                        <div class="form-group">
-                            <label for=""
-                                class="form-label @error('L_duration_of_exposure_id_fk') text-danger @enderror">L_Duration
-                                Of Exposure</label>
-                            <select wire:model="L_duration_of_exposure_id_fk"
-                                class="form-control @error('L_duration_of_exposure_id_fk') border border-danger @enderror">
-                                <option selected disabled value="0">Select Risk Duration Number</option>
-                                @foreach ($durationOfExpData as $item)
-                                    <option wire:key='lRisk_Duration_{{ $item->duration_of_exposure_id }}'
-                                        value="{{ $item->duration_of_exposure_id }}">
-                                        {{ $item->duration_of_exposure_description }} -
-                                        {{ $item->duration_of_exposure_value }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-
-                    {{-- M_any_legal_obligation_to_the_risk_assessment --}}
-                    <div class="col-md-2 col-sm-6">
-                        <div class="form-group">
-                            <label title="Any Legal Obligation To The Risk Assessment " for=""
-                                class="form-label @error('M_any_legal_obligation_to_the_risk_assessment') text-danger @enderror">M_Any
-                                Legal...</label>
-
-                            <div class="form-control">
+                            <div class="form-control @error('F_condition_of_impact') border border-danger @enderror">
                                 <div class="form-check form-check-inline">
-                                    <input wire:model='M_any_legal_obligation_to_the_risk_assessment' value="YES"
-                                        class="form-check-input" name="legal-obligation" type="radio"
-                                        id="legal-obligation-ys">
-                                    <label class="form-check-label" for="legal-obligation-ys">YES</label>
+                                    <input checked wire:model.defer='F_condition_of_impact' value="A" class="form-check-input"
+                                        name="routine" type="radio" id="condImpactA_add">
+                                    <label class="form-check-label" for="condImpactA_add">A</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input checked wire:model='M_any_legal_obligation_to_the_risk_assessment' value="NO"
-                                        class="form-check-input" name="legal-obligation" type="radio"
-                                        id="legal-obligation-n">
-                                    <label class="form-check-label" for="legal-obligation-n">NO</label>
+                                    <input wire:model.defer='F_condition_of_impact' value="N" class="form-check-input"
+                                        name="routine" type="radio" id="condImpactN_add">
+                                    <label class="form-check-label" for="condImpactN_add">N</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input wire:model.defer='F_condition_of_impact' value="E" class="form-check-input"
+                                        name="routine" type="radio" id="condImpactE_add">
+                                    <label class="form-check-label" for="condImpactE_add">E</label>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {{-- N_risk_quantum --}}
+                    {{-- G_existing_controls_as_per_hierarchy --}}
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label title="G_existing_controls_as_per_hierarchy" for="existing_controls_add"
+                                class="@error('G_existing_controls_as_per_hierarchy') text-danger @enderror">G_existing_...</label>
+                            <textarea wire:model.defer='G_existing_controls_as_per_hierarchy' name="existing_controls"
+                                id="existing_controls_add"
+                                class="form-control @error('G_existing_controls_as_per_hierarchy') border border-danger @enderror"
+                                rows="1"></textarea>
+                        </div>
+                    </div>
+
+
+                    {{-- H_organization_requirement_id_fk --}}
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-group">
+                            <label for=""
+                                class="form-label @error('H_organization_requirement_id_fk') text-danger @enderror">H_Organization_Requirement</label>
+                            <select wire:model.defer="H_organization_requirement_id_fk"
+                                class="form-control @error('H_organization_requirement_id_fk') border border-danger @enderror">
+                                <option selected disabled value="0">Select Organization Requirement</option>
+                                @foreach ($organizationrequirementData as $item)
+                                    <option wire:key='orgrequirement_{{ $item->organization_requirement_id }}_add'
+                                        value="{{ $item->organization_requirement_id }}">
+                                        {{ $item->organization_requirement_value }}.
+                                        {{ $item->organization_requirement_description }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3 col-sm-6"></div>
+
+                    {{-- I_scale_of_impact_id_fk --}}
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-group">
+                            <label for=""
+                                class="form-label @error('I_scale_of_impact_id_fk') text-danger @enderror">I_Scale_Of_Impact</label>
+                            <select wire:model="I_scale_of_impact_id_fk"
+                                class="form-control @error('I_scale_of_impact_id_fk') border border-danger @enderror">
+                                <option selected disabled value="0">Select Scale of Impact Number</option>
+
+                                @foreach ($scaleimpacttData as $item)
+                                    <option wire:key='scale_impact_{{ $item->scale_of_impact_id }}'
+                                        value="{{ $item->scale_of_impact_id }}">
+                                        {{ $item->scale_of_impact_description }} -
+                                        {{ $item->scale_of_impact_value }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    {{-- J_severty_of_impact_id_fk --}}
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-group">
+                            <label for=""
+                                class="form-label @error('J_severty_of_impact_id_fk') text-danger @enderror">J_Severty_Of_Impact</label>
+                            <select wire:model="J_severty_of_impact_id_fk"
+                                class="form-control @error('J_severty_of_impact_id_fk') border border-danger @enderror">
+                                <option selected disabled value="0">Select Severty Impact Number</option>
+                                @foreach ($severtyimpactData as $item)
+                                    <option wire:key='severty_impact_{{ $item->severty_of_impact_id }}'
+                                        value="{{ $item->severty_of_impact_id }}">
+                                        {{ $item->severty_of_impact_description }} -
+                                        {{ $item->severty_of_impact_value }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    {{-- K_duration_of_impact_id_fk --}}
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-group">
+                            <label for=""
+                                class="form-label @error('K_duration_of_impact_id_fk') text-danger @enderror">K_Duration_Of_Impact</label>
+                            <select wire:model="K_duration_of_impact_id_fk"
+                                class="form-control @error('K_duration_of_impact_id_fk') border border-danger @enderror">
+                                <option selected disabled value="0">Select Duration of Impact Number</option>
+                                @foreach ($durationoimpactData as $item)
+                                    <option wire:key='duration_impact_{{ $item->duration_of_impact_id }}'
+                                        value="{{ $item->duration_of_impact_id }}">
+                                        {{ $item->duration_of_impact_description }} -
+                                        {{ $item->duration_of_impact_value }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    {{-- L_consequence --}}
                     <div class="col-md-1 col-sm-6">
                         <div class="form-controp">
-                            <label for="" title="Risk_Quantum" class="@error('N_risk_quantum') text-danger @enderror"> N_RQ...</label>
-                            <input type="text" class="form-control @error('N_risk_quantum') border border-danger @enderror" wire:model="N_risk_quantum" readonly>
+                            <label for="" title="L_consequence" class="@error('L_consequence') text-danger @enderror">
+                                L_Coqc...</label>
+                            <input type="text"
+                                class="form-control @error('L_consequence') border border-danger @enderror"
+                                wire:model="L_consequence" readonly>
                         </div>
                     </div>
 
-                    {{-- O_risk_acceptable_non_acceptable --}}
+                    {{-- P1_cut_off_value --}}
                     <div class="col-md-2 col-sm-6">
                         <div class="form-controp">
-                            <label for="" title="Risk Acceptable / Non Acceptable"
-                                class="@error('O_risk_acceptable_non_acceptable') text-danger @enderror"> O_Risk
-                                Acceptable/Non...
-                                @error('O_risk_acceptable_non_acceptable') <i
+                            <label for="" title="P1_Cut_Off_Value" class="@error('P1_cut_off_value') text-danger @enderror">
+                                P1_cutOff...</label>
+                            <input type="text"
+                                class="form-control @error('P1_cut_off_value') border border-danger @enderror"
+                                wire:model.defer="P1_cut_off_value" readonly>
+                        </div>
+                    </div>
+
+                    {{-- M_probability_id_fk --}}
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-group">
+                            <label for=""
+                                class="form-label @error('M_probability_id_fk') text-danger @enderror">M_Probability</label>
+                            <select wire:model="M_probability_id_fk"
+                                class="form-control @error('M_probability_id_fk') border border-danger @enderror">
+                                <option selected disabled value="0">Select Probability Number</option>
+                                @foreach ($probabilityData as $item)
+                                    <option wire:key='probability_{{ $item->probability_id }}'
+                                        value="{{ $item->probability_id }}">
+                                        {{ $item->probability_description }} -
+                                        {{ $item->probability_value }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    {{-- N_impact_score --}}
+                    <div class="col-md-1 col-sm-6">
+                        <div class="form-controp">
+                            <label for="" title="N_Impact_Score" class="@error('N_impact_score') text-danger @enderror">
+                                N_imcS...</label>
+                            <input type="text"
+                                class="form-control @error('N_impact_score') border border-danger @enderror"
+                                wire:model.defer="N_impact_score" readonly>
+                        </div>
+                    </div>
+
+
+                    {{-- O_significance_score_level --}}
+                    <div class="col-md-2 col-sm-6">
+                        <div class="form-controp">
+                            <label for="" title="Significance / NonSignificance"
+                                class="@error('O_significance_score_level') text-danger @enderror"> O_signifi/Non...
+                                @error('O_significance_score_level') <i
                                     class="text-danger fas fa-times-circle"></i>@enderror</label>
-                            {{-- <div
-                                class="form-control text-white {{ $this->N_risk_quantum && $this->N_risk_quantum > 29 ? 'btn-danger' : 'btn-success' }} ">
-                                <span class="">
-                                    {{ $this->O_risk_acceptable_non_acceptable }}
-                                </span>
-                            </div> --}}
-                            <input type="text" class="form-control text-white {{ $this->N_risk_quantum && $this->N_risk_quantum > 29 ? 'bg-danger' : 'bg-success' }}" readonly value="{{$this->O_risk_acceptable_non_acceptable}}">
+                            <input type="text"
+                                class="form-control text-white  {{ $this->O_significance_score_level && $this->O_significance_score_level == 'Nonsignificant' ? 'bg-success' : 'bg-danger' }}"
+                                readonly value="{{ $this->O_significance_score_level }}">
                         </div>
                     </div>
 
-                    <hr class="text-secondary w-100">
-
-
-                    {{-- if not Acceptable --}}
-                    {{-- {{$this->ifnotAcceptable ? 'd-block' : 'd-none'}} <-- this code will use after cunfirm from T&S --}} 
-                    <div class="col-12" >
-                        <h5><strong>If Not Acceptable</strong></h5>
-                        <div class="row g-3 ">
-                            {{-- P_no_of_person_believed_to_be_affected --}}
-                            <div class="col-md-1">
-                                <div class="form-controp">
-                                    <label for=""
-                                        title="For Non acceptable risk, No. of person believed to be affected "
-                                        class="">
-                                        P_No.OfPe...</label>
-                                    <input type="text"
-                                        class="form-control danger "
-                                        wire:model="P_no_of_person_believed_to_be_affected">
-                                </div>
-                            </div>
-
-                            {{-- Q_actions_as_per_hierarchy_of_control  here will see --}}
-
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="" title="Actions_As_Per_Hierarchy_Of_Control">Q_Actions_As...</label>
-                                    <div class="form-control">
-                                        @foreach ($referGuidewordData as $item)
-                                            
-                                        <div class="form-check form-check-inline">
-                                            <input wire:model='Q_actions_as_per_hierarchy_of_control' class="form-check-input" type="checkbox" id="action_hirarchy_{{$item->refer_guidewords_id}}" 
-                                            value="{{$item->refer_guidewords_id}}">
-                                            <label title="{{$item->refer_guidewords_desc}}" class="form-check-label" for="action_hirarchy_{{$item->refer_guidewords_id}}">{{$item->refer_guidewords_abbr}}</label>
-                                        </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            {{-- R_risk_probability --}}
-                            <div class="col-md-3 col-sm-6">
-                                <div class="form-group">
-                                    <label for=""
-                                        class="form-label">R_Risk
-                                        Probability</label>
-                                    <select wire:model="R_risk_probability"
-                                        class="form-control">
-                                        <option selected disabled value="0">Select Risk Probability Number</option>
-
-                                        @foreach ($riskPorbabilityData as $item)
-                                            <option wire:key='rR_Probability_{{ $item->risk_probability_id }}'
-                                                value="{{ $item->risk_probability_id }}">
-                                                {{ $item->risk_probability_description }} -
-                                                {{ $item->risk_probability_value }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-
-                            {{-- S_risk_consequence --}}
-                            <div class="col-md-3 col-sm-6">
-                                <div class="form-group">
-                                    <label for=""
-                                        class="form-label">S_Risk
-                                        Consequence</label>
-                                    <select wire:model="S_risk_consequence"
-                                        class="form-control">
-                                        <option selected disabled value="0">Select Risk Consequence Number</option>
-                                        @foreach ($riskConsequenceData as $item)
-                                            <option wire:key='sRisk_Consequences_{{ $item->risk_consequence_id }}'
-                                                value="{{ $item->risk_consequence_id }}">
-                                                {{ $item->risk_consequence_description }} -
-                                                {{ $item->risk_consequence_value }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-
-                            {{-- T_duration --}}
-                            <div class="col-md-3 col-sm-6">
-                                <div class="form-group">
-                                    <label for=""
-                                        class="form-label">T_Duration
-                                        Of Exposure</label>
-                                    <select wire:model="T_duration"
-                                        class="form-control ">
-                                        <option selected disabled value="0">Select Risk Duration Number</option>
-                                        @foreach ($durationOfExpData as $item)
-                                            <option wire:key='tRisk_Durations_{{ $item->duration_of_exposure_id }}'
-                                                value="{{ $item->duration_of_exposure_id }}">
-                                                {{ $item->duration_of_exposure_description }} -
-                                                {{ $item->duration_of_exposure_value }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-
-                            {{-- U_risk_quantum --}}
-                            <div class="col-md-1 col-sm-6">
-                                <div class="form-group">
-                                    <label title="Risk Quantum" for=""
-                                        class=" ">
-                                        U_R.Q...</label>
-                                    <input type="text" class="form-control" wire:model="U_risk_quantum" readonly>
-                                </div>
-                            </div>
-
-                            {{-- V_risk_acceptable_non_acceptable --}}
-                            <div class="col-md-2 col-sm-6">
-                                <div class="form-controp">
-                                    <label for="" title="Risk Acceptable / Non Acceptable"
-                                        class="">
-                                        V_Risk
-                                        Acceptable/Non...</label>
-                                    {{-- <div
-                                        class="form-control text-white {{ $this->U_risk_quantum && $this->U_risk_quantum > 29 ? 'btn-danger' : 'btn-success' }} ">
-                                        <span class="">
-                                            {{ $this->V_risk_acceptable_non_acceptable }}
-                                        </span>
-                                    </div> --}}
-                                    <input type="text" class="form-control text-white {{ $this->U_risk_quantum && $this->U_risk_quantum > 29 ? 'bg-danger' : 'bg-success' }}" readonly value="{{$this->V_risk_acceptable_non_acceptable}}">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr class="text-secondary w-100">
-                    
-                    <div class="col-md-4">
+                    {{-- P_additional_control --}}
+                    <div class="col-md-4 col-sm-6">
                         <div class="form-group">
-                            <label for=""
-                                class="form-label @error('administrative_control_preventive_id_fk') text-danger @enderror">Administrative_Control_Preventive</label>
-                            <select  wire:model="administrative_control_preventive_id_fk"
-                                class="form-control @error('administrative_control_preventive_id_fk') border border-danger @enderror ">
-                                <option selected disabled value="0">Select Administrative Ctr Pre</option>
-                                @foreach ($adminstrativeCtrPreData as $item)
-                                    <option wire:key='tRisk_Durations_{{ $item->administrative_control_preventive_id }}'
-                                        value="{{ $item->administrative_control_preventive_id }}">
-                                        {{ $item->administrative_control_preventive_description }} -
-                                        {{ $item->administrative_control_preventive_value }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <label title="P_additional_control" for="additionControl_add"
+                                class="@error('P_additional_control') text-danger @enderror">P_addition_...</label>
+                            <textarea wire:model.defer='P_additional_control' name="additionControl" id="additionControl_add"
+                                class="form-control @error('P_additional_control') border border-danger @enderror"
+                                rows="1"></textarea>
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for=""
-                                class="form-label @error('administrative_control_mitigative_id_fk') text-danger @enderror">Administrative_Control_Mitigative</label>
-                            <select  wire:model="administrative_control_mitigative_id_fk"
-                                class="form-control @error('administrative_control_mitigative_id_fk') border border-danger @enderror ">
-                                <option selected disabled value="0">Select Administrative Ctr Pre</option>
-                                @foreach ($adminstrativeCtrMitData as $item)
-                                    <option wire:key='tRisk_Durations_{{ $item->administrative_control_mitigative_id }}'
-                                        value="{{ $item->administrative_control_mitigative_id }}">
-                                        {{ $item->administrative_control_mitigative_description }} -
-                                        {{ $item->administrative_control_mitigative_value }}
-                                    </option>
-                                @endforeach
-                            </select>
+                    {{-- Q_risk_rating_priority --}}
+                    <div class="col-md-2 col-sm-6">
+                        <div class="form-controp">
+                            <label for="" title="Q_Risk_Rating_Priority"
+                                class="@error('Q_risk_rating_priority') text-danger @enderror">Q_Risk_Rating..
+                                @error('Q_risk_rating_priority') <i
+                                    class="text-danger fas fa-times-circle"></i>@enderror</label>
+                            <input type="text"
+                                class="form-control text-white  {{ $this->L_consequence && $this->L_consequence != '' ? 'bg-danger' : '' }}"
+                                readonly value="{{ $this->Q_risk_rating_priority }}">
                         </div>
                     </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for=""
-                                class="form-label @error('engineering_control_id_fk') text-danger @enderror">Engineering Control</label>
-                            <select  wire:model="engineering_control_id_fk"
-                                class="form-control @error('engineering_control_id_fk') border border-danger @enderror">
-                                <option selected disabled value="0">Select Administrative Ctr Pre</option>
-                                @foreach ($engineeringCtrData as $item)
-                                    <option wire:key='tRisk_Durations_{{ $item->engineering_control_id }}'
-                                        value="{{ $item->engineering_control_id }}">
-                                        {{ $item->engineering_control_description }} -
-                                        {{ $item->engineering_control_value }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
 
                     <hr class="text-secondary w-100">
 

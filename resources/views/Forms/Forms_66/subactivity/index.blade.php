@@ -6,7 +6,7 @@
 
     <!-- start page title -->
         @livewire('page-title', [ 'sub_title' => 'FORMS 66' , 'active_title' => 'Form 66 subactivity' , 'page_title' => 'Form 66 Sub-activity'  ])
-        @livewire('forms66.duration-of-impact')
+        @livewire('forms66.sub-activity66')
     <!-- end page title -->
 
 

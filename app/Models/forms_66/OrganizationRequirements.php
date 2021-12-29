@@ -17,8 +17,8 @@ class OrganizationRequirements extends Model
     ];
 
 
-    public function sub_activity()
-    {
-        return $this->belongsTo(SubActivity66::class,'organization_requirement_id_fk','organization_requirement_id');
-    }
+    // public function sub_activity()
+    // {
+    //     return $this->belongsTo(SubActivity66::class,'organization_requirement_id_fk','organization_requirement_id');
+    // }
 }
