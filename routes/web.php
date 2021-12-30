@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\common_forms\Company;
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommonController;
 use App\Http\Controllers\Forms18Controller;
@@ -11,10 +9,11 @@ use App\Http\Controllers\Forms\Forms15Controller;
 use App\Http\Controllers\Forms\Forms16Controller;
 use App\Http\Controllers\Forms\Forms17Controller;
 use App\Http\Controllers\Forms\Forms22Controller;
+use App\Http\Controllers\Forms\Forms66Controller;
+use App\Models\common_forms\Company;
 use App\Http\Controllers\Forms\Forms28Controller;
 use App\Http\Controllers\Forms\CommonformController;
-
-
+use GuzzleHttp\Middleware;
 
 // use App\Http\Controllers\RoutingController;
 
@@ -89,10 +88,11 @@ Route::get('/prioritytimescale', [CommonformController::class, 'index_priorityti
 // Route::get('/secondarymember', [CommonController::class, 'index_secondarymember'])->name('secondarymember');
 
 
-// Forms01 Routes
 
+// oo route 
 Route::get('/form00_data', [Form00Controller::class, 'index_formdata'])->name('form00_data');
 
+// Forms01 Routes
 Route::get('/form01_formdata01', [Form01Controller::class, 'index_formdata01'])->name('form01_formdata01');
 Route::get('/form01_activity', [Form01Controller::class, 'index_activity'])->name('form01_activity');
 Route::get('/form01_preventiveincidentcontrol', [Form01Controller::class, 'index_preventiveincidentcontrol'])->name('form01_preventiveincidentcontrol');
@@ -150,7 +150,18 @@ Route::get('/dashboard_unitavailable', [CommonController::class, 'dashboard_unit
 Route::get('/dashboard_management', [CommonController::class, 'dashboard_management'])->name('dashboard_management');
 
 
-
+// forms 66
+// Route::group(['middleware' => 'auth:sanctum','verified'],function(){
+// });
+Route::get('/form66_formdata66', [Forms66Controller::class, 'index_formdata66'])->name('form66_formdata');
+Route::get('/form66_activity', [Forms66Controller::class, 'index_activity66'])->name('form66_activity');
+Route::get('/form66_subactivity', [Forms66Controller::class, 'index_subactivity66'])->name('form66_subactivity');
+Route::get('/form66_durationofimpact', [Forms66Controller::class, 'index_durationofimpact66'])->name('form66_durationofimpact');
+Route::get('/form66_environmentalimpact', [Forms66Controller::class, 'index_environmentalimpact66'])->name('form66_environmentalimpact');
+Route::get('/form66_organizationrequirement', [Forms66Controller::class, 'index_organizationrequirement66'])->name('form66_organizationrequirement');
+Route::get('/form66_scaleofimpact', [Forms66Controller::class, 'index_scaleofimpact66'])->name('form66_scaleofimpact');
+Route::get('/form66_severtyofimpact', [Forms66Controller::class, 'index_severtyofimpact66'])->name('form66_severtyofimpact');
+Route::get('/form66_probability', [Forms66Controller::class, 'index_probability66'])->name('form66_probability');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

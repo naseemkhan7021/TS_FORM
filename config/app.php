@@ -161,7 +161,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        Barryvdh\Debugbar\ServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -177,7 +177,7 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
 
-        Barryvdh\DomPDF\ServiceProvider::class,
+        'Barryvdh\DomPDF\ServiceProvider',
 
 
     ],
@@ -235,7 +235,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'PDF' => Barryvdh\DomPDF\Facade::class,
-
+        'Debugbar' => 'Barryvdh\Debugbar\Facade',
     ],
 
 ];

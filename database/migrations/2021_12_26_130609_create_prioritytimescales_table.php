@@ -13,6 +13,7 @@ class CreatePrioritytimescalesTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('prioritytimescales')) {
         Schema::create('prioritytimescales', function (Blueprint $table) {
             $table->id('prioritytimescales_id');
             $table->string('prioritytimescales_desc',50)->nullable();
@@ -26,6 +27,7 @@ class CreatePrioritytimescalesTable extends Migration
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
+}
 
     /**
      * Reverse the migrations.
