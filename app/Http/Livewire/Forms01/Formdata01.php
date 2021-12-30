@@ -3,32 +3,33 @@
 namespace App\Http\Livewire\Forms01;
 
 use App\Models\forms_00\formdata_00;
-use App\Models\forms_01\activity;
-use App\Models\forms_01\administrative_control_mitigative;
-use App\Models\forms_01\administrative_control_preventive;
-use App\Models\forms_01\cause;
-use App\Models\forms_01\consequences_control;
-use App\Models\forms_01\duration_of_exposure;
-use App\Models\forms_01\engineering_control;
-use App\Models\forms_01\Formdata_01;
-use App\Models\forms_01\potential_hazard;
-use App\Models\forms_01\preventive_incident_control;
-use App\Models\forms_01\probable_consequence;
-use App\Models\forms_01\refer_guideword;
-use App\Models\forms_01\risk_consequence;
-use App\Models\forms_01\risk_probability;
-use App\Models\forms_01\sub_activity;
-use App\Models\forms_01\sub_cause;
-use App\Models\projcon\Project;
 use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Models\forms_01\cause;
+use App\Models\projcon\Project;
+use App\Models\forms_01\activity;
+use App\Models\forms_01\sub_cause;
+
+use App\Models\forms_01\Formdata_01;
+use App\Models\forms_01\sub_activity;
+use App\Models\forms_01\refer_guideword;
+use App\Models\forms_01\potential_hazard;
+use App\Models\forms_01\risk_consequence;
+use App\Models\forms_01\risk_probability;
+use App\Models\forms_01\engineering_control;
+use App\Models\forms_01\consequences_control;
+use App\Models\forms_01\duration_of_exposure;
+use App\Models\forms_01\probable_consequence;
+use App\Models\forms_01\preventive_incident_control;
+use App\Models\forms_01\administrative_control_mitigative;
+use App\Models\forms_01\administrative_control_preventive;
 
 class Formdata01 extends Component
 {
     use WithPagination;
     protected $listeners = ['selectedProjectID'];
-    // normal field 
+    // normal field
     public $M_any_legal_obligation_to_the_risk_assessment, $D_routine, $N_risk_quantum, $O_risk_acceptable_non_acceptable, $P_no_of_person_believed_to_be_affected, $Q_actions_as_per_hierarchy_of_control, $R_risk_probability, $S_risk_consequence, $T_duration, $U_risk_quantum, $V_risk_acceptable_non_acceptable;
 
     // all fk
@@ -244,6 +245,8 @@ class Formdata01 extends Component
             'U_risk_quantum' => $this->U_risk_quantum,
             'V_risk_acceptable_non_acceptable' => $this->V_risk_acceptable_non_acceptable,
         ]);
+
+
 
         if ($save) {
             $getCounter = formdata_00::where([
