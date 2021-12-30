@@ -65,7 +65,6 @@ class Projects extends Component
             'sproject_location' => 'required',
             'ibc_id_fk' => 'required',
             'idepartment_id_fk' => 'required',
-
         ]);
 
         $save = Formsprojects::insert([

@@ -9,6 +9,9 @@ if ($formdata_16s_id_fk) {
     $eml_id_no_f16 = $form16_obj[0]->eml_id_no;
     $injury_to_f16 = $form16_obj[0]->potential_injurytos_description;
     $potential_injurytos_other_f16=$form16_obj[0]->potential_injurytos_other;
+    $this->ibc_id_fk = $sproject_location_obj[0]->ibc_id_fk;
+    $this->iproject_id_fk = $sproject_location_obj[0]->iproject_id_fk;
+    $this->idepartment_id_fk = $sproject_location_obj[0]->idepartment_id_fk;
     // dd($this->injury_to_f16);
 }
 // if ($dob_dt) {

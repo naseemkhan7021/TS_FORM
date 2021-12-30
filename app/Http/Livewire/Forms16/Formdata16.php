@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Forms16;
 
 use App\Models\common\Gender;
 use App\Models\common_forms\PotentialInjuryto;
+use App\Models\forms_00\formdata_00;
 use App\Models\forms_16\formdata_16;
 use App\Models\forms_16\uploaddocument;
 use App\Models\projcon\Project;
@@ -19,10 +20,10 @@ class Formdata16 extends Component
     use WithFileUploads;
 
     public $photos = [], $imgTitles = array();
-    public $oldphotosLocation = [], $oldimgTitles = array(),$oldimgName=[];
+    public $oldphotosLocation = [], $oldimgTitles = array(), $oldimgName = [];
     public $searchQuery, $showOtherInput, $showhospital, $victimDischargeorNot, $role, $firstaidgivenonsite;
-    public $injuredvictim_name, $designation, $age, $sproject_location, $iproject_id_fk, $doincident_dt, $potential_injurytos_fk, $potential_injurytos_other, $eml_id_no, $dob_dt, $gender_fk, $doj_dt, $safety_inducted, $married, $person_on_duty, $person_authorized_2_incident_area, $present_address, $permanent_address, $by_whom, $first_incident_reported_to, $date_time_reported_dt, $witness1_name, $designation_1, $witness2_name, $designation_2, $first_aid_given_on_site, $name_first_aider, $victim_taken_hospital, $name_hospital, $victim_hospital_dischaged, $return_to_work, $victim_influence_alcohol, $description_of_incident, $uploaddocuments_fk, $extend_injury, $activity16, $relavebt_risk_referenceno, $control_measure, $actions_taken, $site_enginner_name, $site_enginner_signature, $project_manager, $project_manager_signature;
-    public $cid, $imgsId, $upd_injuredvictim_name, $upd_designation, $upd_age;
+    public $injuredvictim_name, $designation, $age, $sproject_location, $document_id_fk, $idepartment_id_fk, $ibc_id_fk, $iproject_id_fk, $doincident_dt, $potential_injurytos_fk, $potential_injurytos_other, $eml_id_no, $dob_dt, $gender_fk, $doj_dt, $safety_inducted, $married, $person_on_duty, $person_authorized_2_incident_area, $present_address, $permanent_address, $by_whom, $first_incident_reported_to, $date_time_reported_dt, $witness1_name, $designation_1, $witness2_name, $designation_2, $first_aid_given_on_site, $name_first_aider, $victim_taken_hospital, $name_hospital, $victim_hospital_dischaged, $return_to_work, $victim_influence_alcohol, $description_of_incident, $uploaddocuments_fk, $extend_injury, $activity16, $relavebt_risk_referenceno, $control_measure, $actions_taken, $site_enginner_name, $site_enginner_signature, $project_manager, $project_manager_signature;
+    public $formSRNo, $cid, $imgsId, $upd_injuredvictim_name, $upd_designation, $upd_age;
 
 
 
@@ -30,6 +31,7 @@ class Formdata16 extends Component
     public function mount()
     {
         $this->searchQuery = '';
+        $this->formSRNo = 16;
         $this->showhospital = 'No';
         $this->victimDischargeorNot = 'No';
         $this->firstaidgivenonsite = 'No';
@@ -167,32 +169,14 @@ class Formdata16 extends Component
             // 'project_manager_signature' => 'required',
         ]);
 
-
-        // foreach ($this->images as $key => $image) {
-        //     $this->images[$key] = $image->store('images','public');
-        // }
-
-        // $indx = 0;
-        // foreach ($this->photos as $key => $photo) {
-        //     // $filename = 'injuredDoc'.time();
-        //     // $name = $photo->getClientOriginalName();
-        //     $file=$photo->store('photos/injuredDoc');
-        //     $this->imgLocation[$key] = $file;
-        //     print_r($this->imgLocation);
-        //     // Storage::move('photos/injuredDoc/', 'photos/injuredDoc/');
-        // }
-        // $saveImage = uploaddocument::insert([
-        //     'uploaddocuments_location'=>$this->imgLocation,
-        //     'uploaddocuments_title'=>'NaN',
-        //     'uploaddocuments_name'=>'NaN',
-        // ]);
-
         $save = DB::table('formdata_16s')->insert([
             'injuredvictim_name' => $this->injuredvictim_name,
             'designation' => $this->designation,
             'age' => $this->age,
             // 'sproject_location'=> $this->sproject_location,
             'iproject_id_fk' => $this->iproject_id_fk,
+            'idepartment_id_fk' => $this->idepartment_id_fk,
+            'ibc_id_fk' => $this->ibc_id_fk,
             'doincident_dt' => $this->doincident_dt,
             'potential_injurytos_fk' => $this->potential_injurytos_fk,
             'potential_injurytos_other' => $this->potential_injurytos_other,
@@ -271,12 +255,29 @@ class Formdata16 extends Component
 
                 if ($saveImage) {
                     # code...
-                    // clear veriable 
-                    $this->photos = [];
-                    $this->imgTitles = array();
-                    $this->dispatchBrowserEvent('CloseAddCountryModal');
-                    $this->resetValidation();
-                    return response()->json(array('success' => true, 'last_insert_id_imgs' => $uploaddocument->uploaddocuments_id, 'last_insert_id_form' => $id), 200);
+                    $getCounter = formdata_00::where([
+                        'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
+                        'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
+                        'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
+                        'formdata_00s.sr_no' => $this->formSRNo
+                    ])->get('counter')[0]->counter + 1;
+
+                    $updateformsCounter = formdata_00::where([
+                        'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
+                        'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
+                        'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
+                        'formdata_00s.sr_no' => $this->formSRNo
+                    ])->update(['counter' => $getCounter]);
+
+                    if ($updateformsCounter) {
+                        # code...
+                        // clear veriable 
+                        $this->photos = [];
+                        $this->imgTitles = array();
+                        $this->dispatchBrowserEvent('CloseAddCountryModal');
+                        $this->resetValidation();
+                        return response()->json(array('success' => true, 'last_insert_id_imgs' => $uploaddocument->uploaddocuments_id, 'last_insert_id_form' => $id), 200);
+                    }
                 }
             } else {
                 $this->dispatchBrowserEvent('CloseAddCountryModal');
@@ -330,6 +331,8 @@ class Formdata16 extends Component
         $this->age = $info->age;
         // $this->sproject_location = $this->sproject_location;
         $this->iproject_id_fk = $info->iproject_id_fk;
+        $this->idepartment_id_fk = $info->idepartment_id_fk;
+        $this->ibc_id_fk = $info->ibc_id_fk;
         $this->doincident_dt = $info->doincident_dt;
         $this->potential_injurytos_fk = $info->potential_injurytos_fk;
         $this->potential_injurytos_other = $info->potential_injurytos_other;
@@ -434,6 +437,8 @@ class Formdata16 extends Component
             'designation' => $this->designation,
 
             'iproject_id_fk' => $this->iproject_id_fk,
+            'idepartment_id_fk' => $this->idepartment_id_fk,
+            'ibc_id_fk' => $this->ibc_id_fk,
             'doincident_dt' => $this->doincident_dt,
             'potential_injurytos_fk' => $this->potential_injurytos_fk,
             'potential_injurytos_other' => $this->potential_injurytos_other,

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Forms01;
 
+use App\Models\forms_00\formdata_00;
 use App\Models\forms_01\activity;
 use App\Models\forms_01\administrative_control_mitigative;
 use App\Models\forms_01\administrative_control_preventive;
@@ -36,7 +37,7 @@ class Formdata01 extends Component
     // collect property
     public $G1_sub_causes_id_fks = [];
 
-    public $searchQuery, $sproject_location, $currentData, $ifnotAcceptable;
+    public  $searchQuery, $sproject_location, $currentData, $ifnotAcceptable, $formSRNo;
     public $selectedProjectID; // this id is globle available
 
 
@@ -50,6 +51,7 @@ class Formdata01 extends Component
     public function mount()
     {
         $this->searchQuery = '';
+        $this->formSRNo = 1; // this number increase as per form number 1-72 (  )
         $this->ifnotAcceptable = false;
         // $this->G1_sub_causes_id_fks = collect();
         $this->Q_actions_as_per_hierarchy_of_control = collect();
@@ -113,7 +115,7 @@ class Formdata01 extends Component
                     ->orWhere('consequences_controls.consequences_controls_description', 'like', '%', $this->searchQuery . '%')
                     ->orWhere('O_risk_acceptable_non_acceptable', 'like', '%', $this->searchQuery . '%');
             })->orderBy('formdata_01s_id', 'asc')->paginate(10);
-            // dd($formdata01);
+        // dd($formdata01);
         $data = [
             'formdata01' => $formdata01,
             'prjectData' => Project::get(),
@@ -140,15 +142,15 @@ class Formdata01 extends Component
     {
         $this->currentData = Carbon::now()->format('Y-m-d') . " " . Carbon::now()->format('H:i:s');
         // $this->iproject_id_fk = session('globleSelectedProjectID');
+        $this->ibc_id_fk = '';
+        $this->idepartment_id_fk = '';
+        $this->iproject_id_fk = '0';
         $this->D_routine = 'R';
         $this->M_any_legal_obligation_to_the_risk_assessment = 'NO';
-        // $this->ibc_id_fk='';
-        // $this->idepartment_id_fk='';
         $this->O_risk_acceptable_non_acceptable = 'unset';
         $this->V_risk_acceptable_non_acceptable = 'unset';
         $this->U_risk_quantum = 0;
         $this->N_risk_quantum = 0;
-        $this->iproject_id_fk = '0';
         $this->sproject_location = '';
         $this->B_activity_id_fk = '0';
         $this->C_sub_activity_id_fk = '0';
@@ -211,8 +213,8 @@ class Formdata01 extends Component
         ]);
 
         $save = Formdata_01::insert([
-            // ibc_id_fk
-            // idepartment_id_fk
+            'ibc_id_fk' => $this->ibc_id_fk,
+            'idepartment_id_fk' => $this->idepartment_id_fk,
             'iproject_id_fk' => $this->iproject_id_fk,
             // 'document_id_fk'=>$this->document_id_fk,
             'B_activity_id_fk' => $this->B_activity_id_fk,
@@ -244,8 +246,24 @@ class Formdata01 extends Component
         ]);
 
         if ($save) {
-            $this->dispatchBrowserEvent('CloseAddCountryModal');
-            // $this->checkedCountry = [];
+            $getCounter = formdata_00::where([
+                'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
+                'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
+                'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
+                'formdata_00s.sr_no' => $this->formSRNo
+            ])->get('counter')[0]->counter + 1;
+
+            $updateformsCounter = formdata_00::where([
+                'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
+                'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
+                'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
+                'formdata_00s.sr_no' => $this->formSRNo
+            ])->update(['counter' => $getCounter]);
+            if ($updateformsCounter) {
+                # code...
+                $this->dispatchBrowserEvent('CloseAddCountryModal');
+                // $this->checkedCountry = [];
+            }
         }
     }
 
@@ -257,6 +275,8 @@ class Formdata01 extends Component
         // dd($info);
         $this->currentData = Carbon::parse($info->created_at)->format('Y-m-d H:i:s');
         $this->iproject_id_fk = $info->iproject_id_fk;
+        $this->idepartment_id_fk = $info->idepartment_id_fk;
+        $this->ibc_id_fk = $info->ibc_id_fk;
         $this->B_activity_id_fk = $info->B_activity_id_fk;
         $this->C_sub_activity_id_fk = $info->C_sub_activity_id_fk;
         $this->D_routine = $info->D_routine;
@@ -328,6 +348,8 @@ class Formdata01 extends Component
 
         $update = Formdata_01::find($cid)->update([
             'iproject_id_fk' => $this->iproject_id_fk,
+            'idepartment_id_fk' => $this->idepartment_id_fk,
+            'ibc_id_fk' => $this->ibc_id_fk,
             // 'document_id_fk'=>$this->document_id_fk,
             'B_activity_id_fk' => $this->B_activity_id_fk,
             'C_sub_activity_id_fk' => $this->C_sub_activity_id_fk,

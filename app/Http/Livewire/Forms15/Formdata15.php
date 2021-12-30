@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Forms15;
 
 use App\Models\common_forms\PotentialInjuryto;
+use App\Models\forms_00\formdata_00;
 use App\Models\forms_15\Activity15;
 use App\Models\forms_15\Cause15;
 use App\Models\forms_15\ContributingCause;
@@ -20,8 +21,9 @@ class Formdata15 extends Component
 
     protected $listeners = ['selectedProjectID'];
 
-    public $searchQuery, $role, $doincident_dt, $sproject_location, $showOtherInput,$d;
-    public $iproject_id_fk, $potential_injurytos_fk, $report_no, $potential_injurytos_other, $nature_of_potential_injuries_ids, $nature_of_potential_injuries_other, $activity15s_ids, $details_of_nearmiss, $imdcause15s_ids, $imdcause15s_other, $contributing_causes_ids, $contributing_causes_other, $whyunsafeact_committeds_ids, $whyunsafeact_committeds_other, $imd_actions_ids, $imd_corrections_ids, $further_recommended_action, $completed_by_name, $completed_by_signature, $completed_date;
+    public $searchQuery,$formSRNo, $role, $doincident_dt, $sproject_location, $showOtherInput,$d;
+
+    public $iproject_id_fk,$document_id_fk,$idepartment_id_fk,$ibc_id_fk, $potential_injurytos_fk, $report_no, $potential_injurytos_other, $nature_of_potential_injuries_ids, $nature_of_potential_injuries_other, $activity15s_ids, $details_of_nearmiss, $imdcause15s_ids, $imdcause15s_other, $contributing_causes_ids, $contributing_causes_other, $whyunsafeact_committeds_ids, $whyunsafeact_committeds_other, $imd_actions_ids, $imd_corrections_ids, $further_recommended_action, $completed_by_name, $completed_by_signature, $completed_date;
     public $cid,$selectedProjectID;
 
 
@@ -35,6 +37,7 @@ class Formdata15 extends Component
     public function mount()
     {
         $this->searchQuery = '';
+        $this->formSRNo = 15;
     }
 
     public function render()
@@ -128,6 +131,8 @@ class Formdata15 extends Component
 
         $save = formdata_15::insert([
             'iproject_id_fk' => $this->iproject_id_fk,
+            'idepartment_id_fk' => $this->idepartment_id_fk,
+            'ibc_id_fk' => $this->ibc_id_fk,
             'potential_injurytos_fk' => $this->potential_injurytos_fk,
             'report_no' => $this->report_no,
             'potential_injurytos_other' => $this->potential_injurytos_other,
@@ -149,10 +154,27 @@ class Formdata15 extends Component
             'completed_date' => $this->completed_date,
             'doincident_dt' => $this->doincident_dt,
         ]);
+        
 
         if ($save) {
-            $this->dispatchBrowserEvent('CloseAddCountryModal');
-            $this->resetValidation();
+            $getCounter = formdata_00::where([
+                'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
+                'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
+                'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
+                'formdata_00s.sr_no' => $this->formSRNo
+            ])->get('counter')[0]->counter + 1;
+    
+            $updateformsCounter = formdata_00::where([
+                'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
+                'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
+                'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
+                'formdata_00s.sr_no' => $this->formSRNo
+            ])->update(['counter' => $getCounter]);
+            if ($updateformsCounter) {
+                # code...
+                $this->dispatchBrowserEvent('CloseAddCountryModal');
+                $this->resetValidation();
+            }
         }
     }
 
@@ -165,6 +187,8 @@ class Formdata15 extends Component
         $this->role = $role;
 
         $this->iproject_id_fk = $info->iproject_id_fk;
+        $this->idepartment_id_fk = $info->idepartment_id_fk;
+        $this->ibc_id_fk = $info->ibc_id_fk;
         $this->potential_injurytos_fk = $info->potential_injurytos_fk;
         $this->report_no = $info->report_no;
         $this->potential_injurytos_other = $info->potential_injurytos_other;
@@ -225,6 +249,8 @@ class Formdata15 extends Component
 
         $update = formdata_15::find($cid)->update([
             'iproject_id_fk' => $this->iproject_id_fk,
+            'idepartment_id_fk' => $this->idepartment_id_fk,
+            'ibc_id_fk' => $this->ibc_id_fk,
             'potential_injurytos_fk' => $this->potential_injurytos_fk,
             'report_no' => $this->report_no,
             'potential_injurytos_other' => $this->potential_injurytos_other,

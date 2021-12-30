@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Forms17;
 
+use App\Models\forms_00\formdata_00;
 use App\Models\forms_16\formdata_16;
 use App\Models\forms_16\uploaddocument;
 use App\Models\forms_17\formdata_17;
@@ -17,13 +18,15 @@ class Formdata17 extends Component
     use WithFileUploads;
 
     public $inv_photos = [], $inv_imgTitles = [], $searchQuery, $role, $injury_to_f16, $eml_id_no_f16, $designation_f16, $doincident_dt_f16, $potential_injurytos_other_f16;
+    public $ibc_id_fk, $idepartment_id_fk, $document_id_fk, $iproject_id_fk;
     public $substandcondition_ids, $substandaction_ids, $substandaction_id_fk, $incident_description, $coworker_statement, $formdata_16s_id_fk, $concernedsupervisor_statement, $root_cause, $remedial_actions, $comment_remedial_actions, $site_safety_in_charge_name, $site_safety_in_charge_signature, $project_manager, $project_manager_signature;
     public $upd_substandcondition_ids, $upd_substandaction_ids;
-    public $cid, $imgsId, $inv_oldimgTitles = [], $oldphotosLocation = [],$oldimgName=[];
+    public $formSRNo, $cid, $imgsId, $inv_oldimgTitles = [], $oldphotosLocation = [], $oldimgName = [];
 
     public function mount()
     {
         $this->searchQuery = '';
+        $this->formSRNo = 17;
         $this->substandcondition_ids = collect();
         $this->substandaction_ids = collect();
     }
@@ -98,7 +101,12 @@ class Formdata17 extends Component
             // 'project_manager_signature'=>'required',
         ]);
 
+
+
         $save = formdata_17::insert([
+            'iproject_id_fk' => $this->iproject_id_fk,
+            'idepartment_id_fk' => $this->idepartment_id_fk,
+            'ibc_id_fk' => $this->ibc_id_fk,
             'incident_description' => $this->incident_description,
             'coworker_statement' => $this->coworker_statement,
             // 'substandaction_id_fk'=>$this->substandaction_id_fk,
@@ -117,6 +125,7 @@ class Formdata17 extends Component
         $this->resetValidation();
         $id = DB::getPdo()->lastInsertId(); // finding last id
         if ($save) {
+
             if (count($this->inv_photos) > 0) {
                 # code...
                 //Handle File Upload
@@ -148,12 +157,29 @@ class Formdata17 extends Component
 
                 if ($saveImage) {
                     # code...
-                    // clear veriable 
-                    $this->inv_photos = [];
-                    $this->inv_imgTitles = array();
-                    $this->dispatchBrowserEvent('CloseAddCountryModal');
-                    $this->resetValidation();
-                    return response()->json(array('success' => true, 'last_insert_id_imgs' => $uploaddocument->uploaddocuments_id, 'last_insert_id_form' => $id), 200);
+                    $getCounter = formdata_00::where([
+                        'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
+                        'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
+                        'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
+                        'formdata_00s.sr_no' => $this->formSRNo
+                    ])->get('counter')[0]->counter + 1;
+
+                    $updateformsCounter = formdata_00::where([
+                        'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
+                        'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
+                        'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
+                        'formdata_00s.sr_no' => $this->formSRNo
+                    ])->update(['counter' => $getCounter]);
+
+                    if ($updateformsCounter) {
+                        # code...
+                        // clear veriable 
+                        $this->inv_photos = [];
+                        $this->inv_imgTitles = array();
+                        $this->resetValidation();
+                        $this->dispatchBrowserEvent('CloseAddCountryModal');
+                        return response()->json(array('success' => true, 'last_insert_id_imgs' => $uploaddocument->uploaddocuments_id, 'last_insert_id_form' => $id), 200);
+                    }
                 }
             } else {
                 $this->dispatchBrowserEvent('CloseAddCountryModal');
@@ -193,6 +219,10 @@ class Formdata17 extends Component
 
         // dd($info);
         $this->role = $role;
+
+        $this->iproject_id_fk = $info->iproject_id_fk;
+        $this->idepartment_id_fk = $info->idepartment_id_fk;
+        $this->ibc_id_fk = $info->ibc_id_fk;
 
         $this->incident_description = $info->incident_description;
         $this->coworker_statement = $info->coworker_statement;
@@ -242,6 +272,9 @@ class Formdata17 extends Component
         ]);
 
         $update = formdata_17::find($cid)->update([
+            'iproject_id_fk' => $this->iproject_id_fk,
+            'idepartment_id_fk' => $this->idepartment_id_fk,
+            'ibc_id_fk' => $this->ibc_id_fk,
             'incident_description' => $this->incident_description,
             'coworker_statement' => $this->coworker_statement,
 
