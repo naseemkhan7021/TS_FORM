@@ -12,7 +12,7 @@
                 </button>
             </div>
             <div class="modal-body ">
-
+                {{-- <div class="text-center bg-danger"><h5 class="text-white">{{$this->message}}</h5></div> --}}
                 <form wire:submit.prevent="save" class="row g-3">
 
                     {{-- project detail start --}}
@@ -127,10 +127,8 @@
                         <div class="form-group">
                             <label for="" class="@error('dob_dt') text-danger @enderror">DOB @error('dob_dt') <i
                                     class="text-danger fas fa-times-circle"></i>@enderror</label>
-                            <input type="date" class="form-control" wire:model="dob_dt">
-                            {{-- <span class="text-danger">
-                                        @error('dob_dt') {{ $message }}@enderror
-                                        </span> --}}
+                            <input type="date" class="form-control" max="{{now()->subYear(18)->format(env('DATE_FORMAT_YMD'))}}" wire:model="dob_dt">
+                            {{-- ******* now()->subYear(18)->format(env('DATE_FORMAT_YMD')) --> this for req 18 age  *****--}}
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-6">

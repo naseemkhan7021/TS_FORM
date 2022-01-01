@@ -159,38 +159,44 @@
 
                     {{-- {{dd($partisipanceData)}} --}}
                     <div class="col-12">
+                        @if ($partisipanceId == 0)
+                            <h4 class="text-danger text-center">No Participant add at</h4>
+                        @else
+                            <table class="table text-center">
+                                <h4 class="text-center">ALL Added Member <a
+                                        wire:click='openParticipantsModel({{ $partisipanceId }})' href="#"> Edit</a>
+                                </h4>
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>name</th>
+                                        <th>age</th>
+                                        <th>Designation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{-- {{dd($id_no)}} --}}
+                                    @php($len = count($id_no))
+                                    @forelse ($partisipanceData as $row)
+                                    df
+                                        @forelse (range(0,$len-1) as $item)
+                                            <tr>
+                                                <td>{{ explode(',', $row->id_no)[$item] }}</td>
+                                                <td>{{ explode(',', $row->participant_name)[$item] }}</td>
+                                                <td>{{ explode(',', $row->age)[$item] }}</td>
+                                                <td>{{ explode(',', $row->desgination)[$item] }}</td>
+                                            </tr>
+                                        @empty
 
-                        <table class="table text-center">
-                            <h4 class="text-center">ALL Added Member <a wire:click='openParticipantsModel({{$partisipanceId}})' href="#"> Edit</a></h4>
-                            <thead>
-                                <tr>
-                                    <th>id</th>
-                                    <th>name</th>
-                                    <th>age</th>
-                                    <th>Designation</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php($len = count($id_no))
-                                @forelse ($partisipanceData as $row)
-                                    @forelse (range(0,$len-1) as $item)
-                                        <tr>
-                                            <td>{{ explode(',', $row->id_no)[$item] }}</td>
-                                            <td>{{ explode(',', $row->participant_name)[$item] }}</td>
-                                            <td>{{ explode(',', $row->age)[$item] }}</td>
-                                            <td>{{ explode(',', $row->desgination)[$item] }}</td>
-                                        </tr>
+                                        @endforelse
                                     @empty
-
+                                        No Participant Here
                                     @endforelse
-                                @empty
-                                    No Participant Here
-                                @endforelse
-                                <tr>
+                                    
+                                </tbody>
+                            </table>
+                        @endif
 
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
 
                     {{-- no partisipance at {{$dum}} --}}

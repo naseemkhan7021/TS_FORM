@@ -157,6 +157,7 @@ class Formdata15 extends Component
         
 
         if ($save) {
+            // dd($save);
             $getCounter = formdata_00::where([
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
                 'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,

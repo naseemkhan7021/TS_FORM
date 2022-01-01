@@ -124,17 +124,15 @@
                                         class="text-danger fas fa-times-circle"></i>@enderror</label>
                                 <input type="text" class="form-control" placeholder="Designation"
                                     wire:model="designation">
-                                {{-- <span class="text-danger"> @error('designation') {{ $message }}@enderror</span> --}}
+                                    
                             </div>
                         </div>
                         <div class="col-md-2 col-sm-6">
                             <div class="form-group">
                                 <label for="" class="@error('dob_dt') text-danger @enderror">DOB @error('dob_dt') <i
                                         class="text-danger fas fa-times-circle"></i>@enderror</label>
-                                <input type="date" class="form-control" wire:model="dob_dt">
-                                {{-- <span class="text-danger">
-                                                                @error('dob_dt') {{ $message }}@enderror
-                                                                </span> --}}
+                                <input type="date" class="form-control" max="{{now()->subYear(18)->format(env('DATE_FORMAT_YMD'))}}" wire:model="dob_dt">
+                            {{-- ******* now()->subYear(18)->format(env('DATE_FORMAT_YMD')) --> this for req 18 age  *****--}}
                             </div>
                         </div>
                         <div class="col-md-2 col-sm-6">
@@ -142,9 +140,7 @@
                                 <label for="" class=" @error('age') text-danger @enderror">Age @error('age') <i
                                         class="text-danger fas fa-times-circle"></i>@enderror</label>
                                 <input type="text" class="form-control" placeholder="Age" wire:model="age" readonly>
-                                {{-- <span class="text-danger">
-                                                                    @error('age') {{ $message }}@enderror
-                                                                    </span> --}}
+                                
                             </div>
                         </div>
                         <div class="col-md-2 col-sm-6">

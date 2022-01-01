@@ -12,8 +12,8 @@ if ($dob_dt) {
     # code...
     # procedural
     $this->age = date_diff(date_create($dob_dt), date_create('today'))->y;
-    // echo 'this is => ' . now();
 }
+// echo 'this is => ' . now()->subYear(18)->format(env('DATE_FORMAT_YMD'));
 @endphp
 
 <div>

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Forms66;
 
 use App\Models\common_forms\Projects;
+use App\Models\forms_00\formdata_00;
 use App\Models\forms_66\Activity66;
 use App\Models\forms_66\DurationOfImpact;
 use App\Models\forms_66\EnvironmentalImpact;
@@ -28,10 +29,14 @@ class Formdata66 extends Component
     // collect property
     public $C_sub_activity_id_fks = [];
 
-    public $searchQuery, $sproject_location, $currentDate, $ifnotSignificance;
+    public $formSRNo,$searchQuery, $sproject_location, $currentDate, $ifnotSignificance;
     public $selectedProjectID; // this id is globle available
 
-
+    public function mout()
+    {
+        # code...
+        $this->formSRNo=66;
+    }
 
     public function render()
     {
@@ -127,9 +132,9 @@ class Formdata66 extends Component
         ]);
 
         $save = Forms66data::insert([
-            // 'ibc_id_fk'=>$this->ibc_id_fk,
+            'ibc_id_fk'=>$this->ibc_id_fk,
+            'idepartment_id_fk'=>$this->idepartment_id_fk,
             // 'document_id_fk'=>$this->document_id_fk,
-            // 'idepartment_id_fk'=>$this->idepartment_id_fk,
             'iproject_id_fk'=>$this->iproject_id_fk,
             'B_activity_id_fk'=>$this->B_activity_id_fk,
             'C_sub_activity_id_fk'=>$this->C_sub_activity_id_fk,
@@ -152,8 +157,24 @@ class Formdata66 extends Component
         ]);
 
         if ($save) {
-            $this->dispatchBrowserEvent('CloseAddCountryModal');
-            // $this->checkedCountry = [];
+            $getCounter = formdata_00::where([
+                'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
+                'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
+                'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
+                'formdata_00s.sr_no' => $this->formSRNo
+            ])->get('counter')[0]->counter + 1;
+
+            $updateformsCounter = formdata_00::where([
+                'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
+                'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
+                'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
+                'formdata_00s.sr_no' => $this->formSRNo
+            ])->update(['counter' => $getCounter]);
+            if ($updateformsCounter) {
+                # code...
+                $this->dispatchBrowserEvent('CloseAddCountryModal');
+                // $this->checkedCountry = [];
+            }
         }
     }
 
@@ -163,8 +184,8 @@ class Formdata66 extends Component
     {
         $info = Forms66data::find($formdata66_id);
 
-        // $this->ibc_id_fk=$info->ibc_id_fk;
-        // $this->idepartment_id_fk=$info->idepartment_id_fk;
+        $this->ibc_id_fk=$info->ibc_id_fk;
+        $this->idepartment_id_fk=$info->idepartment_id_fk;
         // $this->document_id_fk=$info->document_id_fk;
         $this->iproject_id_fk=$info->iproject_id_fk;
         $this->B_activity_id_fk=$info->B_activity_id_fk;
@@ -224,9 +245,9 @@ class Formdata66 extends Component
         ]);
 
         $update = Forms66data::find($cid)->update([
-            // 'ibc_id_fk'=>$this->ibc_id_fk,
+            'ibc_id_fk'=>$this->ibc_id_fk,
             // 'document_id_fk'=>$this->document_id_fk,
-            // 'idepartment_id_fk'=>$this->idepartment_id_fk,
+            'idepartment_id_fk'=>$this->idepartment_id_fk,
             'iproject_id_fk'=>$this->iproject_id_fk,
             'B_activity_id_fk'=>$this->B_activity_id_fk,
             'C_sub_activity_id_fk'=>$this->C_sub_activity_id_fk,

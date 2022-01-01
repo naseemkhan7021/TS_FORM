@@ -255,39 +255,38 @@ class Formdata16 extends Component
 
                 if ($saveImage) {
                     # code...
-                    $getCounter = formdata_00::where([
-                        'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
-                        'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
-                        'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
-                        'formdata_00s.sr_no' => $this->formSRNo
-                    ])->get('counter')[0]->counter + 1;
-
-                    $updateformsCounter = formdata_00::where([
-                        'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
-                        'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
-                        'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
-                        'formdata_00s.sr_no' => $this->formSRNo
-                    ])->update(['counter' => $getCounter]);
-
-                    if ($updateformsCounter) {
-                        # code...
-                        // clear veriable 
-                        $this->photos = [];
-                        $this->imgTitles = array();
-                        $this->dispatchBrowserEvent('CloseAddCountryModal');
-                        $this->resetValidation();
-                        return response()->json(array('success' => true, 'last_insert_id_imgs' => $uploaddocument->uploaddocuments_id, 'last_insert_id_form' => $id), 200);
-                    }
+                    $this->photos = [];
+                    $this->imgTitles = array();
+                    // if () {
+                    //     # code...
+                    //     // clear veriable 
+                    //     // $this->dispatchBrowserEvent('CloseAddCountryModal');
+                    //     // $this->resetValidation();
+                    //     // return response()->json(array('success' => true, 'last_insert_id_imgs' => $uploaddocument->uploaddocuments_id, 'last_insert_id_form' => $id), 200);
+                    // }
                 }
-            } else {
+            }
+
+            $getCounter = formdata_00::where([
+                'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
+                'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
+                'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
+                'formdata_00s.sr_no' => $this->formSRNo
+            ])->get('counter')[0]->counter + 1;
+
+            $updateformsCounter = formdata_00::where([
+                'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
+                'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
+                'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
+                'formdata_00s.sr_no' => $this->formSRNo
+            ])->update(['counter' => $getCounter]);
+
+            if ($updateformsCounter) {
+                # code...
                 $this->dispatchBrowserEvent('CloseAddCountryModal');
                 $this->resetValidation();
             }
         }
-        // if ($save && $saveImage) {
-        //     $this->dispatchBrowserEvent('CloseAddCountryModal');
-        //     // $this->checkedCountry = [];
-        // }
     }
 
 

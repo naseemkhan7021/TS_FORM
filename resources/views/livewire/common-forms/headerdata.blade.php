@@ -1,7 +1,7 @@
 <div class="">
     <!-- LOGO start -->
     <div class="logo-box">
-        <a href="{{ route('any', ['dashboard']) }}" class="logo logo-dark text-center">
+        <a href="{{ route('dashboard') }}" class="logo logo-dark text-center">
             <span class="logo-sm">
                 <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
                 <span class="logo-lg-text-light">T&S</span> 
@@ -13,7 +13,7 @@
             </span>
         </a>
 
-        <a href="{{ route('any', ['dashboard']) }}" class="logo logo-light text-center">
+        <a href="{{ route('dashboard') }}" class="logo logo-light text-center">
             <span class="logo-sm">
                 @if (count($defaultvalues) > 0)
                     <img src="{{ Storage::url($defaultvalues[0]->sbc_logo_small) }}" alt="companylogo" height="20">

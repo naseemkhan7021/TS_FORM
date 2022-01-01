@@ -13,6 +13,8 @@ use App\Http\Controllers\Forms\Forms66Controller;
 use App\Models\common_forms\Company;
 use App\Http\Controllers\Forms\Forms28Controller;
 use App\Http\Controllers\Forms\CommonformController;
+use App\Models\Role;
+use App\Models\User;
 use GuzzleHttp\Middleware;
 
 // use App\Http\Controllers\RoutingController;
@@ -31,7 +33,7 @@ use GuzzleHttp\Middleware;
 Route::get('/', function () {
     $defaltLogo = Company::all();
     // dd($defaltLogo);
-    return view('welcome',['defaltLogo'=>$defaltLogo[0]]);
+    return view('welcome', ['defaltLogo' => $defaltLogo[0]]);
 });
 
 
@@ -56,38 +58,6 @@ Route::get('/injuryto', [CommonformController::class, 'index_InjuryTo'])->name('
 
 // Used in Form 28
 Route::get('/prioritytimescale', [CommonformController::class, 'index_prioritytimescale'])->name('index_prioritytimescale');
-
-
-
-
-
-// Route::get('/form01_subactivity', [Form01Controller::class, 'index_subactivity'])->name('form01_subactivity');
-// Route::get('/form01_probable_consequence', [Form01Controller::class, 'index_probable_consequence'])->name('form01_probable_consequence');
-// Route::get('/form01_cause', [Form01Controller::class, 'index_cause'])->name('form01_cause');
-// Route::get('/form01_subcause', [Form01Controller::class, 'index_subcause'])->name('form01_subcause');
-
-
-
-
-// Route::get('/salesunit', [CommonController::class, 'index_salesunit'])->name('salesunit');
-// Route::get('/leadstatus', [CommonController::class, 'index_leadstatus'])->name('leadstatus');
-// Route::get('/leadsource', [CommonController::class, 'index_leadsource'])->name('leadsource');
-// Route::get('/paymentmode', [CommonController::class, 'index_paymentmode'])->name('paymentmode');
-// Route::get('/propertystatus', [CommonController::class, 'index_propertystatus'])->name('propertystatus');
-// Route::get('/channelpartner', [CommonController::class, 'index_channelpartner'])->name('channelpartner');
-// Route::get('/paymenttemplate', [CommonController::class, 'index_templatepayment'])->name('paymenttemplate');
-
-// Route::get('/projects', [CommonController::class, 'index_projects'])->name('const_projects');
-// Route::get('/projectwings', [CommonController::class, 'index_projectwings'])->name('projectwings');
-// Route::get('/projectunit', [CommonController::class, 'index_projectunit'])->name('projectunit');
-
-
-// Route::get('/leads', [CommonController::class, 'index_leads'])->name('leads');
-// Route::get('/leadfollow', [CommonController::class, 'index_leadfollowup'])->name('leadfollow');
-// Route::get('/primarymember', [CommonController::class, 'index_primarymember'])->name('primarymember');
-// Route::get('/secondarymember', [CommonController::class, 'index_secondarymember'])->name('secondarymember');
-
-
 
 // oo route 
 Route::get('/form00_data', [Form00Controller::class, 'index_formdata'])->name('form00_data');
@@ -168,12 +138,28 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-
-Route::group(['middleware' => 'auth', 'prefix' => '/'], function () {
-    Route::get('{first}/{second}/{third}', 'RoutingController@thirdLevel')->name('third');
-    Route::get('{first}/{second}', 'RoutingController@secondLevel')->name('second');
-    Route::get('{any}', 'RoutingController@root')->name('any');
+Route::get('/users/{user}/role/{role}', function (User $user, Role $role) { //this is use to show single user automatically and we access more model depending apon id or another collum
+    // return $user->email;
+    echo $user, '</br>', $role;
 });
+
+
+// Route::group(['middleware' => 'auth', 'prefix' => '/'], function () {
+//     // Route::get('{first}/{second}/{third}', 'RoutingController@thirdLevel')->name('third');
+//     // Route::get('{first}/{second}', 'RoutingController@secondLevel')->name('second');
+//     Route::get('dashboard', 'RoutingController@root')->name('dashboard');
+// });
+
+// Route::get('/dashboard', 'RoutingController@root')->name('dashboard');
+
 
 // landing
 // Route::get('', 'RoutingController@index')->name('index');
+// Route::fallback(function () {
+//     return 'Hm, why did you land here somehow?';
+// });
+
+// Route::fallback(function () {  # you can use this if don't want laravel default 404
+//     //
+//     return '404 not fount';
+// });

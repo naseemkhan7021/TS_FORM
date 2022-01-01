@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Laravel</title>
-    <link rel="shortcut icon" href="{{asset('assets/images/smalllogo.png')}}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/smalllogo.png') }}">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
     <!-- Styles -->
+
     <style>
         /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
         html {
@@ -438,6 +439,7 @@
 </head>
 
 <body class="antialiased">
+    {{-- <div class="gcse-search"></div>  -- this is Google search --}}
     <div
         class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         @if (Route::has('login'))
@@ -491,6 +493,12 @@
         </div>
     </div>
     </div>
+
+    {{-- <script async src="https://cse.google.com/cse.js?cx=f7b92dbd9e99449f0">
+    </script> --}}
+
+    {{-- <script async src="https://cse.google.com/cse.js?cx=f7b92dbd9e99449f0"></script> --}}
+
 </body>
 
 </html>

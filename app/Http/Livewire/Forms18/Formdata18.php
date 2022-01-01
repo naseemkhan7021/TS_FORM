@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Forms18;
 
 use App\Models\common_forms\Projects;
+use App\Models\forms_00\formdata_00;
 use App\Models\forms_18\formdata18 as Forms_18Formdata18;
 use Carbon\Carbon;
 use Livewire\Component;
@@ -12,13 +13,14 @@ class Formdata18 extends Component
     protected $listeners = ['delete'];
 
     public $extinguisher_no, $location, $type, $size, $date_of_refilling, $date_of_inspection, $pressure_gauge_or_safety_pin_status, $seal_intact_and_not_corroded, $name_of_responsible_person, $due_for_next_refilling, $due_for_next_inspection, $inspected_by_name,$inspected_by_signature,$inspected_by_designation,$inspected_by_date;
-    public $iproject_id_fk;
-    public $cid,$searchQuery, $sproject_location;
+    public $iproject_id_fk,$ibc_id_fk, $idepartment_id_fk;
+    public $cid,$searchQuery, $sproject_location,$formSRNo;
 
     public function mount()
     {
         # code...
         $this->searchQuery = '';
+        $this->formSRNo = 18;
     }
 
     public function render()
@@ -105,8 +107,24 @@ class Formdata18 extends Component
         ]);
 
         if ($save) {
-            $this->dispatchBrowserEvent('CloseAddCountryModal');
-            // $this->checkedCountry = [];
+            $getCounter = formdata_00::where([
+                'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
+                'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
+                'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
+                'formdata_00s.sr_no' => $this->formSRNo
+            ])->get('counter')[0]->counter + 1;
+
+            $updateformsCounter = formdata_00::where([
+                'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
+                'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
+                'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
+                'formdata_00s.sr_no' => $this->formSRNo
+            ])->update(['counter' => $getCounter]);
+            if ($updateformsCounter) {
+                # code...
+                $this->dispatchBrowserEvent('CloseAddCountryModal');
+                // $this->checkedCountry = [];
+            }
         }
     }
 
@@ -116,6 +134,8 @@ class Formdata18 extends Component
     {
         $info = Forms_18Formdata18::find($formdata_18s_id);
 
+        $this->ibc_id_fk=$info->ibc_id_fk;
+        $this->idepartment_id_fk=$info->idepartment_id_fk;
         $this->iproject_id_fk = $info->iproject_id_fk;
         $this->extinguisher_no = $info->extinguisher_no;
         $this->location = $info->location;

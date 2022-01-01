@@ -245,9 +245,7 @@ class Formdata01 extends Component
             'U_risk_quantum' => $this->U_risk_quantum,
             'V_risk_acceptable_non_acceptable' => $this->V_risk_acceptable_non_acceptable,
         ]);
-
-
-
+        
         if ($save) {
             $getCounter = formdata_00::where([
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,

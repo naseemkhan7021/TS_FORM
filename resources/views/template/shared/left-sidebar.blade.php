@@ -1,15 +1,20 @@
 <!-- ========== Left Sidebar Start ========== -->
+@php(
+
+    $usreRole = DB::table('roles')->where('role⁯_id',Auth::user()->current_role⁯_id)->get()[0]->role_title // find the user role from current_role_id
+)
+
 <div class="left-side-menu">
 
     <div class="h-100" data-simplebar>
 
         <!-- User box -->
-        <div class="user-box text-center">
-            <img src="{{ asset('assets/images/users/user-1.jpg') }}" alt="user-img" title="Mat Helme"
+        <div class=" text-center"> <!-- user-box this is class used in this div -->
+            <img src="{{ asset('assets/images/users/user-3.jpg') }}" alt="user-img" title="Mat Helme"
                 class="rounded-circle avatar-md">
             <div class="dropdown">
                 <a href="javascript: void(0);" class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block"
-                    data-toggle="dropdown">Geneva Kennedy</a>
+                    data-toggle="dropdown">{{Auth::user()->name}}</a>
                 <div class="dropdown-menu user-pro-dropdown">
 
                     <!-- item-->
@@ -38,7 +43,7 @@
 
                 </div>
             </div>
-            <p class="text-muted">Admin Head</p>
+            <p class="text-muted">{{$usreRole}}</p>
         </div>
 
         <!--- Sidemenu -->

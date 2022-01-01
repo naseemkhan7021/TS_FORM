@@ -5,6 +5,8 @@ if ($iproject_id_fk) {
         ->where('iproject_id', '=', $iproject_id_fk)
         ->get();
     $this->sproject_location = $sproject_location_obj[0]->sproject_location;
+    $this->ibc_id_fk = $sproject_location_obj[0]->ibc_id_fk;
+    $this->idepartment_id_fk = $sproject_location_obj[0]->idepartment_id_fk;
 }
 @endphp
 

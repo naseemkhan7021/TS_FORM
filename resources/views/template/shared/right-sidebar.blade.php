@@ -276,17 +276,17 @@
                   <h6 class="font-weight-medium font-14 mt-4 mb-2 pb-1">Color Scheme</h6>
                   <div class="custom-control custom-switch mb-1">
                       <input type="radio" class="custom-control-input" name="color-scheme-mode" value="light"
-                          id="light-mode-check" checked />
+                          id="light-mode-check" />
                       <label class="custom-control-label" for="light-mode-check">Light Mode</label>
                   </div>
 
                   <div class="custom-control custom-switch mb-1">
-                      <input type="radio" class="custom-control-input" name="color-scheme-mode" value="dark"
+                      <input checked type="radio" class="custom-control-input" name="color-scheme-mode" value="dark"
                           id="dark-mode-check" />
                       <label class="custom-control-label" for="dark-mode-check">Dark Mode</label>
                   </div>
 
-                  <!-- Width -->
+                  {{-- <!-- Width -->
                   <h6 class="font-weight-medium font-14 mt-4 mb-2 pb-1">Width</h6>
                   <div class="custom-control custom-switch mb-1">
                       <input type="radio" class="custom-control-input" name="width" value="fluid" id="fluid-check" checked />
@@ -310,7 +310,7 @@
                       <input type="radio" class="custom-control-input" name="menus-position" value="scrollable"
                           id="scrollable-check" />
                       <label class="custom-control-label" for="scrollable-check">Scrollable</label>
-                  </div>
+                  </div> --}}
 
                   <!-- Left Sidebar-->
                   <h6 class="font-weight-medium font-14 mt-4 mb-2 pb-1">Left Sidebar Color</h6>
