@@ -1,12 +1,12 @@
-@extends('template.vertical', ['title' => 'T&S Priority 2 Timescale'])
+@extends('template.vertical', ['title' => 'Forms 35 - Checkpoint'])
 
 @section('content')
 
 <div class="container-fluid pl-3 pr-3">
 
     <!-- start page title -->
-        @livewire('page-title', [ 'sub_title' => 'Forms' , 'active_title' => 'Priority 2 Timescale' , 'page_title' => 'Priority 2 Timescale'  ])
-        @livewire('common-forms.prioritytimescale')
+        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 35 Checkpoint' , 'page_title' => 'Form 35 Checkpoint'  ])
+        @livewire('forms35.checkpoint')
     <!-- end page title -->
 
 
@@ -21,41 +21,41 @@
 
 <script>
     window.addEventListener('OpenAddCountryModal', function(){
-         $('.addPrioritytimescale').find('span').html('');
-         $('.addPrioritytimescale').find('form')[0].reset();
-         $('.addPrioritytimescale').modal('show');
+         $('.addCheckpoint').find('span').html('');
+         $('.addCheckpoint').find('form')[0].reset();
+         $('.addCheckpoint').modal('show');
     });
 
     window.addEventListener('CloseAddCountryModal', function(){
-        $('.addPrioritytimescale').find('span').html('');
-        $('.addPrioritytimescale').find('form')[0].reset();
-        $('.addPrioritytimescale').modal('hide');
+        $('.addCheckpoint').find('span').html('');
+        $('.addCheckpoint').find('form')[0].reset();
+        $('.addCheckpoint').modal('hide');
 
         Swal.fire(
             'Well Done!',
-            'New Potential Injury To Has been Saved Successfully !',
+            'New <b>Checkpoint</b> Has been Saved Successfully !',
             'success'
             );
 
-        // alert('New Company Has been Saved Successfully');
+        // alert('New Checkpoint Has been Saved Successfully');
     });
 
     window.addEventListener('OpenEditCountryModal', function(event){
-        $('.editPrioritytimescale').find('span').html('');
-        $('.editPrioritytimescale').modal('show');
+        $('.editCheckpoint').find('span').html('');
+        $('.editCheckpoint').modal('show');
     });
 
     window.addEventListener('CloseEditCountryModal', function(event){
-        $('.editPrioritytimescale').find('span').html('');
-        $('.editPrioritytimescale').find('form')[0].reset();
-        $('.editPrioritytimescale').modal('hide');
+        $('.editCheckpoint').find('span').html('');
+        $('.editCheckpoint').find('form')[0].reset();
+        $('.editCheckpoint').modal('hide');
 
         Swal.fire(
             'Good job!',
-            'Potential Injury To Has been Updated Successfully !',
+            '<b>Checkpoint</b> Has been Updated Successfully !',
             'success'
             );
-        // alert('Company Has been Updated Successfully');
+        // alert('Checkpoint Has been Updated Successfully');
     });
 
     window.addEventListener('SwalConfirm', function(event){
@@ -80,7 +80,7 @@
     })
 
     window.addEventListener('deleted', function(event){
-        alert('Company record has been deleted');
+        alert('Checkpoint record has been deleted');
     });
 
     window.addEventListener('swal:deleteCountries', function(event){
@@ -98,7 +98,7 @@
             allowOutsideClick:false
         }).then(function(result){
             if(result.value){
-                window.livewire.emit('delete',event.detail.id);
+                window.livewire.emit('deleteCheckedCountries',event.detail.id);
             }
         });
     });

@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class prioritytimescale extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'prioritytimescales_id';
+    protected $fillable = [
+        'prioritytimescales_desc','prioritytimescales_abbr','pt_value'
+    ];
 }

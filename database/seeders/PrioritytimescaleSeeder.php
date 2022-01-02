@@ -19,17 +19,15 @@ class PrioritytimescaleSeeder extends Seeder
 
 
     protected $topic_discusseds = [
-        [ 'prioritytimescales_desc' => 'Immediately',  'pt_value' => 1 ],
-        [ 'prioritytimescales_desc' => '24 Hours',  'pt_value' => 2 ],
-        [ 'prioritytimescales_desc' => '3 Days',  'pt_value' => 3 ],
-        [ 'prioritytimescales_desc' => '7 Days ',  'pt_value' => 4 ]
+        [ 'prioritytimescales_desc' => 'Immediately','prioritytimescales_abbr' => 'IMD',  'pt_value' => 1 ],
+        [ 'prioritytimescales_desc' => '24 Hours','prioritytimescales_abbr' => '24H',  'pt_value' => 2 ],
+        [ 'prioritytimescales_desc' => '3 Days','prioritytimescales_abbr' => '3D',  'pt_value' => 3 ],
+        [ 'prioritytimescales_desc' => '7 Days ','prioritytimescales_abbr' => '7D',  'pt_value' => 4 ]
     ];
 
 
     public function run()
     {
-
-
         foreach($this->topic_discusseds as $td) {
             prioritytimescale::create($td);
         }

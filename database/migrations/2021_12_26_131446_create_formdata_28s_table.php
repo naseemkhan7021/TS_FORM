@@ -33,6 +33,7 @@ class CreateFormdata28sTable extends Migration
 
 
                 $table->string('observation_desc', 50)->nullable();
+                $table->string('observer_name', 50)->nullable();
                 $table->string('location', 50)->nullable();
                 $table->string('noticed_time', 50)->nullable();
                 $table->string('recommend_corrective_action', 50)->nullable();
@@ -41,7 +42,7 @@ class CreateFormdata28sTable extends Migration
                 $table->foreign('prioritytimescales_id_fk')->references('prioritytimescales_id')->on('prioritytimescales')->onDelete('cascade');
 
                 $table->string('responsible_person', 50)->nullable();
-                $table->string('sign_resp_person', 50)->nullable();
+                $table->boolean('sign_resp_person')->default(0);
                 $table->string('closed_dt', 50)->nullable();
                 $table->string('remarks', 50)->nullable();
 

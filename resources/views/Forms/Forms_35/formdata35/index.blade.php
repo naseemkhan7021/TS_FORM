@@ -1,12 +1,12 @@
-@extends('template.vertical', ['title' => 'Forms 28 - Form28data'])
+@extends('template.vertical', ['title' => 'Forms 35 - Form35data'])
 @section('content')
 
     <div class="container-fluid pl-3 pr-3">
 
         <!-- start page title -->
-        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 28 EHS OBSERVATION ' , 'page_title' => 'Form 28
-        EHS OBSERVATION ' ])
-        @livewire('forms28.formdata28')
+        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 35 Form35data' , 'page_title' => 'Form 35
+        Form35data' ])
+        @livewire('forms35.formdata35')
         <!-- end page title -->
 
 
@@ -22,45 +22,44 @@
 
     <script>
         window.addEventListener('OpenAddCountryModal', function() {
-            $('.addForm28').find('span').html('');
-            $('.addForm28').find('form')[0].reset();
-            $('.addForm28').modal('show');
+            $('.addForm35').find('span').html('');
+            $('.addForm35').find('form')[0].reset();
+            $('.addForm35').modal('show');
         });
 
         window.addEventListener('CloseAddCountryModal', function() {
-            $('.addForm28').find('span').html('');
-            $('.addForm28').find('form')[0].reset();
-            $('.addForm28').modal('hide');
+            $('.addForm35').find('span').html('');
+            $('.addForm35').find('form')[0].reset();
+            $('.addForm35').modal('hide');
 
             Swal.fire(
                 'Well Done!',
-                'New <b> EHS OBSERVATION </b> Has been Saved Successfully !',
+                'New <b>Form35data</b> Has been Saved Successfully !',
                 'success'
             );
 
-
+            // alert('New Form35data Has been Saved Successfully');
         });
 
         window.addEventListener('OpenEditCountryModal', function(event) {
-            $('.editForm28').find('span').html('');
-            $('.editForm28').modal('show');
+            $('.editForm35').find('span').html('');
+            $('.editForm35').modal('show');
         });
 
         window.addEventListener('CloseEditCountryModal', function(event) {
-            $('.editForm28').find('span').html('');
-            $('.editForm28').find('form')[0].reset();
-            $('.editForm28').modal('hide');
+            $('.editForm35').find('span').html('');
+            $('.editForm35').find('form')[0].reset();
+            $('.editForm35').modal('hide');
 
             Swal.fire(
                 'Good job!',
-                '<b> EHS OBSERVATION </b> Has been Updated Successfully !',
+                '<b>Form35data</b> Has been Updated Successfully !',
                 'success'
             );
-            // alert('Form17data Has been Updated Successfully');
+            // alert('Form35data Has been Updated Successfully');
         });
-
+    
         window.addEventListener('SwalConfirm', function(event) {
-            console.log('delete ->', event.detail.id);
             swal.fire({
                 title: event.detail.title,
                 imageWidth: 48,
@@ -76,13 +75,13 @@
                 allowOutsideClick: false
             }).then(function(result) {
                 if (result.value) {
-                    window.livewire.emit('delete', event.detail.id);
+                    window.livewire.emit('delete', event.detail.gender_id);
                 }
             })
         })
 
         window.addEventListener('deleted', function(event) {
-            alert('Form17data record has been deleted');
+            alert('Form35data record has been deleted');
         });
 
         window.addEventListener('swal:deleteCountries', function(event) {
@@ -100,7 +99,7 @@
                 allowOutsideClick: false
             }).then(function(result) {
                 if (result.value) {
-                    window.livewire.emit('deleteCheckedCountries', event.detail.id);
+                    window.livewire.emit('deleteCheckedCountries', event.detail.checkedIDs);
                 }
             });
         });

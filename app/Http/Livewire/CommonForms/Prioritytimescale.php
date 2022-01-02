@@ -7,6 +7,7 @@ use App\Models\common_forms\prioritytimescale as PrioritytimescaleModel;
 
 class Prioritytimescale extends Component
 {
+    protected $listeners = ['delete'];
     public $searchQuery;
 
     public $pt_value , $prioritytimescales_desc , $prioritytimescales_abbr;
@@ -101,16 +102,17 @@ class Prioritytimescale extends Component
     {
         # delete
         $info = PrioritytimescaleModel::find($prioritytimescales_id);
-
+        
         $this->dispatchBrowserEvent('SwalConfirm', [
             'titel' => 'Are you sure ?',
             'html' => 'You want to delete <strong>' . $info->prioritytimescales_desc . '</string>',
-            'iproject_id' => $prioritytimescales_id
+            'id' => $prioritytimescales_id
         ]);
     }
-
+    
     public function delete($prioritytimescales_id)
     {
+        // dd($prioritytimescales_id);
         $del =  PrioritytimescaleModel::find($prioritytimescales_id)->delete();
         if ($del) {
             $this->dispatchBrowserEvent('delete');

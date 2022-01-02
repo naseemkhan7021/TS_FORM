@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommonController;
-use App\Http\Controllers\Forms18Controller;
+use App\Http\Controllers\Forms\Forms18Controller;
 use App\Http\Controllers\Forms\Form00Controller;
 use App\Http\Controllers\Forms\Form01Controller;
 use App\Http\Controllers\Forms\Forms15Controller;
@@ -13,6 +13,7 @@ use App\Http\Controllers\Forms\Forms66Controller;
 use App\Models\common_forms\Company;
 use App\Http\Controllers\Forms\Forms28Controller;
 use App\Http\Controllers\Forms\CommonformController;
+use App\Http\Controllers\Forms\Forms35Controller;
 use App\Models\Role;
 use App\Models\User;
 use GuzzleHttp\Middleware;
@@ -112,6 +113,9 @@ Route::get('/form22_topicdiscussed', [Forms22Controller::class, 'index_topicdisc
 
 Route::get('form28_fromdata28', [Forms28Controller::class, 'index_formdata28'])->name('index_formdata28');
 
+// forms 35
+Route::get('form35_checkpoints', [Forms35Controller::class, 'index_checkpoints'])->name('checkpoints');
+Route::get('form35_fromdata35', [Forms35Controller::class, 'index_formdata35'])->name('formdata35');
 
 
 // dashboard_presales

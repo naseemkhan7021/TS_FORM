@@ -1,20 +1,20 @@
 <!-- ========== Left Sidebar Start ========== -->
-@php(
-
-    $usreRole = DB::table('roles')->where('role⁯_id',Auth::user()->current_role⁯_id)->get()[0]->role_title // find the user role from current_role_id
-)
+@php
+    $usreRole = DB::table('roles')->where('role⁯_id', Auth::user()->current_role⁯_id)->get()[0]->role_title; // find the user role from current_role_id
+@endphp
 
 <div class="left-side-menu">
 
     <div class="h-100" data-simplebar>
 
         <!-- User box -->
-        <div class=" text-center"> <!-- user-box this is class used in this div -->
+        <div class=" text-center">
+            <!-- user-box this is class used in this div -->
             <img src="{{ asset('assets/images/users/user-3.jpg') }}" alt="user-img" title="Mat Helme"
                 class="rounded-circle avatar-md">
             <div class="dropdown">
                 <a href="javascript: void(0);" class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block"
-                    data-toggle="dropdown">{{Auth::user()->name}}</a>
+                    data-toggle="dropdown">{{ Auth::user()->name }}</a>
                 <div class="dropdown-menu user-pro-dropdown">
 
                     <!-- item-->
@@ -43,7 +43,7 @@
 
                 </div>
             </div>
-            <p class="text-muted">{{$usreRole}}</p>
+            <p class="text-muted">{{ $usreRole }}</p>
         </div>
 
         <!--- Sidemenu -->
@@ -560,7 +560,26 @@
                         </div>
                     </li>
 
-                    {{-- Form 01 --}}
+                    {{-- form 35  --}}
+                    <li>
+                        <a href="#sidebarForm35" data-toggle="collapse">
+                            <i data-feather="users"></i>
+                            <span> Form 35 </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sidebarForm35">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href="{{ route('formdata35')}}">formdata35</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('checkpoints')}}">Checkpoint</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    {{-- Form 66--}}
                     <li>
                         <a href="#sidebarForm66" data-toggle="collapse">
                             <i data-feather="users"></i>
@@ -601,6 +620,12 @@
                         </div>
                     </li>
                 @endif
+
+                {{-- @auth
+                    <li>
+                        
+                    </li>
+                @endauth --}}
 
 
 
