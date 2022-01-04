@@ -5,8 +5,9 @@
             <div class="modal-header">
                 {{-- @php
                     # object oriented
-                @endphp --}}
-                <h5 class="modal-title" id="exampleModalLabel">Add New Form-16 Data</h5>
+                @endphp --}}F
+                <h5 class="modal-title" id="exampleModalLabel">Add New INCIDENT REPORT FORM
+</h5>
                 <button wire:click='clearValidationf()' type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

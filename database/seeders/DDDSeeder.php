@@ -15,7 +15,7 @@ class DDDSeeder extends Seeder
     public function run()
     {
 
-        Dept_Default_Docs::truncate();
+        // Dept_Default_Docs::truncate();
 
         $ddd_data = [
             ['document_name' => 'Hazard Analysis & Risk Assessment', 'document_code' => 'EHS-F-01' ,] ,

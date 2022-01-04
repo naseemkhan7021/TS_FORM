@@ -21,8 +21,8 @@ class CreateUploaddocumentsTable extends Migration
             $table->string('uploaddocuments_name');
             $table->string('uploaddocuments_title');
             $table->string('uploaddocuments_location');
-            $table->integer('forms16_id')->require;
-            $table->integer('forms17_id')->require;
+            $table->integer('forms16_id')->nullable(true);
+            $table->integer('forms17_id')->nullable(true);
 
 
             // general values
