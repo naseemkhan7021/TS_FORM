@@ -18,7 +18,7 @@
                             <label for="project name"
                                 class="form-label @error('iproject_id_fk') text-danger @enderror">Project</label>
 
-                            <select wire:model.defer="iproject_id_fk"
+                            <select wire:model="iproject_id_fk"
                                 class="form-control @error('iproject_id_fk') border border-danger @enderror">
                                 <option selected disabled value="0">Project name</option>
                                 @foreach ($prjectData as $item)
@@ -34,14 +34,14 @@
 
                             <label for="" class="">Location</label>
                             <input type="text" class="form-control" placeholder="Location"
-                                wire:model.defer="sproject_location" readonly>
+                                wire:model="sproject_location" readonly>
                         </div>
                     </div>
 
                     <div class="col-md-3 col-sm-6">
                         <div class="form-controp">
                             <label for="" class="">Data/Time</label>
-                            <input type="text" class="form-control" wire:model.defer="currentDate" readonly>
+                            <input type="text" class="form-control" wire:model="currentDate" readonly>
 
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                             <label for=""
                                 class="form-label @error('B_activity_id_fk') text-danger @enderror">B_Activity</label>
 
-                            <select wire:model.defer="B_activity_id_fk"
+                            <select wire:model="B_activity_id_fk"
                                 class="form-control  @error('B_activity_id_fk') border border-danger @enderror">
                                 <option selected disabled value="0">Select Activity</option>
                                 @foreach ($activityData as $item)
@@ -68,7 +68,7 @@
                         <div class="form-group">
                             <label for=""
                                 class="form-label @error('C_sub_activity_id_fk') text-danger @enderror">C_Sub-Activity</label>
-                            <select wire:model.defer="C_sub_activity_id_fk"
+                            <select wire:model="C_sub_activity_id_fk"
                                 class="form-control @error('C_sub_activity_id_fk') border border-danger @enderror">
                                 <option selected disabled value="0">Select Sub Activity</option>
                                 @foreach ($subactivityData as $item)
@@ -85,7 +85,7 @@
                         <div class="form-group">
                             <label for="environmental_aspect_add"
                                 class="@error('D_environmental_aspect') text-danger @enderror">D_Environmental_Aspect</label>
-                            <textarea wire:model.defer='D_environmental_aspect' name="environmental_aspect"
+                            <textarea wire:model='D_environmental_aspect' name="environmental_aspect"
                                 id="environmental_aspect_add"
                                 class="form-control @error('D_environmental_aspect') border border-danger @enderror"
                                 rows="1"></textarea>
@@ -98,7 +98,7 @@
                         <div class="form-group">
                             <label for=""
                                 class="form-label @error('E_environmental_impact_id_fk') text-danger @enderror">E_Environmental_Impact</label>
-                            <select wire:model.defer="E_environmental_impact_id_fk"
+                            <select wire:model="E_environmental_impact_id_fk"
                                 class="form-control @error('E_environmental_impact_id_fk') border border-danger @enderror">
                                 <option selected disabled value="0">Select Environmetal impact</option>
                                 @foreach ($environmetalimpactData as $item)
@@ -121,17 +121,17 @@
 
                             <div class="form-control @error('F_condition_of_impact') border border-danger @enderror">
                                 <div class="form-check form-check-inline">
-                                    <input checked wire:model.defer='F_condition_of_impact' value="A" class="form-check-input"
+                                    <input checked wire:model='F_condition_of_impact' value="A" class="form-check-input"
                                         name="routine" type="radio" id="condImpactA_add">
                                     <label class="form-check-label" for="condImpactA_add">A</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input wire:model.defer='F_condition_of_impact' value="N" class="form-check-input"
+                                    <input wire:model='F_condition_of_impact' value="N" class="form-check-input"
                                         name="routine" type="radio" id="condImpactN_add">
                                     <label class="form-check-label" for="condImpactN_add">N</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input wire:model.defer='F_condition_of_impact' value="E" class="form-check-input"
+                                    <input wire:model='F_condition_of_impact' value="E" class="form-check-input"
                                         name="routine" type="radio" id="condImpactE_add">
                                     <label class="form-check-label" for="condImpactE_add">E</label>
                                 </div>
@@ -144,7 +144,7 @@
                         <div class="form-group">
                             <label title="G_existing_controls_as_per_hierarchy" for="existing_controls_add"
                                 class="@error('G_existing_controls_as_per_hierarchy') text-danger @enderror">G_existing_...</label>
-                            <textarea wire:model.defer='G_existing_controls_as_per_hierarchy' name="existing_controls"
+                            <textarea wire:model='G_existing_controls_as_per_hierarchy' name="existing_controls"
                                 id="existing_controls_add"
                                 class="form-control @error('G_existing_controls_as_per_hierarchy') border border-danger @enderror"
                                 rows="1"></textarea>
@@ -157,7 +157,7 @@
                         <div class="form-group">
                             <label for=""
                                 class="form-label @error('H_organization_requirement_id_fk') text-danger @enderror">H_Organization_Requirement</label>
-                            <select wire:model.defer="H_organization_requirement_id_fk"
+                            <select wire:model="H_organization_requirement_id_fk"
                                 class="form-control @error('H_organization_requirement_id_fk') border border-danger @enderror">
                                 <option selected disabled value="0">Select Organization Requirement</option>
                                 @foreach ($organizationrequirementData as $item)
@@ -250,7 +250,7 @@
                                 P1_cutOff...</label>
                             <input type="text"
                                 class="form-control @error('P1_cut_off_value') border border-danger @enderror"
-                                wire:model.defer="P1_cut_off_value" readonly>
+                                wire:model="P1_cut_off_value" readonly>
                         </div>
                     </div>
 
@@ -280,7 +280,7 @@
                                 N_imcS...</label>
                             <input type="text"
                                 class="form-control @error('N_impact_score') border border-danger @enderror"
-                                wire:model.defer="N_impact_score" readonly>
+                                wire:model="N_impact_score" readonly>
                         </div>
                     </div>
 
@@ -303,7 +303,7 @@
                         <div class="form-group">
                             <label title="P_additional_control" for="additionControl_add"
                                 class="@error('P_additional_control') text-danger @enderror">P_addition_...</label>
-                            <textarea wire:model.defer='P_additional_control' name="additionControl" id="additionControl_add"
+                            <textarea wire:model='P_additional_control' name="additionControl" id="additionControl_add"
                                 class="form-control @error('P_additional_control') border border-danger @enderror"
                                 rows="1"></textarea>
                         </div>

@@ -15,7 +15,7 @@ class Formdata35 extends Component
     public $form35_checkpoints_desc, $form35_checkpoints_abbr;
     public $parmitNo, $working_dt, $working_t_F, $working_t_T, $contractor_name, $supervisor_name, $no_of_people_working, $form35_checkpoint_ids, $activity_ids, $form35_checkpoint_remark, $exact_location_nature_of_work_ids, $name_of_permit_issuing_authority, $sing_of_permit_issuing_authority, $name_permit_receiver, $sing_permit_receiver, $name_safety_representative, $sing_safety_representative, $name_of_permit_issuing_receiver_if_complete, $sing_of_permit_issuing_receiver_if_complete, $permit_issuing_receiver_if_complete_sing_dt, $name_of_permit_issuing_authority_if_complete, $sing_of_permit_issuing_authority_if_complete, $permit_issuing_authority_if_complete_sing_dt, $name_of_site_safety_officer, $sing_of_site_safety_officer, $permit_close_or_continued, $tags_removed;
 
-    public $ibc_id_fk, $idepartment_id_fk, $iproject_id_fk, $document_id_fk;
+    public $ibc_id_fk, $idepartment_id_fk, $iproject_id_fk, $ddd_id_fk;
     public $searchQuery;
 
     public $cid;
@@ -48,7 +48,7 @@ class Formdata35 extends Component
         $this->ibc_id_fk = '0';
         $this->idepartment_id_fk = '0';
         $this->iproject_id_fk = '0';
-        $this->document_id_fk = '0';
+        $this->ddd_id_fk = '0';
         $this->parmitNo = '';
         $this->working_dt = '';
         $this->working_t_F = '';
@@ -87,7 +87,7 @@ class Formdata35 extends Component
             'ibc_id_fk' => 'required|not_in:0',
             'idepartment_id_fk' => 'required|not_in:0',
             'iproject_id_fk' => 'required|not_in:0',
-            'document_id_fk' => 'required|not_in:0',
+            'ddd_id_fk' => 'required|not_in:0',
             'parmitNo' => 'required',
             'working_dt' => 'required',
             'working_t_F' => 'required',
@@ -121,7 +121,7 @@ class Formdata35 extends Component
             'ibc_id_fk' => $this->ibc_id_fk,
             'idepartment_id_fk' => $this->idepartment_id_fk,
             'iproject_id_fk' => $this->iproject_id_fk,
-            'document_id_fk' => $this->document_id_fk,
+            'ddd_id_fk' => $this->ddd_id_fk,
             'parmitNo' => $this->parmitNo,
             'working_dt' => $this->working_dt,
             'working_t_F' => $this->working_t_F,
@@ -166,7 +166,6 @@ class Formdata35 extends Component
         $this->ibc_id_fk = $info->ibc_id_fk;
         $this->idepartment_id_fk = $info->idepartment_id_fk;
         $this->iproject_id_fk = $info->iproject_id_fk;
-        $this->document_id_fk = $info->document_id_fk;
         $this->parmitNo = $info->parmitNo;
         $this->working_dt = $info->working_dt;
         $this->working_t_F = $info->working_t_F;
@@ -212,7 +211,7 @@ class Formdata35 extends Component
             'ibc_id_fk' => 'required|not_in:0',
             'idepartment_id_fk' => 'required|not_in:0',
             'iproject_id_fk' => 'required|not_in:0',
-            'document_id_fk' => 'required|not_in:0',
+            'ddd_id_fk' => 'required|not_in:0',
             'parmitNo' => 'required',
             'working_dt' => 'required',
             'working_t_F' => 'required',
@@ -246,7 +245,6 @@ class Formdata35 extends Component
             'ibc_id_fk' => $this->ibc_id_fk,
             'idepartment_id_fk' => $this->idepartment_id_fk,
             'iproject_id_fk' => $this->iproject_id_fk,
-            'document_id_fk' => $this->document_id_fk,
             'parmitNo' => $this->parmitNo,
             'working_dt' => $this->working_dt,
             'working_t_F' => $this->working_t_F,

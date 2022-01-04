@@ -4,10 +4,11 @@ namespace App\Http\Livewire\Forms00;
 
 use Livewire\Component;
 use App\models\forms_00\formdata_00;
+use Livewire\WithPagination;
 
 class Formdata00 extends Component
 {
-
+    use WithPagination;
     protected $listeners = ['selectedProjectID'];
     public $searchQuery, $selectedProjectID;
 
@@ -28,8 +29,8 @@ class Formdata00 extends Component
     {
 
         $formdata00 = formdata_00::join('companies', 'companies.ibc_id', '=', 'formdata_00s.ibc_id_fk')
-            ->join('departments', 'departments.idepartment_id', '=', 'formdata_00s.idepartment_id_fk')
-            ->join('documents', 'documents.document_id', '=', 'formdata_00s.document_id_fk')
+            // ->join('departments', 'departments.idepartment_id', '=', 'formdata_00s.idepartment_id_fk')
+            // ->join('dept_default_docs', 'dept_default_docs.ddd_id', '=', 'formdata_00s.ddd_id_fk')
             ->join('projects', 'projects.iproject_id', '=', 'formdata_00s.iproject_id_fk')
             ->when(session('globleSelectedProjectID') != '*', function ($data) {
                 # code...
@@ -42,10 +43,10 @@ class Formdata00 extends Component
                     ->where('document_name', 'like', '%' . $this->searchQuery . '%')
                     ->orWhere('document_code', 'like', '%' . $this->searchQuery . '%');
             })
-            ->orderBy('sr_no')->get();
+            ->orderBy('formdata_00s.sr_no')->paginate(15);
 
 
-
+            // dd($formdata00);
         return view('livewire.forms00.formdata00', [
             'formdata00' => $formdata00,
         ]);

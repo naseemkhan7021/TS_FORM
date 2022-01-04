@@ -310,6 +310,11 @@
                                 <li>
                                     <a href="{{ route('index_department') }}"> Department </a>
                                 </li>
+
+                                <li>
+                                    <a href="{{ route('all_documents') }}"> All Document </a>
+                                </li>
+
                                 <li>
                                     <a href="{{ route('index_project') }}"> Projects </a>
                                 </li>
@@ -323,7 +328,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="{{ route('index_InjuryTo') }}"> Potential Injury To </a>
+                                    <a href="{{ route('injuryto') }}"> Potential Injury To </a>
                                 </li>
 
                             </ul>
@@ -561,7 +566,7 @@
                     </li>
 
                     {{-- form 35  --}}
-                    <li>
+                    {{-- <li>
                         <a href="#sidebarForm35" data-toggle="collapse">
                             <i data-feather="users"></i>
                             <span> Form 35 </span>
@@ -577,7 +582,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
 
                     {{-- Form 66--}}
                     <li>

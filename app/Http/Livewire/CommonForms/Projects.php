@@ -78,7 +78,7 @@ class Projects extends Component
         if ($save) {
             # code...
             // Add data to form 00 Section V
-            $usp_paytempID = DB::getPdo()->lastInsertId();
+            $projetID = DB::getPdo()->lastInsertId();
             $templatedata = DB::table('dept_default_docs')->get();
             $iCounter = 1;
 
@@ -86,8 +86,8 @@ class Projects extends Component
                 $savebody = formdata_00::insert([
                     'ibc_id_fk' => $this->ibc_id_fk,
                     'idepartment_id_fk' => $this->idepartment_id_fk,
-                    'iproject_id_fk' => $usp_paytempID,
-                    'document_id_fk' => 1,
+                    'iproject_id_fk' => $projetID,
+                    'ddd_id_fk' => $tempdate->ddd_id,
                     'sr_no' => $iCounter,
                     'document_name' => $tempdate->document_name,
                     'document_code' => $tempdate->document_code,

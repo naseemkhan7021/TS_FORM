@@ -33,12 +33,12 @@ class Formdata01 extends Component
     public $M_any_legal_obligation_to_the_risk_assessment, $D_routine, $N_risk_quantum, $O_risk_acceptable_non_acceptable, $P_no_of_person_believed_to_be_affected, $Q_actions_as_per_hierarchy_of_control, $R_risk_probability, $S_risk_consequence, $T_duration, $U_risk_quantum, $V_risk_acceptable_non_acceptable;
 
     // all fk
-    public $ibc_id_fk, $idepartment_id_fk, $iproject_id_fk, $document_id_fk, $B_activity_id_fk, $C_sub_activity_id_fk, $E_potential_hazard_id_fk, $F_probable_consequence_id_fk, $G_causes_id_fk, $G1_sub_causes_id_fk, $H_preventive_incident_control_id_fk, $I_consequences_controls_id_fk, $J_risk_probability_id_fk, $K_risk_consequence_id_fk, $L_duration_of_exposure_id_fk, $engineering_control_id_fk, $administrative_control_preventive_id_fk, $administrative_control_mitigative_id_fk;
+    public $ibc_id_fk, $idepartment_id_fk, $iproject_id_fk, $ddd_id_fk, $B_activity_id_fk, $C_sub_activity_id_fk, $E_potential_hazard_id_fk, $F_probable_consequence_id_fk, $G_causes_id_fk, $G1_sub_causes_id_fk, $H_preventive_incident_control_id_fk, $I_consequences_controls_id_fk, $J_risk_probability_id_fk, $K_risk_consequence_id_fk, $L_duration_of_exposure_id_fk, $engineering_control_id_fk, $administrative_control_preventive_id_fk, $administrative_control_mitigative_id_fk;
 
     // collect property
     public $G1_sub_causes_id_fks = [];
 
-    public  $searchQuery, $sproject_location, $currentData, $ifnotAcceptable, $formSRNo;
+    public  $searchQuery, $sproject_location, $currentData, $ifnotAcceptable;
     public $selectedProjectID; // this id is globle available
 
 
@@ -52,7 +52,7 @@ class Formdata01 extends Component
     public function mount()
     {
         $this->searchQuery = '';
-        $this->formSRNo = 1; // this number increase as per form number 1-72 (  )
+        $this->ddd_id_fk = 1; // this number increase as per form number 1-72 (  )
         $this->ifnotAcceptable = false;
         // $this->G1_sub_causes_id_fks = collect();
         $this->Q_actions_as_per_hierarchy_of_control = collect();
@@ -70,8 +70,8 @@ class Formdata01 extends Component
             // ->join('departments', 'departments.idepartment_id', '=', 'formdata_01s.idepartment_id_fk')
             // iproject_id_fk
             ->join('projects', 'projects.iproject_id', '=', 'formdata_01s.iproject_id_fk')
-            // document_id_fk
-            // ->join('documents', 'documents.document_id', '=', 'formdata_01s.document_id_fk')
+            // ddd_id_fk
+            // ->join('dept_default_docs', 'dept_default_docs.ddd_id', '=', 'formdata_01s.ddd_id_fk')
             // B_activity_id_fk
             ->join('activities', 'activities.activity_id', '=', 'formdata_01s.B_activity_id_fk')
             // C_sub_activity_id_fk
@@ -185,7 +185,7 @@ class Formdata01 extends Component
             //  'ibc_id_fk'=>'require',
             //  'idepartment_id_fk'=>'require',
             'iproject_id_fk' => 'required|not_in:0',
-            //  'document_id_fk'=>'required',
+            //  'ddd_id_fk'=>'required',
             'B_activity_id_fk' => 'required|not_in:0',
             'C_sub_activity_id_fk' => 'required|not_in:0',
             'D_routine' => 'required',
@@ -217,7 +217,7 @@ class Formdata01 extends Component
             'ibc_id_fk' => $this->ibc_id_fk,
             'idepartment_id_fk' => $this->idepartment_id_fk,
             'iproject_id_fk' => $this->iproject_id_fk,
-            // 'document_id_fk'=>$this->document_id_fk,
+            'ddd_id_fk'=>$this->ddd_id_fk,
             'B_activity_id_fk' => $this->B_activity_id_fk,
             'C_sub_activity_id_fk' => $this->C_sub_activity_id_fk,
             'D_routine' => $this->D_routine,
@@ -251,14 +251,14 @@ class Formdata01 extends Component
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
                 'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
                 'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
-                'formdata_00s.sr_no' => $this->formSRNo
+                'formdata_00s.ddd_id_fk' => $this->ddd_id_fk
             ])->get('counter')[0]->counter + 1;
 
             $updateformsCounter = formdata_00::where([
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
                 'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
                 'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
-                'formdata_00s.sr_no' => $this->formSRNo
+                'formdata_00s.ddd_id_fk' => $this->ddd_id_fk
             ])->update(['counter' => $getCounter]);
             if ($updateformsCounter) {
                 # code...
@@ -319,7 +319,7 @@ class Formdata01 extends Component
             //  'ibc_id_fk'=>'require',
             //  'idepartment_id_fk'=>'require',
             'iproject_id_fk' => 'required|not_in:0',
-            //  'document_id_fk'=>'required',
+            //  'ddd_id_fk'=>'required',
             'B_activity_id_fk' => 'required|not_in:0',
             'C_sub_activity_id_fk' => 'required|not_in:0',
             'D_routine' => 'required',
@@ -351,7 +351,7 @@ class Formdata01 extends Component
             'iproject_id_fk' => $this->iproject_id_fk,
             'idepartment_id_fk' => $this->idepartment_id_fk,
             'ibc_id_fk' => $this->ibc_id_fk,
-            // 'document_id_fk'=>$this->document_id_fk,
+            // 'ddd_id_fk'=>$this->ddd_id_fk,
             'B_activity_id_fk' => $this->B_activity_id_fk,
             'C_sub_activity_id_fk' => $this->C_sub_activity_id_fk,
             'D_routine' => $this->D_routine,

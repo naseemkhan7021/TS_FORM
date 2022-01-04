@@ -16,12 +16,12 @@ class Formdata28 extends Component
     protected $listeners = ['delete'];
     public $ibc_id_fk,$observer_name, $idepartment_id_fk, $iproject_id_fk, $observation_desc, $noticed_time, $recommend_corrective_action, $location, $responsible_person, $sign_resp_person, $closed_dt, $remarks, $prioritytimescales_id_fk;
 
-    public $searchQuery,$formSRNo,$sproject_location,$date;
+    public $searchQuery,$ddd_id_fk,$sproject_location,$date;
 
     public function mount()
     {
         $this->searchQuery = '';
-        $this->formSRNo = 28;
+        $this->ddd_id_fk = 28;
     }
 
     public function render()
@@ -51,7 +51,7 @@ class Formdata28 extends Component
         $this->date = now()->format(env('DATE_FORMAT_YMD'));
         $this->idepartment_id_fk = '0';
         $this->iproject_id_fk = '0';
-        // $this->document_id_fk = '0';
+        // $this->ddd_id_fk = '0';
         $this->prioritytimescales_id_fk = '0';
         $this->observation_desc = '';
         $this->observer_name = '';
@@ -84,7 +84,7 @@ class Formdata28 extends Component
             'ibc_id_fk' => $this->ibc_id_fk,
             'idepartment_id_fk' => $this->idepartment_id_fk,
             'iproject_id_fk' => $this->iproject_id_fk,
-            // 'document_id_fk' => $this->document_id_fk,
+            'ddd_id_fk' => $this->ddd_id_fk,
             'prioritytimescales_id_fk' => $this->prioritytimescales_id_fk,
             'observation_desc' => $this->observation_desc,
             'observer_name' => $this->observer_name,
@@ -101,14 +101,14 @@ class Formdata28 extends Component
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
                 'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
                 'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
-                'formdata_00s.sr_no' => $this->formSRNo
+                'formdata_00s.ddd_id_fk' => $this->ddd_id_fk
             ])->get('counter')[0]->counter + 1;
 
             $updateformsCounter = formdata_00::where([
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
                 'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
                 'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
-                'formdata_00s.sr_no' => $this->formSRNo
+                'formdata_00s.ddd_id_fk' => $this->ddd_id_fk
             ])->update(['counter' => $getCounter]);
             if ($updateformsCounter) {
                 # code...
@@ -126,7 +126,7 @@ class Formdata28 extends Component
         $this->date = Carbon::parse($info->created_at)->format(env('DATE_FORMAT_YMD'));
         $this->idepartment_id_fk = $info->idepartment_id_fk;
         $this->iproject_id_fk = $info->iproject_id_fk;
-        // $this->document_id_fk = $info->document_id_fk;
+        // $this->ddd_id_fk = $info->ddd_id_fk;
         $this->prioritytimescales_id_fk = $info->prioritytimescales_id_fk;
         $this->observation_desc = $info->observation_desc;
         $this->observer_name = $info->observer_name;
@@ -166,7 +166,7 @@ class Formdata28 extends Component
             'ibc_id_fk' => $this->ibc_id_fk,
             'idepartment_id_fk' => $this->idepartment_id_fk,
             'iproject_id_fk' => $this->iproject_id_fk,
-            // 'document_id_fk' => $this->document_id_fk,
+            // 'ddd_id_fk' => $this->ddd_id_fk,
             'prioritytimescales_id_fk' => $this->prioritytimescales_id_fk,
             'observation_desc' => $this->observation_desc,
             'observer_name' => $this->observer_name,

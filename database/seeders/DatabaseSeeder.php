@@ -41,39 +41,58 @@ class DatabaseSeeder extends Seeder
             // ProjectsSeeder::class,
             // DefaultdataSeeder::class,
             // DocumentSeeder::class,
-            // PotentialInjurytoSeeder::class,
-            // Activity15Seeder::class,
-            // Cause15Seeder::class,
-            // // CompanySeeder::class,
-            // ContributingCauseSeeder::class,
-            // // ConverationSeeder::class,
-            // DefaultdataSeeder::class,
-            // DepartmentSeeder::class,
-            // DocumentSeeder::class,
-            // GenderSeeder::class,
-            // ImdActionSeeder::class,
-            // ImdCorrectionSeeder::class,
-            // RoleSeeder::class,
-            // // LeadsourceSeeder::class,
-            // NatureOfPotentialInjurySeeder::class,
-            // PotentialInjurytoSeeder::class,
-            // ProjectsSeeder::class,
-            // WhyunsafeactCommittedSeeder::class,
-            // AddresstypeSeeder::class, // *
-            // DesignationSeeder::class, // *
-            // LanguageSeeder::class, //*
-            // NationalitySeeder::class, // **
-            // OccupationSeeder::class, //*
-            // QualificationSeeder::class, //*
-            // RelationtypeSeeder::class, // *
-            // SubstandActionSeeder::class,
-            // SubstandConditionSeeder::class,
-            // PotentialInjurytoSeeder::class,
-            // DurationOfImpactSeeder::class,
-            // EnvironmentalImpactSeeder::class,
-            // ProbabilitySeeder::class,
-            // ScaleOfImpactSeeder::class,
-            SevertyOfImpactSeeder::class
+
+            // general data
+            RoleSeeder::class,
+            ReligionSeeder::class,
+            GenderSeeder::class,
+            AddresstypeSeeder::class, // *
+            DesignationSeeder::class, // *
+            LanguageSeeder::class, //*
+            NationalitySeeder::class, // **
+            OccupationSeeder::class, //*
+            RelationtypeSeeder::class, // *
+            QualificationSeeder::class, // *
+
+            // command data 
+            PotentialInjurytoSeeder::class,
+            // form 01 data 
+            Activity01Seeder::class,
+            SubActivity01::class,
+            causes01Seeder::class,
+            SubCauses01Seeder::class,
+            // form 15 data 
+            Activity15Seeder::class,
+            Cause15Seeder::class,
+            ImdActionSeeder::class,
+            ContributingCauseSeeder::class,
+            ImdCorrectionSeeder::class,
+            NatureOfPotentialInjurySeeder::class,
+            WhyunsafeactCommittedSeeder::class,
+            // form 17 data 
+            SubstandActionSeeder::class,
+            SubstandConditionSeeder::class,
+            // form 22 data 
+            TopicDiscussSeeder::class,
+            // form 28 data 
+            PrioritytimescaleSeeder::class,
+            // form 35 data
+            Form35CheckpointSeeder::class,
+            // form 16 data 
+            Activity66Seeder::class,
+            SubActivity66Seeder::class,
+            EnvironmentalImpactSeeder::class,
+            OrganizationRequirementSeeder::class,
+            ScaleOfImpactSeeder::class,
+            SevertyOfImpactSeeder::class,
+            DurationOfImpactSeeder::class,
+            ProbabilitySeeder::class,
+
+            // ConverationSeeder::class,
+            // LeadsourceSeeder::class,
+
+            // default 72 forms data 
+            DDDSeeder::class,
 
 
         ]);

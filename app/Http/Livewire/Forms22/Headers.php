@@ -16,12 +16,12 @@ class Headers extends Component
     public $searchQuery, $role;
     public $contractor_name, $faculty_name, $iproject_id_fk,$ibc_id_fk,$idepartment_id_fk, $venue, $duration, $topic_discusseds_ids, $faculty_sign, $site_safety_in_charge_sign, $site_safety_in_charge_name, $sproject_location, $ehsind_dt;
     public   $partisipanceId,$id_no = [];
-    public $cid,$formSRNo;
+    public $cid,$ddd_id_fk;
 
     public function mount()
     {
         $this->searchQuery = '';
-        $this->formSRNo = 22;
+        $this->ddd_id_fk = 22;
         $this->topic_discusseds_ids = collect();
         $this->id_no = collect();
     }
@@ -85,6 +85,7 @@ class Headers extends Component
             'faculty_name' => $this->faculty_name,
 
             'ibc_id_fk'=>$this->ibc_id_fk,
+            'ddd_id_fk'=>$this->ddd_id_fk,
             'idepartment_id_fk'=>$this->idepartment_id_fk,
             'iproject_id_fk' => $this->iproject_id_fk,
             'ehsind_dt' => $this->ehsind_dt,
@@ -101,14 +102,14 @@ class Headers extends Component
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
                 'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
                 'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
-                'formdata_00s.sr_no' => $this->formSRNo
+                'formdata_00s.ddd_id_fk' => $this->ddd_id_fk
             ])->get('counter')[0]->counter + 1;
 
             $updateformsCounter = formdata_00::where([
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
                 'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
                 'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
-                'formdata_00s.sr_no' => $this->formSRNo
+                'formdata_00s.ddd_id_fk' => $this->ddd_id_fk
             ])->update(['counter' => $getCounter]);
             if ($updateformsCounter) {
                 # code...

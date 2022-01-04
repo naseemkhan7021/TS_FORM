@@ -178,7 +178,6 @@
                                     {{-- {{dd($id_no)}} --}}
                                     @php($len = count($id_no))
                                     @forelse ($partisipanceData as $row)
-                                    df
                                         @forelse (range(0,$len-1) as $item)
                                             <tr>
                                                 <td>{{ explode(',', $row->id_no)[$item] }}</td>

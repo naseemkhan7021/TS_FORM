@@ -26,8 +26,8 @@ class CreateFormdata16sTable extends Migration
                 $table->unsignedBigInteger('iproject_id_fk')->default(1);
                 $table->foreign('iproject_id_fk')->references('iproject_id')->on('projects')->onDelete('cascade');
                 // document -------- --- --
-                $table->unsignedBigInteger('document_id_fk')->default(1);
-                $table->foreign('document_id_fk')->references('document_id')->on('documents')->onDelete('cascade');
+                $table->unsignedBigInteger('ddd_id_fk')->default(1);
+                $table->foreign('ddd_id_fk')->references('ddd_id')->on('dept_default_docs')->onDelete('cascade');
 
                 // Injury To  Join
                 $table->unsignedBigInteger('potential_injurytos_fk')->default(1);
@@ -78,7 +78,8 @@ class CreateFormdata16sTable extends Migration
                 $table->string('site_enginner_signature', 100)->nullable();
                 $table->string('project_manager', 100)->nullable();
                 $table->string('project_manager_signature', 100)->nullable();
-
+                $table->dateTime('doincident_dt')->nullable();
+                
 
                 // general values
                 $table->boolean('bactive')->default(true);

@@ -1,9 +1,12 @@
 @php
-$obj =  DB::table('companies')
-        ->where('ibc_id', '=', $defaultCompany)
-        ->get();
+$obj = DB::table('companies')
+    ->where('ibc_id', '=', 1)
+    ->get();
 // DB::table('companies')->get()
-$logo = $obj[0]->sbc_logo_small;
+if (count($obj) > 0) {
+    # code...
+    $logo = $obj[0]->sbc_logo_small;
+}
 @endphp
 
 
@@ -12,8 +15,13 @@ $logo = $obj[0]->sbc_logo_small;
   <path d="M14.134 45.885A23.914 23.914 0 0024 48c13.255 0 24-10.745 24-24 0-3.516-.756-6.856-2.115-9.866-4.659 15.143-16.608 27.092-31.75 31.751z" fill="#6875F5"/>
 </svg> --}}
 <div class="logocon">
-  <a href="/">
-  <img src="{{Storage::url($logo)}}" alt="{{Storage::url($logo)}}">
-  </a>
+  @if (count($obj) > 0)
+      <a href="/">
+          <img src="{{ Storage::url($logo) }}" alt="{{ Storage::url($logo) }}">
+      </a>
+  @else
+      <strong class="text-white" style="color: black">No logo add on default data</strong>
+  @endif
 </div>
+
  

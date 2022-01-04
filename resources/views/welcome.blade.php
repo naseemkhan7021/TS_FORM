@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>T&S | Welcome</title>
     <link rel="shortcut icon" href="{{ asset('assets/images/smalllogo.png') }}">
 
     <!-- Fonts -->
@@ -462,8 +462,14 @@
             <div style="flex-direction: column;" class="flex justify-center pt-8 sm:justify-start sm:pt-0">
                 {{-- {{$defaltLogo}} --}}
                 <div class="logocon">
-                    <img style="height: 17rem;" src="{{ Storage::url($defaltLogo->sbc_logo_large) }}"
-                        alt="{{ Storage::url($defaltLogo->sbc_logo_large) }}">
+                    {{-- {{dd($defaltLogo)}} --}}
+                    @if (count($defaltLogo) > 0)
+                        
+                        <img style="height: 17rem;" src="{{ Storage::url($defaltLogo[0]->sbc_logo_large) }}"
+                            alt="{{ Storage::url($defaltLogo[0]->sbc_logo_large) }}">
+                    @else
+                        <strong class="text-white" style="color: white">No logo add on default data</strong>
+                    @endif
                 </div>
                 @if (Route::has('login'))
                     <div style="justify-content: space-between;" class="px-6 py-4 flex ">
@@ -487,8 +493,9 @@
 
 
 
-            <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+            <div style="text-align: center; position: fixed; left: 0;right: 0; bottom: 1rem;" class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
+                {{-- Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }}) --}}
+                <strong>Create with <span style="color: red;">❤</span></strong>
             </div>
         </div>
     </div>

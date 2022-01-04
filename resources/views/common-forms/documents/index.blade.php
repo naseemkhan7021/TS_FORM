@@ -1,12 +1,12 @@
-@extends('template.vertical', ['title' => 'T&S Potential injury to'])
+@extends('template.vertical', ['title' => 'T&S All Documents'])
 
 @section('content')
 
 <div class="container-fluid pl-3 pr-3">
 
     <!-- start page title -->
-        @livewire('page-title', [ 'sub_title' => 'Forms' , 'active_title' => 'Potential injury to' , 'page_title' => 'Potential injury to'  ])
-        @livewire('common-forms.injury-to')
+        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'All Documents' , 'page_title' => 'All Documents'  ])
+        @livewire('common-forms.documents-all')
     <!-- end page title -->
 
 
@@ -21,41 +21,41 @@
 
 <script>
     window.addEventListener('OpenAddCountryModal', function(){
-         $('.addInjuryto').find('span').html('');
-         $('.addInjuryto').find('form')[0].reset();
-         $('.addInjuryto').modal('show');
+         $('.addDocumentA').find('span').html('');
+         $('.addDocumentA').find('form')[0].reset();
+         $('.addDocumentA').modal('show');
     });
 
     window.addEventListener('CloseAddCountryModal', function(){
-        $('.addInjuryto').find('span').html('');
-        $('.addInjuryto').find('form')[0].reset();
-        $('.addInjuryto').modal('hide');
+        $('.addDocumentA').find('span').html('');
+        $('.addDocumentA').find('form')[0].reset();
+        $('.addDocumentA').modal('hide');
 
         Swal.fire(
             'Well Done!',
-            'New Potential Injury To Has been Saved Successfully !',
+            'New Document Has been Saved Successfully !',
             'success'
             );
 
-        // alert('New Company Has been Saved Successfully');
+        // alert('New Document Has been Saved Successfully');
     });
 
     window.addEventListener('OpenEditCountryModal', function(event){
-        $('.editInjuryto').find('span').html('');
-        $('.editInjuryto').modal('show');
+        $('.editDocumentA').find('span').html('');
+        $('.editDocumentA').modal('show');
     });
 
     window.addEventListener('CloseEditCountryModal', function(event){
-        $('.editInjuryto').find('span').html('');
-        $('.editInjuryto').find('form')[0].reset();
-        $('.editInjuryto').modal('hide');
+        $('.editDocumentA').find('span').html('');
+        $('.editDocumentA').find('form')[0].reset();
+        $('.editDocumentA').modal('hide');
 
         Swal.fire(
             'Good job!',
-            'Potential Injury To Has been Updated Successfully !',
+            'Document Has been Updated Successfully !',
             'success'
             );
-        // alert('Company Has been Updated Successfully');
+        // alert('Document Has been Updated Successfully');
     });
 
     window.addEventListener('SwalConfirm', function(event){
@@ -74,13 +74,13 @@
             allowOutsideClick:false
         }).then(function(result){
             if(result.value){
-                window.livewire.emit('delete',event.detail.gender_id);
+                window.livewire.emit('delete',event.detail.id);
             }
         })
     })
 
     window.addEventListener('deleted', function(event){
-        alert('Company record has been deleted');
+        alert('Document record has been deleted');
     });
 
     window.addEventListener('swal:deleteCountries', function(event){
@@ -98,7 +98,7 @@
             allowOutsideClick:false
         }).then(function(result){
             if(result.value){
-                window.livewire.emit('deleteCheckedCountries',event.detail.checkedIDs);
+                window.livewire.emit('deleteCheckedCountries',event.detail.id);
             }
         });
     });

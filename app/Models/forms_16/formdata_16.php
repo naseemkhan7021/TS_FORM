@@ -23,6 +23,7 @@ class formdata_16 extends Model
         'eml_id_no',
         'designation',
         'dob_dt',
+        'doincident_dt',
         'age',
         'doj_dt',
         'safety_inducted',

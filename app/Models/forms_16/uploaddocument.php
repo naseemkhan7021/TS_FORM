@@ -15,6 +15,8 @@ class uploaddocument extends Model
         'uploaddocuments_name',
         'uploaddocuments_title',
         'uploaddocuments_location',
+        'forms16_id',
+        'forms17_id'
     ];
 
     protected $casts = [

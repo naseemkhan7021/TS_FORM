@@ -12,8 +12,15 @@ class Headerdata extends Component
 
     public  function mount()
     {
-        $this->selectedProjectID = session()->has('globleSelectedProjectID') && session('globleSelectedProjectID') ? session('globleSelectedProjectID') : Project::get()[0]->iproject_id;
-        
+        $protject_obj = Project::get();
+        if (count($protject_obj) > 0) {
+            # code...
+            $Pvalue = Project::get()[0]->iproject_id;
+        }else{
+            $Pvalue = 0;
+        }
+        // dd($Pvalue);
+        $this->selectedProjectID = session()->has('globleSelectedProjectID') && session('globleSelectedProjectID') ? session('globleSelectedProjectID') : $Pvalue;
     }
 
     public function render()

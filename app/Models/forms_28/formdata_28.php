@@ -13,7 +13,7 @@ class formdata_28 extends Model
         'ibc_id_fk',
         'idepartment_id_fk',
         'iproject_id_fk',
-        'document_id_fk',
+        'ddd_id_fk',
         'observation_desc',
         'observer_name',
         'noticed_time',

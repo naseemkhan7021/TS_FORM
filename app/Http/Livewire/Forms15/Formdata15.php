@@ -21,9 +21,9 @@ class Formdata15 extends Component
 
     protected $listeners = ['selectedProjectID'];
 
-    public $searchQuery,$formSRNo, $role, $doincident_dt, $sproject_location, $showOtherInput,$d;
+    public $searchQuery, $role, $doincident_dt, $sproject_location, $showOtherInput,$d;
  
-    public $iproject_id_fk,$document_id_fk,$idepartment_id_fk,$ibc_id_fk, $potential_injurytos_fk, $report_no, $potential_injurytos_other, $nature_of_potential_injuries_ids, $nature_of_potential_injuries_other, $activity15s_ids, $details_of_nearmiss, $imdcause15s_ids, $imdcause15s_other, $contributing_causes_ids, $contributing_causes_other, $whyunsafeact_committeds_ids, $whyunsafeact_committeds_other, $imd_actions_ids, $imd_corrections_ids, $further_recommended_action, $completed_by_name, $completed_by_signature, $completed_date;
+    public $iproject_id_fk,$ddd_id_fk,$idepartment_id_fk,$ibc_id_fk, $potential_injurytos_fk, $report_no, $potential_injurytos_other, $nature_of_potential_injuries_ids, $nature_of_potential_injuries_other, $activity15s_ids, $details_of_nearmiss, $imdcause15s_ids, $imdcause15s_other, $contributing_causes_ids, $contributing_causes_other, $whyunsafeact_committeds_ids, $whyunsafeact_committeds_other, $imd_actions_ids, $imd_corrections_ids, $further_recommended_action, $completed_by_name, $completed_by_signature, $completed_date;
     public $cid,$selectedProjectID;
 
 
@@ -37,7 +37,7 @@ class Formdata15 extends Component
     public function mount()
     {
         $this->searchQuery = '';
-        $this->formSRNo = 15;
+        $this->ddd_id_fk = 15;
     }
 
     public function render()
@@ -47,7 +47,7 @@ class Formdata15 extends Component
             // ->join('defaultdatas','defaultdatas.idefault_id','=','formdata_15s.idefault_id_fk')
             // ->join('companies','companies.ibc_id','=','formdata_15s.ibc_id_fk')
             // ->join('departments','departments.idepartment_id','=','formdata_15s.idepartment_id_fk')
-            // ->join('documents','documents.document_id','=','formdata_15s.document_id_fk')
+            // ->join('dept_default_docs','dept_default_docs.ddd_id','=','formdata_15s.ddd_id_fk')
             ->join('potential_injurytos', 'potential_injurytos.potential_injurytos_id', '=', 'formdata_15s.potential_injurytos_fk')
             ->when($this->searchQuery != '', function ($query) {
                 $query->where('bactive', '1')
@@ -133,6 +133,7 @@ class Formdata15 extends Component
             'iproject_id_fk' => $this->iproject_id_fk,
             'idepartment_id_fk' => $this->idepartment_id_fk,
             'ibc_id_fk' => $this->ibc_id_fk,
+            'ddd_id_fk' => $this->ddd_id_fk,
             'potential_injurytos_fk' => $this->potential_injurytos_fk,
             'report_no' => $this->report_no,
             'potential_injurytos_other' => $this->potential_injurytos_other,
@@ -162,14 +163,14 @@ class Formdata15 extends Component
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
                 'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
                 'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
-                'formdata_00s.sr_no' => $this->formSRNo
+                'formdata_00s.ddd_id_fk' => $this->ddd_id_fk
             ])->get('counter')[0]->counter + 1;
     
             $updateformsCounter = formdata_00::where([
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
                 'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
                 'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
-                'formdata_00s.sr_no' => $this->formSRNo
+                'formdata_00s.ddd_id_fk' => $this->ddd_id_fk
             ])->update(['counter' => $getCounter]);
             if ($updateformsCounter) {
                 # code...

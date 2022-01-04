@@ -15,7 +15,7 @@ class formdata_22_header extends Model
         'ibc_id_fk',
         'idepartment_id_fk',
         'iproject_id_fk',  # **
-        'document_id_fk',
+        'ddd_id_fk',
         'ehsind_dt',
         'contractor_name', # **
         'venue', # **

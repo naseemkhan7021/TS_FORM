@@ -34,7 +34,7 @@ use GuzzleHttp\Middleware;
 Route::get('/', function () {
     $defaltLogo = Company::all();
     // dd($defaltLogo);
-    return view('welcome', ['defaltLogo' => $defaltLogo[0]]);
+    return view('welcome', ['defaltLogo' => $defaltLogo]);
 });
 
 
@@ -52,13 +52,14 @@ Route::get('/qualification', [CommonController::class, 'index_qualification'])->
 
 Route::get('/company', [CommonformController::class, 'index_company'])->name('index_company');
 Route::get('/department', [CommonformController::class, 'index_department'])->name('index_department');
+Route::get('/documents', [CommonformController::class, 'index_documents'])->name('all_documents');
 Route::get('/defaultdata', [CommonformController::class, 'index_defaultdata'])->name('index_defaultdata');
 Route::get('/projects', [CommonformController::class, 'index_project'])->name('index_project');
 Route::get('/documentserial', [CommonformController::class, 'index_documentserial'])->name('index_documentserial');
-Route::get('/injuryto', [CommonformController::class, 'index_InjuryTo'])->name('index_InjuryTo');
+Route::get('/injuryto', [CommonformController::class, 'index_InjuryTo'])->name('injuryto');
 
 // Used in Form 28
-Route::get('/prioritytimescale', [CommonformController::class, 'index_prioritytimescale'])->name('index_prioritytimescale');
+Route::get('/prioritytimescale', [CommonformController::class, 'index_Prioritytimescale'])->name('index_prioritytimescale');
 
 // oo route 
 Route::get('/form00_data', [Form00Controller::class, 'index_formdata'])->name('form00_data');

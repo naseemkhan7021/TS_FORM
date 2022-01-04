@@ -18,6 +18,12 @@ class CommonformController extends Controller
     }
 
 
+    public function index_documents()
+    {
+        return view('common-forms.documents.index');
+
+    }
+
     public function index_department()
     {
         return view('common-forms.department.index');

@@ -26,8 +26,8 @@ class CreateFormdata35sTable extends Migration
                 $table->unsignedBigInteger('iproject_id_fk')->default(1);
                 $table->foreign('iproject_id_fk')->references('iproject_id')->on('projects')->onDelete('cascade');
                 // document -------- --- --
-                $table->unsignedBigInteger('document_id_fk')->default(1);
-                $table->foreign('document_id_fk')->references('document_id')->on('documents')->onDelete('cascade');
+                $table->unsignedBigInteger('ddd_id_fk')->default(1);
+                $table->foreign('ddd_id_fk')->references('ddd_id')->on('dept_default_docs')->onDelete('cascade');
 
                 $table->string('parmitNo')->nullable(true);
                 $table->date('working_dt')->nullable(true);

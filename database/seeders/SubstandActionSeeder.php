@@ -16,40 +16,40 @@ class SubstandActionSeeder extends Seeder
     {
         //
         substandaction::create([
-            'substandcondition_description' => 'Operating Equipment Without Authority', 'substandcondition_abbr' => 'OEWA'
+            'substandaction_description' => 'Operating Equipment Without Authority', 'substandaction_abbr' => 'OEWA'
         ]);
         substandaction::create([
-            'substandcondition_description' => 'Failure to warn', 'substandcondition_abbr' => 'FTW'
+            'substandaction_description' => 'Failure to warn', 'substandaction_abbr' => 'FTW'
         ]);
         substandaction::create([
-            'substandcondition_description' => 'Failure to Secure', 'substandcondition_abbr' => 'FTS'
+            'substandaction_description' => 'Failure to Secure', 'substandaction_abbr' => 'FTS'
         ]);
         substandaction::create([
-            'substandcondition_description' => 'Failure to Follow Rules or Procedure', 'substandcondition_abbr' => 'FTFROP'
+            'substandaction_description' => 'Failure to Follow Rules or Procedure', 'substandaction_abbr' => 'FTFROP'
         ]);
         substandaction::create([
-            'substandcondition_description' => 'Horseplay', 'substandcondition_abbr' => 'HP'
+            'substandaction_description' => 'Horseplay', 'substandaction_abbr' => 'HP'
         ]);
         substandaction::create([
-            'substandcondition_description' => 'Improper use of Equipment', 'substandcondition_abbr' => 'IUOE'
+            'substandaction_description' => 'Improper use of Equipment', 'substandaction_abbr' => 'IUOE'
         ]);
         substandaction::create([
-            'substandcondition_description' => 'Failing to use of PPE', 'substandcondition_abbr' => 'FOUOP'
+            'substandaction_description' => 'Failing to use of PPE', 'substandaction_abbr' => 'FOUOP'
         ]);
         substandaction::create([
-            'substandcondition_description' => 'Making Safety Devices Inoperable', 'substandcondition_abbr' => 'MSDI'
+            'substandaction_description' => 'Making Safety Devices Inoperable', 'substandaction_abbr' => 'MSDI'
         ]);
         substandaction::create([
-            'substandcondition_description' => 'Working on Dangerous Equipment', 'substandcondition_abbr' => 'WODE'
+            'substandaction_description' => 'Working on Dangerous Equipment', 'substandaction_abbr' => 'WODE'
         ]);
         substandaction::create([
-            'substandcondition_description' => 'Under Influence of Drugs', 'substandcondition_abbr' => 'UIOD'
+            'substandaction_description' => 'Under Influence of Drugs', 'substandaction_abbr' => 'UIOD'
         ]);
         substandaction::create([
-            'substandcondition_description' => 'Unsafe Equipment or Condition', 'substandcondition_abbr' => 'UERC'
+            'substandaction_description' => 'Unsafe Equipment or Condition', 'substandaction_abbr' => 'UERC'
         ]);
         substandaction::create([
-            'substandcondition_description' => 'Other', 'substandcondition_abbr' => 'OT'
+            'substandaction_description' => 'Other', 'substandaction_abbr' => 'OT'
         ]);
     }
 }

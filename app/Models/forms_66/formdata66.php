@@ -15,7 +15,7 @@ class formdata66 extends Model
         'ibc_id_fk',
         'idepartment_id_fk',
         'iproject_id_fk',
-        'document_id_fk',
+        'ddd_id_fk',
         // *
         'B_activity_id_fk',
         'C_sub_activity_id_fk',

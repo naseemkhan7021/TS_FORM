@@ -24,18 +24,18 @@ class Formdata66 extends Component
     // normal field 
     public $G_existing_controls_as_per_hierarchy, $L_consequence, $N_impact_score, $O_significance_score_level, $P_additional_control, $Q_risk_rating_priority, $D_environmental_aspect, $F_condition_of_impact;
     // all fk
-    public $ibc_id_fk, $idepartment_id_fk, $iproject_id_fk, $document_id_fk, $B_activity_id_fk, $C_sub_activity_id_fk, $E_environmental_impact_id_fk, $H_organization_requirement_id_fk, $I_scale_of_impact_id_fk, $J_severty_of_impact_id_fk, $K_duration_of_impact_id_fk, $M_probability_id_fk;
+    public $ibc_id_fk, $idepartment_id_fk, $iproject_id_fk, $ddd_id_fk, $B_activity_id_fk, $C_sub_activity_id_fk, $E_environmental_impact_id_fk, $H_organization_requirement_id_fk, $I_scale_of_impact_id_fk, $J_severty_of_impact_id_fk, $K_duration_of_impact_id_fk, $M_probability_id_fk;
 
     // collect property
     public $C_sub_activity_id_fks = [];
 
-    public $formSRNo,$searchQuery, $sproject_location, $currentDate, $ifnotSignificance;
+    public $searchQuery, $sproject_location, $currentDate, $ifnotSignificance;
     public $selectedProjectID; // this id is globle available
 
-    public function mout()
+    public function mount()
     {
         # code...
-        $this->formSRNo=66;
+        $this->ddd_id_fk=66;
     }
 
     public function render()
@@ -46,8 +46,8 @@ class Formdata66 extends Component
             // ->join('departments', 'departments.idepartment_id', '=', 'formdata66s.idepartment_id_fk')
             // iproject_id_fk
             ->join('projects', 'projects.iproject_id', '=', 'formdata66s.iproject_id_fk')
-            // document_id_fk
-            // ->join('documents', 'documents.document_id', '=', 'formdata66s.document_id_fk')
+            // ddd_id_fk
+            // ->join('dept_default_docs', 'dept_default_docs.ddd_id', '=', 'formdata66s.ddd_id_fk')
             // B_activity_id_fk
             ->join('activity66s', 'activity66s.activity_id', '=', 'formdata66s.B_activity_id_fk')
             // C_sub_activity_id_fk
@@ -77,7 +77,7 @@ class Formdata66 extends Component
     {
         // $this->ibc_id_fk = '';
         // $this->idepartment_id_fk = '';
-        // $this->document_id_fk = '';
+        // $this->ddd_id_fk = '';
         $this->currentDate = Carbon::now()->format(env('DATE_FORMAT1'));
         $this->iproject_id_fk = '0';
         $this->B_activity_id_fk = '0';
@@ -109,7 +109,7 @@ class Formdata66 extends Component
         $this->validate([
             // 'ibc_id_fk'=>'required|not_in:0',
             // 'idepartment_id_fk'=>'required|not_in:0',
-            // 'document_id_fk'=>'required|not_in:0',
+            // 'ddd_id_fk'=>'required|not_in:0',
             'iproject_id_fk'=>'required|not_in:0',
             'B_activity_id_fk'=>'required|not_in:0',
             'C_sub_activity_id_fk'=>'required|not_in:0',
@@ -134,7 +134,7 @@ class Formdata66 extends Component
         $save = Forms66data::insert([
             'ibc_id_fk'=>$this->ibc_id_fk,
             'idepartment_id_fk'=>$this->idepartment_id_fk,
-            // 'document_id_fk'=>$this->document_id_fk,
+            'ddd_id_fk'=>$this->ddd_id_fk,
             'iproject_id_fk'=>$this->iproject_id_fk,
             'B_activity_id_fk'=>$this->B_activity_id_fk,
             'C_sub_activity_id_fk'=>$this->C_sub_activity_id_fk,
@@ -161,14 +161,14 @@ class Formdata66 extends Component
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
                 'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
                 'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
-                'formdata_00s.sr_no' => $this->formSRNo
+                'formdata_00s.ddd_id_fk' => $this->ddd_id_fk
             ])->get('counter')[0]->counter + 1;
 
             $updateformsCounter = formdata_00::where([
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
                 'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
                 'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
-                'formdata_00s.sr_no' => $this->formSRNo
+                'formdata_00s.ddd_id_fk' => $this->ddd_id_fk
             ])->update(['counter' => $getCounter]);
             if ($updateformsCounter) {
                 # code...
@@ -186,7 +186,7 @@ class Formdata66 extends Component
 
         $this->ibc_id_fk=$info->ibc_id_fk;
         $this->idepartment_id_fk=$info->idepartment_id_fk;
-        // $this->document_id_fk=$info->document_id_fk;
+        // $this->ddd_id_fk=$info->ddd_id_fk;
         $this->iproject_id_fk=$info->iproject_id_fk;
         $this->B_activity_id_fk=$info->B_activity_id_fk;
         $this->C_sub_activity_id_fk=$info->C_sub_activity_id_fk;
@@ -222,7 +222,7 @@ class Formdata66 extends Component
         $this->validate([
             // 'ibc_id_fk'=>'required|not_in:0',
             // 'idepartment_id_fk'=>'required|not_in:0',
-            // 'document_id_fk'=>'required|not_in:0',
+            // 'ddd_id_fk'=>'required|not_in:0',
             'iproject_id_fk'=>'required|not_in:0',
             'B_activity_id_fk'=>'required|not_in:0',
             'C_sub_activity_id_fk'=>'required|not_in:0',
@@ -246,7 +246,7 @@ class Formdata66 extends Component
 
         $update = Forms66data::find($cid)->update([
             'ibc_id_fk'=>$this->ibc_id_fk,
-            // 'document_id_fk'=>$this->document_id_fk,
+            // 'ddd_id_fk'=>$this->ddd_id_fk,
             'idepartment_id_fk'=>$this->idepartment_id_fk,
             'iproject_id_fk'=>$this->iproject_id_fk,
             'B_activity_id_fk'=>$this->B_activity_id_fk,

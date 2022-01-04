@@ -18,7 +18,8 @@ class Documents extends Component
     }
 
     public function render()
-    {
+    { 
+        // this is document serialnumber 
         # render with search query
         $formsDocuments = Formsdocuments::when($this->searchQuery != '', function ($query) {
             $query->where('bactive', '1')

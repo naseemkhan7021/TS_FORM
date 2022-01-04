@@ -6,19 +6,21 @@
     <div class="row">
         <div class="col-sm-8">
             <div class="text-sm-left">
-                <button class="btn btn-danger waves-effect waves-light mb-2" wire:click="OpenAddCountryModal()"> {{ $button_title }} </button>
-                <button type="button" class="btn btn-success waves-effect waves-light mb-2 mr-1"><i class="mdi mdi-cog"></i></button>
+                <button class="btn btn-danger waves-effect waves-light mb-2" wire:click="OpenAddCountryModal()">
+                    {{ $button_title }} </button>
+                <button type="button" class="btn btn-success waves-effect waves-light mb-2 mr-1"><i
+                        class="mdi mdi-cog"></i></button>
             </div>
         </div>
         <div class="col-md-4">
-            <input wire:model="searchQuery" type="text" placeholder="Search..." class="form-control" >
+            <input wire:model="searchQuery" type="text" placeholder="Search..." class="form-control">
         </div>
     </div>
 
     {{-- projectid -> {{ $selectedProjectID }} --}}
 
-    session -> {{session('globleSelectedProjectID')}}
-    proid_emit -> {{$selectedProjectID}}
+    session -> {{ session('globleSelectedProjectID') }}
+    proid_emit -> {{ $selectedProjectID }}
 
     <table class="table display table-bordered data-table" style="width:100%">
         <thead>
@@ -35,16 +37,18 @@
         <tbody>
             @forelse ( $formdata00 as  $row )
                 <tr>
-                    <td>{{ $row->sr_no }}</td>
-                    <td>{{ $row->sproject_name  }}</td>
-                    <td>{{ $row->document_name  }}</td>
+                    <td>{{ $formdata00->firstItem() + $loop->index }}</td>
+                    <td>{{ $row->sproject_name }}</td>
+                    <td>{{ $row->document_name }}</td>
                     <td>{{ $row->document_code }}</td>
                     <td>{{ $row->counter }}</td>
                     <td>{{ $row->created_at }}</td>
                     <td>
                         <div class="btn-group">
-                            <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->activity_id}})">Edit</button>
-                            <button class="btn btn-danger btn-sm" wire:click="deleteConfirm({{$row->activity_id}})">Delete</button>
+                            <button class="btn btn-success btn-sm disabled"
+                                wire:click="OpenEditCountryModal({{ $row->activity_id }})">Edit</button>
+                            <button class="btn btn-danger btn-sm disabled"
+                                wire:click="deleteConfirm({{ $row->activity_id }})">Delete</button>
 
                         </div>
                     </td>
@@ -52,14 +56,16 @@
                 </tr>
 
             @empty
-                <tr><td colspan="5">'{{ $data_not_found }}</td></tr>
+                <tr>
+                    <td colspan="5">'{{ $data_not_found }}</td>
+                </tr>
             @endforelse
 
         </tbody>
     </table>
-    {{-- @if (count($formdata00))
+    @if (count($formdata00))
         {{ $formdata00->links('livewire-pagination-links') }}
-    @endif --}}
+    @endif
 
     @include('Forms.Forms_00.formdata00.add-modal')
     @include('Forms.Forms_00.formdata00.edit-modal')
