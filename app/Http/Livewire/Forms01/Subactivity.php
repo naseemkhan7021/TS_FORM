@@ -4,18 +4,20 @@ namespace App\Http\Livewire\Forms01;
 
 use App\Models\forms_01\activity;
 use App\Models\forms_01\Sub_activity;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Subactivity extends Component
 {
     public $searchQuery;
     public $sub_activity_description, $sub_activity_abbr,$activity_id_fk;
-    public $cid, $upd_sub_activity_description, $upd_sub_activity_abbr,$upd_activity_id_fk;
+    public $cid, $upd_sub_activity_description, $upd_sub_activity_abbr,$upd_activity_id_fk,$userID;
 
     public function mount()
     {
         # on mound
         $this->searchQuery = '';
+        $this->userID = Auth::user()->id;
     }
 
     public function render()
@@ -54,7 +56,9 @@ class Subactivity extends Component
         $save = Sub_activity::insert([
             'sub_activity_abbr' => $this->sub_activity_abbr,
             'activity_id_fk' => $this->activity_id_fk,
-            'sub_activity_description' => $this->sub_activity_description
+            'sub_activity_description' => $this->sub_activity_description,
+
+            'user_created' => $this->userID,
         ]);
 
         if ($save) {
@@ -94,6 +98,8 @@ class Subactivity extends Component
             'sub_activity_description' => $this->upd_sub_activity_description,
             'sub_activity_abbr' => $this->upd_sub_activity_abbr,
             'activity_id_fk' => $this->upd_activity_id_fk,
+
+            'user_updated' => $this->userID,
         ]);
 
         if ($update) {

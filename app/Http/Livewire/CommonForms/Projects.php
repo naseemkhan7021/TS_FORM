@@ -9,6 +9,7 @@ use App\Models\common_forms\Company;
 use App\Models\common_forms\Projects as Formsprojects;
 use App\Models\common_forms\Department as Formsdepartment;
 use App\Models\forms_00\formdata_00;
+use Illuminate\Support\Facades\Auth;
 use PHPUnit\TextUI\XmlConfiguration\CodeCoverage\Report\Php;
 
 class Projects extends Component
@@ -16,12 +17,14 @@ class Projects extends Component
 
     public $searchQuery;
     public $sproject_name, $sproject_abbr, $sproject_location, $idepartment_id_fk, $ibc_id_fk;
-    public $cid, $upd_sproject_name, $upd_sproject_abbr, $upd_sproject_location, $upd_idepartment_id_fk, $upd_ibc_id_fk;
-
+    public $cid, $upd_sproject_name, $upd_sproject_abbr, $upd_sproject_location, $upd_idepartment_id_fk, $upd_ibc_id_fk,$userID;
+    
+    
     public function mount()
     {
         # on mound
         $this->searchQuery = '';
+        $this->userID = Auth::user()->id;
     }
 
     public function render()
@@ -33,8 +36,9 @@ class Projects extends Component
 
         $formsProjects = Formsprojects::join('companies', 'companies.ibc_id', '=', 'projects.ibc_id_fk')
             ->join('departments', 'departments.idepartment_id', '=', 'projects.idepartment_id_fk')
+            ->where(['projects.bactive'=> '1','projects.user_created'=>$this->userID])
             ->when($this->searchQuery != '', function ($query) {
-                $query->where('bactive', '1')
+                $query->where(['projects.bactive'=> '1','projects.user_created'=>$this->userID])
                     ->where('sproject_name', 'like', '%' . $this->searchQuery . '%')
                     ->orWhere('sproject_abbr', 'like', '%' . $this->searchQuery . '%')
                     ->orWhere('sproject_location', 'like', '%' . $this->searchQuery . '%');
@@ -73,6 +77,8 @@ class Projects extends Component
             'sproject_abbr' => $this->sproject_abbr,
             'sproject_name' => $this->sproject_name,
             'sproject_location' => $this->sproject_location,
+
+            'user_created' => $this->userID,
         ]);
 
         if ($save) {
@@ -91,6 +97,7 @@ class Projects extends Component
                     'sr_no' => $iCounter,
                     'document_name' => $tempdate->document_name,
                     'document_code' => $tempdate->document_code,
+                    'user_created'=>$this->userID,
                     'counter' => 0,
 
                 ]);
@@ -137,6 +144,7 @@ class Projects extends Component
             'sproject_name' => $this->upd_sproject_name,
             'sproject_abbr' => $this->upd_sproject_abbr,
             'sproject_location' => $this->upd_sproject_location,
+            'user_updated' => $this->userID,
         ]);
 
         if ($update) {

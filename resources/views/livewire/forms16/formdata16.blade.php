@@ -32,6 +32,7 @@ if ($dob_dt) {
         </div>
     </div>
 
+    <div class="overflow-auto">
     <table class="table display table-bordered data-table text-center" style="width:100%">
         <thead>
             <tr>
@@ -71,11 +72,12 @@ if ($dob_dt) {
                 </tr>
 
             @empty
-                <tr><td colspan="5">'{{ $data_not_found }}</td></tr>
+                <tr><td colspan="15">'{{ $data_not_found }}</td></tr>
             @endforelse
 
         </tbody>
     </table>
+    </div>
     {{-- @if (count($form16data))
         {{ $form16data->links('livewire-pagination-links') }}
     @endif --}}

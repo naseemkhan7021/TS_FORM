@@ -48,7 +48,7 @@ class OrganizationRequirement extends Component
     {
         $this->validate([
             'organization_requirement_description' => 'required',
-            'organization_requirement_value' => 'required',
+            'organization_requirement_value' => 'required|numeric',
             'organization_requirement_detail' => 'required',
             'organization_requirement_abbr' => 'required'
         ]);
@@ -89,7 +89,7 @@ class OrganizationRequirement extends Component
         $cid = $this->cid;
         $this->validate([
             'organization_requirement_description' => 'required',
-            'organization_requirement_value' => 'required',
+            'organization_requirement_value' => 'required|numeric',
             'organization_requirement_detail' => 'required',
             'organization_requirement_abbr' => 'required'
         ]);

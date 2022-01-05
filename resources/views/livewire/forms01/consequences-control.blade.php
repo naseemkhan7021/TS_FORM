@@ -48,7 +48,7 @@
 
             @empty
                 <tr>
-                    <td colspan="5" class="text-danger">{{ $data_not_found }}</td>
+                    <td colspan="15" class="text-danger">{{ $data_not_found }}</td>
                 </tr>
             @endforelse
 

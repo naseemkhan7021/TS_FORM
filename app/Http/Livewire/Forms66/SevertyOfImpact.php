@@ -51,7 +51,7 @@ class SevertyOfImpact extends Component
     {
         $this->validate([
             'severty_of_impact_description' => 'required',
-            'severty_of_impact_value' => 'required',
+            'severty_of_impact_value' => 'required|numeric',
             'severty_of_impact_detail' => 'required',
             'severty_of_impact_abbr' => 'required'
         ]);
@@ -92,7 +92,7 @@ class SevertyOfImpact extends Component
         $cid = $this->cid;
         $this->validate([
             'severty_of_impact_description' => 'required',
-            'severty_of_impact_value' => 'required',
+            'severty_of_impact_value' => 'required|numeric',
             'severty_of_impact_detail' => 'required',
             'severty_of_impact_abbr' => 'required'
         ]);

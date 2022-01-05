@@ -21,7 +21,8 @@
 
     session -> {{ session('globleSelectedProjectID') }}
     proid_emit -> {{ $selectedProjectID }}
-
+    <div class="overflow-auto">
+        
     <table class="table display table-bordered data-table" style="width:100%">
         <thead>
             <tr>
@@ -57,12 +58,13 @@
 
             @empty
                 <tr>
-                    <td colspan="5">'{{ $data_not_found }}</td>
+                    <td colspan="15">'{{ $data_not_found }}</td>
                 </tr>
             @endforelse
 
         </tbody>
     </table>
+    </div>
     @if (count($formdata00))
         {{ $formdata00->links('livewire-pagination-links') }}
     @endif

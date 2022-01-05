@@ -52,7 +52,7 @@ class EnvironmentalImpact extends Component
     {
         $this->validate([
             'environmental_impact_description' => 'required',
-            'environmental_impact_value' => 'required',
+            'environmental_impact_value' => 'required|numeric',
             'environmental_impact_detail' => 'required',
             'environmental_impact_abbr' => 'required'
         ]);
@@ -93,7 +93,7 @@ class EnvironmentalImpact extends Component
         $cid = $this->cid;
         $this->validate([
             'environmental_impact_description' => 'required',
-            'environmental_impact_value' => 'required',
+            'environmental_impact_value' => 'required|numeric',
             'environmental_impact_detail' => 'required',
             'environmental_impact_abbr' => 'required'
         ]);

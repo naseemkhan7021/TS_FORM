@@ -4,18 +4,21 @@ namespace App\Http\Livewire\Forms01;
 
 use App\Models\forms_01\Cause as CauseModel;
 use App\Models\forms_01\Sub_cause;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Subcause extends Component
 {
     public $searchQuery;
     public $sub_causes_description, $sub_causes_abbr,$sub_causes_fk;
-    public $cid, $upd_sub_causes_description, $upd_sub_causes_abbr,$upd_sub_causes_fk;
+    public $cid, $upd_sub_causes_description, $upd_sub_causes_abbr,$upd_sub_causes_fk,$userID;
 
     public function mount()
     {
         # on mound
         $this->searchQuery = '';
+
+        $this->userID = Auth::user()->id;
     }
 
     public function render()
@@ -57,7 +60,9 @@ class Subcause extends Component
         $save = Sub_cause::insert([
             'sub_causes_abbr' => $this->sub_causes_abbr,
             'sub_causes_fk' => $this->sub_causes_fk,
-            'sub_causes_description' => $this->sub_causes_description
+            'sub_causes_description' => $this->sub_causes_description,
+
+            'user_created' => $this->userID,
         ]);
 
         if ($save) {
@@ -95,7 +100,9 @@ class Subcause extends Component
         $update = Sub_cause::find($cid)->update([
             'sub_causes_description' => $this->upd_sub_causes_description,
             'sub_causes_abbr' => $this->upd_sub_causes_abbr,
-            'sub_causes_fk' => $this->upd_sub_causes_fk
+            'sub_causes_fk' => $this->upd_sub_causes_fk,
+
+            'user_updated' => $this->userID,
         ]);
 
         if ($update) {

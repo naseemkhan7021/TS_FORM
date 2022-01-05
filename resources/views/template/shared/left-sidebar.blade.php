@@ -59,7 +59,7 @@
                         <span class="badge badge-success badge-pill float-right">4</span>
                         <span> Dashboards </span>
                     </a>
-                    <div class="collapse" id="sidebarDashboards">
+                    <div class="collapse fontStyle" id="sidebarDashboards">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('any', 'dashboard') }}">Dashboard 1</a>
@@ -100,7 +100,7 @@
                             <span> General </span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarGeneral">
+                        <div class="collapse fontStyle" id="sidebarGeneral">
                             <ul class="nav-second-level">
                                 <li>
                                     <a href="{{ route('genders') }}"> Gender </a>
@@ -144,7 +144,7 @@
                             <span> Const. CRM </span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarCrm">
+                        <div class="collapse fontStyle" id="sidebarCrm">
                             <ul class="nav-second-level">
                                 <li>
                                     <a href="{{ route('salesunit') }}"> Sales Unit </a>
@@ -179,7 +179,7 @@
                             <span> Project CRM </span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarProjectCRM">
+                        <div class="collapse fontStyle" id="sidebarProjectCRM">
                             <ul class="nav-second-level">
                                 <li>
                                     <a href="{{ route('const_projects') }}">Project</a>
@@ -220,7 +220,7 @@
                             <span> Pre Sales </span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarPreSales">
+                        <div class="collapse fontStyle" id="sidebarPreSales">
                             <ul class="nav-second-level">
                                 <li>
                                     <a href={{ route('dashboard_presales') }}>Unit Quotes</a>
@@ -239,7 +239,7 @@
                             <span> Sales </span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarSales">
+                        <div class="collapse fontStyle" id="sidebarSales">
                             <ul class="nav-second-level">
                                 <li>
                                     <a href={{ route('dashboard_presales') }}> Unit Availability </a>
@@ -273,7 +273,7 @@
                             <span> Post Sales </span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarPostSales">
+                        <div class="collapse fontStyle" id="sidebarPostSales">
                             <ul class="nav-second-level">
                                 <li>
                                     <a href="{{ route('primarymember') }}"> Primary Members </a>
@@ -301,7 +301,7 @@
                             <span> Form Common </span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarCommmon">
+                        <div class="collapse fontStyle" id="sidebarCommmon">
                             <ul class="nav-second-level">
                                 <li>
                                     <a href="{{ route('index_company') }}"> Company </a>
@@ -352,7 +352,7 @@
                             <span> Form 00 </span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarForm00">
+                        <div class="collapse fontStyle" id="sidebarForm00">
                             <ul class="nav-second-level">
                                 <li>
                                     <a href="{{ route('form00_data') }}"> Forms 00 </a>
@@ -369,10 +369,10 @@
                             <span> Form 01 </span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarForm01">
+                        <div class="collapse fontStyle" id="sidebarForm01">
                             <ul class="nav-second-level">
                                 <li>
-                                    <a href="{{ route('form01_formdata01') }}"> Forms 01 </a>
+                                    <a href="{{ route('form01_formdata01') }}"> HIRA </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('form01_activity') }}"> Activity </a>
@@ -432,7 +432,7 @@
                             <span> Form 15 </span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarForm15">
+                        <div class="collapse fontStyle" id="sidebarForm15">
                             <ul class="nav-second-level">
                                 <li>
                                     <a href="{{ route('form15_formdata15') }}"> Forms 15 </a>
@@ -472,7 +472,7 @@
                             <span> Form 16 </span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarForm16">
+                        <div class="collapse fontStyle" id="sidebarForm16">
                             <ul class="nav-second-level">
                                 <li>
                                     <a href="{{ route('form16_formdata16') }}"> Forms 16 </a>
@@ -490,7 +490,7 @@
                             <span> Form 17 </span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarForm17">
+                        <div class="collapse fontStyle" id="sidebarForm17">
                             <ul class="nav-second-level">
                                 <li>
                                     <a href='{{ route('form17_formdata17') }}'> Forms 17 </a>
@@ -512,7 +512,7 @@
                             <span> Form 18 </span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarForm18">
+                        <div class="collapse fontStyle" id="sidebarForm18">
                             <ul class="nav-second-level">
                                 <li>
                                     <a href='{{ route('form18_formdata18') }}'> Forms 18 </a>
@@ -530,7 +530,7 @@
                             <span> Form 22 </span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarForm22">
+                        <div class="collapse fontStyle" id="sidebarForm22">
                             <ul class="nav-second-level">
                                 <li>
                                     <a href='{{ route('form22_participant') }}'> Participants </a>
@@ -553,7 +553,7 @@
                             <span> Form 28 </span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarForm28">
+                        <div class="collapse fontStyle" id="sidebarForm28">
                             <ul class="nav-second-level">
                                 <li>
                                     <a href={{ route('index_formdata28') }}> Forms 28 </a>
@@ -572,7 +572,7 @@
                             <span> Form 35 </span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarForm35">
+                        <div class="collapse fontStyle" id="sidebarForm35">
                             <ul class="nav-second-level">
                                 <li>
                                     <a href="{{ route('formdata35')}}">formdata35</a>
@@ -591,7 +591,7 @@
                             <span> Form 66 </span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarForm66">
+                        <div class="collapse fontStyle" id="sidebarForm66">
                             <ul class="nav-second-level">
                                 <li>
                                     <a href={{ route('form66_formdata') }}> Forms 66</a>
@@ -655,7 +655,7 @@
                         <span> Projects </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarProjects">
+                    <div class="collapse fontStyle" id="sidebarProjects">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('second', ['project', 'list']) }}">List</a>
@@ -676,7 +676,7 @@
                         <span> Tasks </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarTasks">
+                    <div class="collapse fontStyle" id="sidebarTasks">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('second', ['task', 'list']) }}">List</a>
@@ -697,7 +697,7 @@
                         <span> Contacts </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarContacts">
+                    <div class="collapse fontStyle" id="sidebarContacts">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('second', ['contacts', 'list']) }}">Members List</a>
@@ -715,7 +715,7 @@
                         <span> Tickets </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarTickets">
+                    <div class="collapse fontStyle" id="sidebarTickets">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('second', ['tickets', 'list']) }}">List</a>
@@ -742,7 +742,7 @@
                         <span> Auth Pages </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarAuth">
+                    <div class="collapse fontStyle" id="sidebarAuth">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('second', ['auth', 'login']) }}">Log In</a>
@@ -796,7 +796,7 @@
                         <span> Extra Pages </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarExpages">
+                    <div class="collapse fontStyle" id="sidebarExpages">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('second', ['pages', 'starter']) }}">Starter</a>
@@ -853,7 +853,7 @@
                         <span class="badge badge-blue float-right">New</span>
                         <span> Layouts </span>
                     </a>
-                    <div class="collapse" id="sidebarLayouts">
+                    <div class="collapse fontStyle" id="sidebarLayouts">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('second', ['layoutsDemo', 'horizontal']) }}">Horizontal</a>
@@ -882,7 +882,7 @@
                         <span> Base UI </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarBaseui">
+                    <div class="collapse fontStyle" id="sidebarBaseui">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('second', ['ui', 'buttons']) }}">Buttons</a>
@@ -951,7 +951,7 @@
                         <span class="badge badge-info float-right">Hot</span>
                         <span> Extended UI </span>
                     </a>
-                    <div class="collapse" id="sidebarExtendedui">
+                    <div class="collapse fontStyle" id="sidebarExtendedui">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('second', ['extended', 'nestable']) }}">Nestable List</a>
@@ -994,7 +994,7 @@
                         <span> Icons </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarIcons">
+                    <div class="collapse fontStyle" id="sidebarIcons">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('second', ['icons', 'two-tone']) }}">Two Tone Icons</a>
@@ -1030,7 +1030,7 @@
                         <span> Forms </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarForms">
+                    <div class="collapse fontStyle" id="sidebarForms">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('second', ['forms', 'elements']) }}">General Elements</a>
@@ -1075,7 +1075,7 @@
                         <span> Tables </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarTables">
+                    <div class="collapse fontStyle" id="sidebarTables">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('second', ['tables', 'basic']) }}">Basic Tables</a>
@@ -1111,7 +1111,7 @@
                         <span> Charts </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarCharts">
+                    <div class="collapse fontStyle" id="sidebarCharts">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('second', ['charts', 'apex']) }}">Apex Charts</a>
@@ -1150,7 +1150,7 @@
                         <span> Maps </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarMaps">
+                    <div class="collapse fontStyle" id="sidebarMaps">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('second', ['maps', 'google']) }}">Google Maps</a>
@@ -1171,13 +1171,13 @@
                         <span> Multi Level </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarMultilevel">
+                    <div class="collapse fontStyle" id="sidebarMultilevel">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="#sidebarMultilevel2" data-toggle="collapse">
                                     Second Level <span class="menu-arrow"></span>
                                 </a>
-                                <div class="collapse" id="sidebarMultilevel2">
+                                <div class="collapse fontStyle" id="sidebarMultilevel2">
                                     <ul class="nav-second-level">
                                         <li>
                                             <a href="javascript: void(0);">Item 1</a>
@@ -1193,7 +1193,7 @@
                                 <a href="#sidebarMultilevel3" data-toggle="collapse">
                                     Third Level <span class="menu-arrow"></span>
                                 </a>
-                                <div class="collapse" id="sidebarMultilevel3">
+                                <div class="collapse fontStyle" id="sidebarMultilevel3">
                                     <ul class="nav-second-level">
                                         <li>
                                             <a href="javascript: void(0);">Item 1</a>
@@ -1202,7 +1202,7 @@
                                             <a href="#sidebarMultilevel4" data-toggle="collapse">
                                                 Item 2 <span class="menu-arrow"></span>
                                             </a>
-                                            <div class="collapse" id="sidebarMultilevel4">
+                                            <div class="collapse fontStyle" id="sidebarMultilevel4">
                                                 <ul class="nav-second-level">
                                                     <li>
                                                         <a href="javascript: void(0);">Item 1</a>

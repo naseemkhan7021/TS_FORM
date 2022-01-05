@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\CommonForms;
 
 use App\Models\common_forms\Company as Formscompany;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -16,12 +17,13 @@ class Company extends Component
 
     public $showimg, $searchQuery, $sbc_logo_small_path, $sbc_logo_large_path;
     public $sbc_company_name, $sbc_abbr, $sbc_logo_small, $sbc_logo_large, $validupto_dt;
-    public $cid, $upd_sbc_company_name, $upd_sbc_abbr,$old_sbc_logo_small, $upd_sbc_logo_small, $upd_sbc_logo_large, $old_sbc_logo_large,$upd_validupto_dt;
+    public $cid, $upd_sbc_company_name, $upd_sbc_abbr,$old_sbc_logo_small, $upd_sbc_logo_small, $upd_sbc_logo_large, $old_sbc_logo_large,$upd_validupto_dt,$userID;
 
     public function mount()
     {
         # on mound
         $this->searchQuery = '';
+        $this->userID = Auth::user()->id;
     }
 
     public function render()
@@ -67,7 +69,7 @@ class Company extends Component
             'sbc_logo_small' => $this->sbc_logo_small_path,
             'sbc_logo_large' => $this->sbc_logo_large_path,
 
-
+            'user_created' => $this->userID,
         ]);
 
         if ($save) {
@@ -122,6 +124,8 @@ class Company extends Component
             'validupto_dt' => $this->upd_validupto_dt,
             'sbc_logo_small' => $this->sbc_logo_small_path,
             'sbc_logo_large' => $this->sbc_logo_large_path,
+
+            'user_updated' => $this->userID,
         ]);
 
         if ($update) {

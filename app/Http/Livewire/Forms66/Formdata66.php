@@ -14,6 +14,7 @@ use App\Models\forms_66\ScaleOfImpact;
 use App\Models\forms_66\SevertyOfImpact;
 use App\Models\forms_66\SubActivity66;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -30,12 +31,21 @@ class Formdata66 extends Component
     public $C_sub_activity_id_fks = [];
 
     public $searchQuery, $sproject_location, $currentDate, $ifnotSignificance;
-    public $selectedProjectID; // this id is globle available
+    public $selectedProjectID,$userID; // this id is globle available
 
+    public function selectedProjectID($id)
+    {
+        # code...
+        $this->selectedProjectID = $id;
+    }
+    
     public function mount()
     {
         # code...
         $this->ddd_id_fk=66;
+        $this->iproject_id_fk = session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*' ? session('globleSelectedProjectID') : 0;
+
+        $this->userID = Auth::user()->id;
     }
 
     public function render()
@@ -54,11 +64,17 @@ class Formdata66 extends Component
             ->join('sub_activity66s', 'sub_activity66s.sub_activity_id', '=', 'formdata66s.C_sub_activity_id_fk')
             ->join('organization_requirements','organization_requirements.organization_requirement_id','=','H_organization_requirement_id_fk')
             ->join('environmental_impacts','environmental_impacts.environmental_impact_id','=','E_environmental_impact_id_fk')
+            ->when(session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*', function ($data) {
+                # code...
+                $data->where('iproject_id_fk', '=', session('globleSelectedProjectID'))
+                ->where(['formdata66s.bactive'=> '1','formdata66s.user_created'=>$this->userID]);
+            })
+            ->where(['formdata66s.bactive'=> '1','formdata66s.user_created'=>$this->userID])
             ->orderBy('formdata66_id', 'asc')->paginate(10);
             // dd($formdata66);
         $data = [
             'formdata66' => $formdata66,
-            'prjectData' => Projects::get(),
+            'prjectData' => Projects::where(['projects.bactive'=> '1','projects.user_created'=>$this->userID])->get(),
             'activityData' => Activity66::get(),
             'subactivityData' => SubActivity66::where('activity_id_fk', '=', $this->B_activity_id_fk)->get(),
             'environmetalimpactData'=>EnvironmentalImpact::get(),
@@ -79,7 +95,7 @@ class Formdata66 extends Component
         // $this->idepartment_id_fk = '';
         // $this->ddd_id_fk = '';
         $this->currentDate = Carbon::now()->format(env('DATE_FORMAT1'));
-        $this->iproject_id_fk = '0';
+        // $this->iproject_id_fk = '0';
         $this->B_activity_id_fk = '0';
         $this->C_sub_activity_id_fk = '0';
         // $this->C_sub_activity_id_fks = '';
@@ -154,10 +170,13 @@ class Formdata66 extends Component
             // 'P1_cut_off_value'=>$this->P1_cut_off_value,
             'P_additional_control'=>$this->P_additional_control,
             // 'Q_risk_rating_priority'=>$this->Q_risk_rating_priority,
+
+            'user_created' => $this->userID,
         ]);
 
         if ($save) {
             $getCounter = formdata_00::where([
+                'formdata_00s.user_created' => $this->userID,
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
                 'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
                 'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
@@ -165,6 +184,7 @@ class Formdata66 extends Component
             ])->get('counter')[0]->counter + 1;
 
             $updateformsCounter = formdata_00::where([
+                'formdata_00s.user_created' => $this->userID,
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
                 'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
                 'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
@@ -267,6 +287,8 @@ class Formdata66 extends Component
             // 'P1_cut_off_value'=>$this->P1_cut_off_value,
             'P_additional_control'=>$this->P_additional_control,
             // 'Q_risk_rating_priority'=>$this->Q_risk_rating_priority,
+
+            'user_updated' => $this->userID,
         ]);
 
         if ($update) {

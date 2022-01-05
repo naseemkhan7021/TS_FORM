@@ -50,7 +50,7 @@ class DurationOfImpact extends Component
     {
         $this->validate([
             'duration_of_impact_description' => 'required',
-            'duration_of_impact_value' => 'required',
+            'duration_of_impact_value' => 'required|numeric',
             'duration_of_impact_detail' => 'required',
             'duration_of_impact_abbr' => 'required'
         ]);
@@ -91,7 +91,7 @@ class DurationOfImpact extends Component
         $cid = $this->cid;
         $this->validate([
             'duration_of_impact_description' => 'required',
-            'duration_of_impact_value' => 'required',
+            'duration_of_impact_value' => 'required|numeric',
             'duration_of_impact_detail' => 'required',
             'duration_of_impact_abbr' => 'required'
         ]);

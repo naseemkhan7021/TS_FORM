@@ -3,18 +3,20 @@
 namespace App\Http\Livewire\Forms01;
 
 use App\Models\forms_01\consequences_control;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class ConsequencesControl extends Component
 {
     public $searchQuery;
     public $consequences_controls_description, $consequences_controls_abbr;
-    public $cid, $upd_consequences_controls_description, $upd_consequences_controls_abbr;
+    public $cid, $upd_consequences_controls_description, $upd_consequences_controls_abbr,$userID;
 
     public function mount()
     {
         # on mound
         $this->searchQuery = '';
+        $this->userID = Auth::user()->id;
     }
  
 
@@ -48,6 +50,8 @@ class ConsequencesControl extends Component
         $save = Consequences_Control::insert([
               'consequences_controls_description'=>$this->consequences_controls_description,
               'consequences_controls_abbr'=>$this->consequences_controls_abbr,
+
+              'user_created' => $this->userID,
         ]);
 
         if($save){
@@ -84,7 +88,9 @@ class ConsequencesControl extends Component
 
         $update = Consequences_Control::find($cid)->update([
             'consequences_controls_description'=>$this->upd_consequences_controls_description,
-            'consequences_controls_abbr'=>$this->upd_consequences_controls_abbr
+            'consequences_controls_abbr'=>$this->upd_consequences_controls_abbr,
+
+            'user_updated' => $this->userID,
         ]);
 
         if($update){

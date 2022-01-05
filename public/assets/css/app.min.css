@@ -83,6 +83,7 @@ body {
   transition: all 0.4s;
   font-family: "Cerebri Sans,sans-serif";
   font-size: 0.95rem;
+  font-weight: bolder;
 }
 #sidebar-menu > ul > li > a:hover, #sidebar-menu > ul > li > a:focus, #sidebar-menu > ul > li > a:active {
   color: #00acc1;
@@ -144,11 +145,12 @@ body {
 
 .nav-second-level li a {
   padding: 8px 20px;
-  color: #6e768e;
+  color: black;
   display: block;
   position: relative;
   transition: all 0.4s;
-  font-size: 0.875rem;
+  font-size: .928rem;
+  font-weight: bolder;
 }
 .nav-second-level li a:focus, .nav-second-level li a:hover {
   color: #00acc1;

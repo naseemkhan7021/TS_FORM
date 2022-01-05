@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Forms01;
 
 use Livewire\Component;
 use App\Models\forms_01\Activity as ActivityModel;
+use Illuminate\Support\Facades\Auth;
 use Livewire\WithPagination;
 
 class Activity extends Component
@@ -38,7 +39,6 @@ class Activity extends Component
         ]);
     }
 
-
     public function OpenAddCountryModal()
     {
         $this->activity_description = '';
@@ -49,6 +49,7 @@ class Activity extends Component
 
     public function save()
     {
+        // dd(Auth::user()->id);
         $this->validate([
             'activity_description' => 'required',
             'activity_abbr' => 'required'

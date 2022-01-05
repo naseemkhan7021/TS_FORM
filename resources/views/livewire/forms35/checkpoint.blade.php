@@ -14,7 +14,7 @@
             <input wire:model="searchQuery" type="text" placeholder="Search..." class="form-control" >
         </div>
     </div>
-
+    <div class="overflow-auto">
     <table class="table display table-bordered data-table" style="width:100%">
         <thead>
             <tr>
@@ -45,6 +45,7 @@
 
         </tbody>
     </table>
+    </div>
     @if (count($checkpointsData))
         {{ $checkpointsData->links('livewire-pagination-links') }}
     @endif

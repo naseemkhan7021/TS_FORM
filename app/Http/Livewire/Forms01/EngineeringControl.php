@@ -3,18 +3,20 @@
 namespace App\Http\Livewire\Forms01;
 
 use App\Models\forms_01\Engineering_Control;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class EngineeringControl extends Component
 {
     public $searchQuery;
     public $engineering_control_description, $engineering_control_abbr,$engineering_control_value;
-    public $cid, $upd_engineering_control_description, $upd_engineering_control_abbr,$upd_engineering_control_value;
+    public $cid, $upd_engineering_control_description, $upd_engineering_control_abbr,$upd_engineering_control_value,$userID;
 
     public function mount()
     {
         # on mound
         $this->searchQuery = '';
+        $this->userID = Auth::user()->id;
     }
 
 
@@ -48,7 +50,7 @@ class EngineeringControl extends Component
     {
         $this->validate([
             'engineering_control_description' => 'required',
-            'engineering_control_value' => 'required',
+            'engineering_control_value' => 'required|numeric',
             'engineering_control_abbr' => 'required'
         ]);
 
@@ -56,6 +58,8 @@ class EngineeringControl extends Component
             'engineering_control_description' => $this->engineering_control_description,
             'engineering_control_value' => $this->engineering_control_value,
             'engineering_control_abbr' => $this->engineering_control_abbr,
+
+            'user_created' => $this->userID,
         ]);
 
         if ($save) {
@@ -86,7 +90,7 @@ class EngineeringControl extends Component
         $cid = $this->cid;
         $this->validate([
             'upd_engineering_control_description' => 'required',
-            'upd_engineering_control_value' => 'required',
+            'upd_engineering_control_value' => 'required|numeric',
             'upd_engineering_control_abbr' => 'required'
         ], [
 
@@ -98,7 +102,9 @@ class EngineeringControl extends Component
         $update = Engineering_Control::find($cid)->update([
             'engineering_control_description' => $this->upd_engineering_control_description,
             'engineering_control_value' => $this->upd_engineering_control_value,
-            'engineering_control_abbr' => $this->upd_engineering_control_abbr
+            'engineering_control_abbr' => $this->upd_engineering_control_abbr,
+
+            'user_updated' => $this->userID,
         ]);
 
         if ($update) {

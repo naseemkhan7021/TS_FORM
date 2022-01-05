@@ -30,7 +30,9 @@ if ($I_scale_of_impact_id_fk && $J_severty_of_impact_id_fk && $K_duration_of_imp
 }
 if ($M_probability_id_fk && $L_consequence) {
     # code...
-    $probabilit_obj = DB::table('probabilities')->where('probability_id', '=', $M_probability_id_fk)->get();
+    $probabilit_obj = DB::table('probabilities')
+        ->where('probability_id', '=', $M_probability_id_fk)
+        ->get();
     $this->N_impact_score = ($probabilit_obj[0]->probability_value ? $probabilit_obj[0]->probability_value : 1) * $this->L_consequence;
 }
 
@@ -55,58 +57,65 @@ if ($M_probability_id_fk && $L_consequence) {
         </div>
     </div>
 
-
-    <table class="table display table-bordered data-table text-center" style="width:100%">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Project</th>
-                <th>B_Activity</th>
-                <th>C_Sub_Activity</th>
-                <th>E_Environmental Impact</th>
-                <th>F_Condition of Impact</th>
-                <th title="G_existing_controls_as_per_hierarchy">G_existing_controls...</th>
-                <th>H_Organization Requirement</th>
-                <th title="O_significance_score_level">O_significance</th>
-                <th>Created Date</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ( $formdata66 as  $row )
+    <div class="overflow-auto">
+        <table class="table display table-bordered data-table text-center" style="width:130%">
+            <thead>
                 <tr>
-                    <td>{{ $formdata66->firstItem() + $loop->index }}</td>
-                    <td>{{ $row->sproject_name }}</td>
-                    <td>{{ $row->activity_description }}</td>
-                    <td>{{ $row->sub_activity_description }}</td>
-                    <td>{{ $row->environmental_impact_description }}</td>
-                    <td>{{ $row->F_condition_of_impact }}</td>
-                    <td>{{ $row->G_existing_controls_as_per_hierarchy }}</td>
-                    <td>{{ $row->organization_requirement_description }}</td>
-                    <td
-                        style="{{ $row->O_significance_score_level != 'Nonsignificant' ? 'background: red;color: white;font-weight: 900;font-size: 1.1rem;' : 'background: green;color: white;font-weight: 900;font-size: 1.1rem;' }}">
-                        {{ $row->O_significance_score_level }}</td>
-                    <td>{{ Carbon\Carbon::parse($row->form66create)->diffForHumans() }}</td>
-                    <td>
-                        <div class="btn-group">
+                    <th>#</th>
+                    <th>Project</th>
+                    <th>B_Activity</th>
+                    <th>C_Sub_Activity</th>
+                    <th>E_Environmental Impact</th>
+                    <th>F_Condition of Impact</th>
+                    <th title="G_existing_controls_as_per_hierarchy">G_existing_controls...</th>
+                    <th>H_Organization Requirement</th>
+                    <th title="O_significance_score_level">O_significance</th>
+                    <th>Created Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ( $formdata66 as  $row )
+                    <tr>
+                        <td>{{ $formdata66->firstItem() + $loop->index }}</td>
+                        <td>{{ $row->sproject_name }}</td>
+                        <td>{{ $row->activity_description }}</td>
+                        <td>{{ $row->sub_activity_description }}</td>
+                        <td>{{ $row->environmental_impact_description }}</td>
+                        <td>{{ $row->F_condition_of_impact }}</td>
+                        <td>{{ $row->G_existing_controls_as_per_hierarchy }}</td>
+                        <td>{{ $row->organization_requirement_description }}</td>
+                        <td
+                            style="{{ $row->O_significance_score_level != 'Nonsignificant' ? 'background: red;color: white;font-weight: 900;font-size: 1.1rem;' : 'background: green;color: white;font-weight: 900;font-size: 1.1rem;' }}">
+                            {{ $row->O_significance_score_level }}</td>
+                        <td>{{ Carbon\Carbon::parse($row->form66create)->diffForHumans() }}</td>
+                        <td>
+                            @if (Auth::user()->id == $row->user_created)
+                            <div class="btn-group">
+                                <button class="btn btn-success btn-sm"
+                                    wire:click="OpenEditCountryModal({{ $row->ibc_id }})">Edit</button>
+                                <button class="btn btn-danger btn-sm"
+                                    wire:click="deleteConfirm({{ $row->ibc_id }})">Delete</button>
+
+                            </div>
+                            @else
                             <button class="btn btn-success btn-sm"
-                                wire:click="OpenEditCountryModal({{ $row->formdata66_id }})">Edit</button>
-                            <button class="btn btn-danger btn-sm"
-                                wire:click="deleteConfirm({{ $row->formdata66_id }})">Delete</button>
+                                    wire:click="OpenEditCountryModal({{ $row->ibc_id }})">View</button>
+                        @endif
+                        </td>
 
-                        </div>
-                    </td>
+                    </tr>
 
-                </tr>
+                @empty
+                    <tr>
+                        <td colspan="15">'{{ $data_not_found }}</td>
+                    </tr>
+                @endforelse
 
-            @empty
-                <tr>
-                    <td colspan="10">'{{ $data_not_found }}</td>
-                </tr>
-            @endforelse
+            </tbody>
+        </table>
+    </div>
 
-        </tbody>
-    </table>
     @if (count($formdata66))
         {{ $formdata66->links('livewire-pagination-links') }}
     @endif

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Forms01;
 
 use App\Models\forms_01\Preventive_Incident_Control;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class PreventiveIncidentControl extends Component
@@ -10,12 +11,13 @@ class PreventiveIncidentControl extends Component
 
     public $searchQuery;
     public $preventive_incident_control_description, $preventive_incident_control_abbr;
-    public $cid, $upd_preventive_incident_control_description, $upd_preventive_incident_control_abbr;
+    public $cid, $upd_preventive_incident_control_description, $upd_preventive_incident_control_abbr,$userID;
 
     public function mount()
     {
         # on mound
         $this->searchQuery = '';
+        $this->userID = Auth::user()->id;
     }
 
     public function render()
@@ -48,6 +50,8 @@ class PreventiveIncidentControl extends Component
         $save = Preventive_Incident_Control::insert([
               'preventive_incident_control_description'=>$this->preventive_incident_control_description,
               'preventive_incident_control_abbr'=>$this->preventive_incident_control_abbr,
+
+              'user_created' => $this->userID,
         ]);
 
         if($save){
@@ -84,7 +88,9 @@ class PreventiveIncidentControl extends Component
 
         $update = Preventive_Incident_Control::find($cid)->update([
             'preventive_incident_control_description'=>$this->upd_preventive_incident_control_description,
-            'preventive_incident_control_abbr'=>$this->upd_preventive_incident_control_abbr
+            'preventive_incident_control_abbr'=>$this->upd_preventive_incident_control_abbr,
+
+            'user_updated' => $this->userID,
         ]);
 
         if($update){

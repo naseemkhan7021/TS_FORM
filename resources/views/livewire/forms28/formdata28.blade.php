@@ -43,7 +43,7 @@ if ($iproject_id_fk) {
         </div>
     </div>
 
-
+    <div class="overflow-auto">
     <table class="table display table-bordered data-table" style="width:100%">
         <thead>
             <tr>
@@ -87,7 +87,7 @@ if ($iproject_id_fk) {
 
         </tbody>
     </table>
-
+    </div>
     @if (count($form28Data))
         {{ $form28Data->links('livewire-pagination-links') }}
     @endif

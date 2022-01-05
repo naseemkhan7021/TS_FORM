@@ -7,21 +7,31 @@ use App\Models\common_forms\Projects;
 use App\Models\forms_00\formdata_00;
 use App\Models\forms_28\formdata_28;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class Formdata28 extends Component
 {
     use WithPagination;
-    protected $listeners = ['delete'];
+    protected $listeners = ['delete','selectedProjectID'];
     public $ibc_id_fk,$observer_name, $idepartment_id_fk, $iproject_id_fk, $observation_desc, $noticed_time, $recommend_corrective_action, $location, $responsible_person, $sign_resp_person, $closed_dt, $remarks, $prioritytimescales_id_fk;
 
-    public $searchQuery,$ddd_id_fk,$sproject_location,$date;
+    public $searchQuery,$ddd_id_fk,$sproject_location,$date,$userID;
+
+    public function selectedProjectID($id)
+    {
+        # code...
+        $this->selectedProjectID = $id;
+    }
 
     public function mount()
     {
         $this->searchQuery = '';
         $this->ddd_id_fk = 28;
+        $this->iproject_id_fk = session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*' ? session('globleSelectedProjectID') : 0;
+
+        $this->userID = Auth::user()->id;
     }
 
     public function render()
@@ -29,6 +39,12 @@ class Formdata28 extends Component
         $form28Data = formdata_28::select('formdata_28s.created_at as form28Creat','formdata_28s.formdata_28s_id','formdata_28s.observation_desc', 'formdata_28s.noticed_time', 'formdata_28s.recommend_corrective_action', 'formdata_28s.location', 'prioritytimescales.prioritytimescales_desc', 'projects.sproject_name')
             ->join('projects', 'projects.iproject_id', '=', 'formdata_28s.iproject_id_fk')
             ->join('prioritytimescales', 'prioritytimescales.prioritytimescales_id', 'formdata_28s.prioritytimescales_id_fk')
+            ->where(['formdata_28s.bactive' => '1', 'formdata_28s.user_created' => $this->userID])
+            ->when(session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*', function ($data) {
+                # code...
+                $data->where('iproject_id_fk', '=', session('globleSelectedProjectID'))
+                    ->where(['formdata_28s.bactive' => '1', 'formdata_28s.user_created' => $this->userID]);
+            })
             ->when($this->searchQuery != '', function ($query) {
                 $query->where(['formdata_28s.bactive', '1'])
                     ->orWhere('projects.sproject_name', 'like', '%' . $this->searchQuery . '%')
@@ -39,7 +55,7 @@ class Formdata28 extends Component
         $data = [
             'form28Data' => $form28Data,
             'prioritytimescaleData' => prioritytimescale::get(),
-            'projectData' => Projects::get(),
+            'projectData' => Projects::where(['projects.bactive'=> '1','projects.user_created'=>$this->userID])->get(),
         ];
         return view('livewire.forms28.formdata28')->with($data);
     }
@@ -50,7 +66,7 @@ class Formdata28 extends Component
         $this->ibc_id_fk = '0';
         $this->date = now()->format(env('DATE_FORMAT_YMD'));
         $this->idepartment_id_fk = '0';
-        $this->iproject_id_fk = '0';
+        // $this->iproject_id_fk = '0';
         // $this->ddd_id_fk = '0';
         $this->prioritytimescales_id_fk = '0';
         $this->observation_desc = '';
@@ -94,10 +110,13 @@ class Formdata28 extends Component
             'responsible_person' => $this->responsible_person,
             'sign_resp_person' => $this->sign_resp_person,
             'closed_dt' => $this->closed_dt,
-            'remarks' => $this->remarks
+            'remarks' => $this->remarks,
+
+            'user_created' => $this->userID,
         ]);
         if ($save) {
             $getCounter = formdata_00::where([
+                'formdata_00s.user_created' => $this->userID,
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
                 'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
                 'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
@@ -105,6 +124,7 @@ class Formdata28 extends Component
             ])->get('counter')[0]->counter + 1;
 
             $updateformsCounter = formdata_00::where([
+                'formdata_00s.user_created' => $this->userID,
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
                 'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
                 'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
@@ -176,7 +196,9 @@ class Formdata28 extends Component
             'responsible_person' => $this->responsible_person,
             'sign_resp_person' => $this->sign_resp_person,
             'closed_dt' => $this->closed_dt,
-            'remarks' => $this->remarks
+            'remarks' => $this->remarks,
+
+            'user_updated' => $this->userID,
         ]);
 
         if ($update) {

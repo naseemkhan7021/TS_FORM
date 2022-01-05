@@ -19,13 +19,18 @@ class Formdata16 extends Component
 {
     use WithFileUploads;
 
+    protected $listeners = ['delete', 'selectedProjectID'];
     public $photos = [], $imgTitles = array();
     public $oldphotosLocation = [], $oldimgTitles = array(), $oldimgName = [];
     public $searchQuery, $showOtherInput, $showhospital, $victimDischargeorNot, $role, $firstaidgivenonsite;
     public $injuredvictim_name, $designation, $age, $sproject_location, $ddd_id_fk, $idepartment_id_fk, $ibc_id_fk, $iproject_id_fk, $doincident_dt, $potential_injurytos_fk, $potential_injurytos_other, $eml_id_no, $dob_dt, $gender_fk, $doj_dt, $safety_inducted, $married, $person_on_duty, $person_authorized_2_incident_area, $present_address, $permanent_address, $by_whom, $first_incident_reported_to, $date_time_reported_dt, $witness1_name, $designation_1, $witness2_name, $designation_2, $first_aid_given_on_site, $name_first_aider, $victim_taken_hospital, $name_hospital, $victim_hospital_dischaged, $return_to_work, $victim_influence_alcohol, $description_of_incident, $uploaddocuments_fk, $extend_injury, $activity16, $relavebt_risk_referenceno, $control_measure, $actions_taken, $site_enginner_name, $site_enginner_signature, $project_manager, $project_manager_signature;
-    public $cid, $imgsId, $upd_injuredvictim_name, $upd_designation, $upd_age;
+    public $cid, $imgsId, $upd_injuredvictim_name, $upd_designation, $upd_age, $userID;
 
-
+    public function selectedProjectID($id)
+    {
+        # code...
+        $this->selectedProjectID = $id;
+    }
 
 
     public function mount()
@@ -35,6 +40,8 @@ class Formdata16 extends Component
         $this->showhospital = 'No';
         $this->victimDischargeorNot = 'No';
         $this->firstaidgivenonsite = 'No';
+        $this->userID = Auth::user()->id;
+        $this->iproject_id_fk = session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*' ? session('globleSelectedProjectID') : 0;
         // $this->photos = collect();
 
 
@@ -50,16 +57,21 @@ class Formdata16 extends Component
             // ->join('dept_default_docs','dept_default_docs.ddd_id','=','formdata_16s.ddd_id_fk')
             ->join('potential_injurytos', 'potential_injurytos.potential_injurytos_id', '=', 'formdata_16s.potential_injurytos_fk')
             // ->join('projects','projects.iproject_id','=','formdata_16s.iproject_id_fk')
-
+            ->where(['formdata_16s.bactive' => '1', 'formdata_16s.user_created' => $this->userID])
+            ->when(session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*', function ($data) {
+                # code...
+                $data->where('iproject_id_fk', '=', session('globleSelectedProjectID'))
+                    ->where(['formdata_16s.bactive' => '1', 'formdata_16s.user_created' => $this->userID]);
+            })
             ->when($this->searchQuery != '', function ($query) {
-                $query->where('bactive', '1')
+                $query->where(['formdata_16s.bactive' => '1', 'formdata_16s.user_created' => $this->userID])
                     ->where('injuredvictim_name', 'like', '%' . $this->searchQuery . '%')
                     ->where('age', 'like', '%' . $this->searchQuery . '%')
                     ->orWhere('designation', 'like', '%' . $this->searchQuery . '%');
             })
             ->orderBy('formdata_16s_id')->paginate(15);
 
-        $prjectData = Project::all();
+        $prjectData = Project::where(['projects.bactive'=> '1','projects.user_created'=>$this->userID])->get();
         $genderData = Gender::all();
         $potentialinjurytotData = PotentialInjuryto::all();
 
@@ -79,7 +91,7 @@ class Formdata16 extends Component
         $this->designation = '';
         $this->age = '';
         $this->sproject_location = '';
-        $this->iproject_id_fk = '';
+        // $this->iproject_id_fk = '';
         $this->doincident_dt = Carbon::now()->format('Y-m-d') . " " . Carbon::now()->format('H:i:s'); //Carbon::now();
         $this->potential_injurytos_fk = '';
         $this->potential_injurytos_other = '';
@@ -215,6 +227,8 @@ class Formdata16 extends Component
             'site_enginner_signature' => $this->site_enginner_signature,
             'project_manager' => $this->project_manager,
             'project_manager_signature' => $this->project_manager_signature,
+
+            'user_created' => $this->userID,
         ]);
         $this->resetValidation();
         $id = DB::getPdo()->lastInsertId(); // finding last id
@@ -268,6 +282,7 @@ class Formdata16 extends Component
             }
 
             $getCounter = formdata_00::where([
+                'formdata_00s.user_created' => $this->userID,
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
                 'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
                 'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
@@ -275,6 +290,7 @@ class Formdata16 extends Component
             ])->get('counter')[0]->counter + 1;
 
             $updateformsCounter = formdata_00::where([
+                'formdata_00s.user_created' => $this->userID,
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
                 'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
                 'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
@@ -476,6 +492,8 @@ class Formdata16 extends Component
             'site_enginner_signature' => $this->site_enginner_signature,
             'project_manager' => $this->project_manager,
             'project_manager_signature' => $this->project_manager_signature,
+
+            'user_updated' => $this->userID,
 
         ]);
 

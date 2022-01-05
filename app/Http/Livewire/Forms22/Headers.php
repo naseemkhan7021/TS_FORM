@@ -8,15 +8,22 @@ use App\Models\forms_22\formdata_22_header;
 use App\Models\forms_22\formdata_22_participant;
 use App\Models\forms_22\topic_discussed;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Headers extends Component
 {
-
+    protected $listeners = ['delete', 'selectedProjectID'];
     public $searchQuery, $role;
-    public $contractor_name, $faculty_name, $iproject_id_fk,$ibc_id_fk,$idepartment_id_fk, $venue, $duration, $topic_discusseds_ids, $faculty_sign, $site_safety_in_charge_sign, $site_safety_in_charge_name, $sproject_location, $ehsind_dt;
-    public   $partisipanceId,$id_no = [];
-    public $cid,$ddd_id_fk;
+    public $contractor_name, $faculty_name, $iproject_id_fk, $ibc_id_fk, $idepartment_id_fk, $venue, $duration, $topic_discusseds_ids, $faculty_sign, $site_safety_in_charge_sign, $site_safety_in_charge_name, $sproject_location, $ehsind_dt, $userID;
+    public   $partisipanceId, $id_no = [];
+    public $cid, $ddd_id_fk;
+
+    public function selectedProjectID($id)
+    {
+        # code...
+        $this->selectedProjectID = $id;
+    }
 
     public function mount()
     {
@@ -24,23 +31,32 @@ class Headers extends Component
         $this->ddd_id_fk = 22;
         $this->topic_discusseds_ids = collect();
         $this->id_no = collect();
+        $this->iproject_id_fk = session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*' ? session('globleSelectedProjectID') : 0;
+
+        $this->userID = Auth::user()->id;
     }
 
     public function render()
     {
         $headerdata = formdata_22_header::join('projects', 'projects.iproject_id', '=', 'formdata_22_headers.iproject_id_fk')
+            ->where(['formdata_22_headers.bactive' => '1', 'formdata_22_headers.user_created' => $this->userID])
+            ->when(session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*', function ($data) {
+                # code...
+                $data->where('iproject_id_fk', '=', session('globleSelectedProjectID'))
+                    ->where(['formdata_22_headers.bactive' => '1', 'formdata_22_headers.user_created' => $this->userID]);
+            })
             ->when($this->searchQuery != '', function ($query) {
                 $query->where('bactive', '1')
                     ->where('contractor_name', 'like', '%' . $this->searchQuery . '%')
                     ->orWhere('faculty_name', 'like', '%' . $this->searchQuery . '%');
             })->get();
 
-        $projectData = Projects::all();
+        $projectData = Projects::where(['projects.bactive'=> '1','projects.user_created'=>$this->userID])->get();
         $topicData = topic_discussed::all();
         $partisipanceData = formdata_22_participant::where('formdata_22s_id_fk', '=', $this->cid)->get();
         // dd($partisipanceData);
         return view('livewire.forms22.headers', [
-            'headerdata' => $headerdata, 'projectData' => $projectData, 'topicData' => $topicData,'partisipanceData'=>$partisipanceData
+            'headerdata' => $headerdata, 'projectData' => $projectData, 'topicData' => $topicData, 'partisipanceData' => $partisipanceData
         ]);
     }
 
@@ -52,7 +68,7 @@ class Headers extends Component
         $this->faculty_name = '';
         $this->ehsind_dt = Carbon::now()->format('Y-m-d') . " " . Carbon::now()->format('H:i:s');
 
-        $this->iproject_id_fk = '';
+        // $this->iproject_id_fk = '';
         $this->venue = '';
         $this->duration = '';
         $this->topic_discusseds_ids = [];
@@ -84,9 +100,9 @@ class Headers extends Component
             'contractor_name' => $this->contractor_name,
             'faculty_name' => $this->faculty_name,
 
-            'ibc_id_fk'=>$this->ibc_id_fk,
-            'ddd_id_fk'=>$this->ddd_id_fk,
-            'idepartment_id_fk'=>$this->idepartment_id_fk,
+            'ibc_id_fk' => $this->ibc_id_fk,
+            'ddd_id_fk' => $this->ddd_id_fk,
+            'idepartment_id_fk' => $this->idepartment_id_fk,
             'iproject_id_fk' => $this->iproject_id_fk,
             'ehsind_dt' => $this->ehsind_dt,
             'venue' => $this->venue,
@@ -94,11 +110,14 @@ class Headers extends Component
             'topic_discusseds_ids' => implode(',', $this->topic_discusseds_ids),
             'faculty_sign' => $this->faculty_sign,
             'site_safety_in_charge_sign' => $this->site_safety_in_charge_sign,
-            'site_safety_in_charge_name' => $this->site_safety_in_charge_name
+            'site_safety_in_charge_name' => $this->site_safety_in_charge_name,
+
+            'user_created' => $this->userID,
         ]);
 
         if ($save) {
             $getCounter = formdata_00::where([
+                'formdata_00s.user_created' => $this->userID,
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
                 'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
                 'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
@@ -106,6 +125,7 @@ class Headers extends Component
             ])->get('counter')[0]->counter + 1;
 
             $updateformsCounter = formdata_00::where([
+                'formdata_00s.user_created' => $this->userID,
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
                 'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
                 'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
@@ -126,18 +146,18 @@ class Headers extends Component
         // dd($formdata_22s_id);
         $info = formdata_22_header::find($formdata_22s_id);
         $partisipanceData = formdata_22_participant::where('formdata_22s_id_fk', '=', $formdata_22s_id)->get();
-// dd($partisipanceData);
-if (count($partisipanceData) == 0) {
-    # code...
-    $this->partisipanceId = 0;
-    $this->id_no = []; // you can remove it
-}else{
-    $this->partisipanceId = $partisipanceData[0] && $partisipanceData[0]->formdata_22_participants_id ? $partisipanceData[0]->formdata_22_participants_id : 0;
-    $this->id_no = explode(',', $partisipanceData[0]->id_no);
-    // $this->desgination = explode(',', $partisipanceData->desgination);
-    // $this->id_no = explode(',', $partisipanceData->id_no);
-    // $this->participant_name = explode(',', $partisipanceData->participant_name);
-}
+        // dd($partisipanceData);
+        if (count($partisipanceData) == 0) {
+            # code...
+            $this->partisipanceId = 0;
+            $this->id_no = []; // you can remove it
+        } else {
+            $this->partisipanceId = $partisipanceData[0] && $partisipanceData[0]->formdata_22_participants_id ? $partisipanceData[0]->formdata_22_participants_id : 0;
+            $this->id_no = explode(',', $partisipanceData[0]->id_no);
+            // $this->desgination = explode(',', $partisipanceData->desgination);
+            // $this->id_no = explode(',', $partisipanceData->id_no);
+            // $this->participant_name = explode(',', $partisipanceData->participant_name);
+        }
 
 
         $this->role = $role;
@@ -153,8 +173,8 @@ if (count($partisipanceData) == 0) {
         $this->site_safety_in_charge_sign = $info->site_safety_in_charge_sign;
         $this->site_safety_in_charge_name = $info->site_safety_in_charge_name;
         $this->iproject_id_fk = $info->iproject_id_fk;
-        $this->ibc_id_fk=$info->ibc_id_fk;
-        $this->idepartment_id_fk=$info->idepartment_id_fk;
+        $this->ibc_id_fk = $info->ibc_id_fk;
+        $this->idepartment_id_fk = $info->idepartment_id_fk;
 
         $this->cid = $info->formdata_22s_id;
         $this->dispatchBrowserEvent('OpenEditCountryModal', [
@@ -185,8 +205,8 @@ if (count($partisipanceData) == 0) {
             'contractor_name' => $this->contractor_name,
             'faculty_name' => $this->faculty_name,
 
-            'ibc_id_fk'=>$this->ibc_id_fk,
-            'idepartment_id_fk'=>$this->idepartment_id_fk,
+            'ibc_id_fk' => $this->ibc_id_fk,
+            'idepartment_id_fk' => $this->idepartment_id_fk,
             'iproject_id_fk' => $this->iproject_id_fk,
             'ehsind_dt' => $this->ehsind_dt,
             'venue' => $this->venue,
@@ -194,7 +214,9 @@ if (count($partisipanceData) == 0) {
             'topic_discusseds_ids' => implode(',', $this->topic_discusseds_ids),
             'faculty_sign' => $this->faculty_sign,
             'site_safety_in_charge_sign' => $this->site_safety_in_charge_sign,
-            'site_safety_in_charge_name' => $this->site_safety_in_charge_name
+            'site_safety_in_charge_name' => $this->site_safety_in_charge_name,
+
+            'user_updated' => $this->userID,
         ]);
 
         if ($update) {
@@ -233,10 +255,11 @@ if (count($partisipanceData) == 0) {
         // $this->imgsId = '';
     }
 
-    public function openParticipantsModel($id){
-        session(['partisipanceId'=>$id]);
+    public function openParticipantsModel($id)
+    {
+        session(['partisipanceId' => $id]);
         // dd(url()->previous());
-        return redirect('form22_participant')->with('goTo','headerToPartisipance');
+        return redirect('form22_participant')->with('goTo', 'headerToPartisipance');
         // dd($id);
     }
 }

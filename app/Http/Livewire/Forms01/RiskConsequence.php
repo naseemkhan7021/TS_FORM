@@ -3,18 +3,20 @@
 namespace App\Http\Livewire\Forms01;
 
 use App\Models\forms_01\Risk_Consequence;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class RiskConsequence extends Component
 {
     public $searchQuery;
     public $risk_consequence_description, $risk_consequence_abbr,$risk_consequence_value;
-    public $cid, $upd_risk_consequence_description, $upd_risk_consequence_abbr,$upd_risk_consequence_value;
+    public $cid, $upd_risk_consequence_description, $upd_risk_consequence_abbr,$upd_risk_consequence_value,$userID;
 
     public function mount()
     {
         # on mound
         $this->searchQuery = '';
+        $this->userID = Auth::user()->id;
     }
 
     public function render()
@@ -45,7 +47,7 @@ class RiskConsequence extends Component
     {
         $this->validate([
             'risk_consequence_description' => 'required',
-            'risk_consequence_value' => 'required',
+            'risk_consequence_value' => 'required|numeric',
             'risk_consequence_abbr' => 'required'
         ]);
 
@@ -53,6 +55,8 @@ class RiskConsequence extends Component
             'risk_consequence_description' => $this->risk_consequence_description,
             'risk_consequence_value' => $this->risk_consequence_value,
             'risk_consequence_abbr' => $this->risk_consequence_abbr,
+
+            'user_created' => $this->userID,
         ]);
 
         if ($save) {
@@ -83,7 +87,7 @@ class RiskConsequence extends Component
         $cid = $this->cid;
         $this->validate([
             'upd_risk_consequence_description' => 'required',
-            'upd_risk_consequence_value' => 'required',
+            'upd_risk_consequence_value' => 'required|numeric',
             'upd_risk_consequence_abbr' => 'required'
         ], [
 
@@ -95,7 +99,9 @@ class RiskConsequence extends Component
         $update = Risk_Consequence::find($cid)->update([
             'risk_consequence_description' => $this->upd_risk_consequence_description,
             'risk_consequence_value' => $this->upd_risk_consequence_value,
-            'risk_consequence_abbr' => $this->upd_risk_consequence_abbr
+            'risk_consequence_abbr' => $this->upd_risk_consequence_abbr,
+
+            'user_updated' => $this->userID,
         ]);
 
         if ($update) {

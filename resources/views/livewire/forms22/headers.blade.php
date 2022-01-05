@@ -28,7 +28,7 @@ if ($iproject_id_fk) {
         </div>
     </div>
 
-
+    <div class="overflow-auto">
     <table class="table display table-bordered data-table" style="width:100%">
         <thead>
             <tr>
@@ -66,7 +66,7 @@ if ($iproject_id_fk) {
 
         </tbody>
     </table>
-
+    </div>
     @include('Forms.Forms_22.header.add-modal')
     @include('Forms.Forms_22.header.edit-modal')
 

@@ -52,52 +52,54 @@ if ($R_risk_probability && $S_risk_consequence && $T_duration) {
         </div>
     </div>
 
-
-    <table class="table display table-bordered data-table text-center" style="width:100%">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Project</th>
-                <th>B_Activity</th>
-                <th>C_Sub_Activity</th>
-                <th>E_Potential_Hazard</th>
-                <th>F_Probable_Consequence</th>
-                <th>G_Causes</th>
-                <th>I_Consequences_Controls</th>
-                <th title="O_Risk_Acceptable_Non_Acceptable">O_Risk_Acbl_Non_Acbl</th>
-                <th>Created Date</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ( $formdata01 as  $row )
+    <div class="overflow-auto">
+        <table class="table display table-bordered data-table text-center" style="width:132%">
+            <thead>
                 <tr>
-                    <td>{{ $formdata01->firstItem()+$loop->index}}</td>
-                    <td>{{ $row->sproject_name  }}</td>
-                    <td>{{ $row->activity_description  }}</td>
-                    <td>{{ $row->sub_activity_description  }}</td>
-                    <td>{{ $row->potential_hazard_description  }}</td>
-                    <td>{{ $row->probable_consequence_description  }}</td>
-                    <td>{{ $row->causes_description  }}</td>
-                    <td>{{ $row->consequences_controls_description  }}</td>
-                    <td style="{{$row->O_risk_acceptable_non_acceptable == 'Note Acceptable' ? 'background: red;color: white;font-weight: 900;font-size: 1.1rem;' : 'background: green;color: white;font-weight: 900;font-size: 1.1rem;' }}">{{ $row->O_risk_acceptable_non_acceptable  }}</td>
-                    <td>{{ Carbon\Carbon::parse($row->hiraCreate)->diffForHumans() }}</td>
-                    <td>
-                        <div class="btn-group">
-                            <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->formdata_01s_id}})">Edit</button>
-                            <button class="btn btn-danger btn-sm" wire:click="deleteConfirm({{$row->formdata_01s_id}})">Delete</button>
-
-                        </div>
-                    </td>
-
+                    <th>#</th>
+                    <th>Project</th>
+                    <th>B_Activity</th>
+                    <th>C_Sub_Activity</th>
+                    <th>E_Potential_Hazard</th>
+                    <th>F_Probable_Consequence</th>
+                    <th>G_Causes</th>
+                    <th>I_Consequences_Controls</th>
+                    <th title="O_Risk_Acceptable_Non_Acceptable">O_Risk_Acbl_Non_Acbl</th>
+                    <th>Created Date</th>
+                    <th>Action</th>
                 </tr>
+            </thead>
+            <tbody>
+                @forelse ( $formdata01 as  $row )
+                    <tr>
+                        <td>{{ $formdata01->firstItem()+$loop->index}}</td>
+                        <td>{{ $row->sproject_name  }}</td>
+                        <td>{{ $row->activity_description  }}</td>
+                        <td>{{ $row->sub_activity_description  }}</td>
+                        <td>{{ $row->potential_hazard_description  }}</td>
+                        <td>{{ $row->probable_consequence_description  }}</td>
+                        <td>{{ $row->causes_description  }}</td>
+                        <td>{{ $row->consequences_controls_description  }}</td>
+                        <td style="{{$row->O_risk_acceptable_non_acceptable == 'Note Acceptable' ? 'background: red;color: white;font-weight: 900;font-size: 1.1rem;' : 'background: green;color: white;font-weight: 900;font-size: 1.1rem;' }}">{{ $row->O_risk_acceptable_non_acceptable  }}</td>
+                        <td>{{ Carbon\Carbon::parse($row->hiraCreate)->diffForHumans() }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->formdata_01s_id}})">Edit</button>
+                                <button class="btn btn-danger btn-sm" wire:click="deleteConfirm({{$row->formdata_01s_id}})">Delete</button>
+    
+                            </div>
+                        </td>
+    
+                    </tr>
+    
+                @empty
+                    <tr><td colspan="15">'{{ $data_not_found }}</td></tr>
+                @endforelse
+    
+            </tbody>
+        </table>
+    </div>
 
-            @empty
-                <tr><td colspan="10">'{{ $data_not_found }}</td></tr>
-            @endforelse
-
-        </tbody>
-    </table>
     @if (count($formdata01))
         {{ $formdata01->links('livewire-pagination-links') }}
     @endif

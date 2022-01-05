@@ -6,36 +6,52 @@ use App\Models\common_forms\Projects;
 use App\Models\forms_00\formdata_00;
 use App\Models\forms_18\formdata18 as Forms_18Formdata18;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Formdata18 extends Component
 {
-    protected $listeners = ['delete'];
+    protected $listeners = ['delete','selectedProjectID'];
 
     public $extinguisher_no, $location, $type, $size, $date_of_refilling, $date_of_inspection, $pressure_gauge_or_safety_pin_status, $seal_intact_and_not_corroded, $name_of_responsible_person, $due_for_next_refilling, $due_for_next_inspection, $inspected_by_name,$inspected_by_signature,$inspected_by_designation,$inspected_by_date;
     public $iproject_id_fk,$ibc_id_fk, $idepartment_id_fk;
-    public $cid,$searchQuery, $sproject_location,$ddd_id_fk;
+    public $cid,$searchQuery, $sproject_location,$ddd_id_fk,$userID;
+
+    public function selectedProjectID($id)
+    {
+        # code...
+        $this->selectedProjectID = $id;
+    }
 
     public function mount()
     {
         # code...
         $this->searchQuery = '';
         $this->ddd_id_fk = 18;
+        $this->iproject_id_fk = session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*' ? session('globleSelectedProjectID') : 0;
+
+        $this->userID = Auth::user()->id;
     }
 
     public function render()
     {
         $form18Data = Forms_18Formdata18::select('formdata_18s.*','projects.sproject_name')
             ->join('projects', 'projects.iproject_id', '=', 'formdata_18s.iproject_id_fk')
+            ->where(['formdata_18s.bactive' => '1', 'formdata_18s.user_created' => $this->userID])
+            ->when(session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*', function ($data) {
+                # code...
+                $data->where('iproject_id_fk', '=', session('globleSelectedProjectID'))
+                    ->where(['formdata_18s.bactive' => '1', 'formdata_18s.user_created' => $this->userID]);
+            })
             ->when($this->searchQuery != '', function ($query) {
-                $query->where('bactive', '1')
+                $query->where(['formdata_18s.bactive' => '1', 'formdata_18s.user_created' => $this->userID])
                     ->where('pressure_gauge_or_safety_pin_status', 'like', '%' . $this->searchQuery . '%')
                     ->where('location', 'like', '%' . $this->searchQuery . '%')
                     ->orWhere('name_of_responsible_person', 'like', '%' . $this->searchQuery . '%');
             })
             ->orderBy('formdata_18s_id')->get();
 
-            $projectData = Projects::all();
+            $projectData = Projects::where(['projects.bactive'=> '1','projects.user_created'=>$this->userID])->get();
         return view('livewire.forms18.formdata18', [
             'form18Data' => $form18Data,'projectData'=>$projectData
         ]);
@@ -44,7 +60,7 @@ class Formdata18 extends Component
 
     public function OpenAddCountryModal()
     {
-        $this->iproject_id_fk = '0';
+        // $this->iproject_id_fk = '0';
         $this->extinguisher_no = '';
         $this->location = '';
         $this->type = '';
@@ -104,10 +120,13 @@ class Formdata18 extends Component
             'inspected_by_designation' => $this->inspected_by_designation,
             'inspected_by_date' => $this->inspected_by_date,
             'inspected_by_name' => $this->inspected_by_name,
+
+            'user_created' => $this->userID,
         ]);
 
         if ($save) {
             $getCounter = formdata_00::where([
+                'formdata_00s.user_created' => $this->userID,
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
                 'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
                 'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
@@ -115,6 +134,7 @@ class Formdata18 extends Component
             ])->get('counter')[0]->counter + 1;
 
             $updateformsCounter = formdata_00::where([
+                'formdata_00s.user_created' => $this->userID,
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
                 'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
                 'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
@@ -200,6 +220,8 @@ class Formdata18 extends Component
             'inspected_by_designation' => $this->inspected_by_designation,
             'inspected_by_date' => $this->inspected_by_date,
             'inspected_by_name' => $this->inspected_by_name,
+
+            'user_updated' => $this->userID,
 
         ]);
         if ($update) {

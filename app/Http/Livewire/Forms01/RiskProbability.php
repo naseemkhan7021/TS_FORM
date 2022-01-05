@@ -3,18 +3,21 @@
 namespace App\Http\Livewire\Forms01;
 
 use App\Models\forms_01\Risk_Probability;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class RiskProbability extends Component
 {
     public $searchQuery;
     public $risk_probability_description, $risk_probability_abbr,$risk_probability_value;
-    public $cid, $upd_risk_probability_description, $upd_risk_probability_abbr,$upd_risk_probability_value;
+    public $cid, $upd_risk_probability_description, $upd_risk_probability_abbr,$upd_risk_probability_value,$userID;
 
     public function mount()
     {
         # on mound
         $this->searchQuery = '';
+
+        $this->userID = Auth::user()->id;
     }
 
     public function render()
@@ -45,7 +48,7 @@ class RiskProbability extends Component
     {
         $this->validate([
             'risk_probability_description' => 'required',
-            'risk_probability_value' => 'required',
+            'risk_probability_value' => 'required|numeric',
             'risk_probability_abbr' => 'required'
         ]);
 
@@ -53,6 +56,8 @@ class RiskProbability extends Component
             'risk_probability_description' => $this->risk_probability_description,
             'risk_probability_value' => $this->risk_probability_value,
             'risk_probability_abbr' => $this->risk_probability_abbr,
+
+            'user_created' => $this->userID,
         ]);
 
         if ($save) {
@@ -83,7 +88,7 @@ class RiskProbability extends Component
         $cid = $this->cid;
         $this->validate([
             'upd_risk_probability_description' => 'required',
-            'upd_risk_probability_value' => 'required',
+            'upd_risk_probability_value' => 'required|numeric',
             'upd_risk_probability_abbr' => 'required'
         ], [
 
@@ -95,7 +100,9 @@ class RiskProbability extends Component
         $update = Risk_Probability::find($cid)->update([
             'risk_probability_description' => $this->upd_risk_probability_description,
             'risk_probability_value' => $this->upd_risk_probability_value,
-            'risk_probability_abbr' => $this->upd_risk_probability_abbr
+            'risk_probability_abbr' => $this->upd_risk_probability_abbr,
+
+            'user_updated' => $this->userID,
         ]);
 
         if ($update) {

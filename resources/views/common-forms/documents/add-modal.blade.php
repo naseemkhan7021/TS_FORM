@@ -9,6 +9,11 @@
                 </button>
             </div>
             <div class="modal-body">
+                <div  wire:loading.delay.longest>
+                    <div class="spinner-border text-primary m-auto d-block" role="status">
+                        <span class="sr-only m-auto">Loading...</span>
+                    </div>
+                </div>
                 <form wire:submit.prevent="save">
                     <div class="form-group">
                         <label for="">Document Name</label>

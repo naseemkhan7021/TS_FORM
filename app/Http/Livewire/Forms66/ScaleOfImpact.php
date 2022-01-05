@@ -50,7 +50,7 @@ class ScaleOfImpact extends Component
     {
         $this->validate([
             'scale_of_impact_description' => 'required',
-            'scale_of_impact_value' => 'required',
+            'scale_of_impact_value' => 'required|numeric',
             'scale_of_impact_detail' => 'required',
             'scale_of_impact_abbr' => 'required'
         ]);
@@ -91,7 +91,7 @@ class ScaleOfImpact extends Component
         $cid = $this->cid;
         $this->validate([
             'scale_of_impact_description' => 'required',
-            'scale_of_impact_value' => 'required',
+            'scale_of_impact_value' => 'required|numeric',
             'scale_of_impact_detail' => 'required',
             'scale_of_impact_abbr' => 'required'
         ]);

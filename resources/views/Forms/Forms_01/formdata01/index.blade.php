@@ -5,8 +5,7 @@
     <div class="container-fluid pl-3 pr-3">
 
         <!-- start page title -->
-        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 01 Hira' , 'page_title' => 'Form 01
-        Hira' ])
+        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 01 Hira' , 'page_title' => 'Hazard Identification & Risk Assessment (Hira) Register' ])
         @livewire('forms01.formdata01')
         <!-- end page title -->
 

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Forms01;
 
 use App\Models\forms_01\Potential_Hazard;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class PotentialHazard extends Component
@@ -10,12 +11,14 @@ class PotentialHazard extends Component
 
     public $searchQuery;
     public $potential_hazard_description, $potential_hazard_abbr;
-    public $cid, $upd_potential_hazard_description, $upd_potential_hazard_abbr;
+    public $cid, $upd_potential_hazard_description, $upd_potential_hazard_abbr,$userID;
 
     public function mount()
     {
         # on mound
         $this->searchQuery = '';
+
+        $this->userID = Auth::user()->id;
     }
  
     public function render()
@@ -48,6 +51,8 @@ class PotentialHazard extends Component
         $save = Potential_Hazard::insert([
               'potential_hazard_description'=>$this->potential_hazard_description,
               'potential_hazard_abbr'=>$this->potential_hazard_abbr,
+
+              'user_created' => $this->userID,
         ]);
 
         if($save){
@@ -84,7 +89,9 @@ class PotentialHazard extends Component
 
         $update = Potential_Hazard::find($cid)->update([
             'potential_hazard_description'=>$this->upd_potential_hazard_description,
-            'potential_hazard_abbr'=>$this->upd_potential_hazard_abbr
+            'potential_hazard_abbr'=>$this->upd_potential_hazard_abbr,
+
+            'user_updated' => $this->userID,
         ]);
 
         if($update){

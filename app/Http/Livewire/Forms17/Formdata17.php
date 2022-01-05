@@ -8,6 +8,7 @@ use App\Models\forms_16\uploaddocument;
 use App\Models\forms_17\formdata_17;
 use App\Models\forms_17\substandaction;
 use App\Models\forms_17\substandcondition;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -17,18 +18,26 @@ class Formdata17 extends Component
 
     use WithFileUploads;
 
+    protected $listeners = ['delete', 'selectedProjectID'];
     public $inv_photos = [], $inv_imgTitles = [], $searchQuery, $role, $injury_to_f16, $eml_id_no_f16, $designation_f16, $doincident_dt_f16, $potential_injurytos_other_f16;
     public $ibc_id_fk, $idepartment_id_fk, $ddd_id_fk, $iproject_id_fk;
     public $substandcondition_ids, $substandaction_ids, $substandaction_id_fk, $incident_description, $coworker_statement, $formdata_16s_id_fk, $concernedsupervisor_statement, $root_cause, $remedial_actions, $comment_remedial_actions, $site_safety_in_charge_name, $site_safety_in_charge_signature, $project_manager, $project_manager_signature;
     public $upd_substandcondition_ids, $upd_substandaction_ids;
-    public $cid, $imgsId, $inv_oldimgTitles = [], $oldphotosLocation = [], $oldimgName = [];
+    public $cid, $imgsId, $inv_oldimgTitles = [], $oldphotosLocation = [], $oldimgName = [], $userID;
 
+    public function selectedProjectID($id)
+    {
+        # code...
+        $this->selectedProjectID = $id;
+    }
     public function mount()
     {
         $this->searchQuery = '';
         $this->ddd_id_fk = 17;
         $this->substandcondition_ids = collect();
         $this->substandaction_ids = collect();
+
+        $this->userID = Auth::user()->id;
     }
 
     public function render()
@@ -37,15 +46,21 @@ class Formdata17 extends Component
         $form17data = formdata_17::select('formdata_17s.created_at as form17_creat', 'formdata_16s.created_at as form16_creat', 'formdata_17s.*', 'formdata_16s.*', 'potential_injurytos.*')
             ->join('formdata_16s', 'formdata_16s.formdata_16s_id', '=', 'formdata_17s.formdata_16s_id_fk')
             ->join('potential_injurytos', 'potential_injurytos.potential_injurytos_id', '=', 'formdata_16s.potential_injurytos_fk')
+            ->where(['formdata_17s.bactive' => '1', 'formdata_17s.user_created' => $this->userID])
+            ->when(session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*', function ($data) {
+                # code...
+                $data->where('formdata_16s.iproject_id_fk', '=', session('globleSelectedProjectID'))
+                    ->where(['formdata_17s.bactive' => '1', 'formdata_17s.user_created' => $this->userID]);
+            })
             ->when($this->searchQuery != '', function ($query) {
-                $query->where('bactive', '1')
+                $query->where(['formdata_17s.bactive' => '1', 'formdata_17s.user_created' => $this->userID])
                     ->where('incident_description', 'like', '%' . $this->searchQuery . '%')
                     ->orWhere('coworker_statement', 'like', '%' . $this->searchQuery . '%');
             })
             ->orderBy('formdata_17s_id')->paginate(10);
         // dd($form17data);
 
-        $form16data = formdata_16::where('bactive', '1')->get();
+        $form16data = formdata_16::where(['bactive' => '1', 'user_created' => $this->userID])->get();
         $substandactiondata = substandaction::all();
         $substandconditiondata = substandcondition::all();
         return view('livewire.forms17.formdata17', [
@@ -122,6 +137,8 @@ class Formdata17 extends Component
             'site_safety_in_charge_signature' => $this->site_safety_in_charge_signature,
             // 'project_manager'=>$this->project_manager,
             // 'project_manager_signature'=>$this->project_manager_signature,
+
+            'user_created' => $this->userID,
         ]);
         $this->resetValidation();
         $id = DB::getPdo()->lastInsertId(); // finding last id
@@ -157,32 +174,34 @@ class Formdata17 extends Component
                 $saveImage = $uploaddocument->save();
 
                 if ($saveImage) {
+
                     # code...
-                    $getCounter = formdata_00::where([
-                        'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
-                        'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
-                        'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
-                        'formdata_00s.ddd_id_fk' => $this->ddd_id_fk
-                    ])->get('counter')[0]->counter + 1;
-
-                    $updateformsCounter = formdata_00::where([
-                        'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
-                        'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
-                        'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
-                        'formdata_00s.ddd_id_fk' => $this->ddd_id_fk
-                    ])->update(['counter' => $getCounter]);
-
-                    if ($updateformsCounter) {
-                        # code...
-                        // clear veriable 
-                        $this->inv_photos = [];
-                        $this->inv_imgTitles = array();
-                        $this->resetValidation();
-                        $this->dispatchBrowserEvent('CloseAddCountryModal');
-                        return response()->json(array('success' => true, 'last_insert_id_imgs' => $uploaddocument->uploaddocuments_id, 'last_insert_id_form' => $id), 200);
-                    }
+                    // clear veriable 
+                    $this->inv_photos = [];
+                    $this->inv_imgTitles = array();
+                    // $this->resetValidation();
+                    // $this->dispatchBrowserEvent('CloseAddCountryModal');
+                    // return response()->json(array('success' => true, 'last_insert_id_imgs' => $uploaddocument->uploaddocuments_id, 'last_insert_id_form' => $id), 200);
                 }
-            } else {
+            }
+            # code...
+            $getCounter = formdata_00::where([
+                'formdata_00s.user_created' => $this->userID,
+                'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
+                'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
+                'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
+                'formdata_00s.ddd_id_fk' => $this->ddd_id_fk
+            ])->get('counter')[0]->counter + 1;
+
+            $updateformsCounter = formdata_00::where([
+                'formdata_00s.user_created' => $this->userID,
+                'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
+                'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
+                'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
+                'formdata_00s.ddd_id_fk' => $this->ddd_id_fk
+            ])->update(['counter' => $getCounter]);
+            if ($updateformsCounter) {
+                # code...
                 $this->dispatchBrowserEvent('CloseAddCountryModal');
                 $this->resetValidation();
             }
@@ -291,6 +310,8 @@ class Formdata17 extends Component
             'project_manager_signature' => $this->project_manager_signature,
             'substandcondition_ids' => implode(',', $this->substandcondition_ids),
             'substandaction_ids' => implode(',', $this->substandaction_ids),
+
+            'user_updated' => $this->userID,
         ]);
 
         if ($update) {

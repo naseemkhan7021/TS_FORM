@@ -24,6 +24,7 @@ use App\Models\forms_01\probable_consequence;
 use App\Models\forms_01\preventive_incident_control;
 use App\Models\forms_01\administrative_control_mitigative;
 use App\Models\forms_01\administrative_control_preventive;
+use Illuminate\Support\Facades\Auth;
 
 class Formdata01 extends Component
 {
@@ -38,7 +39,7 @@ class Formdata01 extends Component
     // collect property
     public $G1_sub_causes_id_fks = [];
 
-    public  $searchQuery, $sproject_location, $currentData, $ifnotAcceptable;
+    public  $searchQuery, $sproject_location, $currentData, $ifnotAcceptable,$userID;
     public $selectedProjectID; // this id is globle available
 
 
@@ -56,6 +57,8 @@ class Formdata01 extends Component
         $this->ifnotAcceptable = false;
         // $this->G1_sub_causes_id_fks = collect();
         $this->Q_actions_as_per_hierarchy_of_control = collect();
+        $this->userID = Auth::user()->id;
+        $this->iproject_id_fk = session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*' ? session('globleSelectedProjectID') : 0;
 
         // $this->iproject_id_fk = session('globleSelectedProjectID');
 
@@ -100,13 +103,15 @@ class Formdata01 extends Component
             // ->join('administrative_control_preventives', 'administrative_control_preventives.administrative_control_preventive_id', '=', 'formdata_01s.administrative_control_preventive_id_fk')
             // administrative_control_mitigative_id_fk
             // ->join('administrative_control_mitigatives', 'administrative_control_mitigatives.administrative_control_mitigative_id', '=', 'formdata_01s.administrative_control_mitigative_id_fk')
-            ->when(session('globleSelectedProjectID') != '*', function ($data) {
+            ->when(session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*', function ($data) {
                 # code...
-                $data->where('iproject_id_fk', '=', session('globleSelectedProjectID'));
+                $data->where('iproject_id_fk', '=', session('globleSelectedProjectID'))
+                ->where(['formdata_01s.bactive'=> '1','formdata_01s.user_created'=>$this->userID]);
             })
+            ->where(['formdata_01s.bactive'=> '1','formdata_01s.user_created'=>$this->userID])
             // ->where('iproject_id_fk', '=', session('globleSelectedProjectID'))
             ->when($this->searchQuery != '', function ($query) {
-                $query->where('formdata_01s.bactive', '1')
+                $query->where(['formdata_01s.bactive'=> '1','formdata_01s.user_created'=>$this->userID])
                     ->orWhere('projects.sproject_name', 'like', '%' . $this->searchQuery . '%')
                     ->orWhere('activities.activity_description', 'like', '%' . $this->searchQuery . '%')
                     ->orWhere('sub_activities.sub_activity_description', 'like', '%' . $this->searchQuery . '%')
@@ -119,7 +124,7 @@ class Formdata01 extends Component
         // dd($formdata01);
         $data = [
             'formdata01' => $formdata01,
-            'prjectData' => Project::get(),
+            'prjectData' => Project::where(['projects.bactive'=> '1','projects.user_created'=>$this->userID])->get(),
             'activity01Data' => activity::get(),
             'subactivity01Data' => sub_activity::where('activity_id_fk', '=', $this->B_activity_id_fk)->get(),
             'cause01Data' => cause::get(),
@@ -145,7 +150,7 @@ class Formdata01 extends Component
         // $this->iproject_id_fk = session('globleSelectedProjectID');
         $this->ibc_id_fk = '';
         $this->idepartment_id_fk = '';
-        $this->iproject_id_fk = '0';
+        // $this->iproject_id_fk = session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*' ? session('globleSelectedProjectID') : 0;
         $this->D_routine = 'R';
         $this->M_any_legal_obligation_to_the_risk_assessment = 'NO';
         $this->O_risk_acceptable_non_acceptable = 'unset';
@@ -244,6 +249,9 @@ class Formdata01 extends Component
             'T_duration' => $this->T_duration,
             'U_risk_quantum' => $this->U_risk_quantum,
             'V_risk_acceptable_non_acceptable' => $this->V_risk_acceptable_non_acceptable,
+
+
+            'user_created' => $this->userID,
         ]);
         
         if ($save) {
@@ -378,6 +386,8 @@ class Formdata01 extends Component
             'T_duration' => $this->T_duration,
             'U_risk_quantum' => $this->U_risk_quantum,
             'V_risk_acceptable_non_acceptable' => $this->V_risk_acceptable_non_acceptable,
+
+            'user_updated' => $this->userID,
         ]);
 
         if ($update) {

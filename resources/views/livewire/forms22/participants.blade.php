@@ -25,7 +25,7 @@ if ($formdata_22s_id_fk) {
             <input wire:model="searchQuery" type="text" placeholder="Search..." class="form-control" >
         </div>
     </div>
-
+    <div class="overflow-auto">
     <table class="table display table-bordered data-table" style="width:100%">
         <thead>
             <tr>
@@ -61,7 +61,7 @@ if ($formdata_22s_id_fk) {
 
         </tbody>
     </table>
-
+    </div>
     @include('Forms.Forms_22.participant.add-modal')
     @include('Forms.Forms_22.participant.edit-modal')
 

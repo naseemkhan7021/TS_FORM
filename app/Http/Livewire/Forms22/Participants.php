@@ -4,15 +4,22 @@ namespace App\Http\Livewire\Forms22;
 
 use App\Models\forms_22\formdata_22_header;
 use App\Models\forms_22\formdata_22_participant;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Participants extends Component
 {
+    protected $listeners = ['delete','selectedProjectID'];
     public $searchQuery, $role;
     public $participant_name, $age, $desgination, $signature, $id_no, $formdata_22s_id_fk;
     public $header_ehsind_dt;
-    public $cid, $totalNumberOfParticipant,$OpenModelAuto;
+    public $cid, $totalNumberOfParticipant,$OpenModelAuto,$userID;
 
+    public function selectedProjectID($id)
+    {
+        # code...
+        $this->selectedProjectID = $id;
+    }
     public function mount()
     {
         $this->searchQuery = '';
@@ -23,18 +30,26 @@ class Participants extends Component
         $this->id_no = collect();
         $this->participant_name = collect();
 
+        $this->userID = Auth::user()->id;
+
     }
 
     public function render()
     {
         $participantsdata = formdata_22_participant::join('formdata_22_headers', 'formdata_22_headers.formdata_22s_id', '=', 'formdata_22_participants.formdata_22s_id_fk')
             ->join('projects', 'projects.iproject_id', '=', 'formdata_22_headers.iproject_id_fk')
+            ->where(['formdata_22_participants.bactive' => '1', 'formdata_22_participants.user_created' => $this->userID])
+            ->when(session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*', function ($data) {
+                # code...
+                $data->where('iproject_id_fk', '=', session('globleSelectedProjectID'))
+                    ->where(['formdata_22_participants.bactive' => '1', 'formdata_22_participants.user_created' => $this->userID]);
+            })
             ->when($this->searchQuery != '', function ($query) {
                 $query->where('bactive', '1')
                     ->where('participant_name', 'like', '%' . $this->searchQuery . '%')
                     ->orWhere('age', 'like', '%' . $this->searchQuery . '%');
             })->get();
-        $form22HeadData = formdata_22_header::all();
+        $form22HeadData = formdata_22_header::where(['bactive'=> '1','user_created'=>$this->userID])->get();
         
         return view('livewire.forms22.participants', [
             'participantsdata' => $participantsdata, 'form22HeadData' => $form22HeadData
@@ -77,6 +92,8 @@ class Participants extends Component
             'totalNumberOfParticipant' => $this->totalNumberOfParticipant,
             'desgination' => implode(',', $this->desgination),
             'id_no' => implode(',', $this->id_no),
+
+            'user_created' => $this->userID,
         ]);
 
         if ($save) {
@@ -131,6 +148,8 @@ class Participants extends Component
             'formdata_22s_id_fk' => $this->formdata_22s_id_fk,
             'desgination' => implode(',', $this->desgination),
             'id_no' => implode(',', $this->id_no),
+
+            'user_updated' => $this->userID,
         ]);
 
         if ($update) {

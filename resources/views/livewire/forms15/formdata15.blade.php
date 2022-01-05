@@ -32,6 +32,7 @@ if ($iproject_id_fk) {
     session -> {{session('globleSelectedProjectID')}}
     proid_emit -> {{$selectedProjectID}}
 
+    <div class="overflow-auto">
     <table class="table display table-bordered data-table text-center" style="width:100%">
         <thead>
             <tr>
@@ -76,6 +77,7 @@ if ($iproject_id_fk) {
 
         </tbody>
     </table>
+    </div>
     {{-- @if (count($form16data))
         {{ $form16data->links('livewire-pagination-links') }}
     @endif --}}

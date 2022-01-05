@@ -3,18 +3,20 @@
 namespace App\Http\Livewire\Forms01;
 
 use App\Models\forms_01\Administrative_Control_Preventive;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class AdministrativeControlPreventive extends Component
 {
     public $searchQuery;
     public $administrative_control_preventive_description, $administrative_control_preventive_abbr,$administrative_control_preventive_value;
-    public $cid, $upd_administrative_control_preventive_description, $upd_administrative_control_preventive_abbr,$upd_administrative_control_preventive_value;
+    public $cid, $upd_administrative_control_preventive_description, $upd_administrative_control_preventive_abbr,$upd_administrative_control_preventive_value,$userID;
 
     public function mount()
     {
         # on mound
         $this->searchQuery = '';
+        $this->userID = Auth::user()->id;
     }
 
     public function render()
@@ -45,7 +47,7 @@ class AdministrativeControlPreventive extends Component
     {
         $this->validate([
             'administrative_control_preventive_description' => 'required',
-            'administrative_control_preventive_value' => 'required',
+            'administrative_control_preventive_value' => 'required|numeric',
             'administrative_control_preventive_abbr' => 'required'
         ]);
 
@@ -53,6 +55,8 @@ class AdministrativeControlPreventive extends Component
             'administrative_control_preventive_description' => $this->administrative_control_preventive_description,
             'administrative_control_preventive_value' => $this->administrative_control_preventive_value,
             'administrative_control_preventive_abbr' => $this->administrative_control_preventive_abbr,
+
+            'user_created' => $this->userID,
         ]);
 
         if ($save) {
@@ -83,7 +87,7 @@ class AdministrativeControlPreventive extends Component
         $cid = $this->cid;
         $this->validate([
             'upd_administrative_control_preventive_description' => 'required',
-            'upd_administrative_control_preventive_value' => 'required',
+            'upd_administrative_control_preventive_value' => 'required|numeric',
             'upd_administrative_control_preventive_abbr' => 'required'
         ], [
 
@@ -95,7 +99,9 @@ class AdministrativeControlPreventive extends Component
         $update = Administrative_Control_Preventive::find($cid)->update([
             'administrative_control_preventive_description' => $this->upd_administrative_control_preventive_description,
             'administrative_control_preventive_value' => $this->upd_administrative_control_preventive_value,
-            'administrative_control_preventive_abbr' => $this->upd_administrative_control_preventive_abbr
+            'administrative_control_preventive_abbr' => $this->upd_administrative_control_preventive_abbr,
+
+            'user_updated' => $this->userID,
         ]);
 
         if ($update) {

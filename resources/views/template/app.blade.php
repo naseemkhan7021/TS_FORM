@@ -18,6 +18,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        /* label{
+            font-size: 1rem !important;
+            color: black !important;
+        } */
+    </style>
 </head>
 <body>
     <div id="app">

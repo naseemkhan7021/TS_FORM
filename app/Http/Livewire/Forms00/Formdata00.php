@@ -4,13 +4,14 @@ namespace App\Http\Livewire\Forms00;
 
 use Livewire\Component;
 use App\models\forms_00\formdata_00;
+use Illuminate\Support\Facades\Auth;
 use Livewire\WithPagination;
 
 class Formdata00 extends Component
 {
     use WithPagination;
     protected $listeners = ['selectedProjectID'];
-    public $searchQuery, $selectedProjectID;
+    public $searchQuery, $selectedProjectID,$userID;
 
     public function selectedProjectID($id)
     {
@@ -21,7 +22,7 @@ class Formdata00 extends Component
     public function mount()
     {
         $this->searchQuery = '';
-        // $this->selectedProjectID = 1;
+        $this->userID = Auth::user()->id;
     }
 
 
@@ -32,20 +33,19 @@ class Formdata00 extends Component
             // ->join('departments', 'departments.idepartment_id', '=', 'formdata_00s.idepartment_id_fk')
             // ->join('dept_default_docs', 'dept_default_docs.ddd_id', '=', 'formdata_00s.ddd_id_fk')
             ->join('projects', 'projects.iproject_id', '=', 'formdata_00s.iproject_id_fk')
-            ->when(session('globleSelectedProjectID') != '*', function ($data) {
+            ->when(session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*', function ($data) {
                 # code...
-                $data->where('iproject_id_fk', '=', session('globleSelectedProjectID'));
+                $data->where('iproject_id_fk', '=', session('globleSelectedProjectID')) 
+                ->where(['formdata_00s.bactive'=> '1','formdata_00s.user_created'=>$this->userID]);
             })
-            // ->where('iproject_id_fk', '=', session('globleSelectedProjectID'))
+            ->where(['formdata_00s.bactive'=> '1','formdata_00s.user_created'=>$this->userID])
             // ->where('formdata_00s.iproject_id_fk', session('globleSelectedProjectID'))
             ->when($this->searchQuery != '', function ($query) {
-                $query->where('formdata_00s.bactive', '1')
+                $query->where(['formdata_00s.bactive'=> '1','formdata_00s.user_created'=>$this->userID])
                     ->where('document_name', 'like', '%' . $this->searchQuery . '%')
                     ->orWhere('document_code', 'like', '%' . $this->searchQuery . '%');
             })
             ->orderBy('formdata_00s.sr_no')->paginate(15);
-
-
             // dd($formdata00);
         return view('livewire.forms00.formdata00', [
             'formdata00' => $formdata00,

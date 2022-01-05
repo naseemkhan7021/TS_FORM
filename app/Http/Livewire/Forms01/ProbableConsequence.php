@@ -3,18 +3,21 @@
 namespace App\Http\Livewire\Forms01;
 
 use App\Models\forms_01\Probable_Consequence;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class ProbableConsequence extends Component
 {
     public $searchQuery;
     public $probable_consequence_description, $probable_consequence_abbr;
-    public $cid, $upd_probable_consequence_description, $upd_probable_consequence_abbr;
+    public $cid, $upd_probable_consequence_description, $upd_probable_consequence_abbr,$userID;
 
     public function mount()
     {
         # on mound
         $this->searchQuery = '';
+
+        $this->userID = Auth::user()->id;
     }
 
     public function render()
@@ -47,6 +50,8 @@ class ProbableConsequence extends Component
         $save = Probable_Consequence::insert([
               'probable_consequence_description'=>$this->probable_consequence_description,
               'probable_consequence_abbr'=>$this->probable_consequence_abbr,
+
+              'user_created' => $this->userID,
         ]);
 
         if($save){
@@ -83,7 +88,10 @@ class ProbableConsequence extends Component
 
         $update = Probable_Consequence::find($cid)->update([
             'probable_consequence_description'=>$this->upd_probable_consequence_description,
-            'probable_consequence_abbr'=>$this->upd_probable_consequence_abbr
+            'probable_consequence_abbr'=>$this->upd_probable_consequence_abbr,
+
+            'user_updated' => $this->userID,
+            
         ]);
 
         if($update){

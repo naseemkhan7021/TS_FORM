@@ -49,7 +49,7 @@ class Probability extends Component
     {
         $this->validate([
             'probability_description' => 'required',
-            'probability_value' => 'required',
+            'probability_value' => 'required|numeric',
             'probability_detail' => 'required',
             'probability_abbr' => 'required'
         ]);
@@ -90,7 +90,7 @@ class Probability extends Component
         $cid = $this->cid;
         $this->validate([
             'probability_description' => 'required',
-            'probability_value' => 'required',
+            'probability_value' => 'required|numeric',
             'probability_detail' => 'required',
             'probability_abbr' => 'required'
         ]);

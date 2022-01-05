@@ -39,11 +39,18 @@
                     <td>{{ $row->description}}</td>
                     <td>{{ $row->created_at }}</td>
                     <td>
-                        <div class="btn-group">
-                            <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->idefault_id}})">Edit</button>
-                            <button class="btn btn-danger btn-sm" wire:click="deleteConfirm({{$row->idefault_id}})">Delete</button>
+                        @if (Auth::user()->id == $row->user_created)
+                            <div class="btn-group">
+                                <button class="btn btn-success btn-sm"
+                                    wire:click="OpenEditCountryModal({{ $row->ibc_id }})">Edit</button>
+                                <button class="btn btn-danger btn-sm"
+                                    wire:click="deleteConfirm({{ $row->ibc_id }})">Delete</button>
 
-                        </div>
+                            </div>
+                            @else
+                            <button class="btn btn-success btn-sm"
+                                    wire:click="OpenEditCountryModal({{ $row->ibc_id }})">View</button>
+                        @endif
                     </td>
 
                 </tr>

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Forms35;
 
 use App\Models\forms_35\formdata_35;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -11,30 +12,44 @@ class Formdata35 extends Component
 {
 
     use WithPagination;
-    protected $listeners = ['delete'];
+    protected $listeners = ['delete', 'selectedProjectID'];
     public $form35_checkpoints_desc, $form35_checkpoints_abbr;
     public $parmitNo, $working_dt, $working_t_F, $working_t_T, $contractor_name, $supervisor_name, $no_of_people_working, $form35_checkpoint_ids, $activity_ids, $form35_checkpoint_remark, $exact_location_nature_of_work_ids, $name_of_permit_issuing_authority, $sing_of_permit_issuing_authority, $name_permit_receiver, $sing_permit_receiver, $name_safety_representative, $sing_safety_representative, $name_of_permit_issuing_receiver_if_complete, $sing_of_permit_issuing_receiver_if_complete, $permit_issuing_receiver_if_complete_sing_dt, $name_of_permit_issuing_authority_if_complete, $sing_of_permit_issuing_authority_if_complete, $permit_issuing_authority_if_complete_sing_dt, $name_of_site_safety_officer, $sing_of_site_safety_officer, $permit_close_or_continued, $tags_removed;
 
-    public $ibc_id_fk, $idepartment_id_fk, $iproject_id_fk, $ddd_id_fk;
+    public $ibc_id_fk, $idepartment_id_fk, $iproject_id_fk, $ddd_id_fk, $userID;
     public $searchQuery;
 
     public $cid;
 
+    public function selectedProjectID($id)
+    {
+        # code...
+        $this->selectedProjectID = $id;
+    }
 
     public function mount()
     {
         $this->searchQuery = '';
+        $this->iproject_id_fk = session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*' ? session('globleSelectedProjectID') : 0;
+
+        $this->userID = Auth::user()->id;
     }
 
     public function render()
     {
 
-        $checkpointsData = formdata_35::join('projects', 'projects.iproject_id', '=', 'formdata_01s.iproject_id_fk')
+        $checkpointsData = formdata_35::join('projects', 'projects.iproject_id', '=', 'formdata_35s.iproject_id_fk')
+            ->where(['formdata_35s.bactive' => '1', 'formdata_35s.user_created' => $this->userID])
+            ->when(session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*', function ($data) {
+                # code...
+                $data->where('iproject_id_fk', '=', session('globleSelectedProjectID'))
+                    ->where(['formdata_35s.bactive' => '1', 'formdata_35s.user_created' => $this->userID]);
+            })
             ->when($this->searchQuery != '', function ($query) {
-            $query->where('bactive', '1')
-                ->where('form35_checkpoints_desc', 'like', '%' . $this->searchQuery . '%')
-                ->orWhere('form35_checkpoints_abbr', 'like', '%' . $this->searchQuery . '%');
-        })
+                $query->where('bactive', '1')
+                    ->where('form35_checkpoints_desc', 'like', '%' . $this->searchQuery . '%')
+                    ->orWhere('form35_checkpoints_abbr', 'like', '%' . $this->searchQuery . '%');
+            })
             ->orderBy('form35_checkpoints_id', 'asc')->paginate(30);
 
         return view('livewire.forms35.checkpoint', [
@@ -47,7 +62,7 @@ class Formdata35 extends Component
     {
         $this->ibc_id_fk = '0';
         $this->idepartment_id_fk = '0';
-        $this->iproject_id_fk = '0';
+        // $this->iproject_id_fk = '0';
         $this->ddd_id_fk = '0';
         $this->parmitNo = '';
         $this->working_dt = '';
@@ -149,6 +164,8 @@ class Formdata35 extends Component
             'sing_of_site_safety_officer' => $this->sing_of_site_safety_officer,
             'permit_close_or_continued' => $this->permit_close_or_continued,
             'tags_removed' => $this->tags_removed,
+
+            'user_created' => $this->userID,
         ]);
 
         if ($save) {
@@ -272,6 +289,8 @@ class Formdata35 extends Component
             'sing_of_site_safety_officer' => $this->sing_of_site_safety_officer,
             'permit_close_or_continued' => $this->permit_close_or_continued,
             'tags_removed' => $this->tags_removed,
+
+            'user_updated' => $this->userID,
         ]);
 
         if ($update) {

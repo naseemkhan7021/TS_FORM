@@ -3,12 +3,17 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add New Hira {{$this->ibc_id_fk}},{{$this->idepartment_id_fk}}</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add New Hazard Identification & Risk Assessment (Hira) Register</h5>
                 <button wire:click='clearValuesandValidation()' type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
+                <div  wire:loading.delay.longest>
+                    <div class="spinner-border text-primary m-auto d-block" role="status">
+                        <span class="sr-only m-auto">Loading...</span>
+                    </div>
+                </div>
                 <form wire:submit.prevent="save" class="row g-3">
 
                     {{-- project detail start --}}

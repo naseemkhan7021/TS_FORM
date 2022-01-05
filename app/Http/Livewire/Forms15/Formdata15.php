@@ -14,17 +14,18 @@ use App\Models\forms_15\NatureOfPotentialInjury;
 use App\Models\forms_15\WhyunsafeactCommitted;
 use App\Models\projcon\Project;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Formdata15 extends Component
 {
 
-    protected $listeners = ['selectedProjectID'];
+    protected $listeners = ['delete','selectedProjectID'];
 
     public $searchQuery, $role, $doincident_dt, $sproject_location, $showOtherInput,$d;
  
     public $iproject_id_fk,$ddd_id_fk,$idepartment_id_fk,$ibc_id_fk, $potential_injurytos_fk, $report_no, $potential_injurytos_other, $nature_of_potential_injuries_ids, $nature_of_potential_injuries_other, $activity15s_ids, $details_of_nearmiss, $imdcause15s_ids, $imdcause15s_other, $contributing_causes_ids, $contributing_causes_other, $whyunsafeact_committeds_ids, $whyunsafeact_committeds_other, $imd_actions_ids, $imd_corrections_ids, $further_recommended_action, $completed_by_name, $completed_by_signature, $completed_date;
-    public $cid,$selectedProjectID;
+    public $cid,$selectedProjectID,$userID;
 
 
     public function selectedProjectID($id)
@@ -32,12 +33,13 @@ class Formdata15 extends Component
         # code...
         $this->selectedProjectID = $id;
     }
-
-
+    
     public function mount()
     {
         $this->searchQuery = '';
         $this->ddd_id_fk = 15;
+        $this->userID = Auth::user()->id;
+        $this->iproject_id_fk = session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*' ? session('globleSelectedProjectID') : 0;
     }
 
     public function render()
@@ -49,15 +51,21 @@ class Formdata15 extends Component
             // ->join('departments','departments.idepartment_id','=','formdata_15s.idepartment_id_fk')
             // ->join('dept_default_docs','dept_default_docs.ddd_id','=','formdata_15s.ddd_id_fk')
             ->join('potential_injurytos', 'potential_injurytos.potential_injurytos_id', '=', 'formdata_15s.potential_injurytos_fk')
+            ->where(['formdata_15s.bactive' => '1', 'formdata_15s.user_created' => $this->userID])
+            ->when(session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*', function ($data) {
+                # code...
+                $data->where('iproject_id_fk', '=', session('globleSelectedProjectID'))
+                    ->where(['formdata_15s.bactive' => '1', 'formdata_15s.user_created' => $this->userID]);
+            })
             ->when($this->searchQuery != '', function ($query) {
-                $query->where('bactive', '1')
+                $query->where(['formdata_15s.bactive' => '1', 'formdata_15s.user_created' => $this->userID])
                     ->where('completed_by_name', 'like', '%' . $this->searchQuery . '%')
                     ->orWhere('doincident_dt', 'like', '%' . $this->searchQuery . '%');
             })
             ->orderBy('formdata_15s_id')->paginate(10);
         // dd($form15data);
 
-        $prjectData = Project::all();
+        $prjectData = Project::where(['projects.bactive'=> '1','projects.user_created'=>$this->userID])->get();
         $potentialinjurytotData = PotentialInjuryto::all();
         $NatureofpotentialData = NatureOfPotentialInjury::all();
         $activityData = Activity15::all();
@@ -78,7 +86,7 @@ class Formdata15 extends Component
     {
         $this->doincident_dt = Carbon::now()->format('Y-m-d') . " " . Carbon::now()->format('H:i:s'); //Carbon::now();
 
-        $this->iproject_id_fk = '';
+        // $this->iproject_id_fk = '';
         $this->potential_injurytos_fk = '';
         $this->report_no = '';
         $this->potential_injurytos_other = '';
@@ -154,12 +162,15 @@ class Formdata15 extends Component
             'completed_by_signature' => $this->completed_by_signature,
             'completed_date' => $this->completed_date,
             'doincident_dt' => $this->doincident_dt,
+
+            'user_created' => $this->userID,
         ]);
         
 
         if ($save) {
             // dd($save);
             $getCounter = formdata_00::where([
+                'formdata_00s.user_created' => $this->userID,
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
                 'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
                 'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
@@ -167,6 +178,7 @@ class Formdata15 extends Component
             ])->get('counter')[0]->counter + 1;
     
             $updateformsCounter = formdata_00::where([
+                'formdata_00s.user_created' => $this->userID,
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
                 'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
                 'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
@@ -273,6 +285,8 @@ class Formdata15 extends Component
             'completed_by_signature' => $this->completed_by_signature,
             'completed_date' => $this->completed_date,
             'doincident_dt' => $this->doincident_dt,
+
+            'user_updated' => $this->userID,
         ]);
 
         if ($update) {

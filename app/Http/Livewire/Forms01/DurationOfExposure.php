@@ -3,18 +3,20 @@
 namespace App\Http\Livewire\Forms01;
 
 use App\Models\forms_01\Duration_Of_Exposure;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class DurationOfExposure extends Component
 {
     public $searchQuery;
     public $duration_of_exposure_value, $duration_of_exposure_description,$duration_of_exposure_abbr;
-    public $cid, $upd_duration_of_exposure_value, $upd_duration_of_exposure_description,$upd_duration_of_exposure_abbr;
+    public $cid, $upd_duration_of_exposure_value, $upd_duration_of_exposure_description,$upd_duration_of_exposure_abbr,$userID;
 
     public function mount()
     {
         # on mound
         $this->searchQuery = '';
+        $this->userID = Auth::user()->id;
     }
 
 
@@ -47,7 +49,7 @@ class DurationOfExposure extends Component
     public function save()
     {
         $this->validate([
-            'duration_of_exposure_value' => 'required',
+            'duration_of_exposure_value' => 'required|numeric',
             'duration_of_exposure_abbr' => 'required',
             'duration_of_exposure_description' => 'required'
         ]);
@@ -56,6 +58,8 @@ class DurationOfExposure extends Component
             'duration_of_exposure_value' => $this->duration_of_exposure_value,
             'duration_of_exposure_abbr' => $this->duration_of_exposure_abbr,
             'duration_of_exposure_description' => $this->duration_of_exposure_description,
+
+            'user_created' => $this->userID,
         ]);
 
         if ($save) {
@@ -85,7 +89,7 @@ class DurationOfExposure extends Component
     {
         $cid = $this->cid;
         $this->validate([
-            'upd_duration_of_exposure_value' => 'required',
+            'upd_duration_of_exposure_value' => 'required|numeric',
             'upd_duration_of_exposure_abbr' => 'required',
             'upd_duration_of_exposure_description' => 'required'
         ], [
@@ -98,7 +102,9 @@ class DurationOfExposure extends Component
         $update = Duration_Of_Exposure::find($cid)->update([
             'duration_of_exposure_value' => $this->upd_duration_of_exposure_value,
             'duration_of_exposure_abbr' => $this->upd_duration_of_exposure_abbr,
-            'duration_of_exposure_description' => $this->upd_duration_of_exposure_description
+            'duration_of_exposure_description' => $this->upd_duration_of_exposure_description,
+
+            'user_updated' => $this->userID,
         ]);
 
         if ($update) {
