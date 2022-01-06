@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Forms15;
 
 use App\Exports\Forms\EXPFormsData15;
+use App\Exports\Forms\FormData15 as FormsFormData15;
 use App\Models\common_forms\PotentialInjuryto;
 use App\Models\forms_00\formdata_00;
 use App\Models\forms_15\Activity15;
@@ -17,6 +18,8 @@ use App\Models\projcon\Project;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel;
+
 // use Maatwebsite\Excel\Excel as Excel;
 
 class Formdata15 extends Component
@@ -302,7 +305,7 @@ class Formdata15 extends Component
     {
         # code...
         dd($this->cid);
-        // Excel::download(new EXPFormsData15, 'test.pdf');
+        Excel::download(new FormsFormData15, 'test.pdf');
         // Excel->download(new EXPFormsData15,'');
 
     }

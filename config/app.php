@@ -179,6 +179,9 @@ return [
 
         // 'Barryvdh\DomPDF\ServiceProvider',
 
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
+
 
     ],
 
@@ -236,6 +239,7 @@ return [
 
         // 'PDF' => Barryvdh\DomPDF\Facade::class,
         'Debugbar' => 'Barryvdh\Debugbar\Facade',
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];
