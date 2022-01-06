@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Forms15;
 
+use App\Exports\Forms\EXPFormsData15;
 use App\Models\common_forms\PotentialInjuryto;
 use App\Models\forms_00\formdata_00;
 use App\Models\forms_15\Activity15;
@@ -16,16 +17,17 @@ use App\Models\projcon\Project;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+// use Maatwebsite\Excel\Excel as Excel;
 
 class Formdata15 extends Component
 {
 
-    protected $listeners = ['delete','selectedProjectID'];
+    protected $listeners = ['delete', 'selectedProjectID'];
 
-    public $searchQuery, $role, $doincident_dt, $sproject_location, $showOtherInput,$d;
- 
-    public $iproject_id_fk,$ddd_id_fk,$idepartment_id_fk,$ibc_id_fk, $potential_injurytos_fk, $report_no, $potential_injurytos_other, $nature_of_potential_injuries_ids, $nature_of_potential_injuries_other, $activity15s_ids, $details_of_nearmiss, $imdcause15s_ids, $imdcause15s_other, $contributing_causes_ids, $contributing_causes_other, $whyunsafeact_committeds_ids, $whyunsafeact_committeds_other, $imd_actions_ids, $imd_corrections_ids, $further_recommended_action, $completed_by_name, $completed_by_signature, $completed_date;
-    public $cid,$selectedProjectID,$userID;
+    public $searchQuery, $role, $doincident_dt, $sproject_location, $showOtherInput, $d;
+
+    public $iproject_id_fk, $ddd_id_fk, $idepartment_id_fk, $ibc_id_fk, $potential_injurytos_fk, $report_no, $potential_injurytos_other, $nature_of_potential_injuries_ids, $nature_of_potential_injuries_other, $activity15s_ids, $details_of_nearmiss, $imdcause15s_ids, $imdcause15s_other, $contributing_causes_ids, $contributing_causes_other, $whyunsafeact_committeds_ids, $whyunsafeact_committeds_other, $imd_actions_ids, $imd_corrections_ids, $further_recommended_action, $completed_by_name, $completed_by_signature, $completed_date;
+    public $cid, $selectedProjectID, $userID;
 
 
     public function selectedProjectID($id)
@@ -33,9 +35,10 @@ class Formdata15 extends Component
         # code...
         $this->selectedProjectID = $id;
     }
-    
+
     public function mount()
     {
+        // PDF::class
         $this->searchQuery = '';
         $this->ddd_id_fk = 15;
         $this->userID = Auth::user()->id;
@@ -65,7 +68,7 @@ class Formdata15 extends Component
             ->orderBy('formdata_15s_id')->paginate(10);
         // dd($form15data);
 
-        $prjectData = Project::where(['projects.bactive'=> '1','projects.user_created'=>$this->userID])->get();
+        $prjectData = Project::where(['projects.bactive' => '1', 'projects.user_created' => $this->userID])->get();
         $potentialinjurytotData = PotentialInjuryto::all();
         $NatureofpotentialData = NatureOfPotentialInjury::all();
         $activityData = Activity15::all();
@@ -80,7 +83,7 @@ class Formdata15 extends Component
         ]);
     }
 
-    
+
 
     public function OpenAddCountryModal()
     {
@@ -165,7 +168,7 @@ class Formdata15 extends Component
 
             'user_created' => $this->userID,
         ]);
-        
+
 
         if ($save) {
             // dd($save);
@@ -176,7 +179,7 @@ class Formdata15 extends Component
                 'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
                 'formdata_00s.ddd_id_fk' => $this->ddd_id_fk
             ])->get('counter')[0]->counter + 1;
-    
+
             $updateformsCounter = formdata_00::where([
                 'formdata_00s.user_created' => $this->userID,
                 'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
@@ -293,6 +296,15 @@ class Formdata15 extends Component
             $this->dispatchBrowserEvent('CloseEditCountryModal');
             $this->resetValidation();
         }
+    }
+
+    public function ganaratePDF()
+    {
+        # code...
+        dd($this->cid);
+        // Excel::download(new EXPFormsData15, 'test.pdf');
+        // Excel->download(new EXPFormsData15,'');
+
     }
 
 

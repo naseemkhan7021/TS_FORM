@@ -65,14 +65,14 @@ if ($iproject_id_fk) {
                             <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->formdata_15s_id}},'Project Manager')">Edit</button>
                             <button class="btn btn-danger btn-sm" wire:click="deleteConfirm({{$row->formdata_15s_id}})">Delete</button>
                             {{-- Department Staff ,, current_role⁯_id   --}}
-                            <button class="btn btn-warning btn-sm" wire:click="OpenEditCountryModal({{$row->formdata_15s_id}},'Project Head')"">Approve</button>
+                            <button class="btn btn-warning btn-sm" wire:click="OpenEditCountryModal({{$row->formdata_15s_id}},'Project Head')">Approve</button>
                         </div>
                     </td>
 
                 </tr>
 
             @empty
-                <tr><td colspan="6">'{{ $data_not_found }}</td></tr>
+                <tr><td colspan="15">'{{ $data_not_found }}</td></tr>
             @endforelse
 
         </tbody>
