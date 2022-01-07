@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Forms;
 
 use App\Http\Controllers\Controller;
+use App\Models\forms_15\formdata_15;
 use Illuminate\Http\Request;
 
 class Forms15Controller extends Controller
@@ -88,6 +89,16 @@ class Forms15Controller extends Controller
     {
         //
     }
+
+    // public function ganaratePDF()
+    // {
+        # code...
+        // dd($this->cid);
+        // $data = formdata_15::find($this->cid);
+        // Excel::download(new FormsFormData15($data), 'test.pdf');
+        // Excel->download(new EXPFormsData15,'');
+
+    // }
 
 
     // Sub Modules Used in the Main form forms_15

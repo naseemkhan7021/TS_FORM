@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Forms15;
 
-use App\Exports\Forms\EXPFormsData15;
 use App\Exports\Forms\FormData15 as FormsFormData15;
 use App\Models\common_forms\PotentialInjuryto;
 use App\Models\forms_00\formdata_00;
@@ -18,9 +17,10 @@ use App\Models\projcon\Project;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-use Maatwebsite\Excel\Facades\Excel;
 
-// use Maatwebsite\Excel\Excel as Excel;
+// use Maatwebsite\Excel\Facades\Excel;
+
+use Maatwebsite\Excel\Excel as Excel;
 
 class Formdata15 extends Component
 {
@@ -301,11 +301,14 @@ class Formdata15 extends Component
         }
     }
 
-    public function ganaratePDF()
+    public function ganaratePDF(Excel $excel)
     {
         # code...
-        dd($this->cid);
-        Excel::download(new FormsFormData15, 'test.pdf');
+        // dd($this->cid);
+        $data = formdata_15::find($this->cid);
+        return $excel->download(new FormsFormData15($data),'test.pdf',\Maatwebsite\Excel\Excel::DOMPDF);
+        // return (new FormsFormData15($data))->download('test.pdf',DOMPDF_DIR);
+        // return Excel::download(new FormsFormData15($data), 'test.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
         // Excel->download(new EXPFormsData15,'');
 
     }
