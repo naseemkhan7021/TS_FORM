@@ -93,6 +93,7 @@ Route::get('/form15_natureofpotentialinjury', [Forms15Controller::class, 'index_
 Route::get('/form15_whyunsafeactcommitted', [Forms15Controller::class, 'index_whyunsafeactcommitted'])->name('form15_whyunsafeactcommitted');
 
 
+Route::get('/pdf', [Forms15Controller::class, 'ganaratePDF'])->name('pdf');
 
 // forms 16
 Route::get('/form16_formdata16', [Forms16Controller::class, 'index_formdata16'])->name('form16_formdata16');

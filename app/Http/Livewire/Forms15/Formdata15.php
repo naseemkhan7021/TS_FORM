@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Forms15;
 
 use App\Exports\Forms\FormData15 as FormsFormData15;
+use App\Models\common_forms\Defaultdata;
 use App\Models\common_forms\PotentialInjuryto;
 use App\Models\forms_00\formdata_00;
 use App\Models\forms_15\Activity15;
@@ -20,7 +21,11 @@ use Livewire\Component;
 
 // use Maatwebsite\Excel\Facades\Excel;
 
-use Maatwebsite\Excel\Excel as Excel;
+// use Maatwebsite\Excel\Excel as Excel;
+// use Barryvdh\DomPDF\PDF;
+use PDF;
+// use Dompdf\Dompdf;
+// use Illuminate\Support\Facades\App;
 
 class Formdata15 extends Component
 {
@@ -301,12 +306,39 @@ class Formdata15 extends Component
         }
     }
 
-    public function ganaratePDF(Excel $excel)
+    public function ganaratePDF()
     {
         # code...
-        // dd($this->cid);
-        $data = formdata_15::find($this->cid);
-        return $excel->download(new FormsFormData15($data),'test.pdf',\Maatwebsite\Excel\Excel::DOMPDF);
+        $formData = formdata_15::find($this->cid);
+        $defaultData = Defaultdata::find(1)->join('companies','companies.ibc_id','=','defaultdatas.ibc_id_fk')->join('projects','projects.iproject_id','=','defaultdatas.iproject_id_fk')->join('departments','departments.idepartment_id','=','defaultdatas.idepartment_id_fk')->get();
+        $data = [
+            'formData' => $formData,
+            'defaultData' => $defaultData[0]
+        ];
+        // dd($data['defaultData']);
+        // $pdf = App::make('dompdf.wrapper');
+        // dd($data);
+
+        // $pdf = PDF::loadView('exports.Forms.form15', $data);
+
+        // $pdf = new Dompdf();
+        // dd($pdf);
+        // $pdf->loadHtml(view('exports.Forms.form15',['data'=>$data]));
+        // $pdf->setPaper('A4', 'portrait');
+        // $pdf->render();
+        // return $pdf->stream('form15.pdf',["Attachment" => false]);
+        // exit(0);
+        // return $pdf->download('test.pdf');
+
+        $pdf = PDF::loadView('exports.Forms.form15',$data)->setPaper('A4', 'portrait')->output(); //
+        return response()->streamDownload(fn () => print($pdf), 'test.pdf');
+        // dd($pdf);
+        // return $pdf->stream()->save('test.pdf');
+        // $pdf->stream();
+        // return $pdf->download('test.pdf');
+
+        // return $pdf->stream('form15pdf.pdf');
+        // return $excel->download(new FormsFormData15($data),'test.pdf',\Maatwebsite\Excel\Excel::DOMPDF);
         // return (new FormsFormData15($data))->download('test.pdf',DOMPDF_DIR);
         // return Excel::download(new FormsFormData15($data), 'test.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
         // Excel->download(new EXPFormsData15,'');

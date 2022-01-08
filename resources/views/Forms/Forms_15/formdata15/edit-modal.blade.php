@@ -379,9 +379,9 @@
                                 data-dismiss="modal">Close</button>
                             {{-- show button according to user role --}}
                             {!! $role == 'Project Head' ? '<a class="btn btn-primary btn-sm text-white" wire:click="ganaratePDF()">Export PDF</a>' : '<button type="submit" class="btn btn-primary btn-sm">Save Changes</button>' !!}
-                            {{-- above algo will make blow logice --}}
+                            {{-- above algo will make blow logice
                             {{-- @if ($role == 'Project Head')
-                                <a type="a" class="btn btn-primary btn-sm text-white" wire:click="ganaratePDF()">Export PDF</a>
+                                <a href="{{route('pdf')}}" class="btn btn-primary btn-sm text-white" wire:click="ganaratePDF()">Export PDF</a>
                             @else
                                 <button type="submit" class="btn btn-primary btn-sm">Save Changes</button>
                             @endif --}}

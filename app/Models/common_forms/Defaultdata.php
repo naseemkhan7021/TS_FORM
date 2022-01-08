@@ -14,4 +14,11 @@ class Defaultdata extends Model
     protected $fillable = [
         'description', 'ibc_id_fk','idepartment_id_fk','iproject_id_fk'
     ];
+
+
+    public function company()
+    {
+        # code...
+        return $this->hasOne(Company::class, 'ibc_id', 'ibc_id_fk');
+    }
 }

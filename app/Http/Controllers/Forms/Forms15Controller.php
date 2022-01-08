@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Forms;
 
 use App\Http\Controllers\Controller;
 use App\Models\forms_15\formdata_15;
+use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use PDF;
 
 class Forms15Controller extends Controller
 {
@@ -90,15 +93,30 @@ class Forms15Controller extends Controller
         //
     }
 
-    // public function ganaratePDF()
-    // {
+    public function ganaratePDF()
+    {
         # code...
+
         // dd($this->cid);
         // $data = formdata_15::find($this->cid);
         // Excel::download(new FormsFormData15($data), 'test.pdf');
         // Excel->download(new EXPFormsData15,'');
+        // $pdf = app('dompdf.wrapper');
+        // $pdf->loadView('view');
 
-    // }
+
+        // $pdf = App::make('dompdf.wrapper');
+        // $pdf->loadView('exports.Forms.form15',['data'=>'this is data']);
+
+        // // dd($pdf);
+        // $pdf->save('test.pdf');
+        // $pdf->stream();
+        // return $pdf->download('test.pdf');
+
+        // $pdf = PDF::loadView('exports.Forms.form15');
+        
+        // return $pdf->download('test.pdf');
+    }
 
 
     // Sub Modules Used in the Main form forms_15
