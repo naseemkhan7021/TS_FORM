@@ -285,8 +285,7 @@
                                 <div class="row text-center">
                                     <div class="col-md-6 col-sm-12">
                                         <label for=""
-                                            class="@error('imd_actions_ids') text-danger @enderror"><strong>Immediate
-                                                Cause</strong></label>
+                                            class="@error('imd_actions_ids') text-danger @enderror"><strong>Action</strong></label>
 
                                         <div class="text-justify border @error('imd_actions_ids') border-danger @enderror"">
                                                 @foreach ($imdactionData as $index=>
@@ -309,7 +308,7 @@
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         <label for="" class="@error('imd_corrections_ids') text-danger @enderror">
-                                            <strong>Contributing Cause</strong></label>
+                                            <strong>Correction</strong></label>
 
                                         <div class="text-justify border @error('imd_corrections_ids') border-danger @enderror"">
                                                 @foreach ($imdcorrectionData as

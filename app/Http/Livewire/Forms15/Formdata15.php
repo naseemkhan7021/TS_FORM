@@ -76,12 +76,12 @@ class Formdata15 extends Component
             ->orderBy('formdata_15s_id')->paginate(10);
         // dd($form15data);
 
+        $imdcauseData = Cause15::all();
+        $contributcauseData = ContributingCause::all();
         $prjectData = Project::where(['projects.bactive' => '1', 'projects.user_created' => $this->userID])->get();
         $potentialinjurytotData = PotentialInjuryto::all();
         $NatureofpotentialData = NatureOfPotentialInjury::all();
         $activityData = Activity15::all();
-        $imdcauseData = Cause15::all();
-        $contributcauseData = ContributingCause::all();
         $whyunsafeactcommittedsData = WhyunsafeactCommitted::all();
         $imdactionData = ImdAction::all();
         $imdcorrectionData = ImdCorrection::all();
@@ -309,11 +309,20 @@ class Formdata15 extends Component
     public function ganaratePDF()
     {
         # code...
-        $formData = formdata_15::find($this->cid);
-        $defaultData = Defaultdata::find(1)->join('companies','companies.ibc_id','=','defaultdatas.ibc_id_fk')->join('projects','projects.iproject_id','=','defaultdatas.iproject_id_fk')->join('departments','departments.idepartment_id','=','defaultdatas.idepartment_id_fk')->get();
+        $formData = formdata_15::find($this->cid)->join('projects', 'projects.iproject_id', '=', 'formdata_15s.iproject_id_fk')->join('companies', 'companies.ibc_id', '=', 'formdata_15s.ibc_id_fk')->get();
+        $defaultData = Defaultdata::find(1)->join('companies', 'companies.ibc_id', '=', 'defaultdatas.ibc_id_fk')->join('projects', 'projects.iproject_id', '=', 'defaultdatas.iproject_id_fk')->join('departments', 'departments.idepartment_id', '=', 'defaultdatas.idepartment_id_fk')->get();
         $data = [
-            'formData' => $formData,
-            'defaultData' => $defaultData[0]
+            'formData' => $formData[0],
+            'defaultData' => $defaultData[0],
+            // 'projectData' => Project::where(['projects.bactive' => '1', 'projects.user_created' => $this->userID])->get(),
+            'potentialinjurytotData' => PotentialInjuryto::all(),
+            'NatureofpotentialData' => NatureOfPotentialInjury::all(),
+            'activityData' => Activity15::all(),
+            'imdcauseData' => Cause15::all(),
+            'contributcauseData' => ContributingCause::all(),
+            'whyunsafeactcommittedsData' => WhyunsafeactCommitted::all(),
+            'imdactionData' => ImdAction::all(),
+            'imdcorrectionData' => ImdCorrection::all(),
         ];
         // dd($data['defaultData']);
         // $pdf = App::make('dompdf.wrapper');
@@ -330,7 +339,7 @@ class Formdata15 extends Component
         // exit(0);
         // return $pdf->download('test.pdf');
 
-        $pdf = PDF::loadView('exports.Forms.form15',$data)->setPaper('A4', 'portrait')->output(); //
+        $pdf = PDF::loadView('exports.Forms.form15', $data)->setPaper('A4', 'portrait')->output(); //
         return response()->streamDownload(fn () => print($pdf), 'test.pdf');
         // dd($pdf);
         // return $pdf->stream()->save('test.pdf');

@@ -2,400 +2,531 @@
 <html lang="en">
 
 <head>
-     <meta charset="UTF-8">
-     <title>form15</title>
-     <style>
-          * {
-               margin: 0;
-               border: unset;
-          }
+    <meta charset="UTF-8">
+    <title>form15</title>
+    <style>
+        * {
+            margin: 0;
+            border: unset;
+        }
 
-          @page {
-               margin: .5rem;
-          }
-          .bdr1b{
-               border: 1px solid black;
-          }
+        @page {
+            margin: .5rem;
+            display: flex;
+            justify-content: center;
+        }
 
-          body {
-               font-family: sans-serif;
-               margin: .5rem;
-               display: flex;
-               justify-content: center;
-               
-               /* display: grid; */
-               /* align-items: center; */
-               /* justify-self: center; */
-          }
+        .bdr1b {
+            border: 1px solid black;
+        }
 
-          #parant {
-               border: 1px solid black !important;
+        body {
+            font-family: sans-serif;
+            margin: .5rem;
+            display: flex;
+            justify-content: center;
 
-          }
+            /* display: grid; */
+            /* align-items: center; */
+            /* justify-self: center; */
+        }
 
-          #parant table {
-               /* margin: .5rem; */
+        #parant {
+            border: 1px solid black !important;
+            margin: auto;
+        }
 
-               /* margin: 1rem auto; */
-               margin: 1rem auto 0.7rem auto;
-          }
+        #parant table {
+            /* margin: .5rem; */
 
-          table {
-               width: 98%;
-               border-collapse: collapse;
-               /* border: 1px solid black; */
-               border:none;
-          }
-          #childeTable1 tbody{
-               font-size: .9rem;
-          }
+            /* margin: 1rem auto; */
+            margin: 1rem auto 0.7rem auto;
+        }
 
-          #childeTable2 {
-               width: 100%;
-               border: none;
-               margin: 0;
-               /* margin-top: 1rem; */
-          }
-          #childeTable2 tbody{
-               font-size: .8rem !important;
-          }
+        table {
+            width: 98%;
+            border-collapse: collapse;
+            /* border: 1px solid black; */
+            border: none;
+        }
 
-          #childeTable2 tr td div {
-               display: inline-block;
-               margin-bottom: .5rem; 
-          }
+        #childeTable1 tbody {
+            font-size: .9rem;
+        }
 
-          #Heading1 {
-               margin-bottom: 1rem;
-          }
+        #childeTable2 {
+            width: 100%;
+            border: none;
+            margin: 0;
+            /* margin-top: 1rem; */
+        }
 
-          .imgdiv {
-               display: flex;
-               justify-content: center;
-          }
+        #childeTable2 tbody {
+            font-size: .72rem !important;
+        }
 
-          .imgdiv img {
-               object-fit: contain;
-               width: 100%;
-               /* height: 100%; */
-          }
+        #childeTable2 tr td div {
+            display: inline-block;
+            margin-bottom: .4rem;
+        }
 
-          .imgcon {
-               width: 6rem;
-               height: 6rem;
-          }
-          .m-l1{
-               margin-left: 1rem;
-          }
-          .lihit14{
-               line-height: 1.4;
-          }
-     </style>
+        #Heading1 {
+            margin-bottom: 1rem;
+        }
+
+        .imgdiv {
+            display: flex;
+            justify-content: center;
+        }
+
+        .imgdiv img {
+            object-fit: contain;
+            width: 100%;
+            /* height: 100%; */
+        }
+
+        .imgcon {
+            width: 5rem;
+            height: 3rem;
+            padding: 0 .8rem;
+        }
+
+        .m-l1 {
+            margin-left: 1rem;
+        }
+
+        .lihit14 {
+            line-height: 1.4;
+        }
+        .border-dot{
+             border-bottom: 1px solid black dotted;
+        }
+
+    </style>
 </head>
 
 <body>
-     <table id="parant">
-          <tbody>
-               <tr>
-                    <td colspan="2">
-                         <table id="childeTable1" border="1">
-                              <tbody align="center">
-                                   <tr class="">
-                                        <td class="imgcon bdr1b" rowspan="4">
-                                             {{-- <div class="imgdiv">
+    <table id="parant">
+        {{-- {{ dd($formData,$defaultData) }} --}}
+        {{-- {{ dd($NatureofpotentialData,isset(explode(',',$formData->nature_of_potential_injuries_ids)[0]) ? 'ok' : 'nothere') }} --}}
+        {{-- {{ dd(in_array('1',explode(',',$formData->nature_of_potential_injuries_ids))) }} --}}
+        <tbody>
+            <tr>
+                <td colspan="2">
+                    <table id="childeTable1" style="margin-bottom: 0px">
+                        <tbody align="center">
+                            <tr class="">
+                                <td class="imgcon bdr1b" rowspan="3">
+                                    {{-- <div class="imgdiv">
                                                   <img src="/img/largelogo.png" alt="loglarge">
                                              </div> --}}
-                                             <div class="imgdiv">
-                                                  @php
-                                                      // access the firt file in logo/large folder
-                                                      $dir = public_path('storage/photos/logo/large/');
-                                                      $fils = scandir($dir);
-                                                      // $firtFile = $fils;
-                                                      // dd(public_path("storage/photos/logo/large/".$fils[2]));
-                                                  @endphp
-                                                  {{-- <img src="{{Storage::url($defaultData->sbc_logo_small)}}" alt="loglarge"> <-- this code will work in production ... this is reletive path --}}
-                                                  <img src="{{ public_path('storage/photos/logo/large/' . $fils[2]) }}" alt="loglarge">
-                          
-                          
-                                              </div>
-                                        </td>
-                                   </tr>
-                                   <tr >
-                                        <td colspan="4" class="bdr1b">
-                                             <strong>INTEGRATED MANAGEMENT SYSTEM </strong> (ISO 45001:2018 &#38; ISO
-                                             14001:2015)
-                                        </td>
-                                   </tr>
-                                   <tr >
-                                        <td colspan="3"  class="bdr1b">Doc. Name: <strong>NEARMISS REPORTING FORMAT</strong></td>
-                                        <td  class="bdr1b">Doc. Code: <strong>EHS-F-15</strong></td>
-                                   </tr>
-                                   <tr class="">
-                                        <td class="bdr1b">Issue No.: 01</td>
-                                        <td class="bdr1b">Issue Date: 01.03.2020</td>
-                                        <td class="bdr1b">Revision No: 00</td>
-                                        <td class="bdr1b">Revision Date: 01.03.2020</td>
-                                   </tr>
+                                    <div class="imgdiv">
+                                        @php
+                                            //     access the firt file in logo/large folder
+                                            $dir = public_path('storage/photos/logo/large/');
+                                            $fils = scandir($dir);
+                                            $firtFile = $fils;
+                                            //     dd(public_path("storage/photos/logo/large/".$fils[2]));
+                                        @endphp
+                                        {{-- img --}}
+                                        {{-- <img src="{{Storage::url($defaultData->sbc_logo_small)}}" alt="loglarge"> <-- this code will work in production ... this is reletive path --}}
+                                        <img src="{{ public_path('storage/photos/logo/large/' . $fils[2]) }}"
+                                            alt="loglarge">
 
-                                   <tr >
-                                        <td colspan="6" >
-                                             <table id="childeTable2">
-                                                  <tbody>
-                                                       <tr align="center">
-                                                            <td id="Heading1" colspan="4">
-                                                                 <strong><u>NEARMISS REPORTING FORMAT</u></strong>
-                                                            </td>
-                                                       </tr>
-                                                       <tr>
-                                                            <td colspan="3">
-                                                                 <div class="">Project Name: _________________________
-                                                                 </div>
-                                                            </td>
 
-                                                            <td align="right">
-                                                                 <div class="">Report no.: _________________</div>
-                                                            </td>
-                                                            <!-- <td>
-                                                                 Project Name
-                                                            </td>
-                                                            <td>
-                                                                 Data
-                                                            </td>
-                                                            <td>Report no.</td>
-                                                            <td>Data</td> -->
-                                                       </tr>
-                                                       <tr>
-                                                            <td colspan="3">
-                                                                 <div class=""> Location: _________________</div>
-                                                            </td>
-                                                            <td align="right">
-                                                                 <div  class="">Date: ____________</div>
-                                                                 <div  class="">Time.: ______________</div>
-                                                            </td>
-                                                       </tr>
-                                                       <tr>
-                                                            <td colspan="3">
-                                                                 <div class=""><strong>Potential Injury
-                                                                      to:</strong> <span >□ T&S Staff □ Sub-Contractor □
-                                                                           Others.</span></div>
-                                                            </td>
-                                                            <td >
-                                                                 <div class="">Company Name: _________________</div>
-                                                            </td>
-                                                       </tr>
-                                                       <!-- Nature of Potential Injury: ( Tick ✓ in the Boxes ) -->
-                                                       <tr>
-                                                            <td colspan="4">
-                                                                 <div class=""><strong>Nature of Potential Injury:</strong> <span >( Tick ✓ in the Boxes )</span></div>
-                                                            </td>
-                                                       </tr>
-                                                       <tr>
-                                                            <td>
-                                                                 <div class="m-l1">□ Equipment damage</div>
-                                                            </td>
-                                                            <td>
-                                                                 <div class="m-l1">□ Personal Injury</div>
-                                                            </td>
-                                                            <td colspan="2">
-                                                                 <div class="m-l1">□ Fire / Explosion</div>
-                                                            </td>
-                                                       </tr>
-                                                       <tr>
-                                                            <td>
-                                                                 <div class="m-l1">□ Motor Vehicle</div>
-                                                            </td>
-                                                            <td>
-                                                                 <div class="m-l1">□ Other</div>
-                                                            </td>
-                                                            <td colspan="2">
-                                                                 <div class="m-l1">Details if required: _____________________</div>
-                                                            </td>
-                                                       </tr>
-                                                       <!-- Activity: ( Tick ✓ in the Boxes ) -->
-                                                       <tr>
-                                                            <td colspan="4">
-                                                                 <div class=""><strong>Activity:</strong> <span >( Tick ✓ in the Boxes )</span></div>
-                                                            </td>
-                                                       </tr>
-                                                       <tr>
-                                                            <td>
-                                                                 <div class="m-l1">□ Working at Height</div>
-                                                            </td>
-                                                            <td>
-                                                                 <div class="m-l1">□ Scaffolding</div>
-                                                            </td>
-                                                            <td>
-                                                                 <div class="m-l1">□ Material Handling</div>
-                                                            </td>
-                                                            <td>
-                                                                 <div class="m-l1">□ Operating Plant</div>
-                                                            </td>
-                                                       </tr>
-                                                       <tr>
-                                                            <td>
-                                                                 <div class="m-l1">□ Motor Vehicle</div>
-                                                            </td>
-                                                            <td>
-                                                                 <div class="m-l1">□ Other</div>
-                                                            </td>
-                                                            <td>
-                                                                 <div class="m-l1">□ Welding / Cutting</div>
-                                                            </td>
-                                                            <td>
-                                                                 <div class="m-l1">□ Foreign Body</div>
-                                                            </td>
-                                                       </tr>
+                                    </div>
+                                </td>
+                                {{-- </tr> --}}
+                                {{-- <tr > --}}
+                                <td colspan="4" class="bdr1b">
+                                    <strong>INTEGRATED MANAGEMENT SYSTEM </strong> (ISO 45001:2018 &#38; ISO
+                                    14001:2015)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="bdr1b">Doc. Name: <strong>NEARMISS REPORTING
+                                        FORMAT</strong></td>
+                                <td class="bdr1b">Doc. Code: <strong>EHS-F-15</strong></td>
+                            </tr>
+                            <tr class="">
+                                <td class="bdr1b">Issue No.: 01</td>
+                                <td class="bdr1b">Issue Date: 01.03.2020</td>
+                                <td class="bdr1b">Revision No: 00</td>
+                                <td class="bdr1b">Revision Date: 01.03.2020</td>
+                            </tr>
 
-                                                       <tr>
-                                                            <td colspan="4">
-                                                                 <div class=""><strong>Details of Nearmiss:</strong></div>
-                                                            </td>
-                                                       </tr>
-                                                       <tr>
-                                                            <td colspan="4">
-                                                                 <div class="lihit14">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam doloribus similique harum blanditiis nemo, rem dignissimos, officiis sint eius non velit possimus nostrum deserunt corporis, iste modi? Laboriosam optio iste dicta possimus recusandae neque pariatur necessitatibus beatae odit cupiditate! Fugiat tempora iusto nihil corrupti quod necessitatibus eligendi perferendis, nisi sequi est unde laboriosam autem in ducimus excepturi iure odit nemo! Ullam accusantium voluptatum, tempore est dolorum et modi harum, consequatur ea eveniet fugit cumque fugiat quam. Omnis laborum sequi quisquam, animi hic harum quos ipsam excepturi nobis ratione dolore consequatur dolorem reprehenderit labore laudantium. Maiores eaque sequi et cum qui,.</div>
-                                                            </td>
-                                                       </tr>
+                            <tr>
+                                <td colspan="5">
+                                    <table id="childeTable2">
+                                        <tbody>
+                                            <tr align="center">
+                                                <td id="Heading1" colspan="5">
+                                                    <strong style="font-size: .95rem"><u>NEARMISS REPORTING
+                                                            FORMAT</u></strong>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">
+                                                    <div class="">Project Name: <b class="border-dot">{{$formData->sproject_name}}</b>
+                                                    </div>
+                                                </td>
 
-                                                       <tr>
-                                                            <td colspan="4">
-                                                                 <div class=""><strong>Cause:</strong> <span >( Tick ✓ in the Boxes )</span></div>
-                                                            </td>
-                                                       </tr>
+                                                <td colspan="2" align="right">
+                                                    <div class="">Report no.: <b class="border-dot">{{$formData->report_no}}</b></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">
+                                                    <div class=""> Location: <b class="border-dot">{{$formData->sproject_location}}</b></div>
+                                                </td>
+                                                <td colspan="2" align="right">
+                                                    <div class="">Date/time: <b class="border-dot">{{$formData->doincident_dt}}</b></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class=""><strong>Potential Injury:</div>
+                                                </td>
+                                                @foreach ($potentialinjurytotData as $item)
+                                                    <td>{!! $item->potential_injurytos_id == $formData->potential_injurytos_fk ? '&bull; ' : '&ordm; ' !!} {{ $item->potential_injurytos_description }} {!! $item->potential_injurytos_abbr == 'OT' ? '<b class="border-dot">'. $formData->potential_injurytos_other.'</b>' : '' !!}</td>
+                                                @endforeach
+                                                {{-- <td>
+                                                     <div class=""><b>{{$formData->potential_injurytos_other}}</b></div>
+                                                </td> --}}
+                                                <td align="right">
+                                                    <div style="margin: 0;" class="">Company Name:<b class="border-dot">{{$formData->sbc_company_name}}</b></div>
+                                                </td>
+                                            </tr>
+                                            <!-- Nature of Potential Injury: ( Tick &check; in the Boxes ) -->
+                                            <tr>
+                                                <td colspan="5">
+                                                    <div class=""><strong>Nature of Potential
+                                                            Injury:</strong> <span>(Tick &bull; in the Boxes)</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                @foreach ($NatureofpotentialData as $index => $item)
+                                                {{-- @if (isset(explode(',',$formData->nature_of_potential_injuries_ids)[$index]) && in_array($item->nature_of_potential_injuries_id,explode(',',$formData->nature_of_potential_injuries_ids)) $item->nature_of_potential_injuries_id == explode(',',$formData->nature_of_potential_injuries_ids)[$index])
+                                                {{dd('match')}}
+                                                    
+                                                @endif --}}
+                                                    <td>
+                                                        <div class="m-l1">
+                                                            {!! in_array($item->nature_of_potential_injuries_id,explode(',',$formData->nature_of_potential_injuries_ids))  ? '&bull; ' : '&ordm; ' !!} {{ $item->nature_of_potential_injuries_description }}
+                                                            
+                                                        </div>
+                                                    </td>
+                                                    @if ($index == 2)
+                                                    @break
+                                                @endif
+                                                @endforeach
+                                            </tr>
+                                            <tr>
+                                                @foreach ($NatureofpotentialData as $index => $item)
+                                                    @if ($index == 3 || $index == 4))
+                                                        <td>
+                                                            <div class="m-l1">
+                                                                 {!! in_array($item->nature_of_potential_injuries_id,explode(',',$formData->nature_of_potential_injuries_ids))  ? '&bull; ' : '&ordm; ' !!}{{ $item->nature_of_potential_injuries_description }}
+                                                            </div>
+                                                        </td>
+                                                    @endif
+                                                    
 
-                                                       <tr>
-                                                            <td colspan="2" align="center">
-                                                                 <div><strong>Immediate Cause:</strong></div>
-                                                            </td>
-                                                            <td colspan="2" align="center">
-                                                                 <div> 
-                                                                      <strong>Contributing Cause:</strong>
-                                                                 </div>
-                                                            </td>
-                                                       </tr>
-                                                       <tr>
-                                                            <td colspan="4">
-                                                                 <div style="display: flex;"> 
-                                                                      <div class="" style="width: 50%;">
-                                                                      <div style="display: block;" class="">□ Unsafe Condition</div>
-                                                                      <div style="display: block;" class="">□ Unsafe Condition</div>
-                                                                      <div style="display: block;" class="">□ Unsafe Condition</div>
-                                                                      <div style="display: block;" class="lihit14">detail : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum maxime eaque non consequuntur temporibus suscipit?</div>
-                                                                      </div>
-                                                                      <div class="" style="width: 50%;">
-                                                                      <div style="display: block;" class="">□ Unsafe Condition</div>
-                                                                      <div style="display: block;" class="">□ Unsafe Condition</div>
-                                                                      <div style="display: block;" class="">□ Unsafe Condition</div>
-                                                                      <div style="display: block;" class="lihit14">detail : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum maxime eaque non consequuntur temporibus suscipit?</div>
-                                                                      </div>
-                                                                 </div>
-                                                            </td>
-                                                       </tr>
+                                                @endforeach
+                                                <td colspan="3">
+                                                    <div class="m-l1">Details if required: <b class="border-dot">{{$formData->nature_of_potential_injuries_other}}</b></div>
+                                                </td>
+                                            </tr>
+                                            <!-- Activity: ( Tick &bull; in the Boxes ) -->
+                                            <tr>
+                                                <td colspan="5">
+                                                    <div class=""><strong>Activity:</strong> <span>( Tick
+                                                            &bull; in the Boxes )</span></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                @foreach ($activityData as $index => $item)
+                                                    <td>
+                                                        <div class="m-l1">
+                                                             {!! in_array($item->activity15s_id,explode(',',$formData->activity15s_ids))  ? '&bull; ' : '&ordm; ' !!}{{ $item->activity15s_description }}
+                                                            {{-- {{ $item->activity15s_description }} --}}
+                                                        </div>
+                                                    </td>
+                                                    @if ($index == 3)
+                                                    @break
+                                                @endif
+                                                @endforeach
+                                            </tr>
+                                            <tr>
+                                                @foreach ($activityData as $index => $item)
+                                                    @if ($index == 4 || $index == 5 || $index == 6 || $index == 7)
+                                                    <td>
+                                                       <div class="m-l1">
+                                                            {!! in_array($item->activity15s_id,explode(',',$formData->activity15s_ids))  ? '&bull; ' : '&ordm; ' !!}{{ $item->activity15s_description }}
+                                                       </div>
+                                                   </td>
+                                                    @endif
+                                                    
 
-                                                       <!-- Why was the unsafe act committed: : ( Tick ✓ in the Boxes ) -->
-                                                       <tr>
-                                                            <td colspan="4">
-                                                                 <div class=""><strong>Why was the unsafe act committed:</strong> <span >( Tick ✓ in the Boxes )</span></div>
-                                                            </td>
-                                                       </tr>
-                                                       <tr>
-                                                            <td colspan="2">
-                                                                 <div class="m-l1">□ Equipment damage</div>
-                                                            </td> 
-                                                            <td align="center">
-                                                                 <div class="m-l1">□ Personal Injury</div>
-                                                            </td>
-                                                            <td align="center">
-                                                                 <div class="m-l1">□ Fire / Explosion</div>
-                                                            </td>
-                                                       </tr>
-                                                       <tr>
-                                                            <td>
-                                                                 <div class="m-l1">□ Other</div>
-                                                            </td>
-                                                            <td colspan="3" align="center">
-                                                                 <div class="m-l1">Details if required: ________________________</div>
-                                                            </td>
-                                                       </tr>
+                                                @endforeach
+                                            </tr>
 
-                                                       <tr>
-                                                            <td colspan="4">
-                                                                 <div class=""><strong>Cause:</strong> <span >( Tick ✓ in the Boxes )</span></div>
-                                                            </td>
-                                                       </tr>
+                                            <tr>
+                                                <td colspan="5">
+                                                    <div class=""><strong>Details of Nearmiss:</strong>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5">
+                                                    {{-- <div class="lihit14">Lorem ipsum dolor sit, amet consectetur
+                                                        adipisicing elit. Ullam doloribus similique harum blanditiis
+                                                        nemo, rem dignissimos, officiis sint eius non velit possimus
+                                                        nostrum deserunt corporis, iste modi? Laboriosam optio iste
+                                                        dicta possimus recusandae neque pariatur necessitatibus beatae
+                                                        odit cupiditate! Fugiat tempora iusto nihil corrupti quod
+                                                        necessitatibus eligendi perferendis, nisi sequi est unde
+                                                        laboriosam autem in ducimus excepturi iure odit nemo! Ullam
+                                                        accusantium voluptatum, tempore est dolorum et modi harum,
+                                                        consequatur ea eveniet fugit cumque fugiat quam. Omnis laborum
+                                                        sequi quisquam, animi hic harum quos ipsam excepturi nobis
+                                                        ratione dolore consequatur dolorem reprehenderit labore
+                                                        laudantium. Maiores eaque sequi et cum qui,.</div> --}}
+                                                        <div class="lihit14"><b class="border-dot"> {{ $formData->details_of_nearmiss ?? '.....................'}}</b></div>
+                                                </td>
+                                            </tr>
 
-                                                       <tr>
-                                                            <td colspan="2" align="center">
-                                                                 <div><strong>Action:</strong></div>
-                                                            </td>
-                                                            <td colspan="2" align="center">
-                                                                 <div> 
-                                                                      <strong>Correction:</strong>
-                                                                 </div>
-                                                            </td>
-                                                       </tr>
-                                                       <tr>
-                                                            <td colspan="4">
-                                                                 <div style="display: flex;"> 
-                                                                      <div class="" style="width: 50%;">
-                                                                      <div style="display: block;" class="">□ Unsafe Condition</div>
-                                                                      <div style="display: block;" class="">□ Unsafe Condition</div>
-                                                                      <div style="display: block;" class="">□ Unsafe Condition</div>
-                                                                      </div>
-                                                                      <div class="" style="width: 50%;">
-                                                                      <div style="display: block;" class="">□ Unsafe Condition</div>
-                                                                      <div style="display: block;" class="">□ Unsafe Condition</div>
-                                                                      <div style="display: block;" class="">□ Unsafe Condition</div>
-                                                                      </div>
-                                                                 </div>
-                                                            </td>
-                                                       </tr>
+                                            <tr>
+                                                <td colspan="5">
+                                                    <div style="width: 100%" class="">
+                                                        <strong>Cause:</strong> <span>( Tick &bull; in the Boxes
+                                                            )</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
 
-                                                       <tr>
-                                                            <td colspan="4">
-                                                                 <div class=""><strong>Further recommended action:</strong></div>
-                                                            </td>
-                                                       </tr>
-                                                       <tr>
-                                                            <td colspan="4">
-                                                                 <div class="lihit14">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam doloribus similique harum blanditiis nemo, rem dignissimos, officiis sint eius non velit possimus nostrum deserunt corporis, iste modi? Laboriosam optio iste dicta possimus recusandae neque pariatur necessitatibus beatae odit cupiditate! Fugiat tempora iusto nihil corrupti quod necessitatibus eligendi perferendis.</div>
-                                                            </td>
-                                                       </tr>
+                                            <tr>
+                                                <td colspan="3" align="center">
+                                                    <div><strong>Immediate Cause:</strong></div>
+                                                </td>
+                                                <td colspan="2" align="center">
+                                                    <div>
+                                                        <strong>Contributing Cause:</strong>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table style="margin: 0;">
+                                                        <tbody>
+                                                            @foreach ($imdcauseData as $index => $item)
+                                                                <tr>
+                                                                    <td>
+                                                                        <div style="display: block;"
+                                                                            class="">
+                                                                            {{-- &ordm; {{ $item->cause15s_description }} --}}
+                                                                            {!! in_array($item->cause15s_id,explode(',',$formData->imdcause15s_ids))  ? '&bull; ' : '&ordm; ' !!}{{ $item->cause15s_description }}
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="lihit14">detail : <b class="border-dot">{{$formData->imdcause15s_other}}</b>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                                <td></td>
+                                                <td colspan="3">
+                                                    <table style="margin: 0; transform: translate(10px, -20px);">
+                                                        <tbody>
+                                                            @foreach ($contributcauseData as $index => $item)
 
-                                                       <tr>
-                                                            <td class="" colspan="3">
-                                                                 <div class="">Completed by - Name: ____________________________</div>
-                                                            </td>
-                                                            <td>
-                                                                 <div class="">Signature:___________ Date: __/__/__</div>
-                                                            </td>
-                                                       </tr>
-                                                       <tr>
-                                                            <td colspan="4">
-                                                                 <div class=""><strong>CC to: GM / PM / Corporate EHS Department</strong></div>
-                                                            </td>
-                                                       </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div style="display: block;"
+                                                                            class="">
+                                                                            {{-- &ordm; {{ $item->contributing_causes_description }} --}}
+                                                                            {!! in_array($item->contributing_causes_id,explode(',',$formData->contributing_causes_ids))  ? '&bull; ' : '&ordm; ' !!}{{ $item->contributing_causes_description }}
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
 
-                                                  </tbody>
-                                             </table>
-                                        </td>
-                                   </tr>
-                                   <tr style="border-top: 1px solid black !important;font-size: .8rem;">
-                                        <td colspan="4" align="left">
-                                             <div>
-                                                  IMS VOLUME-I / SECTION-V  EHS FORMATS / EHS-F-15
-                                             </div>
-                                        </td>
-                                        <td align="right">
-                                             printed 0
-                                        </td>
-                                   </tr>
-                              </tbody>
-                         </table>
-                    </td>
-               </tr>
-          </tbody>
-     </table>
+                                                            @endforeach
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="lihit14">detail : <b class="border-dot">{{$formData->contributing_causes_other}}</b>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+
+
+
+                                            <!-- Why was the unsafe act committed: : ( Tick &bull; in the Boxes ) -->
+                                            <tr>
+                                                <td colspan="5">
+                                                    <div class=""><strong>Why was the unsafe act
+                                                            committed:</strong> <span>( Tick &bull; in the Boxes
+                                                            )</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                @foreach ($whyunsafeactcommittedsData as $index => $item)
+                                                    <td {{$index != 2 ? "colspan=2" : ''}}>
+                                                        <div style="width: 100%" class="m-l1">
+                                                            {{-- &ordm; {{ $item->whyunsafeact_committeds_description }} --}}
+                                                            {!! in_array($item->whyunsafeact_committeds_id,explode(',',$formData->whyunsafeact_committeds_ids))  ? '&bull; ' : '&ordm; ' !!}{{ $item->whyunsafeact_committeds_description }}
+                                                        </div>
+                                                    </td>
+                                                    @if ($index == 2)
+                                                    @break
+                                                @endif
+                                                @endforeach
+                                                {{-- <td colspan="2">
+                                                    <div class="m-l1">&ordm; Equipment damage</div>
+                                                </td>
+                                                <td align="center">
+                                                    <div class="m-l1">&ordm; Personal Injury</div>
+                                                </td>
+                                                <td colspan="2" align="center">
+                                                    <div class="m-l1">&ordm; Fire / Explosion</div>
+                                                </td> --}}
+                                            </tr>
+                                            <tr>
+                                                {{-- <td colspan="2">
+                                                    <div class="m-l1">&ordm; Other</div>
+                                                </td> --}}
+                                                @foreach ($whyunsafeactcommittedsData as $index => $item)
+                                                    @if ($index == 3)
+                                                        <td>
+                                                            <div class="m-l1" style="width: 100%">
+                                                                 {{-- &ordm; {{ $item->whyunsafeact_committeds_description }} --}}
+                                                                 {!! in_array($item->whyunsafeact_committeds_id,explode(',',$formData->whyunsafeact_committeds_ids))  ? '&bull; ' : '&ordm; ' !!}{{ $item->whyunsafeact_committeds_description }}
+                                                            </div>
+                                                        </td>
+                                                    @endif
+                                                @endforeach
+                                                <td colspan="3" align="center">
+                                                    <div class="m-l1">Details if required:  <b class="border-dot">{{$formData->whyunsafeact_committeds_other ?? '______________'}}</b></div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td colspan="5">
+                                                    <div style="width: 100%" class=""><strong>Immediate
+                                                            Corrective Action to be taken:</strong> <span>( Tick &bull;
+                                                            in the Boxes )</span></div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td colspan="2" align="center">
+                                                    <div><strong>Action:</strong></div>
+                                                </td>
+                                                <td></td>
+                                                <td colspan="2" align="center">
+                                                    <div>
+                                                        <strong>Correction:</strong>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5">
+                                                    <table style="margin: 0;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    @foreach ($imdactionData as $index => $item)
+                                                                        <div style="display: block;"
+                                                                            class="">
+                                                                            {{-- &ordm; {{ $item->imd_actions_description }} --}}
+                                                                            {!! in_array($item->imd_actions_id,explode(',',$formData->imd_actions_ids))  ? '&bull; ' : '&ordm; ' !!}{{ $item->imd_actions_description }}
+                                                                        </div>
+                                                                    @endforeach
+
+                                                                </td>
+                                                                <td></td>
+                                                                <td colspan="2">
+                                                                    @foreach ($imdcorrectionData as $index => $item)
+                                                                        <div style="display: block;"
+                                                                            class="">
+                                                                            {{-- &ordm; {{ $item->imd_corrections_description }} --}}
+                                                                            {!! in_array($item->imd_corrections_id,explode(',',$formData->imd_corrections_ids))  ? '&bull; ' : '&ordm; ' !!}{{ $item->imd_corrections_description }}
+                                                                        </div>
+                                                                    @endforeach
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+
+
+
+                                            <tr>
+                                                <td colspan="5">
+                                                    <div class=""><strong>Further recommended
+                                                            action:</strong></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5">
+                                                    {{-- <div class="lihit14">Lorem ipsum dolor sit, amet consectetur
+                                                        adipisicing elit. Ullam doloribus similique harum blanditiis
+                                                        nemo, rem dignissimos, officiis sint eius non velit possimus
+                                                        nostrum deserunt corporis, iste modi? Laboriosam optio iste
+                                                        dicta possimus recusandae neque pariatur necessitatibus beatae
+                                                        odit cupiditate! Fugiat tempora iusto nihil corrupti quod
+                                                        necessitatibus eligendi perferendis.</div> --}}
+                                                    <div class="lihit14"><b class="border-dot"> {{ $formData->further_recommended_action ?? '.....................'}}</b></div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="" colspan="3">
+                                                    <div style="width: 100%" class="">Completed by - Name: <b class="border-dot"> {{ $formData->completed_by_name ?? '____________________________'}}</b></div>
+                                                </td>
+                                                <td colspan="2">
+                                                    <div class="">Signature: <b class="border-dot">{{$formData->completed_by_signature == 1 ? 'signed' : '________' }}</b> Date: <b class="border-dot">{{ $formData->completed_date ?? '__/__/__'}}</b>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5">
+                                                    <div class=""><strong>CC to: GM / PM / Corporate EHS
+                                                            Department</strong></div>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr style="border-top: 1px solid black;font-size: .6rem;">
+                                <td colspan="4" align="left">
+                                    <div>
+                                        IMS VOLUME-I / SECTION-V EHS FORMATS / EHS-F-15
+                                    </div>
+                                </td>
+                                <td align="right">
+                                    printed 0
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 
 </html>
