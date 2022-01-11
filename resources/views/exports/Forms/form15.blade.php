@@ -101,6 +101,13 @@
         .border-dot{
              border-bottom: 1px solid black dotted;
         }
+        .selected-OPT{
+            color: red;
+        }
+        .footer{
+            border-top: 1px solid black !important;
+            font-size: .6rem;
+        }
 
     </style>
 </head>
@@ -115,45 +122,7 @@
                 <td colspan="2">
                     <table id="childeTable1" style="margin-bottom: 0px">
                         <tbody align="center">
-                            <tr class="">
-                                <td class="imgcon bdr1b" rowspan="3">
-                                    {{-- <div class="imgdiv">
-                                                  <img src="/img/largelogo.png" alt="loglarge">
-                                             </div> --}}
-                                    <div class="imgdiv">
-                                        @php
-                                            //     access the firt file in logo/large folder
-                                            $dir = public_path('storage/photos/logo/large/');
-                                            $fils = scandir($dir);
-                                            $firtFile = $fils;
-                                            //     dd(public_path("storage/photos/logo/large/".$fils[2]));
-                                        @endphp
-                                        {{-- img --}}
-                                        {{-- <img src="{{Storage::url($defaultData->sbc_logo_small)}}" alt="loglarge"> <-- this code will work in production ... this is reletive path --}}
-                                        <img src="{{ public_path('storage/photos/logo/large/' . $fils[2]) }}"
-                                            alt="loglarge">
-
-
-                                    </div>
-                                </td>
-                                {{-- </tr> --}}
-                                {{-- <tr > --}}
-                                <td colspan="4" class="bdr1b">
-                                    <strong>INTEGRATED MANAGEMENT SYSTEM </strong> (ISO 45001:2018 &#38; ISO
-                                    14001:2015)
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="3" class="bdr1b">Doc. Name: <strong>NEARMISS REPORTING
-                                        FORMAT</strong></td>
-                                <td class="bdr1b">Doc. Code: <strong>EHS-F-15</strong></td>
-                            </tr>
-                            <tr class="">
-                                <td class="bdr1b">Issue No.: 01</td>
-                                <td class="bdr1b">Issue Date: 01.03.2020</td>
-                                <td class="bdr1b">Revision No: 00</td>
-                                <td class="bdr1b">Revision Date: 01.03.2020</td>
-                            </tr>
+                           @include('exports.Shared.header')
 
                             <tr>
                                 <td colspan="5">
@@ -188,7 +157,8 @@
                                                     <div class=""><strong>Potential Injury:</div>
                                                 </td>
                                                 @foreach ($potentialinjurytotData as $item)
-                                                    <td>{!! $item->potential_injurytos_id == $formData->potential_injurytos_fk ? '&bull; ' : '&ordm; ' !!} {{ $item->potential_injurytos_description }} {!! $item->potential_injurytos_abbr == 'OT' ? '<b class="border-dot">'. $formData->potential_injurytos_other.'</b>' : '' !!}</td>
+                                                    <td>{!! $item->potential_injurytos_id == $formData->potential_injurytos_fk ? '&bull; <span class="selected-OPT">'.$item->potential_injurytos_description.'</span> ' : '&ordm; '.$item->potential_injurytos_description !!} 
+                                                        {!! $item->potential_injurytos_abbr == 'OT' ? '<b class="border-dot">'. $formData->potential_injurytos_other.'</b>' : '' !!}</td>
                                                 @endforeach
                                                 {{-- <td>
                                                      <div class=""><b>{{$formData->potential_injurytos_other}}</b></div>
@@ -213,7 +183,7 @@
                                                 @endif --}}
                                                     <td>
                                                         <div class="m-l1">
-                                                            {!! in_array($item->nature_of_potential_injuries_id,explode(',',$formData->nature_of_potential_injuries_ids))  ? '&bull; ' : '&ordm; ' !!} {{ $item->nature_of_potential_injuries_description }}
+                                                            {!! in_array($item->nature_of_potential_injuries_id,explode(',',$formData->nature_of_potential_injuries_ids))  ? '&bull; <span class="selected-OPT">'.$item->nature_of_potential_injuries_description .'</span> ' : '&ordm; '.$item->nature_of_potential_injuries_description !!}
                                                             
                                                         </div>
                                                     </td>
@@ -227,7 +197,7 @@
                                                     @if ($index == 3 || $index == 4))
                                                         <td>
                                                             <div class="m-l1">
-                                                                 {!! in_array($item->nature_of_potential_injuries_id,explode(',',$formData->nature_of_potential_injuries_ids))  ? '&bull; ' : '&ordm; ' !!}{{ $item->nature_of_potential_injuries_description }}
+                                                                {!! in_array($item->nature_of_potential_injuries_id,explode(',',$formData->nature_of_potential_injuries_ids))  ? '&bull; <span class="selected-OPT">'.$item->nature_of_potential_injuries_description .'</span> ' : '&ordm; '.$item->nature_of_potential_injuries_description !!}
                                                             </div>
                                                         </td>
                                                     @endif
@@ -238,18 +208,17 @@
                                                     <div class="m-l1">Details if required: <b class="border-dot">{{$formData->nature_of_potential_injuries_other}}</b></div>
                                                 </td>
                                             </tr>
-                                            <!-- Activity: ( Tick &bull; in the Boxes ) -->
+                                            <!-- Activity: ( Tick <span class="selected-OPT">&bull; </span> in the Boxes ) -->
                                             <tr>
                                                 <td colspan="5">
-                                                    <div class=""><strong>Activity:</strong> <span>( Tick
-                                                            &bull; in the Boxes )</span></div>
+                                                    <div class=""><strong>Activity:</strong> <span>( Tick &bull; in the Boxes )</span></div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 @foreach ($activityData as $index => $item)
                                                     <td>
                                                         <div class="m-l1">
-                                                             {!! in_array($item->activity15s_id,explode(',',$formData->activity15s_ids))  ? '&bull; ' : '&ordm; ' !!}{{ $item->activity15s_description }}
+                                                             {!! in_array($item->activity15s_id,explode(',',$formData->activity15s_ids))  ? '&bull; <span class="selected-OPT">'.$item->activity15s_description .'</span> ' : '&ordm; '.$item->activity15s_description  !!}
                                                             {{-- {{ $item->activity15s_description }} --}}
                                                         </div>
                                                     </td>
@@ -263,7 +232,7 @@
                                                     @if ($index == 4 || $index == 5 || $index == 6 || $index == 7)
                                                     <td>
                                                        <div class="m-l1">
-                                                            {!! in_array($item->activity15s_id,explode(',',$formData->activity15s_ids))  ? '&bull; ' : '&ordm; ' !!}{{ $item->activity15s_description }}
+                                                        {!! in_array($item->activity15s_id,explode(',',$formData->activity15s_ids))  ? '&bull; <span class="selected-OPT">'.$item->activity15s_description .'</span> ' : '&ordm; '.$item->activity15s_description  !!}
                                                        </div>
                                                    </td>
                                                     @endif
@@ -326,7 +295,7 @@
                                                                         <div style="display: block;"
                                                                             class="">
                                                                             {{-- &ordm; {{ $item->cause15s_description }} --}}
-                                                                            {!! in_array($item->cause15s_id,explode(',',$formData->imdcause15s_ids))  ? '&bull; ' : '&ordm; ' !!}{{ $item->cause15s_description }}
+                                                                            {!! in_array($item->cause15s_id,explode(',',$formData->imdcause15s_ids))  ? '&bull; <span class="selected-OPT">'.$item->cause15s_description.'</span> ' : '&ordm; '.$item->cause15s_description !!}
                                                                         </div>
                                                                     </td>
                                                                 </tr>
@@ -351,7 +320,7 @@
                                                                         <div style="display: block;"
                                                                             class="">
                                                                             {{-- &ordm; {{ $item->contributing_causes_description }} --}}
-                                                                            {!! in_array($item->contributing_causes_id,explode(',',$formData->contributing_causes_ids))  ? '&bull; ' : '&ordm; ' !!}{{ $item->contributing_causes_description }}
+                                                                            {!! in_array($item->contributing_causes_id,explode(',',$formData->contributing_causes_ids))  ? '&bull; <span class="selected-OPT">'.$item->contributing_causes_description.'</span> ' : '&ordm; '.$item->contributing_causes_description !!}
                                                                         </div>
                                                                     </td>
                                                                 </tr>
@@ -367,10 +336,8 @@
                                                     </table>
                                                 </td>
                                             </tr>
-
-
-
-                                            <!-- Why was the unsafe act committed: : ( Tick &bull; in the Boxes ) -->
+                                            
+                                            <!-- Why was the unsafe act committed: : ( Tick <span class="selected-OPT">&bull; </span> in the Boxes ) -->
                                             <tr>
                                                 <td colspan="5">
                                                     <div class=""><strong>Why was the unsafe act
@@ -384,7 +351,7 @@
                                                     <td {{$index != 2 ? "colspan=2" : ''}}>
                                                         <div style="width: 100%" class="m-l1">
                                                             {{-- &ordm; {{ $item->whyunsafeact_committeds_description }} --}}
-                                                            {!! in_array($item->whyunsafeact_committeds_id,explode(',',$formData->whyunsafeact_committeds_ids))  ? '&bull; ' : '&ordm; ' !!}{{ $item->whyunsafeact_committeds_description }}
+                                                            {!! in_array($item->whyunsafeact_committeds_id,explode(',',$formData->whyunsafeact_committeds_ids))  ? '&bull; <span class="selected-OPT">'.$item->whyunsafeact_committeds_description.'</span> ' : '&ordm; '.$item->whyunsafeact_committeds_description !!}
                                                         </div>
                                                     </td>
                                                     @if ($index == 2)
@@ -410,7 +377,7 @@
                                                         <td>
                                                             <div class="m-l1" style="width: 100%">
                                                                  {{-- &ordm; {{ $item->whyunsafeact_committeds_description }} --}}
-                                                                 {!! in_array($item->whyunsafeact_committeds_id,explode(',',$formData->whyunsafeact_committeds_ids))  ? '&bull; ' : '&ordm; ' !!}{{ $item->whyunsafeact_committeds_description }}
+                                                                 {!! in_array($item->whyunsafeact_committeds_id,explode(',',$formData->whyunsafeact_committeds_ids))  ? '&bull; <span class="selected-OPT">'.$item->whyunsafeact_committeds_description.'</span> ' : '&ordm; '.$item->whyunsafeact_committeds_description !!}
                                                             </div>
                                                         </td>
                                                     @endif
@@ -423,8 +390,7 @@
                                             <tr>
                                                 <td colspan="5">
                                                     <div style="width: 100%" class=""><strong>Immediate
-                                                            Corrective Action to be taken:</strong> <span>( Tick &bull;
-                                                            in the Boxes )</span></div>
+                                                            Corrective Action to be taken:</strong> <span>( Tick &bull; in the Boxes )</span></div>
                                                 </td>
                                             </tr>
 
@@ -449,7 +415,7 @@
                                                                         <div style="display: block;"
                                                                             class="">
                                                                             {{-- &ordm; {{ $item->imd_actions_description }} --}}
-                                                                            {!! in_array($item->imd_actions_id,explode(',',$formData->imd_actions_ids))  ? '&bull; ' : '&ordm; ' !!}{{ $item->imd_actions_description }}
+                                                                            {!! in_array($item->imd_actions_id,explode(',',$formData->imd_actions_ids))  ? '&bull; <span class="selected-OPT">'.$item->imd_actions_description.'</span> ' : '&ordm; '.$item->imd_actions_description !!}
                                                                         </div>
                                                                     @endforeach
 
@@ -460,7 +426,7 @@
                                                                         <div style="display: block;"
                                                                             class="">
                                                                             {{-- &ordm; {{ $item->imd_corrections_description }} --}}
-                                                                            {!! in_array($item->imd_corrections_id,explode(',',$formData->imd_corrections_ids))  ? '&bull; ' : '&ordm; ' !!}{{ $item->imd_corrections_description }}
+                                                                            {!! in_array($item->imd_corrections_id,explode(',',$formData->imd_corrections_ids))  ? '&bull; <span class="selected-OPT">'.$item->imd_corrections_description.'</span> ' : '&ordm; '.$item->imd_corrections_description !!}
                                                                         </div>
                                                                     @endforeach
                                                                 </td>
@@ -511,16 +477,7 @@
                                     </table>
                                 </td>
                             </tr>
-                            <tr style="border-top: 1px solid black;font-size: .6rem;">
-                                <td colspan="4" align="left">
-                                    <div>
-                                        IMS VOLUME-I / SECTION-V EHS FORMATS / EHS-F-15
-                                    </div>
-                                </td>
-                                <td align="right">
-                                    printed 0
-                                </td>
-                            </tr>
+                            @include('exports.Shared.footer')
                         </tbody>
                     </table>
                 </td>

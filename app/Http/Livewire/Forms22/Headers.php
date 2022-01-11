@@ -10,7 +10,7 @@ use App\Models\forms_22\topic_discussed;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-
+use PDF;
 class Headers extends Component
 {
     protected $listeners = ['delete', 'selectedProjectID'];
@@ -223,6 +223,21 @@ class Headers extends Component
             $this->dispatchBrowserEvent('CloseEditCountryModal');
             // $this->checkedCountry = [];
         }
+    }
+
+
+    public function ganaratePDF()
+    {
+        # code...
+        // $defaultData = Defaultdata::find(1)->join('companies', 'companies.ibc_id', '=', 'defaultdatas.ibc_id_fk')->join('projects', 'projects.iproject_id', '=', 'defaultdatas.iproject_id_fk')->join('departments', 'departments.idepartment_id', '=', 'defaultdatas.idepartment_id_fk')->get();
+        $data = [
+            'headerData'=>formdata_22_header::find($this->cid)->join('projects', 'projects.iproject_id', '=', 'formdata_22_headers.iproject_id_fk')->get()[0],
+            'partisipanceData' => formdata_22_participant::where('formdata_22s_id_fk', '=', $this->cid)->get()[0],
+            'topicData'=>topic_discussed::get(),
+        ];
+        $pdf = PDF::loadView('exports.Forms.form22', $data)->setPaper('A4', 'portrait')->output(); //
+        return response()->streamDownload(fn () => print($pdf),'test.pdf');
+
     }
 
 

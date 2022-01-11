@@ -335,12 +335,19 @@ class Formdata15 extends Component
         // $pdf->loadHtml(view('exports.Forms.form15',['data'=>$data]));
         // $pdf->setPaper('A4', 'portrait');
         // $pdf->render();
-        // return $pdf->stream('form15.pdf',["Attachment" => false]);
         // exit(0);
         // return $pdf->download('test.pdf');
-
+        
+        // $header = [
+        //     'Content-Type' => 'application/pdf',
+        //     'Content-Disposition' => 'inline; filename="test.pdf"'
+        // ];
         $pdf = PDF::loadView('exports.Forms.form15', $data)->setPaper('A4', 'portrait')->output(); //
-        return response()->streamDownload(fn () => print($pdf), 'test.pdf');
+        return response()->streamDownload(fn () => print($pdf),'test.pdf');
+        // return response()->stream(fn () => $pdf,200, $header); 
+        // return $pdf->stream('test.pdf',["Attachment" => false]);
+        // return response()->view('exports.Forms.form15',$data,200,$header);
+        
         // dd($pdf);
         // return $pdf->stream()->save('test.pdf');
         // $pdf->stream();

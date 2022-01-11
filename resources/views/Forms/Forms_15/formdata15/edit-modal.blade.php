@@ -169,7 +169,7 @@
                             <label for="details"
                                 class="@error('details_of_nearmiss') text-danger @enderror"><strong>Details of
                                     Nearmiss:</strong></label>
-                            <textarea wire:model='details_of_nearmiss' id="details"
+                            <textarea minlength="100" maxlength="1000" wire:model='details_of_nearmiss' id="details"
                                 class="form-control @error('details_of_nearmiss') border-danger @enderror"
                                 rows="5"></textarea>
                         </div>
@@ -336,7 +336,7 @@
                         {{-- Further recommended action: start --}}
                         <div class="col-12 form-group">
                             <label for="furtheraction"><strong>Further recommended action:</strong></label>
-                            <textarea wire:model='further_recommended_action' id="furtheraction"
+                            <textarea minlength="100" maxlength="600" wire:model='further_recommended_action' id="furtheraction"
                                 class="form-control border @error('further_recommended_action') border-danger @enderror"
                                 rows="5"></textarea>
                         </div>

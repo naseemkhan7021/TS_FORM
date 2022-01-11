@@ -54,6 +54,7 @@ if ($iproject_id_fk) {
                         <div class="btn-group">
                             <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->formdata_22s_id}})">Edit</button>
                             <button class="btn btn-danger btn-sm" wire:click="deleteConfirm({{$row->formdata_22s_id}})">Delete</button>
+                            <button class="btn btn-warning btn-sm" wire:click="OpenEditCountryModal({{$row->formdata_22s_id}},'Project Head')">Approve</button>
 
                         </div>
                     </td>

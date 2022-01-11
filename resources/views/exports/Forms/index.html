@@ -62,16 +62,28 @@
         }
 
         #childeTable2 tbody {
-            font-size: .8rem !important;
+            font-size: .72rem !important;
         }
 
         #childeTable2 tr td div {
             display: inline-block;
-            margin-bottom: .5rem;
+            margin-bottom: .4rem;
+        }
+
+        #participantsTbl th,
+        #participantsTbl td {
+            border: 1px solid black !important;
+            /* text-align: center; */
+        }
+
+        #participantsTbl, #participantsTbl > tbody {
+            font-size: 1rem !important;
+            text-align: center;
         }
 
         #Heading1 {
-            margin-bottom: 1rem;
+            margin-bottom: 1rem !important;
+            font-size: 1rem;
         }
 
         .imgdiv {
@@ -99,6 +111,22 @@
             line-height: 1.4;
         }
 
+        .border-dot {
+            border-bottom: 1px solid black dotted;
+        }
+
+        .selected-OPT {
+            color: red;
+        }
+
+        .footer {
+            border-top: 1px solid black !important;
+            font-size: .6rem;
+        }
+
+        .m0 {
+            margin: 0 !important;
+        }
     </style>
 </head>
 
@@ -112,9 +140,9 @@
                             <tr class="">
                                 <td class="imgcon bdr1b" rowspan="3">
                                     <div class="imgdiv">
-                                                  <img src="/img/largelogo.png" alt="loglarge">
-                                             </div>
-                                    
+                                        <img src="/img/largelogo.png" alt="loglarge">
+                                    </div>
+
                                 </td>
                                 <td colspan="4" class="bdr1b">
                                     <strong>INTEGRATED MANAGEMENT SYSTEM </strong> (ISO 45001:2018 &#38; ISO
@@ -138,9 +166,8 @@
                                     <table id="childeTable2">
                                         <tbody>
                                             <tr align="center">
-                                                <td id="Heading1" colspan="5">
-                                                    <strong style="font-size: .95rem"><u>NEARMISS REPORTING
-                                                            FORMAT</u></strong>
+                                                <td  colspan="5">
+                                                    <strong id="Heading1"><u>EH&S INDUCTION</u></strong>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -150,7 +177,8 @@
                                                 </td>
 
                                                 <td colspan="2" align="right">
-                                                    <div class="">Report no.: _________________</div>
+                                                    <div class="">Date: ____________</div>
+                                                    <div class="">Time.: ______________</div>
                                                 </td>
                                                 <!-- <td>
                                                                  Project Name
@@ -163,143 +191,50 @@
                                             </tr>
                                             <tr>
                                                 <td colspan="3">
-                                                    <div class=""> Location: _________________</div>
+                                                    <div class=""> Name of Contractor: _______________________________
+                                                    </div>
                                                 </td>
                                                 <td colspan="2" align="right">
-                                                    <div class="">Date: ____________</div>
-                                                    <div class="">Time.: ______________</div>
+                                                    <div class=""> Venue:
+                                                        ________________________________________________</div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>
-                                                    <div class=""><strong>Potential Injury</div>
+                                                <td colspan="3">
+                                                    <div class=""> Faculty:
+                                                        ________________________________________________</div>
                                                 </td>
-                                                <td>• T&S Staff</td>
-                                                <td>• Sub-Contractor</td>
-                                                <td>• Others</td>
-                                                <td align="right">
-                                                    <div style="margin: 0;" class="">Company Name:
-                                                        ____________________</div>
+                                                <td colspan="2" align="right">
+                                                    <div class=""> Duration: _________________</div>
                                                 </td>
                                             </tr>
+
                                             <!-- Nature of Potential Injury: ( Tick &check; in the Boxes ) -->
                                             <tr>
                                                 <td colspan="5">
-                                                    <div class=""><strong>Nature of Potential
-                                                            Injury:</strong> <span>(Tick &#10003; in the Boxes)</span>
+                                                    <div class=""><strong>Undertaking:</strong> <span>(Tick &#10003; in
+                                                            the Boxes)</span>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            
+
                                             <tr>
-                                                <td>
-                                                    <div class="m-l1">• Equipment damage</div>
-                                                </td>
-                                                <td>
-                                                    <div class="m-l1">• Personal Injury</div>
-                                                </td>
-                                                <td colspan="3">
-                                                    <div class="m-l1">• Fire / Explosion</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="m-l1">• Motor Vehicle</div>
-                                                </td>
-                                                <td>
-                                                    <div class="m-l1">• Other</div>
-                                                </td>
-                                                <td colspan="3">
-                                                    <div class="m-l1">Details if required:
-                                                        _____________________</div>
+                                                <td colspan="5">
+                                                    <div class="lihit14">I, the undersigned, have attended the EHS
+                                                        Induction Training and understood the requirements of following
+                                                        Health & Safety rules in work place and agreed to follow them.
+                                                        My signature is appended below.
+                                                        The following Staff / Technicians / Contractor / Labour have
+                                                        joined and commenced work at site. They have been imparted EHS
+                                                        Induction Training. The Points covered in the training are:
+                                                    </div>
                                                 </td>
                                             </tr>
                                             <!-- Activity: ( Tick ✓ in the Boxes ) -->
                                             <tr>
-                                                <td colspan="5">
-                                                    <div class=""><strong>Activity:</strong> <span>( Tick
+                                                <td align="center" colspan="">
+                                                    <div class=""><strong>Topics Discussed: :</strong> <span>( Tick
                                                             ✓ in the Boxes )</span></div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="m-l1">• Working at Height</div>
-                                                </td>
-                                                <td>
-                                                    <div class="m-l1">• Scaffolding</div>
-                                                </td>
-                                                <td>
-                                                    <div class="m-l1">• Material Handling</div>
-                                                </td>
-                                                <td colspan="2">
-                                                    <div class="m-l1">• Operating Plant</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="m-l1">• Motor Vehicle</div>
-                                                </td>
-                                                <td>
-                                                    <div class="m-l1">• Other</div>
-                                                </td>
-                                                <td>
-                                                    <div class="m-l1">• Welding / Cutting</div>
-                                                </td>
-                                                <td colspan="2">
-                                                    <div class="m-l1">• Foreign Body</div>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td colspan="5">
-                                                    <div class=""><strong>Details of Nearmiss:</strong>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="5">
-                                                    <div class="lihit14">Lorem ipsum dolor sit, amet consectetur
-                                                        adipisicing elit. Ullam doloribus similique harum blanditiis
-                                                        nemo, rem dignissimos, officiis sint eius non velit possimus
-                                                        nostrum deserunt corporis, iste modi? Laboriosam optio iste
-                                                        dicta possimus recusandae neque pariatur necessitatibus beatae
-                                                        odit cupiditate! Fugiat tempora iusto nihil corrupti quod
-                                                        necessitatibus eligendi perferendis, nisi sequi est unde
-                                                        laboriosam autem in ducimus excepturi iure odit nemo! Ullam
-                                                        accusantium voluptatum, tempore est dolorum et modi harum,
-                                                        consequatur ea eveniet fugit cumque fugiat quam. Omnis laborum
-                                                        sequi quisquam, animi hic harum quos ipsam excepturi nobis
-                                                        ratione dolore consequatur dolorem reprehenderit labore
-                                                        laudantium. Maiores eaque sequi et cum qui,.</div>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td colspan="5">
-                                                    <div class=""><strong>Cause:</strong> <span>( Tick ✓
-                                                            in the Boxes )</span></div>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td colspan="3" align="center">
-                                                    <div><strong>Immediate Cause:</strong></div>
-                                                </td>
-                                                <td colspan="2" align="center">
-                                                    <div>
-                                                        <strong>Contributing Cause:</strong>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2" align="center">
-                                                    <div><strong>Action:</strong></div>
-                                                </td>
-                                                <td></td>
-                                                <td colspan="2" align="center">
-                                                    <div>
-                                                        <strong>Correction:</strong>
-                                                    </div>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -355,38 +290,13 @@
                                                                         Condition</div>
                                                                 </td>
                                                             </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <div style="display: block;" class="">
-                                                                        • Unsafe
-                                                                        Condition</div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <div style="display: block;" class="">
-                                                                        • Unsafe
-                                                                        Condition</div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <div style="display: block;" class="">
-                                                                        • other</div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <div class="lihit14">detail :______________
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
+
                                                         </tbody>
                                                     </table>
                                                 </td>
                                                 <td></td>
                                                 <td colspan="3">
-                                                    <table style="margin: 0; transform: translate(10px, -20px);">
+                                                    <table style="margin: 0;">
                                                         <tbody>
                                                             <tr>
                                                                 <td>
@@ -437,147 +347,111 @@
                                                                         Condition</div>
                                                                 </td>
                                                             </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td align="center" colspan="5">
+                                                    <div id="Heading1" class=""><strong>PARTICIPANTS</strong></div>
+                                                </td>
+                                            </tr>
+                
+                                            <tr>
+                                                <td colspan="5">
+                                                    <table class="m0" id="participantsTbl">
+                                                        <thead>
                                                             <tr>
-                                                                <td>
-                                                                    <div style="display: block;" class="">
-                                                                        • other</div>
-                                                                </td>
+                                                                <th>Sr. No</th>
+                                                                <th>ID No.</th>
+                                                                <th>Name of the Participants</th>
+                                                                <th>Age</th>
+                                                                <th>Designation</th>
+                                                                <th>Signature</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>12</td>
+                                                                <td>Naseem</td>
+                                                                <td>65</td>
+                                                                <td>Dev</td>
+                                                                <td>NK</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>
-                                                                    <div class="lihit14">detail :______________
-                                                                    </div>
-                                                                </td>
+                                                                <td>1</td>
+                                                                <td>2</td>
+                                                                <td>3</td>
+                                                                <td>4</td>
+                                                                <td>5</td>
+                                                                <td>6</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>2</td>
+                                                                <td>3</td>
+                                                                <td>4</td>
+                                                                <td>5</td>
+                                                                <td>6</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>2</td>
+                                                                <td>3</td>
+                                                                <td>4</td>
+                                                                <td>5</td>
+                                                                <td>6</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>2</td>
+                                                                <td>3</td>
+                                                                <td>4</td>
+                                                                <td>5</td>
+                                                                <td>6</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>2</td>
+                                                                <td>3</td>
+                                                                <td>4</td>
+                                                                <td>5</td>
+                                                                <td>6</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>2</td>
+                                                                <td>3</td>
+                                                                <td>4</td>
+                                                                <td>5</td>
+                                                                <td>6</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>2</td>
+                                                                <td>3</td>
+                                                                <td>4</td>
+                                                                <td>5</td>
+                                                                <td>6</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
                                                 </td>
                                             </tr>
 
-
-
-                                            <!-- Why was the unsafe act committed: : ( Tick ✓ in the Boxes ) -->
-                                            <tr>
-                                                <td colspan="5">
-                                                    <div class=""><strong>Why was the unsafe act
-                                                            committed:</strong> <span>( Tick ✓ in the Boxes )</span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2">
-                                                    <div class="m-l1">• Equipment damage</div>
-                                                </td>
-                                                <td align="center">
-                                                    <div class="m-l1">• Personal Injury</div>
-                                                </td>
-                                                <td colspan="2" align="center">
-                                                    <div class="m-l1">• Fire / Explosion</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2">
-                                                    <div class="m-l1">• Other</div>
-                                                </td>
-                                                <td colspan="3" align="center">
-                                                    <div class="m-l1">Details if required:
-                                                        ________________________</div>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                             <td colspan="5">
-                                                  <div class=""><strong>Immediate Corrective Action to be taken:</strong> <span>( Tick ✓
-                                                            in the Boxes )</span></div>
-                                             </td>
-                                        </tr>
-
-                                        <tr>
-                                             <td colspan="2" align="center">
-                                                  <div><strong>Action:</strong></div>
-                                             </td>
-                                             <td></td>
-                                             <td colspan="2" align="center">
-                                                  <div>
-                                                       <strong>Correction:</strong>
-                                                  </div>
-                                             </td>
-                                        </tr>
-                                        <tr>
-                                             <td colspan="5">
-                                                  <table style="margin: 0;">
-                                                       <tbody>
-                                                            <tr>
-                                                                 <td colspan="2">
-                                                                      <div style="display: block;"
-                                                                           class="">
-                                                                           • Unsafe
-                                                                           Condition</div>
-                                                                      <div style="display: block;"
-                                                                           class="">
-                                                                           • Unsafe
-                                                                           Condition</div>
-                                                                      <div style="display: block;"
-                                                                           class="">
-                                                                           • Unsafe
-                                                                           Condition</div>
-
-                                                                 </td>
-                                                                 <td></td>
-                                                                 <td colspan="2">
-                                                                      <div style="display: block;"
-                                                                           class="">
-                                                                           • Unsafe
-                                                                           Condition</div>
-                                                                      <div style="display: block;"
-                                                                           class="">
-                                                                           • Unsafe
-                                                                           Condition</div>
-                                                                      <div style="display: block;"
-                                                                           class="">
-                                                                           • Unsafe
-                                                                           Condition</div>
-                                                                 </td>
-                                                            </tr>
-                                                       </tbody>
-                                                  </table>
-                                             </td>
-                                        </tr>
-
-
-
-                                            <tr>
-                                                <td colspan="5">
-                                                    <div class=""><strong>Further recommended
-                                                            action:</strong></div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="5">
-                                                    <div class="lihit14">Lorem ipsum dolor sit, amet consectetur
-                                                        adipisicing elit. Ullam doloribus similique harum blanditiis
-                                                        nemo, rem dignissimos, officiis sint eius non velit possimus
-                                                        nostrum deserunt corporis, iste modi? Laboriosam optio iste
-                                                        dicta possimus recusandae neque pariatur necessitatibus beatae
-                                                        odit cupiditate! Fugiat tempora iusto nihil corrupti quod
-                                                        necessitatibus eligendi perferendis.</div>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
+                                            <tr >
                                                 <td class="" colspan="3">
-                                                    <div class="">Completed by - Name:
-                                                        ____________________________</div>
+                                                    <div style="margin-top: 1rem;" class="">Signature of the Faculty: ____________________________</div>
                                                 </td>
                                                 <td colspan="2">
-                                                    <div class="">Signature:___________ Date: __/__/__
-                                                    </div>
+                                                    <div style="margin-top: 1rem;" class="">Name & Sign. Of Site Safety In charge:___________</div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="5">
-                                                    <div class=""><strong>CC to: GM / PM / Corporate EHS
-                                                            Department</strong></div>
+                                                    <div class=""><strong> RECORD REFERENCE:</strong></div>
                                                 </td>
                                             </tr>
 

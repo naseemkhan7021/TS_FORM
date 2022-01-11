@@ -40,7 +40,7 @@ class CreateFormdata15sTable extends Migration
                 $table->mediumText('nature_of_potential_injuries_ids')->nullable();
                 $table->string('nature_of_potential_injuries_other')->nullable();
                 $table->mediumText('activity15s_ids')->nullable();
-                $table->string('details_of_nearmiss')->nullable();
+                $table->string('details_of_nearmiss',1000)->nullable();
                 $table->mediumText('imdcause15s_ids')->nullable();
                 $table->string('imdcause15s_other')->nullable();
                 $table->mediumText('contributing_causes_ids')->nullable();
@@ -49,7 +49,7 @@ class CreateFormdata15sTable extends Migration
                 $table->string('whyunsafeact_committeds_other')->nullable();
                 $table->mediumText('imd_actions_ids')->nullable();
                 $table->mediumText('imd_corrections_ids')->nullable();
-                $table->string('further_recommended_action')->nullable();
+                $table->string('further_recommended_action',600)->nullable();
                 $table->string('completed_by_name')->nullable();
                 $table->boolean('completed_by_signature')->default(1);
                 $table->date('completed_date')->nullable();
