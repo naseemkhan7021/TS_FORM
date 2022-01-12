@@ -2,12 +2,14 @@
 
 namespace App\Http\Livewire\Forms18;
 
+use App\Models\common_forms\Dept_Default_Docs;
 use App\Models\common_forms\Projects;
 use App\Models\forms_00\formdata_00;
 use App\Models\forms_18\formdata18 as Forms_18Formdata18;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use PDF;
 
 class Formdata18 extends Component
 {
@@ -16,6 +18,7 @@ class Formdata18 extends Component
     public $extinguisher_no, $location, $type, $size, $date_of_refilling, $date_of_inspection, $pressure_gauge_or_safety_pin_status, $seal_intact_and_not_corroded, $name_of_responsible_person, $due_for_next_refilling, $due_for_next_inspection, $inspected_by_name,$inspected_by_signature,$inspected_by_designation,$inspected_by_date;
     public $iproject_id_fk,$ibc_id_fk, $idepartment_id_fk;
     public $cid,$searchQuery, $sproject_location,$ddd_id_fk,$userID;
+    public $form18Data;
 
     public function selectedProjectID($id)
     {
@@ -50,6 +53,7 @@ class Formdata18 extends Component
                     ->orWhere('name_of_responsible_person', 'like', '%' . $this->searchQuery . '%');
             })
             ->orderBy('formdata_18s_id')->get();
+            $this->form18Data = $form18Data;
 
             $projectData = Projects::where(['projects.bactive'=> '1','projects.user_created'=>$this->userID])->get();
         return view('livewire.forms18.formdata18', [
@@ -228,6 +232,23 @@ class Formdata18 extends Component
             $this->dispatchBrowserEvent('CloseEditCountryModal');
             // $this->checkedCountry = [];
         }
+    }
+
+    public function ganaratePDF()
+    {
+
+        # code...
+        // $defaultData = Defaultdata::find(1)->join('companies', 'companies.ibc_id', '=', 'defaultdatas.ibc_id_fk')->join('projects', 'projects.iproject_id', '=', 'defaultdatas.iproject_id_fk')->join('departments', 'departments.idepartment_id', '=', 'defaultdatas.idepartment_id_fk')->get();
+        // $formHeader = Dept_Default_Docs::find($this->ddd_id_fk);
+
+        // dd($this->form18Data[0]);
+        $data = [
+            'formHeader'=>Dept_Default_Docs::find($this->ddd_id_fk),
+            'form18Data'=>$this->form18Data,
+        ];
+        $pdf = PDF::loadView('exports.Forms.form18', $data)->setPaper('A4', 'landscape')->output(); //
+        return response()->streamDownload(fn () => print($pdf),'form18.pdf');
+
     }
 
 

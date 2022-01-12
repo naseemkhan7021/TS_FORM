@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>form15</title>
+    <title>form22</title>
     <style>
         * {
             margin: 0;
@@ -11,7 +11,8 @@
         }
 
         @page {
-            margin: .5rem;
+            margin: 0px;
+            margin-top: .5rem !important;
             display: flex;
             justify-content: center;
         }
@@ -22,8 +23,7 @@
 
         body {
             font-family: sans-serif;
-            margin: .5rem;
-            /* margin-bottom: .5rem; */
+            /* margin: .5rem; */
             display: flex;
             justify-content: center;
 
@@ -80,18 +80,18 @@
             padding: .4rem;
         }
         #tablData td{
-            padding: .19rem;
+            padding: .18rem;
         }
 
         #tablData,
         #tablData>tbody {
-            font-size: .8rem !important;
+            font-size: .78rem !important;
             text-align: center;
         }
 
         #Heading1 {
             margin: 1rem 0 !important;
-            font-size: 1rem !important;
+            font-size: .9rem !important;
         }
 
         .imgdiv {
@@ -139,35 +139,15 @@
 </head>
 
 <body>
+    {{-- {{dd($headerData,$partisipanceData,$topicData)}} --}}
+    {{-- {{dd(count(explode(',',$partisipanceData->id_no)))}} --}}
     <table id="parant">
         <tbody>
             <tr>
                 <td colspan="2">
                     <table id="childeTable1" style="margin-bottom: 0px">
                         <tbody align="center">
-                            <tr class="">
-                                <td class="imgcon bdr1b" rowspan="3">
-                                    <div class="imgdiv">
-                                        <img src="/img/largelogo.png" alt="loglarge">
-                                    </div>
-
-                                </td>
-                                <td colspan="4" class="bdr1b">
-                                    <strong>INTEGRATED MANAGEMENT SYSTEM </strong> (ISO 45001:2018 &#38; ISO
-                                    14001:2015)
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="3" class="bdr1b">Doc. Name: <strong>NEARMISS REPORTING
-                                        FORMAT</strong></td>
-                                <td class="bdr1b">Doc. Code: <strong>EHS-F-15</strong></td>
-                            </tr>
-                            <tr class="">
-                                <td class="bdr1b">Issue No.: 01</td>
-                                <td class="bdr1b">Issue Date: 01.03.2020</td>
-                                <td class="bdr1b">Revision No: 00</td>
-                                <td class="bdr1b">Revision Date: 01.03.2020</td>
-                            </tr>
+                            @include('exports.Shared.header')
 
                             <tr>
                                 <td colspan="5">
@@ -175,22 +155,30 @@
                                         <tbody>
                                             <tr align="center">
                                                 <td colspan="5">
-                                                    <div>
-                                                        <strong><u id="Heading1">Fire Extinguisher Inspection
-                                                                Report</u></strong>
+                                                    <div >
+                                                        <strong ><u id="Heading1">{{$formHeader->document_name}}</u></strong>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2">
-                                                    <div class="">Project Name: __________________</div>
+                                                    <div class="">Project Name: 
+                                                        {{-- <b class="border-dot">{{ $headerData->sproject_name }} --}}
+                                                            __________________
+                                                    </div>
                                                 </td>
 
                                                 <td colspan="2" align="right">
-                                                    <div class="">Date/time: __________________</div>
+                                                    <div class="">Date/time: 
+                                                        {{-- <b class="border-dot">{{ $headerData->ehsind_dt }}</b> --}}
+                                                        __________________
+                                                    </div>
                                                 </td>
                                                 <td align="right">
-                                                    <div class="">Month: __________________</div>
+                                                    <div class="">Month: 
+                                                        {{-- <b class="border-dot">{{ $headerData->ehsind_dt }}</b> --}}
+                                                        __________________
+                                                    </div>
                                                 </td>
                                             </tr>
 
@@ -219,59 +207,43 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                            {{-- {{dd($form18Data[0]->extinguisher_no)}} --}}
+
+                                                            @php $totalData =  count($form18Data); @endphp
+                                                            @foreach ($form18Data as $index => $item)
                                                             <tr>
-                                                                <td>1</td>
-                                                                <td>2</td>
-                                                                <td>3</td>
-                                                                <td>4</td>
-                                                                <td>RR</td>
-                                                                <td>II</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>9</td>
-                                                                <td>R</td>
-                                                                <td>I</td>
+                                                                <td>{{$index+1}}</td>
+                                                                <td>{{$item->extinguisher_no}}</td>
+                                                                <td>{{$item->location}}</td>
+                                                                <td>{{$item->type}},{{$item->size}}</td>
+                                                                <td>{{$item->date_of_refilling}}</td>{{--*--}}
+                                                                <td>{{$item->date_of_inspection}}</td>{{--*--}}
+                                                                <td>{{$item->pressure_gauge_or_safety_pin_status}}</td>
+                                                                <td>{{$item->seal_intact_and_not_corroded}}</td>
+                                                                <td>{{$item->name_of_responsible_person}}</td>
+                                                                <td>{{$item->due_for_next_refilling}}</td>{{--*--}}
+                                                                <td>{{$item->due_for_next_inspection}}</td>{{--*--}}
                                                             </tr>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>2</td>
-                                                                <td>3</td>
-                                                                <td>4</td>
-                                                                <td>5</td>
-                                                                <td>6</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>9</td>
-                                                                <td>10</td>
-                                                                <td>11</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>2</td>
-                                                                <td>3</td>
-                                                                <td>4</td>
-                                                                <td>5</td>
-                                                                <td>6</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>9</td>
-                                                                <td>10</td>
-                                                                <td>11</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>2</td>
-                                                                <td>3</td>
-                                                                <td>4</td>
-                                                                <td>5</td>
-                                                                <td>6</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>9</td>
-                                                                <td>10</td>
-                                                                <td>11</td>
-                                                            </tr>
-                                                            <tr>
+                                                            @endforeach
+                                                            @if ($totalData < 20)
+                                                                @while ($totalData < 20)
+                                                                <tr>
+                                                                    <td>{{++$totalData}}</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                @endwhile
+                                                            @endif
+                                                            
+                                                            {{-- <tr>
                                                                 <td>1</td>
                                                                 <td>2</td>
                                                                 <td>3</td>
@@ -479,6 +451,32 @@
                                                                 <td>10</td>
                                                                 <td>11</td>
                                                             </tr>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>2</td>
+                                                                <td>3</td>
+                                                                <td>4</td>
+                                                                <td>5</td>
+                                                                <td>6</td>
+                                                                <td>7</td>
+                                                                <td>8</td>
+                                                                <td>9</td>
+                                                                <td>10</td>
+                                                                <td>11</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>2</td>
+                                                                <td>3</td>
+                                                                <td>4</td>
+                                                                <td>5</td>
+                                                                <td>6</td>
+                                                                <td>7</td>
+                                                                <td>8</td>
+                                                                <td>9</td>
+                                                                <td>10</td>
+                                                                <td>11</td>
+                                                            </tr> --}}
                                                         </tbody>
                                                     </table>
                                                 </td>
@@ -486,42 +484,32 @@
 
                                             <tr>
                                                 <td colspan="5">
-                                                    <div style="margin-top: 1rem;" class=""><strong>Inspected by:</strong>
+                                                    <div style="margin-top: .5rem;" class=""><strong>Inspected by:</strong>
                                                     </div>
                                                 </td>
                                             </tr>
 
                                             <tr>
                                                 <td class="" colspan="3">
-                                                    <div style="margin-top: .6rem;" class="">Signature of the Faculty:
-                                                        _____________________</div>
+                                                    <div style="margin-top: .3rem;margin-bottom: .1rem" class="">Name & Sign. <b class="border-dot">{{ $form18Data[0]->inspected_by_name }} {{ $form18Data[0]->inspected_by_signature }}</b>
+                                                    </div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2">
-                                                    <div style="margin-top: .5rem;" class="">Designation:
-                                                        __________________</div>
+                                                    <div style="" class="">Designation: <b class="border-dot">{{ $form18Data[0]->inspected_by_designation }}</b></div>
                                                 </td>
                                                 <td>
-                                                    <div style="margin-top: .5rem;" class="">Date: ____/___/_____</div>
+                                                    <div style="" class="">Date: <b class="border-dot">{{ $form18Data[0]->inspected_by_date }}</b></div>
                                                 </td>
                                             </tr>
-
+                                            
 
                                         </tbody>
                                     </table>
                                 </td>
                             </tr>
-                            <tr style="border-top: 1px solid black;font-size: .6rem;">
-                                <td colspan="4" align="left">
-                                    <div>
-                                        IMS VOLUME-I / SECTION-V EHS FORMATS / EHS-F-15
-                                    </div>
-                                </td>
-                                <td align="right">
-                                    printed 0
-                                </td>
-                            </tr>
+                            @include('exports.Shared.footer')
                         </tbody>
                     </table>
                 </td>

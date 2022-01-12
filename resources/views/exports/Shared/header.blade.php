@@ -1,4 +1,5 @@
 <tr class="">
+    {{-- {{dd($formHeader)}} --}}
      <td class="imgcon bdr1b" rowspan="3">
          {{-- <div class="imgdiv">
                        <img src="/img/largelogo.png" alt="loglarge">
@@ -27,9 +28,8 @@
      </td>
  </tr>
  <tr>
-     <td colspan="3" class="bdr1b">Doc. Name: <strong>NEARMISS REPORTING
-             FORMAT</strong></td>
-     <td class="bdr1b">Doc. Code: <strong>EHS-F-15</strong></td>
+     <td colspan="3" class="bdr1b">Doc. Name: <strong>{{$formHeader->document_name}}</strong></td>
+     <td class="bdr1b">Doc. Code: <strong>{{$formHeader->document_code}}</strong></td>
  </tr>
  <tr class="">
      <td class="bdr1b">Issue No.: 01</td>

@@ -213,12 +213,12 @@
                             <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
                             {{-- <button type="submit" class="btn btn-primary btn-sm">Update</button> --}}
                             {{-- show button according to user role --}}
-                            {!! $role == 'Project Head' ? '<a class="btn btn-primary btn-sm text-white" wire:click="ganaratePDF()">Export PDF</a>' : '<button type="submit" class="btn btn-primary btn-sm">Save Changes</button>' !!}
+                            {{-- $len is total number of paritcipance added in header --}}
+                            {{-- @php($len = 0) --}}
+                            {!! $role == 'Project Head' ? ($len > 0 ? '<a class="btn btn-primary btn-sm text-white" wire:click="ganaratePDF()">Export PDF</a>' : '<a class="btn btn-success btn-sm text-white" href="/form22_participant" >Add Partisipance to Export</a>') : '<button type="submit" class="btn btn-primary btn-sm">Save Changes</button>' !!}
                         </div>
                     </div>
-
                 </form>
-
             </div>
         </div>
     </div>

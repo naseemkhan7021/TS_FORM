@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>form15</title>
+    <title>form22</title>
     <style>
         * {
             margin: 0;
@@ -11,7 +11,8 @@
         }
 
         @page {
-            margin: .5rem;
+            margin: 0px;
+            margin-top: .5rem !important;
             display: flex;
             justify-content: center;
         }
@@ -22,7 +23,7 @@
 
         body {
             font-family: sans-serif;
-            margin: .5rem;
+            /* margin: .5rem; */
             display: flex;
             justify-content: center;
 
@@ -68,7 +69,7 @@
         #childeTable2 tr td div {
             display: inline-block;
             width: 100%;
-            margin-bottom: .4rem;
+            margin-bottom: .5rem;
         }
 
         #participantsTbl th,
@@ -84,8 +85,8 @@
         }
 
         #Heading1 {
-            margin-bottom: 1rem !important;
-            font-size: 1rem;
+            margin: 1rem 0 !important;
+            font-size: 2rem;
         }
 
         .imgdiv {
@@ -155,42 +156,55 @@
                                             </tr>
                                             <tr>
                                                 <td colspan="3">
-                                                    <div class="">Project Name: <b class="border-dot">{{$headerData->sproject_name}}
+                                                    <div class="">Project Name: <b
+                                                            class="border-dot">{{ $headerData->sproject_name }}
                                                     </div>
                                                 </td>
 
                                                 <td colspan="2" align="right">
-                                                    <div class="">Date/time: <b class="border-dot">{{$headerData->ehsind_dt}}</b></div>
+                                                    <div class="">Date/time: <b
+                                                            class="border-dot">{{ $headerData->ehsind_dt }}</b>
+                                                    </div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="3">
-                                                    <div class=""> Name of Contractor: <b class="border-dot">{{$headerData->contractor_name}}</b> </div>
+                                                    <div class=""> Name of Contractor: <b
+                                                            class="border-dot">{{ $headerData->contractor_name }}</b>
+                                                    </div>
                                                 </td>
                                                 <td colspan="2" align="right">
-                                                    <div class=""> Venue: <b class="border-dot">{{$headerData->venue}}</b></div>
+                                                    <div class=""> Venue: <b
+                                                            class="border-dot">{{ $headerData->venue }}</b></div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="3">
-                                                    <div class=""> Faculty: <b class="border-dot">{{$headerData->faculty_name}}</b></div>
+                                                    <div class=""> Faculty: <b
+                                                            class="border-dot">{{ $headerData->faculty_name }}</b>
+                                                    </div>
                                                 </td>
                                                 <td colspan="2" align="right">
-                                                    <div class=""> Duration: <b class="border-dot">{{$headerData->duration}}</b></div>
+                                                    <div class=""> Duration: <b
+                                                            class="border-dot">{{ $headerData->duration }}</b>
+                                                    </div>
                                                 </td>
                                             </tr>
 
                                             <!-- Nature of Potential Injury: ( Tick &check; in the Boxes ) -->
                                             <tr>
                                                 <td colspan="5">
-                                                    <div class=""><strong>Undertaking:</strong> <span>(Tick &bull; in the Boxes)</span>
+                                                    <div class="" style="margin-top: 2rem">
+                                                        <strong>Undertaking:</strong>
+                                                        <span>(Tick &bull; in the Boxes)</span>
                                                     </div>
                                                 </td>
                                             </tr>
 
                                             <tr>
                                                 <td colspan="5">
-                                                    <div class="lihit14">I, the undersigned, have attended the EHS
+                                                    <div class="lihit14">I, the undersigned, have attended the
+                                                        EHS
                                                         Induction Training and understood the requirements of following
                                                         Health & Safety rules in work place and agreed to follow them.
                                                         My signature is appended below.
@@ -218,7 +232,7 @@
                                                                         <div style="display: block;"
                                                                             class="">
                                                                             {{-- {{ $item->topic_discusseds_description }} --}}
-                                                                            {!! in_array($item->topic_discusseds_id,explode(',',$headerData->topic_discusseds_ids))  ? '&bull; <span class="selected-OPT">'.$item->topic_discusseds_description.'</span> ' : '&ordm; '.$item->topic_discusseds_description !!}
+                                                                            {!! in_array($item->topic_discusseds_id, explode(',', $headerData->topic_discusseds_ids)) ? '&bull; <span class="selected-OPT">' . $item->topic_discusseds_description . '</span> ' : '&ordm; ' . $item->topic_discusseds_description !!}
                                                                             {{-- topic_discusseds_ids  topic_discusseds_id --}}
                                                                         </div>
                                                                     </td>
@@ -236,17 +250,17 @@
                                                     <table style="margin: 0;">
                                                         <tbody>
                                                             @foreach ($topicData as $index => $item)
-                                                            @if ($index >= 7)
-                                                            <tr>
-                                                                <td>
-                                                                    <div style="display: block;"
-                                                                        class="">
-                                                                        {!! in_array($item->topic_discusseds_id,explode(',',$headerData->topic_discusseds_ids))  ? '&bull; <span class="selected-OPT">'.$item->topic_discusseds_description.'</span> ' : '&ordm; '.$item->topic_discusseds_description !!}
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            @endif
-                                                            {{-- @if ($index = 13)
+                                                                @if ($index >= 7)
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div style="display: block;"
+                                                                                class="">
+                                                                                {!! in_array($item->topic_discusseds_id, explode(',', $headerData->topic_discusseds_ids)) ? '&bull; <span class="selected-OPT">' . $item->topic_discusseds_description . '</span> ' : '&ordm; ' . $item->topic_discusseds_description !!}
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endif
+                                                                {{-- @if ($index = 13)
                                                                 @break
                                                             @endif --}}
                                                             @endforeach
@@ -277,27 +291,55 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach (range(0,count(explode(',',$partisipanceData->id_no))-1) as $item)
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>{{explode(',',$partisipanceData->id_no)[$item]}}</td>
-                                                                <td>{{explode(',',$partisipanceData->participant_name)[$item]}}</td>
-                                                                <td>{{explode(',',$partisipanceData->age)[$item]}}</td>
-                                                                <td>{{explode(',',$partisipanceData->desgination)[$item]}}</td>
-                                                                <td>{{$partisipanceData->signature}}</td>
-                                                            </tr>
+                                                            @php $totalParticipance =  count(explode(',',$partisipanceData->id_no)); @endphp
+                                                            @foreach (range(0, $totalParticipance - 1) as $item)
+                                                                <tr>
+                                                                    <td>{{ $item + 1 }}</td>
+                                                                    <td>{{ explode(',', $partisipanceData->id_no)[$item] }}
+                                                                    </td>
+                                                                    <td>{{ explode(',', $partisipanceData->participant_name)[$item] }}
+                                                                    </td>
+                                                                    <td>{{ explode(',', $partisipanceData->age)[$item] }}
+                                                                    </td>
+                                                                    <td>{{ explode(',', $partisipanceData->desgination)[$item] }}
+                                                                    </td>
+                                                                    <td>{{ $partisipanceData->signature }}</td>
+                                                                </tr>
                                                             @endforeach
+                                                            {{-- if you don't want blank row then remov below (if) algo --}}
+                                                            @if ($totalParticipance < 15))
+                                                                @while ($totalParticipance < 15)
+                                                                <tr>
+                                                                    <td>{{ ++$totalParticipance }}</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                {{-- @php $totalParticipance++ @endphp --}}
+                                                                {{-- {{ dd($totalParticipance) }} --}}
+                                                                @endwhile
+                                                            @endif
+                                                            
                                                         </tbody>
+
                                                     </table>
                                                 </td>
                                             </tr>
 
                                             <tr>
                                                 <td class="" colspan="3">
-                                                    <div style="margin-top: 1rem;" class="">Signature of the Faculty: <b class="border-dot">{{$headerData->faculty_sign}}</b></div>
+                                                    <div style="margin-top: 2rem;" class="">Signature of
+                                                        the Faculty: <b
+                                                            class="border-dot">{{ $headerData->faculty_sign }}</b>
+                                                    </div>
                                                 </td>
                                                 <td colspan="2">
-                                                    <div style="margin-top: 1rem;" class="">Name & Sign. Of Site Safety In charge: <b class="border-dot">{{$headerData->site_safety_in_charge_name}} {{$headerData->site_safety_in_charge_sign}}</b></div>
+                                                    <div style="margin-top: 2rem;" class="">Name & Sign.
+                                                        Of Site Safety In charge: <b
+                                                            class="border-dot">{{ $headerData->site_safety_in_charge_name }}
+                                                            {{ $headerData->site_safety_in_charge_sign }}</b></div>
                                                 </td>
                                             </tr>
                                             <tr>

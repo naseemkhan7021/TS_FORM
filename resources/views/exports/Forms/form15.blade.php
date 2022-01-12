@@ -11,7 +11,8 @@
         }
 
         @page {
-            margin: .5rem;
+            margin: 0px;
+            margin-top: .5rem !important;
             display: flex;
             justify-content: center;
         }
@@ -22,7 +23,7 @@
 
         body {
             font-family: sans-serif;
-            margin: .5rem;
+            /* margin: .5rem; */
             display: flex;
             justify-content: center;
 

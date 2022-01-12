@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Forms15;
 
 use App\Exports\Forms\FormData15 as FormsFormData15;
 use App\Models\common_forms\Defaultdata;
+use App\Models\common_forms\Dept_Default_Docs;
 use App\Models\common_forms\PotentialInjuryto;
 use App\Models\forms_00\formdata_00;
 use App\Models\forms_15\Activity15;
@@ -312,6 +313,7 @@ class Formdata15 extends Component
         $formData = formdata_15::find($this->cid)->join('projects', 'projects.iproject_id', '=', 'formdata_15s.iproject_id_fk')->join('companies', 'companies.ibc_id', '=', 'formdata_15s.ibc_id_fk')->get();
         $defaultData = Defaultdata::find(1)->join('companies', 'companies.ibc_id', '=', 'defaultdatas.ibc_id_fk')->join('projects', 'projects.iproject_id', '=', 'defaultdatas.iproject_id_fk')->join('departments', 'departments.idepartment_id', '=', 'defaultdatas.idepartment_id_fk')->get();
         $data = [
+            'formHeader'=>Dept_Default_Docs::find($this->ddd_id_fk),
             'formData' => $formData[0],
             'defaultData' => $defaultData[0],
             // 'projectData' => Project::where(['projects.bactive' => '1', 'projects.user_created' => $this->userID])->get(),
@@ -343,7 +345,7 @@ class Formdata15 extends Component
         //     'Content-Disposition' => 'inline; filename="test.pdf"'
         // ];
         $pdf = PDF::loadView('exports.Forms.form15', $data)->setPaper('A4', 'portrait')->output(); //
-        return response()->streamDownload(fn () => print($pdf),'test.pdf');
+        return response()->streamDownload(fn () => print($pdf),'form15.pdf');
         // return response()->stream(fn () => $pdf,200, $header); 
         // return $pdf->stream('test.pdf',["Attachment" => false]);
         // return response()->view('exports.Forms.form15',$data,200,$header);

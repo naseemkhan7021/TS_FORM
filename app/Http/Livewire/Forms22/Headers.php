@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Forms22;
 
+use App\Models\common_forms\Dept_Default_Docs;
 use App\Models\common_forms\Projects;
 use App\Models\forms_00\formdata_00;
 use App\Models\forms_22\formdata_22_header;
@@ -230,13 +231,17 @@ class Headers extends Component
     {
         # code...
         // $defaultData = Defaultdata::find(1)->join('companies', 'companies.ibc_id', '=', 'defaultdatas.ibc_id_fk')->join('projects', 'projects.iproject_id', '=', 'defaultdatas.iproject_id_fk')->join('departments', 'departments.idepartment_id', '=', 'defaultdatas.idepartment_id_fk')->get();
+        // $formHeader = Dept_Default_Docs::find($this->ddd_id_fk);
+
+        // dd($formHeader);
         $data = [
+            'formHeader'=>Dept_Default_Docs::find($this->ddd_id_fk),
             'headerData'=>formdata_22_header::find($this->cid)->join('projects', 'projects.iproject_id', '=', 'formdata_22_headers.iproject_id_fk')->get()[0],
             'partisipanceData' => formdata_22_participant::where('formdata_22s_id_fk', '=', $this->cid)->get()[0],
             'topicData'=>topic_discussed::get(),
         ];
         $pdf = PDF::loadView('exports.Forms.form22', $data)->setPaper('A4', 'portrait')->output(); //
-        return response()->streamDownload(fn () => print($pdf),'test.pdf');
+        return response()->streamDownload(fn () => print($pdf),'form22.pdf');
 
     }
 

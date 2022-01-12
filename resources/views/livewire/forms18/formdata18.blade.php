@@ -13,7 +13,7 @@ if ($date_of_refilling) {
     $this->due_for_next_refilling = Carbon\Carbon::parse($date_of_refilling)
         ->addYear() //addDay(364)
         ->format('Y-m-d');
-        // dd($this->due_for_next_refilling);
+    // dd($this->due_for_next_refilling);
 }
 if ($date_of_inspection) {
     # code...
@@ -34,8 +34,8 @@ if ($date_of_inspection) {
             <div class="text-sm-left">
                 <button class="btn btn-danger waves-effect waves-light mb-2" wire:click="OpenAddCountryModal()">
                     {{ $button_title }} </button>
-                <button type="button" class="btn btn-success waves-effect waves-light mb-2 mr-1"><i
-                        class="mdi mdi-cog"></i></button>
+                {{-- <button type="button" class="btn btn-success waves-effect waves-light mb-2 mr-1">Export PDF</button> --}}
+                {!! count($form18Data) > 0 ? '<button type="button" class="btn btn-success waves-effect waves-light mb-2 mr-1" wire:click="ganaratePDF()">Export PDF</button>' : '<button type="button" class="btn btn-primary waves-effect waves-light mb-2 mr-1">← Add A Record in this Project to export pdf 😊</button>' !!}
             </div>
         </div>
         <div class="col-md-4">
@@ -66,10 +66,10 @@ if ($date_of_inspection) {
                         <td>{{ $row->sproject_name }}</td>
                         <td>{{ $row->name_of_responsible_person }}</td>
                         {{-- date format d-M-Y -->  26(number day)-Dec(char moth)-2021 --}}
-                        <td>{{ Carbon\Carbon::parse($row->date_of_refilling)->format('d-M-Y') }}</td> 
-                        <td>{{ Carbon\Carbon::parse($row->date_of_inspection)->format('d-M-Y')  }}</td>
+                        <td>{{ Carbon\Carbon::parse($row->date_of_refilling)->format('d-M-Y') }}</td>
+                        <td>{{ Carbon\Carbon::parse($row->date_of_inspection)->format('d-M-Y') }}</td>
                         <td>{{ Carbon\Carbon::parse($row->due_for_next_refilling)->format('d-M-Y') }}</td>
-                        <td>{{ Carbon\Carbon::parse($row->due_for_next_inspection)->format('d-M-Y')  }}</td>
+                        <td>{{ Carbon\Carbon::parse($row->due_for_next_inspection)->format('d-M-Y') }}</td>
                         <td>{{ $row->created_at->diffForHumans() }}</td>
                         <td>
                             <div class="btn-group">
@@ -77,18 +77,18 @@ if ($date_of_inspection) {
                                     wire:click="OpenEditCountryModal({{ $row->formdata_18s_id }})">Edit</button>
                                 <button class="btn btn-danger btn-sm"
                                     wire:click="deleteConfirm({{ $row->formdata_18s_id }})">Delete</button>
-    
+
                             </div>
                         </td>
-    
+
                     </tr>
-    
+
                 @empty
                     <tr>
                         <td colspan="9">'{{ $data_not_found }}</td>
                     </tr>
                 @endforelse
-    
+
             </tbody>
         </table>
     </div>
