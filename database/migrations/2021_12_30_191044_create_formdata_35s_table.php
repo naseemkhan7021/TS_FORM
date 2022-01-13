@@ -37,10 +37,11 @@ class CreateFormdata35sTable extends Migration
                 $table->string('contractor_name')->nullable(true);
                 $table->string('supervisor_name')->nullable(true);
                 $table->string('no_of_people_working')->nullable(true);
-                $table->mediumText('form35_checkpoint_ids')->nullable(true);
-                $table->mediumText('activity_ids')->nullable(true);
-                $table->mediumText('form35_checkpoint_remark')->nullable(true);
-                $table->mediumText('exact_location_nature_of_work_ids')->nullable(true);
+                $table->string('form35_checkpoint_ids',1000)->nullable(true);
+                // $table->string('activity_ids')->nullable(true);
+                $table->string('form35_checkpoint_remarks',1000);
+                $table->string('exact_location_nature_of_work_ids',1000)->nullable(true);
+
                 $table->string('name_of_permit_issuing_authority')->nullable(true);
                 $table->boolean('sing_of_permit_issuing_authority')->default(0);
 

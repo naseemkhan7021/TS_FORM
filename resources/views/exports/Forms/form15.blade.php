@@ -20,7 +20,6 @@
         .bdr1b {
             border: 1px solid black;
         }
-
         body {
             font-family: sans-serif;
             /* margin: .5rem; */
@@ -116,7 +115,7 @@
 <body>
     <table id="parant">
         {{-- {{ dd($formData,$defaultData) }} --}}
-        {{-- {{ dd($NatureofpotentialData,isset(explode(',',$formData->nature_of_potential_injuries_ids)[0]) ? 'ok' : 'nothere') }} --}}
+        {{-- {{ dd($NatureofpotentialData,isset(explode(',',$formDat) ? 'ok' : 'nothere') }} --}}
         {{-- {{ dd(in_array('1',explode(',',$formData->nature_of_potential_injuries_ids))) }} --}}
         <tbody>
             <tr>

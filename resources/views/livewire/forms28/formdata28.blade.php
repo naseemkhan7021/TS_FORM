@@ -8,6 +8,7 @@ if ($iproject_id_fk) {
     $this->ibc_id_fk = $sproject_location_obj[0]->ibc_id_fk;
     $this->idepartment_id_fk = $sproject_location_obj[0]->idepartment_id_fk;
 }
+
 // if ($date_of_refilling) {
 //     # code...
 //     $this->due_for_next_refilling = Carbon\Carbon::parse($date_of_refilling)

@@ -1,333 +1,214 @@
-<div class="modal fade addForm17" wire:ignore.self tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade addForm35" wire:ignore.self tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add New Investigation</h5>
-                <button wire:click='clearallValuesandValidation()' type="button" class="close"
-                    data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title" id="exampleModalLabel">Add New WORK PERMIT</h5>
+                <button wire:click='clearValidationf()' type="button" class="close" data-dismiss="modal"
+                    aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <form wire:submit.prevent="save" class="row g-3">
 
-                    {{-- formdata_16s detail start --}}
+                    {{-- project detail start --}}
                     <div class="col-md-6 col-sm-6">
                         <div class="form-group">
-                            <label for="project"
-                                class="form-label @error('formdata_16s_id_fk') text-danger @enderror">Name
-                                @error('formdata_16s_id_fk') <i class="text-danger fas fa-times-circle"></i>@enderror
-                            </label>
+                            <label for="project name"
+                                class="form-label @error('iproject_id_fk') text-danger @enderror">Project
+                                @error('iproject_id_fk') <i
+                                    class="text-danger fas fa-times-circle"></i>@enderror</label>
 
-                            <select wire:model="formdata_16s_id_fk"
-                                class="form-control @error('formdata_16s_id_fk') border-danger @enderror">
-                                <option selected disabled value="0">Injured Victim Name</option>
-                                @foreach ($form16data as $item)
-                                    <option value="{{ $item->formdata_16s_id }}">{{ $item->injuredvictim_name }}
-                                    </option>
+                            <select wire:model="iproject_id_fk" class="form-control">
+                                <option selected disabled value="0">Project name</option>
+                                @foreach ($projectData as $item)
+                                    <option value="{{ $item->iproject_id }}">{{ $item->sproject_name }}</option>
                                 @endforeach
                             </select>
-                            {{-- {{ $formdata_16s_id_fk }} --}}
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-3 col-sm-6">
-                        <div class="form-controp">
-
-                            <label for="" class="">Injury To</label>
-                            {{-- <input type="text" class="form-control" placeholder="Injury to"
-                            wire:model="injury_to_f16.potential_injurytos_other_f16" readonly> --}}
-                            <div class="form-control">{{ $injury_to_f16 }}
-                                {{ $potential_injurytos_other_f16 ? '- ' . $potential_injurytos_other_f16 : '' }}
-                            </div>
-
+                            {{-- {{ $iproject_id_fk }} --}}
                         </div>
                     </div>
 
                     <div class="col-md-3 col-sm-6">
-                        <div class="form-controp">
-                            <label for="" class="">ID Card No</label>
-                            {{-- <input type="text" class="form-control" placeholder="Id No." wire:model="eml_id_no_f16"
-                                readonly> --}}
-                            <div class="form-control"> {{ $eml_id_no_f16 }}</div>
-                            {{-- <span class="text-danger"> 
-                                    @error('sproject_location')
-                                        {{ $message }}@enderror</span> --}}
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6">
-                        {{-- <div class="row g-3 h-100 align-items-center">
-                            <div class="col-md-2">
-                                <div class="custom-file">
-                                    <input wire:model='inv_photos' type="file" class="custom-file-input form-control"
-                                        id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                                    <label class="custom-file-label" for="inputGroupFile01"></label>
-                                </div>
-                            </div>
-                            <div class="col-md-10">
-                                <div class="form-control" style="height: 4rem;">
-                                    @if (!$inv_photos)
-                                        img prev
-
-                                    @endif
-                                    @foreach ($inv_photos as $key => $photo)
-                                        <img src="{{ $photo->temporaryUrl() }}" alt="{{ $photo->temporaryUrl() }}"
-                                            class="h-100" style="object-fit: contain">
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div> --}}
-                    </div>
-
-                    <div class="col-md-3 col-sm-6">
-                        <div class="form-controp">
-                            <label for="" class="">Designation</label>
-                            {{-- <input type="text" class="form-control" placeholder="designation"
-                                wire:model="designation_f16" readonly> --}}
-                            <div class="form-control"> {{ $designation_f16 }}</div>
-                            {{-- <span class="text-danger"> 
-                                    @error('sproject_location')
-                                        {{ $message }}@enderror</span> --}}
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6">
-                        <div class="form-controp">
-                            <label for="" class="">Incident Date</label>
-                            {{-- <input type="text" class="form-control" placeholder="Id No."
-                                wire:model="doincident_dt_f16" readonly> --}}
-                            <div class="form-control"> {{ $doincident_dt_f16 }}</div>
-                            {{-- <span class="text-danger"> 
-                                    @error('sproject_location')
-                                        {{ $message }}@enderror</span> --}}
-                        </div>
-                    </div>
-
-                    <hr class="text-secondary w-100">
-
-                    <div class="col-12">
                         <div class="form-group">
-                            <label class="form-label @error('incident_description') text-danger @enderror"
-                                for="incidentDescription">Description Of Incident: (Attach sketch and additional sheets,
-                                if necessary) @error('incident_description') <i
+
+                            <label for="" class=" @error('sproject_location') text-danger @enderror">Location
+                                @error('sproject_location') <i
                                     class="text-danger fas fa-times-circle"></i>@enderror</label>
-                            <textarea wire:model='incident_description'
-                                class="form-control @error('incident_description') border-danger @enderror"
-                                id="incidentDescription" rows="3" maxlength="500"></textarea>
+                            <input type="text" class="form-control" placeholder="Location"
+                                wire:model="sproject_location" readonly>
+                            {{-- <span class="text-danger"> 
+                                    @error('sproject_location')
+                                        {{ $message }}@enderror</span> --}}
                         </div>
                     </div>
 
-                    <div class="col-12">
+                    <div class="col-md-2 col-sm-6">
                         <div class="form-group">
-                            {{-- <div class="custom-file">
-                                <input wire:model='inv_photos' type="file" class="custom-file-input form-control"
-                                    id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                                <label class="custom-file-label" for="inputGroupFile01"></label>
-                            </div> --}}
-                            <label for="invPhoto">Click to Upload file <b class="text-danger"> click </b></label>
-                            <input wire:model='inv_photos' type="file" id="invPhoto" hidden>
-                            <div class="form-control" style="height: 10rem; overflow-y: auto;">
-                                @if (!$inv_photos)
-                                    Image priew show hare
+                            <label for="" class="@error('fille_date') text-danger @enderror">Data/Time
+                                @error('fille_date') <i class="text-danger fas fa-times-circle"></i>@enderror</label>
+                            <input type="date" class="form-control" wire:model="fille_date" readonly>
 
-                                @endif
-                                <div class="row">
-                                    @foreach ($inv_photos as $key => $photo)
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <label for="add_parmitNo" class="@error('parmitNo') text-danger @enderror">Permit No
+                            </label>
+                            <input id="add_parmitNo" type="text"
+                                class="form-control @error('parmitNo') border border-danger @enderror"
+                                placeholder="Permit No" wire:model="parmitNo">
+                        </div>
+                    </div>
 
-                                        <div class="col-md-4" style="margin-top: .5rem">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <a href="{{ $photo->temporaryUrl() }}" class=" d-block">
-                                                        <img src="{{ $photo->temporaryUrl() }}"
-                                                            alt="{{ $photo->temporaryUrl() }}" class="img-fluid"
-                                                            style="object-fit: contain">
-                                                    </a>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="form-group">
-                                                        <label for="img title"> Image Title</label>
-                                                        <input type="text" class="form-control" placeholder="Img title"
-                                                            wire:model='inv_imgTitles.{{ $key }}'>
-                                                            <div class="mt-2">
-                                                                    <input type="button" wire:click='removeImg({{ $key }})'
-                                                                        class="btn btn-outline-danger btn-sm rounded w-100" value="remove">
-                                                            </div>
-                                                    </div>
-                                                </div>
-                                                
+                    {{-- exact_location_nature_of_work_ids --}}
+                    <div class="col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <div class="">
+                                <label for="" title="Exact Location Nature Of Work to be carried out"
+                                    class="form-label @error('exact_location_nature_of_work_ids') text-danger @enderror">Nature Of
+                                    Work</label>
+                                <select size="4" data-placeholder="Select Activity" wire:model='exact_location_nature_of_work_ids'
+                                    class="form-control custom-select @error('exact_location_nature_of_work_ids') border border-danger @enderror"
+                                    multiple>
+                                    @foreach ($activity01Data as $item)
+                                        <option wire:key='add_activity_{{ $item->activity_id }}'
+                                            value="{{ $item->activity_id }}">
+                                            {{ $item->activity_description }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-group">
+                            {{-- dow --> Date Of Work --}}
+                            <label for="add_dow" class="@error('working_dt') text-danger @enderror">Date of Working
+                                @error('working_dt') <i class="text-danger fas fa-times-circle"></i>@enderror</label>
+                            <input id="add_dow" type="date" class="form-control" wire:model="working_dt">
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label for="" class="@error('working_t_F' && 'working_t_F') text-danger @enderror">Time of
+                                working </label>
+
+                            <div class="form-inline">
+                                <b class="text-dark">From</b><input id="" type="time"
+                                    class="form-control mx-2 @error('working_t_F') border border-danger @enderror"
+                                    wire:model="working_t_F">
+                                <b class="text-dark">To</b><input id="" type="time"
+                                    class="form-control mx-2 @error('working_t_F') border border-danger @enderror"
+                                    wire:model="working_t_T">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5"></div>
+
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label for="add_nameofcontractor" title="Name of Contractor"
+                                class="@error('contractor_name') text-danger @enderror">Name of Contractor</label>
+                            <input id="add_nameofcontractor" type="text"
+                                class="form-control @error('contractor_name') border border-danger @enderror"
+                                wire:model="contractor_name">
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label for="add_nameofsupervisor" title="Name of Supervisor"
+                                class="@error('supervisor_name') text-danger @enderror">Name of Supervisor</label>
+                            <input id="add_nameofsupervisor" type="text"
+                                class="form-control @error('supervisor_name') border border-danger @enderror"
+                                wire:model="supervisor_name">
+
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label for="add_noofpopworking" title="No. of people working"
+                                class="@error('no_of_people_working') text-danger @enderror">No. of people
+                                working</label>
+                            <input id="add_noofpopworking" type="number"
+                                class="form-control @error('no_of_people_working') border border-danger @enderror"
+                                wire:model="no_of_people_working">
+
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <h5>To carry out work, the following points are to be checked:</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row justify-content-between ">
+                                    <div class="col-md-6">
+                                        <h4>Checkpoints</h4>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h4>Y/N</h4>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h4>Remark</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row justify-content-between ">
+                                    <div class="col-md-6">
+                                        <h4>Checkpoints</h4>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h4>Y/N</h4>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h4>Remark</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            @foreach ($checkpointData as $index => $item)
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{-- <div class="form-inline my-1 ml-2"> --}}
+                                        <div class="row justify-content-between ">
+
+                                            <div class="col-md-6">
+                                                <label
+                                                    class="ml-3 form-check-label @error('form35_checkpoint_ids') text-danger @enderror"
+                                                    for="add_point_{{ $item->form35_checkpoints_id }}_add">
+                                                    {{ $item->form35_checkpoints_desc }}
+                                                </label>
                                             </div>
-                                            {{-- {{$key}} --}}
-
-                                            
+                                            <div class="col-md-3">
+                                                <input wire:model='form35_checkpoint_ids' class="m-0 form-check-input"
+                                                    type="checkbox" value="{{ $item->form35_checkpoints_id }}"
+                                                    id="add_point_{{ $item->form35_checkpoints_id }}_add">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="text" placeholder="remark" class="form-control"
+                                                    wire:model='form35_checkpoint_remarks.{{ $index }}'>
+                                            </div>
                                         </div>
+                                        {{-- </div> --}}
 
-                                        {{-- <img src="{{ $photo->temporaryUrl() }}" alt="{{ $photo->temporaryUrl() }}"
-                                        class="h-100" style="object-fit: contain"> --}}
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label class="form-label @error('coworker_statement') text-danger @enderror"
-                                for="coworkerStatement">Statement of Co-Worker(s) @error('coworker_statement')
-                                <i class="text-danger fas fa-times-circle"></i>@enderror
-                            </label>
-                            <textarea wire:model='coworker_statement'
-                                class="form-control @error('coworker_statement') border-danger @enderror"
-                                id="coworkerStatement" rows="3" maxlength="500"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label class="form-label @error('concernedsupervisor_statement') text-danger @enderror"
-                                for="supervisorStatement">Statement of Concerned Supervisor
-                                @error('concernedsupervisor_statement')
-                                <i class="text-danger fas fa-times-circle"></i>@enderror
-                            </label>
-                            <textarea wire:model='concernedsupervisor_statement'
-                                class="form-control @error('concernedsupervisor_statement') border-danger @enderror"
-                                id="supervisorStatement" rows="3" maxlength="500"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="col-12">
-                        {{-- 8.	Immediate causes: What substandard actions & conditions caused or could have caused the event --}}
-                        <div class="form-group">
-                            <label class="form-label @error('substandaction_id_fk') text-danger @enderror"
-                                for="supervisorStatement">Immediate causes: What substandard actions & conditions caused
-                                or could have caused the event @error('substandaction_id_fk')<i
-                                    class="text-danger fas fa-times-circle"></i>@enderror
-                            </label>
-                            <div class="row text-center">
-                                <div class="col-md-6 col-sm-12 border @error('substandaction_ids') border-danger @enderror">
-                                    <label for="actions" class="@error('substandaction_ids') text-danger @enderror"><b><u>SUBSTANDARD
-                                                ACTIONS</u></b></label>
-
-                                    <div class="text-justify">
-                                        @foreach ($substandactiondata as $item)
-
-                                            <div class="form-check my-1 ml-2">
-                                                <input wire:model.defer='substandaction_ids' class="form-check-input"
-                                                    type="checkbox" value="{{ $item->substandaction_id }}"
-                                                    id="subaction{{ $item->substandaction_id }}_add">
-                                                <label class="ml-3 form-check-label"
-                                                    for="subaction{{ $item->substandaction_id }}_add">
-                                                    {{ $item->substandaction_id }}.
-                                                    {{ $item->substandaction_description }}
-                                                </label>
-                                            </div>
-                                        @endforeach
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-sm-12 border @error('substandcondition_ids') border-danger @enderror">
-                                    <label for="condition" class="@error('substandcondition_ids') text-danger @enderror"><b><u>SUBSTANDARD
-                                                CONDITIONS</u></b></label>
-
-                                    <div class="text-justify">
-                                        @foreach ($substandconditiondata as $item)
-                                            {{-- <ul>
-                                                        <li><input type="checkbox" id="" v></li>
-                                                    </ul> --}}
-
-                                            <div class="form-check my-1 ml-2">
-                                                <input wire:model.defer='substandcondition_ids' class="form-check-input"
-                                                    type="checkbox" value="{{ $item->substandcondition_id }}"
-                                                    id="subcondition{{ $item->substandcondition_id }}_add">
-                                                <label class="ml-3 form-check-label"
-                                                    for="subcondition{{ $item->substandcondition_id }}_add">
-                                                    {{ $item->substandcondition_id }}.
-                                                    {{ $item->substandcondition_description }}
-                                                </label>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label class="form-label @error('root_cause') text-danger @enderror" for="rootCouse">What
-                                are the root causes of this Incident @error('root_cause')
-                                <i class="text-danger fas fa-times-circle"></i>@enderror
-                            </label>
-                            <textarea wire:model='root_cause'
-                                class="form-control @error('root_cause') border-danger @enderror" id="rootCouse"
-                                rows="3" maxlength="500"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label class="form-label @error('remedial_actions') text-danger @enderror"
-                                for="remedialAction">What remedial actions have been taken to prevent recurrence
-                                ?@error('remedial_actions')
-                                <i class="text-danger fas fa-times-circle"></i>@enderror
-                            </label>
-                            <textarea wire:model='remedial_actions'
-                                class="form-control @error('remedial_actions') border-danger @enderror"
-                                id="remedialAction" rows="3" maxlength="500"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label class="form-label @error('comment_remedial_actions') text-danger @enderror"
-                                for="commentRemedialAction">Comments on remedial actions taken
-                                @error('comment_remedial_actions')
-                                <i class="text-danger fas fa-times-circle"></i>@enderror
-                            </label>
-                            <textarea wire:model='comment_remedial_actions'
-                                class="form-control @error('comment_remedial_actions') border-danger @enderror"
-                                id="commentRemedialAction" rows="3" maxlength="500"></textarea>
+                            @endforeach
                         </div>
                     </div>
 
 
                     <hr class="text-secondary w-100">
-                    {{-- last info start --}}
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="siteSefetyName"
-                                class="form-label  @error('site_safety_in_charge_name') text-danger @enderror"
-                                title="Completed by (Site Engineer) Name">Site Safety In charge Name
-                                @error('site_safety_in_charge_name') <i
-                                    class="text-danger fas fa-times-circle"></i>@enderror</label>
-                            <input wire:model='site_safety_in_charge_name' type="text"
-                                class="form-control @error('site_safety_in_charge_name') border-danger @enderror"
-                                id="siteSefetyName">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="siteSefetySignature"
-                                class="form-label  @error('site_safety_in_charge_signature') text-danger @enderror"
-                                title="Completed by (Site Engineer) signature">Signalture
-                                @error('site_safety_in_charge_signature') <i
-                                    class="text-danger fas fa-times-circle"></i>@enderror</label>
-                            <input wire:model='site_safety_in_charge_signature' type="text"
-                                class="form-control @error('site_safety_in_charge_signature') border-danger @enderror"
-                                id="siteSefetySignature">
-                        </div>
-                    </div>
-
-
-
 
 
                     <div class="col-12">
                         <div class="form-group">
-                            <button wire:click='clearallValuesandValidation()' type="button"
-                                class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+                            <button wire:click='clearValidationf()' type="button" class="btn btn-danger btn-sm"
+                                data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary btn-sm">Save</button>
                         </div>
                     </div>

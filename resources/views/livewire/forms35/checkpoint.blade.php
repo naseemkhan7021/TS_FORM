@@ -40,7 +40,7 @@
                     </td>
                 </tr>
             @empty
-                <tr><td colspan="5">'{{ $data_not_found }}</td></tr>
+                <tr><td colspan="15">'{{ $data_not_found }}</td></tr>
             @endforelse
 
         </tbody>

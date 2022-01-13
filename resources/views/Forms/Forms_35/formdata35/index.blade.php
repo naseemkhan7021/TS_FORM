@@ -1,12 +1,13 @@
-@extends('template.vertical', ['title' => 'Forms 35 - Form35data'])
+@extends('template.vertical', ['title' => 'Forms 35 - WORK PERMIT '])
 @section('content')
 
     <div class="container-fluid pl-3 pr-3">
 
         <!-- start page title -->
-        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 35 Form35data' , 'page_title' => 'Form 35
-        Form35data' ])
+        @livewire('page-title', [ 'sub_title' => 'FORMS' , 'active_title' => 'Form 35 WORK PERMIT ' , 'page_title' => 'Form 35
+        WORK PERMIT ' ])
         @livewire('forms35.formdata35')
+        {{-- <livewire:forms35.formdata35 /> --}}
         <!-- end page title -->
 
 

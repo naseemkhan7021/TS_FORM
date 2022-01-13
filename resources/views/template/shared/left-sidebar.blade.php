@@ -566,7 +566,7 @@
                     </li>
 
                     {{-- form 35  --}}
-                    {{-- <li>
+                    <li>
                         <a href="#sidebarForm35" data-toggle="collapse">
                             <i data-feather="users"></i>
                             <span> Form 35 </span>
@@ -582,7 +582,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </li> --}}
+                    </li>
 
                     {{-- Form 66--}}
                     <li>

@@ -18,7 +18,7 @@ class Formdata18 extends Component
     public $extinguisher_no, $location, $type, $size, $date_of_refilling, $date_of_inspection, $pressure_gauge_or_safety_pin_status, $seal_intact_and_not_corroded, $name_of_responsible_person, $due_for_next_refilling, $due_for_next_inspection, $inspected_by_name,$inspected_by_signature,$inspected_by_designation,$inspected_by_date;
     public $iproject_id_fk,$ibc_id_fk, $idepartment_id_fk;
     public $cid,$searchQuery, $sproject_location,$ddd_id_fk,$userID;
-    public $form18Data;
+    public $print_disable;
 
     public function selectedProjectID($id)
     {
@@ -43,6 +43,7 @@ class Formdata18 extends Component
             ->where(['formdata_18s.bactive' => '1', 'formdata_18s.user_created' => $this->userID])
             ->when(session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*', function ($data) {
                 # code...
+                $this->print_disable = false;
                 $data->where('iproject_id_fk', '=', session('globleSelectedProjectID'))
                     ->where(['formdata_18s.bactive' => '1', 'formdata_18s.user_created' => $this->userID]);
             })
@@ -53,8 +54,9 @@ class Formdata18 extends Component
                     ->orWhere('name_of_responsible_person', 'like', '%' . $this->searchQuery . '%');
             })
             ->orderBy('formdata_18s_id')->get();
-            $this->form18Data = $form18Data;
-
+            $this->print_disable = session('globleSelectedProjectID') && session('globleSelectedProjectID') == '*' ? true : false;
+            // $this->form18Data = $form18Data;
+            // dd($form18Data);
             $projectData = Projects::where(['projects.bactive'=> '1','projects.user_created'=>$this->userID])->get();
         return view('livewire.forms18.formdata18', [
             'form18Data' => $form18Data,'projectData'=>$projectData
@@ -78,7 +80,7 @@ class Formdata18 extends Component
         $this->due_for_next_inspection = '';
         $this->inspected_by_signature='';
         $this->inspected_by_designation='';
-        $this->inspected_by_date=Carbon::now()->format('Y-m-d');
+        $this->inspected_by_date=Carbon::now()->format(env('DATE_FORMAT_YMD'));
         $this->inspected_by_name='';
 
         // dd($this->inspected_by_date);
@@ -236,15 +238,16 @@ class Formdata18 extends Component
 
     public function ganaratePDF()
     {
+        if (session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*') {
+            # code...
+            $form18Data = Forms_18Formdata18::join('projects', 'projects.iproject_id', '=', 'formdata_18s.iproject_id_fk')
+            ->where(['formdata_18s.bactive' => '1', 'formdata_18s.user_created' => $this->userID,'formdata_18s.iproject_id_fk'=>session('globleSelectedProjectID')])->get();
+        }
+        // dd($form18Data);
 
-        # code...
-        // $defaultData = Defaultdata::find(1)->join('companies', 'companies.ibc_id', '=', 'defaultdatas.ibc_id_fk')->join('projects', 'projects.iproject_id', '=', 'defaultdatas.iproject_id_fk')->join('departments', 'departments.idepartment_id', '=', 'defaultdatas.idepartment_id_fk')->get();
-        // $formHeader = Dept_Default_Docs::find($this->ddd_id_fk);
-
-        // dd($this->form18Data[0]);
         $data = [
             'formHeader'=>Dept_Default_Docs::find($this->ddd_id_fk),
-            'form18Data'=>$this->form18Data,
+            'form18Data'=>$form18Data,
         ];
         $pdf = PDF::loadView('exports.Forms.form18', $data)->setPaper('A4', 'landscape')->output(); //
         return response()->streamDownload(fn () => print($pdf),'form18.pdf');

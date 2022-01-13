@@ -35,7 +35,7 @@ if ($date_of_inspection) {
                 <button class="btn btn-danger waves-effect waves-light mb-2" wire:click="OpenAddCountryModal()">
                     {{ $button_title }} </button>
                 {{-- <button type="button" class="btn btn-success waves-effect waves-light mb-2 mr-1">Export PDF</button> --}}
-                {!! count($form18Data) > 0 ? '<button type="button" class="btn btn-success waves-effect waves-light mb-2 mr-1" wire:click="ganaratePDF()">Export PDF</button>' : '<button type="button" class="btn btn-primary waves-effect waves-light mb-2 mr-1">← Add A Record in this Project to export pdf 😊</button>' !!}
+                {!! count($form18Data) > 0 ? ( $print_disable == false ? '<button type="button" class="btn btn-success waves-effect waves-light mb-2 mr-1" wire:click="ganaratePDF()">Export PDF</button>' : '<button type="button" class="btn btn-primary waves-effect waves-light mb-2 mr-1" >Export one Project at a time 😊</button>') : '<button type="button" class="btn btn-primary waves-effect waves-light mb-2 mr-1">← Add A Record in this Project to export pdf 😊</button>' !!}
             </div>
         </div>
         <div class="col-md-4">
@@ -66,10 +66,10 @@ if ($date_of_inspection) {
                         <td>{{ $row->sproject_name }}</td>
                         <td>{{ $row->name_of_responsible_person }}</td>
                         {{-- date format d-M-Y -->  26(number day)-Dec(char moth)-2021 --}}
-                        <td>{{ Carbon\Carbon::parse($row->date_of_refilling)->format('d-M-Y') }}</td>
-                        <td>{{ Carbon\Carbon::parse($row->date_of_inspection)->format('d-M-Y') }}</td>
-                        <td>{{ Carbon\Carbon::parse($row->due_for_next_refilling)->format('d-M-Y') }}</td>
-                        <td>{{ Carbon\Carbon::parse($row->due_for_next_inspection)->format('d-M-Y') }}</td>
+                        <td>{{ Carbon\Carbon::parse($row->date_of_refilling)->format(env('DATE_FORMAT_YMD')) }}</td>
+                        <td>{{ Carbon\Carbon::parse($row->date_of_inspection)->format(env('DATE_FORMAT_YMD')) }}</td>
+                        <td>{{ Carbon\Carbon::parse($row->due_for_next_refilling)->format(env('DATE_FORMAT_YMD')) }}</td>
+                        <td>{{ Carbon\Carbon::parse($row->due_for_next_inspection)->format(env('DATE_FORMAT_YMD')) }}</td>
                         <td>{{ $row->created_at->diffForHumans() }}</td>
                         <td>
                             <div class="btn-group">

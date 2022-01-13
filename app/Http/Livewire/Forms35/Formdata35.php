@@ -2,21 +2,24 @@
 
 namespace App\Http\Livewire\Forms35;
 
+use App\Models\common_forms\Projects;
+use App\Models\forms_01\activity;
+use App\Models\forms_35\form35_checkpoint;
 use App\Models\forms_35\formdata_35;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-return view('livewire.forms35.formdata35');
+// return view('livewire.forms35.formdata35');
 class Formdata35 extends Component
 {
 
     use WithPagination;
     protected $listeners = ['delete', 'selectedProjectID'];
-    public $form35_checkpoints_desc, $form35_checkpoints_abbr;
-    public $parmitNo, $working_dt, $working_t_F, $working_t_T, $contractor_name, $supervisor_name, $no_of_people_working, $form35_checkpoint_ids, $activity_ids, $form35_checkpoint_remark, $exact_location_nature_of_work_ids, $name_of_permit_issuing_authority, $sing_of_permit_issuing_authority, $name_permit_receiver, $sing_permit_receiver, $name_safety_representative, $sing_safety_representative, $name_of_permit_issuing_receiver_if_complete, $sing_of_permit_issuing_receiver_if_complete, $permit_issuing_receiver_if_complete_sing_dt, $name_of_permit_issuing_authority_if_complete, $sing_of_permit_issuing_authority_if_complete, $permit_issuing_authority_if_complete_sing_dt, $name_of_site_safety_officer, $sing_of_site_safety_officer, $permit_close_or_continued, $tags_removed;
+    public $parmitNo, $working_dt, $working_t_F, $working_t_T, $contractor_name, $supervisor_name, $no_of_people_working, $form35_checkpoint_ids, $activity_ids, $form35_checkpoint_remarks, $exact_location_nature_of_work_ids, $name_of_permit_issuing_authority, $sing_of_permit_issuing_authority, $name_permit_receiver, $sing_permit_receiver, $name_safety_representative, $sing_safety_representative, $name_of_permit_issuing_receiver_if_complete, $sing_of_permit_issuing_receiver_if_complete, $permit_issuing_receiver_if_complete_sing_dt, $name_of_permit_issuing_authority_if_complete, $sing_of_permit_issuing_authority_if_complete, $permit_issuing_authority_if_complete_sing_dt, $name_of_site_safety_officer, $sing_of_site_safety_officer, $permit_close_or_continued, $tags_removed;
 
-    public $ibc_id_fk, $idepartment_id_fk, $iproject_id_fk, $ddd_id_fk, $userID;
+    public $ibc_id_fk, $idepartment_id_fk, $iproject_id_fk,$sproject_location, $ddd_id_fk, $userID,$fille_date;
     public $searchQuery;
 
     public $cid;
@@ -33,12 +36,13 @@ class Formdata35 extends Component
         $this->iproject_id_fk = session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*' ? session('globleSelectedProjectID') : 0;
 
         $this->userID = Auth::user()->id;
+        $this->ddd_id_fk = 35;
     }
 
     public function render()
     {
 
-        $checkpointsData = formdata_35::join('projects', 'projects.iproject_id', '=', 'formdata_35s.iproject_id_fk')
+        $formData35 = formdata_35::join('projects', 'projects.iproject_id', '=', 'formdata_35s.iproject_id_fk')
             ->where(['formdata_35s.bactive' => '1', 'formdata_35s.user_created' => $this->userID])
             ->when(session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*', function ($data) {
                 # code...
@@ -47,14 +51,17 @@ class Formdata35 extends Component
             })
             ->when($this->searchQuery != '', function ($query) {
                 $query->where('bactive', '1')
-                    ->where('form35_checkpoints_desc', 'like', '%' . $this->searchQuery . '%')
-                    ->orWhere('form35_checkpoints_abbr', 'like', '%' . $this->searchQuery . '%');
+                    ->where('contractor_name', 'like', '%' . $this->searchQuery . '%')
+                    ->orWhere('parmitNo', 'like', '%' . $this->searchQuery . '%');
             })
-            ->orderBy('form35_checkpoints_id', 'asc')->paginate(30);
-
-        return view('livewire.forms35.checkpoint', [
-            'checkpointsData' => $checkpointsData,
-        ]);
+            ->orderBy('formdata_35s_id', 'asc')->paginate(30);
+            $data =[
+                'projectData' => Projects::where(['projects.bactive'=> '1','projects.user_created'=>$this->userID])->get(),
+                'formData35'=>$formData35,
+                'activity01Data' => activity::get(),
+                'checkpointData'=>form35_checkpoint::where(['form35_checkpoints.bactive'=> '1'])->get(),
+            ];
+        return view('livewire.forms35.formdata35')->with($data);
     }
 
 
@@ -62,8 +69,9 @@ class Formdata35 extends Component
     {
         $this->ibc_id_fk = '0';
         $this->idepartment_id_fk = '0';
-        // $this->iproject_id_fk = '0';
-        $this->ddd_id_fk = '0';
+        // $this->iproject_id_fk = '0'; # come frome main page view/livewire/filename
+        // $this->ddd_id_fk = '0'; # come frome this mount
+        $this->fille_date = Carbon::now()->format(env('DATE_FORMAT_YMD'));
         $this->parmitNo = '';
         $this->working_dt = '';
         $this->working_t_F = '';
@@ -72,9 +80,10 @@ class Formdata35 extends Component
         $this->supervisor_name = '';
         $this->no_of_people_working = '';
         $this->form35_checkpoint_ids = collect();
-        $this->activity_ids = collect();
-        $this->form35_checkpoint_remark = collect();
+        // $this->activity_ids = collect();
+        $this->form35_checkpoint_remarks = []; # *
         $this->exact_location_nature_of_work_ids = collect();
+
         $this->name_of_permit_issuing_authority = '';
         $this->sing_of_permit_issuing_authority = '';
         $this->name_permit_receiver = '';
@@ -111,25 +120,26 @@ class Formdata35 extends Component
             'supervisor_name' => 'required',
             'no_of_people_working' => 'required',
             'form35_checkpoint_ids' => 'required',
-            'activity_ids' => 'required',
-            'form35_checkpoint_remark' => 'required',
+            // 'activity_ids' => 'required',
+            'form35_checkpoint_remarks' => 'required', # *
             'exact_location_nature_of_work_ids' => 'required',
-            'name_of_permit_issuing_authority' => 'required',
-            'sing_of_permit_issuing_authority' => 'required',
-            'name_permit_receiver' => 'required',
-            'sing_permit_receiver' => 'required',
-            'name_safety_representative' => 'required',
-            'sing_safety_representative' => 'required',
-            'name_of_permit_issuing_receiver_if_complete' => 'required',
-            'sing_of_permit_issuing_receiver_if_complete' => 'required',
-            'permit_issuing_receiver_if_complete_sing_dt' => 'required',
-            'name_of_permit_issuing_authority_if_complete' => 'required',
-            'sing_of_permit_issuing_authority_if_complete' => 'required',
-            'permit_issuing_authority_if_complete_sing_dt' => 'required',
-            'name_of_site_safety_officer' => 'required',
-            'sing_of_site_safety_officer' => 'required',
-            'permit_close_or_continued' => 'required',
-            'tags_removed' => 'required',
+
+            // 'name_of_permit_issuing_authority' => 'required',
+            // 'sing_of_permit_issuing_authority' => 'required',
+            // 'name_permit_receiver' => 'required',
+            // 'sing_permit_receiver' => 'required',
+            // 'name_safety_representative' => 'required',
+            // 'sing_safety_representative' => 'required',
+            // 'name_of_permit_issuing_receiver_if_complete' => 'required',
+            // 'sing_of_permit_issuing_receiver_if_complete' => 'required',
+            // 'permit_issuing_receiver_if_complete_sing_dt' => 'required',
+            // 'name_of_permit_issuing_authority_if_complete' => 'required',
+            // 'sing_of_permit_issuing_authority_if_complete' => 'required',
+            // 'permit_issuing_authority_if_complete_sing_dt' => 'required',
+            // 'name_of_site_safety_officer' => 'required',
+            // 'sing_of_site_safety_officer' => 'required',
+            // 'permit_close_or_continued' => 'required',
+            // 'tags_removed' => 'required',
         ]);
 
         $save = formdata_35::insert([
@@ -145,25 +155,26 @@ class Formdata35 extends Component
             'supervisor_name' => $this->supervisor_name,
             'no_of_people_working' => $this->no_of_people_working,
             'form35_checkpoint_ids' => implode(',', $this->form35_checkpoint_ids),
-            'activity_ids' => implode(',', $this->activity_ids),
-            'form35_checkpoint_remark' => implode(',', $this->form35_checkpoint_remark),
+            // 'activity_ids' => implode(',', $this->activity_ids),
+            'form35_checkpoint_remarks' => $this->form35_checkpoint_remarks , # *
             'exact_location_nature_of_work_ids' => implode(',', $this->exact_location_nature_of_work_ids),
-            'name_of_permit_issuing_authority' => $this->name_of_permit_issuing_authority,
-            'sing_of_permit_issuing_authority' => $this->sing_of_permit_issuing_authority,
-            'name_permit_receiver' => $this->name_permit_receiver,
-            'sing_permit_receiver' => $this->sing_permit_receiver,
-            'name_safety_representative' => $this->name_safety_representative,
-            'sing_safety_representative' => $this->sing_safety_representative,
-            'name_of_permit_issuing_receiver_if_complete' => $this->name_of_permit_issuing_receiver_if_complete,
-            'sing_of_permit_issuing_receiver_if_complete' => $this->sing_of_permit_issuing_receiver_if_complete,
-            'permit_issuing_receiver_if_complete_sing_dt' => $this->permit_issuing_receiver_if_complete_sing_dt,
-            'name_of_permit_issuing_authority_if_complete' => $this->name_of_permit_issuing_authority_if_complete,
-            'sing_of_permit_issuing_authority_if_complete' => $this->sing_of_permit_issuing_authority_if_complete,
-            'permit_issuing_authority_if_complete_sing_dt' => $this->permit_issuing_authority_if_complete_sing_dt,
-            'name_of_site_safety_officer' => $this->name_of_site_safety_officer,
-            'sing_of_site_safety_officer' => $this->sing_of_site_safety_officer,
-            'permit_close_or_continued' => $this->permit_close_or_continued,
-            'tags_removed' => $this->tags_removed,
+
+            // 'name_of_permit_issuing_authority' => $this->name_of_permit_issuing_authority,
+            // 'sing_of_permit_issuing_authority' => $this->sing_of_permit_issuing_authority,
+            // 'name_permit_receiver' => $this->name_permit_receiver,
+            // 'sing_permit_receiver' => $this->sing_permit_receiver,
+            // 'name_safety_representative' => $this->name_safety_representative,
+            // 'sing_safety_representative' => $this->sing_safety_representative,
+            // 'name_of_permit_issuing_receiver_if_complete' => $this->name_of_permit_issuing_receiver_if_complete,
+            // 'sing_of_permit_issuing_receiver_if_complete' => $this->sing_of_permit_issuing_receiver_if_complete,
+            // 'permit_issuing_receiver_if_complete_sing_dt' => $this->permit_issuing_receiver_if_complete_sing_dt,
+            // 'name_of_permit_issuing_authority_if_complete' => $this->name_of_permit_issuing_authority_if_complete,
+            // 'sing_of_permit_issuing_authority_if_complete' => $this->sing_of_permit_issuing_authority_if_complete,
+            // 'permit_issuing_authority_if_complete_sing_dt' => $this->permit_issuing_authority_if_complete_sing_dt,
+            // 'name_of_site_safety_officer' => $this->name_of_site_safety_officer,
+            // 'sing_of_site_safety_officer' => $this->sing_of_site_safety_officer,
+            // 'permit_close_or_continued' => $this->permit_close_or_continued,
+            // 'tags_removed' => $this->tags_removed,
 
             'user_created' => $this->userID,
         ]);
@@ -176,10 +187,10 @@ class Formdata35 extends Component
 
 
 
-    public function OpenEditCountryModal($form35_checkpoints_id)
+    public function OpenEditCountryModal($formdata_35s_id)
     {
-        $info = formdata_35::find($form35_checkpoints_id);
-
+        $info = formdata_35::find($formdata_35s_id);
+        // dd($info);
         $this->ibc_id_fk = $info->ibc_id_fk;
         $this->idepartment_id_fk = $info->idepartment_id_fk;
         $this->iproject_id_fk = $info->iproject_id_fk;
@@ -190,32 +201,33 @@ class Formdata35 extends Component
         $this->contractor_name = $info->contractor_name;
         $this->supervisor_name = $info->supervisor_name;
         $this->no_of_people_working = $info->no_of_people_working;
-        $this->form35_checkpoint_ids = implode(',', $info->form35_checkpoint_ids);
-        $this->activity_ids = implode(',', $info->activity_ids);
-        $this->form35_checkpoint_remark = implode(',', $info->form35_checkpoint_remark);
-        $this->exact_location_nature_of_work_ids = implode(',', $info->exact_location_nature_of_work_ids);
-        $this->name_of_permit_issuing_authority = $info->name_of_permit_issuing_authority;
-        $this->sing_of_permit_issuing_authority = $info->sing_of_permit_issuing_authority;
-        $this->name_permit_receiver = $info->name_permit_receiver;
-        $this->sing_permit_receiver = $info->sing_permit_receiver;
-        $this->name_safety_representative = $info->name_safety_representative;
-        $this->sing_safety_representative = $info->sing_safety_representative;
-        $this->name_of_permit_issuing_receiver_if_complete = $info->name_of_permit_issuing_receiver_if_complete;
-        $this->sing_of_permit_issuing_receiver_if_complete = $info->sing_of_permit_issuing_receiver_if_complete;
-        $this->permit_issuing_receiver_if_complete_sing_dt = $info->permit_issuing_receiver_if_complete_sing_dt;
-        $this->name_of_permit_issuing_authority_if_complete = $info->name_of_permit_issuing_authority_if_complete;
-        $this->sing_of_permit_issuing_authority_if_complete = $info->sing_of_permit_issuing_authority_if_complete;
-        $this->permit_issuing_authority_if_complete_sing_dt = $info->permit_issuing_authority_if_complete_sing_dt;
-        $this->name_of_site_safety_officer = $info->name_of_site_safety_officer;
-        $this->sing_of_site_safety_officer = $info->sing_of_site_safety_officer;
-        $this->permit_close_or_continued = $info->permit_close_or_continued;
-        $this->tags_removed = $info->tags_removed;
+        $this->form35_checkpoint_ids = explode(',', $info->form35_checkpoint_ids);
+        // $this->activity_ids = explode(',', $info->activity_ids);
+        $this->form35_checkpoint_remarks = $info->form35_checkpoint_remarks; # *
+        $this->exact_location_nature_of_work_ids = explode(',', $info->exact_location_nature_of_work_ids);
+
+        // $this->name_of_permit_issuing_authority = $info->name_of_permit_issuing_authority;
+        // $this->sing_of_permit_issuing_authority = $info->sing_of_permit_issuing_authority;
+        // $this->name_permit_receiver = $info->name_permit_receiver;
+        // $this->sing_permit_receiver = $info->sing_permit_receiver;
+        // $this->name_safety_representative = $info->name_safety_representative;
+        // $this->sing_safety_representative = $info->sing_safety_representative;
+        // $this->name_of_permit_issuing_receiver_if_complete = $info->name_of_permit_issuing_receiver_if_complete;
+        // $this->sing_of_permit_issuing_receiver_if_complete = $info->sing_of_permit_issuing_receiver_if_complete;
+        // $this->permit_issuing_receiver_if_complete_sing_dt = $info->permit_issuing_receiver_if_complete_sing_dt;
+        // $this->name_of_permit_issuing_authority_if_complete = $info->name_of_permit_issuing_authority_if_complete;
+        // $this->sing_of_permit_issuing_authority_if_complete = $info->sing_of_permit_issuing_authority_if_complete;
+        // $this->permit_issuing_authority_if_complete_sing_dt = $info->permit_issuing_authority_if_complete_sing_dt;
+        // $this->name_of_site_safety_officer = $info->name_of_site_safety_officer;
+        // $this->sing_of_site_safety_officer = $info->sing_of_site_safety_officer;
+        // $this->permit_close_or_continued = $info->permit_close_or_continued;
+        // $this->tags_removed = $info->tags_removed;
 
 
 
-        $this->cid = $info->form35_checkpoints_id;
+        $this->cid = $info->formdata_35s_id;
         $this->dispatchBrowserEvent('OpenEditCountryModal', [
-            'form35_checkpoints_id' => $form35_checkpoints_id
+            'formdata_35s_id' => $formdata_35s_id
         ]);
     }
 
@@ -236,26 +248,27 @@ class Formdata35 extends Component
             'contractor_name' => 'required',
             'supervisor_name' => 'required',
             'no_of_people_working' => 'required',
-            'form35_checkpoint_ids' => 'required',
-            'activity_ids' => 'required',
-            'form35_checkpoint_remark' => 'required',
-            'exact_location_nature_of_work_ids' => 'required',
-            'name_of_permit_issuing_authority' => 'required',
-            'sing_of_permit_issuing_authority' => 'required',
-            'name_permit_receiver' => 'required',
-            'sing_permit_receiver' => 'required',
-            'name_safety_representative' => 'required',
-            'sing_safety_representative' => 'required',
-            'name_of_permit_issuing_receiver_if_complete' => 'required',
-            'sing_of_permit_issuing_receiver_if_complete' => 'required',
-            'permit_issuing_receiver_if_complete_sing_dt' => 'required',
-            'name_of_permit_issuing_authority_if_complete' => 'required',
-            'sing_of_permit_issuing_authority_if_complete' => 'required',
-            'permit_issuing_authority_if_complete_sing_dt' => 'required',
-            'name_of_site_safety_officer' => 'required',
-            'sing_of_site_safety_officer' => 'required',
-            'permit_close_or_continued' => 'required',
-            'tags_removed' => 'required',
+            'form35_checkpoint_ids' => 'required|not_in:0',
+            // 'activity_ids' => 'required|not_in:0',
+            'form35_checkpoint_remarks' => 'required', # *
+            'exact_location_nature_of_work_ids' => 'required|not_in:0',
+
+            // 'name_of_permit_issuing_authority' => 'required',
+            // 'sing_of_permit_issuing_authority' => 'required',
+            // 'name_permit_receiver' => 'required',
+            // 'sing_permit_receiver' => 'required',
+            // 'name_safety_representative' => 'required',
+            // 'sing_safety_representative' => 'required',
+            // 'name_of_permit_issuing_receiver_if_complete' => 'required',
+            // 'sing_of_permit_issuing_receiver_if_complete' => 'required',
+            // 'permit_issuing_receiver_if_complete_sing_dt' => 'required',
+            // 'name_of_permit_issuing_authority_if_complete' => 'required',
+            // 'sing_of_permit_issuing_authority_if_complete' => 'required',
+            // 'permit_issuing_authority_if_complete_sing_dt' => 'required',
+            // 'name_of_site_safety_officer' => 'required',
+            // 'sing_of_site_safety_officer' => 'required',
+            // 'permit_close_or_continued' => 'required',
+            // 'tags_removed' => 'required',
         ]);
 
         $update = formdata_35::find($cid)->update([
@@ -270,25 +283,26 @@ class Formdata35 extends Component
             'supervisor_name' => $this->supervisor_name,
             'no_of_people_working' => $this->no_of_people_working,
             'form35_checkpoint_ids' => implode(',', $this->form35_checkpoint_ids),
-            'activity_ids' => implode(',', $this->activity_ids),
-            'form35_checkpoint_remark' => implode(',', $this->form35_checkpoint_remark),
+            // 'activity_ids' => implode(',', $this->activity_ids),
+            'form35_checkpoint_remarks' => implode(',', $this->form35_checkpoint_remarks), # *
             'exact_location_nature_of_work_ids' => implode(',', $this->exact_location_nature_of_work_ids),
-            'name_of_permit_issuing_authority' => $this->name_of_permit_issuing_authority,
-            'sing_of_permit_issuing_authority' => $this->sing_of_permit_issuing_authority,
-            'name_permit_receiver' => $this->name_permit_receiver,
-            'sing_permit_receiver' => $this->sing_permit_receiver,
-            'name_safety_representative' => $this->name_safety_representative,
-            'sing_safety_representative' => $this->sing_safety_representative,
-            'name_of_permit_issuing_receiver_if_complete' => $this->name_of_permit_issuing_receiver_if_complete,
-            'sing_of_permit_issuing_receiver_if_complete' => $this->sing_of_permit_issuing_receiver_if_complete,
-            'permit_issuing_receiver_if_complete_sing_dt' => $this->permit_issuing_receiver_if_complete_sing_dt,
-            'name_of_permit_issuing_authority_if_complete' => $this->name_of_permit_issuing_authority_if_complete,
-            'sing_of_permit_issuing_authority_if_complete' => $this->sing_of_permit_issuing_authority_if_complete,
-            'permit_issuing_authority_if_complete_sing_dt' => $this->permit_issuing_authority_if_complete_sing_dt,
-            'name_of_site_safety_officer' => $this->name_of_site_safety_officer,
-            'sing_of_site_safety_officer' => $this->sing_of_site_safety_officer,
-            'permit_close_or_continued' => $this->permit_close_or_continued,
-            'tags_removed' => $this->tags_removed,
+
+            // 'name_of_permit_issuing_authority' => $this->name_of_permit_issuing_authority,
+            // 'sing_of_permit_issuing_authority' => $this->sing_of_permit_issuing_authority,
+            // 'name_permit_receiver' => $this->name_permit_receiver,
+            // 'sing_permit_receiver' => $this->sing_permit_receiver,
+            // 'name_safety_representative' => $this->name_safety_representative,
+            // 'sing_safety_representative' => $this->sing_safety_representative,
+            // 'name_of_permit_issuing_receiver_if_complete' => $this->name_of_permit_issuing_receiver_if_complete,
+            // 'sing_of_permit_issuing_receiver_if_complete' => $this->sing_of_permit_issuing_receiver_if_complete,
+            // 'permit_issuing_receiver_if_complete_sing_dt' => $this->permit_issuing_receiver_if_complete_sing_dt,
+            // 'name_of_permit_issuing_authority_if_complete' => $this->name_of_permit_issuing_authority_if_complete,
+            // 'sing_of_permit_issuing_authority_if_complete' => $this->sing_of_permit_issuing_authority_if_complete,
+            // 'permit_issuing_authority_if_complete_sing_dt' => $this->permit_issuing_authority_if_complete_sing_dt,
+            // 'name_of_site_safety_officer' => $this->name_of_site_safety_officer,
+            // 'sing_of_site_safety_officer' => $this->sing_of_site_safety_officer,
+            // 'permit_close_or_continued' => $this->permit_close_or_continued,
+            // 'tags_removed' => $this->tags_removed,
 
             'user_updated' => $this->userID,
         ]);
@@ -298,24 +312,30 @@ class Formdata35 extends Component
         }
     }
 
-    public function deleteConfirm($form35_checkpoints_id)
+    public function deleteConfirm($formdata_35s_id)
     {
-        $info = formdata_35::find($form35_checkpoints_id);
+        $info = formdata_35::find($formdata_35s_id);
         $this->dispatchBrowserEvent('SwalConfirm', [
             'title' => 'Are you sure?',
-            'html' => 'You want to delete <strong>' . $info->form35_checkpoints_desc . '</strong>',
-            'id' => $form35_checkpoints_id
+            'html' => 'You want to delete <strong>' . $info->contractor_name . '</strong>',
+            'id' => $formdata_35s_id
         ]);
     }
 
 
 
-    public function delete($form35_checkpoints_id)
+    public function delete($formdata_35s_id)
     {
-        $del =  formdata_35::find($form35_checkpoints_id)->delete();
+        $del =  formdata_35::find($formdata_35s_id)->delete();
         if ($del) {
             $this->dispatchBrowserEvent('delete');
         }
         // $this->checkedCountry = [];
+    }
+
+    public function clearValidationf()
+    {
+        # code...
+        $this->resetValidation();
     }
 }
