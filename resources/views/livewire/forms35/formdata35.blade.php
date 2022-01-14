@@ -34,7 +34,7 @@ if ($iproject_id_fk) {
             <thead>
                 <tr align="center">
                     <th>#</th>
-                    <th>Project Name</th>
+                    <th><div class="bg-gray-800">Project Name</div></th>
                     <th>parmitNo</th>
                     <th>Contractor Name</th>
                     <th>No Of People Working</th>
@@ -55,10 +55,12 @@ if ($iproject_id_fk) {
                         <td>{{ Carbon\Carbon::parse($row->created_at)->format(env('DATE_FORMAT1')) }}</td>
                         <td>
                             <div class="btn-group">
-                                <button class="btn btn-success btn-sm"
+                                <button class="waves-effect waves-light btn btn-success btn-sm"
                                     wire:click="OpenEditCountryModal({{ $row->formdata_35s_id }})">Edit</button>
-                                <button class="btn btn-danger btn-sm"
+                                <button class="waves-effect waves-light btn btn-danger btn-sm"
                                     wire:click="deleteConfirm({{ $row->formdata_35s_id }})">Delete</button>
+                                <button class="waves-effect waves-light btn btn-primary btn-sm"
+                                    wire:click="ganaratePDF({{ $row->formdata_35s_id }})">pdf</button>
                             </div>
                         </td>
                     </tr>

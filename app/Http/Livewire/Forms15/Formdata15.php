@@ -36,7 +36,7 @@ class Formdata15 extends Component
     public $searchQuery, $role, $doincident_dt, $sproject_location, $showOtherInput, $d;
 
     public $iproject_id_fk, $ddd_id_fk, $idepartment_id_fk, $ibc_id_fk, $potential_injurytos_fk, $report_no, $potential_injurytos_other, $nature_of_potential_injuries_ids, $nature_of_potential_injuries_other, $activity15s_ids, $details_of_nearmiss, $imdcause15s_ids, $imdcause15s_other, $contributing_causes_ids, $contributing_causes_other, $whyunsafeact_committeds_ids, $whyunsafeact_committeds_other, $imd_actions_ids, $imd_corrections_ids, $further_recommended_action, $completed_by_name, $completed_by_signature, $completed_date;
-    public $cid, $selectedProjectID, $userID;
+    public $cid, $selectedProjectID, $userID, $old_iproject_id_fk;
 
 
     public function selectedProjectID($id)
@@ -181,25 +181,17 @@ class Formdata15 extends Component
 
         if ($save) {
             // dd($save);
-            $getCounter = formdata_00::where([
-                'formdata_00s.user_created' => $this->userID,
-                'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
-                'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
-                'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
-                'formdata_00s.ddd_id_fk' => $this->ddd_id_fk
-            ])->get('counter')[0]->counter + 1;
-
-            $updateformsCounter = formdata_00::where([
-                'formdata_00s.user_created' => $this->userID,
-                'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
-                'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
-                'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
-                'formdata_00s.ddd_id_fk' => $this->ddd_id_fk
-            ])->update(['counter' => $getCounter]);
-            if ($updateformsCounter) {
+            $increament = formdata_00::where([
+                'user_created' => $this->userID,
+                'iproject_id_fk' => $this->iproject_id_fk,
+                'idepartment_id_fk' => $this->idepartment_id_fk,
+                'ibc_id_fk' => $this->ibc_id_fk,
+                'ddd_id_fk' => $this->ddd_id_fk
+            ])->increment('counter', 1);
+            if ($increament) {
                 # code...
                 $this->dispatchBrowserEvent('CloseAddCountryModal');
-                $this->resetValidation();
+                // $this->checkedCountry = [];
             }
         }
     }
@@ -212,7 +204,7 @@ class Formdata15 extends Component
         // dd($info);
         $this->role = $role;
 
-        $this->iproject_id_fk = $info->iproject_id_fk;
+        $this->old_iproject_id_fk = $info->iproject_id_fk;
         $this->idepartment_id_fk = $info->idepartment_id_fk;
         $this->ibc_id_fk = $info->ibc_id_fk;
         $this->potential_injurytos_fk = $info->potential_injurytos_fk;
@@ -302,6 +294,22 @@ class Formdata15 extends Component
         ]);
 
         if ($update) {
+            if ($this->old_iproject_id_fk != $this->iproject_id_fk) {
+                # code...
+                formdata_00::where([
+                    'user_created' => $this->userID,
+                    'iproject_id_fk' => $this->old_iproject_id_fk,
+                    'ddd_id_fk' => $this->ddd_id_fk
+                ])->decrement('counter', 1);
+
+                formdata_00::where([
+                    'user_created' => $this->userID,
+                    'iproject_id_fk' => $this->iproject_id_fk,
+                    'idepartment_id_fk' => $this->idepartment_id_fk,
+                    'ibc_id_fk' => $this->ibc_id_fk,
+                    'ddd_id_fk' => $this->ddd_id_fk
+                ])->increment('counter', 1);
+            }
             $this->dispatchBrowserEvent('CloseEditCountryModal');
             $this->resetValidation();
         }
@@ -313,7 +321,7 @@ class Formdata15 extends Component
         $formData = formdata_15::find($this->cid)->join('projects', 'projects.iproject_id', '=', 'formdata_15s.iproject_id_fk')->join('companies', 'companies.ibc_id', '=', 'formdata_15s.ibc_id_fk')->get();
         $defaultData = Defaultdata::find(1)->join('companies', 'companies.ibc_id', '=', 'defaultdatas.ibc_id_fk')->join('projects', 'projects.iproject_id', '=', 'defaultdatas.iproject_id_fk')->join('departments', 'departments.idepartment_id', '=', 'defaultdatas.idepartment_id_fk')->get();
         $data = [
-            'formHeader'=>Dept_Default_Docs::find($this->ddd_id_fk),
+            'formHeader' => Dept_Default_Docs::find($this->ddd_id_fk),
             'formData' => $formData[0],
             'defaultData' => $defaultData[0],
             // 'projectData' => Project::where(['projects.bactive' => '1', 'projects.user_created' => $this->userID])->get(),
@@ -339,17 +347,17 @@ class Formdata15 extends Component
         // $pdf->render();
         // exit(0);
         // return $pdf->download('test.pdf');
-        
+
         // $header = [
         //     'Content-Type' => 'application/pdf',
         //     'Content-Disposition' => 'inline; filename="test.pdf"'
         // ];
         $pdf = PDF::loadView('exports.Forms.form15', $data)->setPaper('A4', 'portrait')->output(); //
-        return response()->streamDownload(fn () => print($pdf),'form15.pdf');
+        return response()->streamDownload(fn () => print($pdf), 'form15.pdf');
         // return response()->stream(fn () => $pdf,200, $header); 
         // return $pdf->stream('test.pdf',["Attachment" => false]);
         // return response()->view('exports.Forms.form15',$data,200,$header);
-        
+
         // dd($pdf);
         // return $pdf->stream()->save('test.pdf');
         // $pdf->stream();

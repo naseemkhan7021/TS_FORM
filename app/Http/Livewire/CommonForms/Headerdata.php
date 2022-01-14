@@ -21,8 +21,10 @@ class Headerdata extends Component
         }else{
             $Pvalue = 0;
         }
-        // dd($Pvalue);
+        // session(['globleSelectedProjectID'=>$Pvalue]);
         $this->selectedProjectID = session()->has('globleSelectedProjectID') && session('globleSelectedProjectID') ? session('globleSelectedProjectID') : $Pvalue;
+        // $this->selectedProjectID = session('globleSelectedProjectID') ?? 0; # this this give some issue then uncommnet above code -->  https://github.com/zayedsaleem/tsforms/blob/4e538830dc6db0f07f08de67a891429b9a92f688/app/Http/Livewire/CommonForms/Headerdata.php#L25
+        // dd(session('globleSelectedProjectID')); 
     }
 
     public function render()

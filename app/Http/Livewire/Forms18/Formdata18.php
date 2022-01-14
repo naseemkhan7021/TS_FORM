@@ -17,7 +17,7 @@ class Formdata18 extends Component
 
     public $extinguisher_no, $location, $type, $size, $date_of_refilling, $date_of_inspection, $pressure_gauge_or_safety_pin_status, $seal_intact_and_not_corroded, $name_of_responsible_person, $due_for_next_refilling, $due_for_next_inspection, $inspected_by_name,$inspected_by_signature,$inspected_by_designation,$inspected_by_date;
     public $iproject_id_fk,$ibc_id_fk, $idepartment_id_fk;
-    public $cid,$searchQuery, $sproject_location,$ddd_id_fk,$userID;
+    public $cid,$searchQuery, $sproject_location,$ddd_id_fk,$userID,$old_iproject_id_fk;
     public $print_disable;
 
     public function selectedProjectID($id)
@@ -131,22 +131,14 @@ class Formdata18 extends Component
         ]);
 
         if ($save) {
-            $getCounter = formdata_00::where([
-                'formdata_00s.user_created' => $this->userID,
-                'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
-                'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
-                'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
-                'formdata_00s.ddd_id_fk' => $this->ddd_id_fk
-            ])->get('counter')[0]->counter + 1;
-
-            $updateformsCounter = formdata_00::where([
-                'formdata_00s.user_created' => $this->userID,
-                'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
-                'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
-                'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
-                'formdata_00s.ddd_id_fk' => $this->ddd_id_fk
-            ])->update(['counter' => $getCounter]);
-            if ($updateformsCounter) {
+            $increament = formdata_00::where([
+                'user_created' => $this->userID,
+                'iproject_id_fk' => $this->iproject_id_fk,
+                'idepartment_id_fk' => $this->idepartment_id_fk,
+                'ibc_id_fk' => $this->ibc_id_fk,
+                'ddd_id_fk' => $this->ddd_id_fk
+            ])->increment('counter', 1);
+            if ($increament) {
                 # code...
                 $this->dispatchBrowserEvent('CloseAddCountryModal');
                 // $this->checkedCountry = [];
@@ -162,7 +154,7 @@ class Formdata18 extends Component
 
         $this->ibc_id_fk=$info->ibc_id_fk;
         $this->idepartment_id_fk=$info->idepartment_id_fk;
-        $this->iproject_id_fk = $info->iproject_id_fk;
+        $this->old_iproject_id_fk = $info->iproject_id_fk;
         $this->extinguisher_no = $info->extinguisher_no;
         $this->location = $info->location;
         $this->type = $info->type;
@@ -231,6 +223,22 @@ class Formdata18 extends Component
 
         ]);
         if ($update) {
+            if ($this->old_iproject_id_fk != $this->iproject_id_fk) {
+                # code...
+                formdata_00::where([
+                    'user_created' => $this->userID,
+                    'iproject_id_fk' => $this->old_iproject_id_fk,
+                    'ddd_id_fk' => $this->ddd_id_fk
+                ])->decrement('counter', 1);
+
+                formdata_00::where([
+                    'user_created' => $this->userID,
+                    'iproject_id_fk' => $this->iproject_id_fk,
+                    'idepartment_id_fk' => $this->idepartment_id_fk,
+                    'ibc_id_fk' => $this->ibc_id_fk,
+                    'ddd_id_fk' => $this->ddd_id_fk
+                ])->increment('counter', 1);
+            }
             $this->dispatchBrowserEvent('CloseEditCountryModal');
             // $this->checkedCountry = [];
         }

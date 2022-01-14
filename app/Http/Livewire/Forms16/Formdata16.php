@@ -24,7 +24,7 @@ class Formdata16 extends Component
     public $oldphotosLocation = [], $oldimgTitles = array(), $oldimgName = [];
     public $searchQuery, $showOtherInput, $showhospital, $victimDischargeorNot, $role, $firstaidgivenonsite;
     public $injuredvictim_name, $designation, $age, $sproject_location, $ddd_id_fk, $idepartment_id_fk, $ibc_id_fk, $iproject_id_fk, $doincident_dt, $potential_injurytos_fk, $potential_injurytos_other, $eml_id_no, $dob_dt, $gender_fk, $doj_dt, $safety_inducted, $married, $person_on_duty, $person_authorized_2_incident_area, $present_address, $permanent_address, $by_whom, $first_incident_reported_to, $date_time_reported_dt, $witness1_name, $designation_1, $witness2_name, $designation_2, $first_aid_given_on_site, $name_first_aider, $victim_taken_hospital, $name_hospital, $victim_hospital_dischaged, $return_to_work, $victim_influence_alcohol, $description_of_incident, $uploaddocuments_fk, $extend_injury, $activity16, $relavebt_risk_referenceno, $control_measure, $actions_taken, $site_enginner_name, $site_enginner_signature, $project_manager, $project_manager_signature;
-    public $cid, $imgsId, $upd_injuredvictim_name, $upd_designation, $upd_age, $userID;
+    public $cid, $imgsId, $upd_injuredvictim_name, $upd_designation, $upd_age, $userID, $old_iproject_id_fk;
 
     public function selectedProjectID($id)
     {
@@ -71,7 +71,7 @@ class Formdata16 extends Component
             })
             ->orderBy('formdata_16s_id')->paginate(15);
 
-        $prjectData = Project::where(['projects.bactive'=> '1','projects.user_created'=>$this->userID])->get();
+        $prjectData = Project::where(['projects.bactive' => '1', 'projects.user_created' => $this->userID])->get();
         $genderData = Gender::all();
         $potentialinjurytotData = PotentialInjuryto::all();
 
@@ -281,26 +281,17 @@ class Formdata16 extends Component
                 }
             }
 
-            $getCounter = formdata_00::where([
-                'formdata_00s.user_created' => $this->userID,
-                'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
-                'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
-                'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
-                'formdata_00s.ddd_id_fk' => $this->ddd_id_fk
-            ])->get('counter')[0]->counter + 1;
-
-            $updateformsCounter = formdata_00::where([
-                'formdata_00s.user_created' => $this->userID,
-                'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
-                'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
-                'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
-                'formdata_00s.ddd_id_fk' => $this->ddd_id_fk
-            ])->update(['counter' => $getCounter]);
-
-            if ($updateformsCounter) {
+            $increament = formdata_00::where([
+                'user_created' => $this->userID,
+                'iproject_id_fk' => $this->iproject_id_fk,
+                'idepartment_id_fk' => $this->idepartment_id_fk,
+                'ibc_id_fk' => $this->ibc_id_fk,
+                'ddd_id_fk' => $this->ddd_id_fk
+            ])->increment('counter', 1);
+            if ($increament) {
                 # code...
                 $this->dispatchBrowserEvent('CloseAddCountryModal');
-                $this->resetValidation();
+                // $this->checkedCountry = [];
             }
         }
     }
@@ -345,7 +336,7 @@ class Formdata16 extends Component
         $this->designation = $info->designation;
         $this->age = $info->age;
         // $this->sproject_location = $this->sproject_location;
-        $this->iproject_id_fk = $info->iproject_id_fk;
+        $this->old_iproject_id_fk = $info->iproject_id_fk;
         $this->idepartment_id_fk = $info->idepartment_id_fk;
         $this->ibc_id_fk = $info->ibc_id_fk;
         $this->doincident_dt = $info->doincident_dt;
@@ -552,12 +543,27 @@ class Formdata16 extends Component
                     // clear veriable 
                     $this->photos = [];
                     $this->imgTitles = array();
-                    $this->dispatchBrowserEvent('CloseEditCountryModal');
+
                     // $this->checkedCountry = [];
                 }
-            } else {
-                $this->dispatchBrowserEvent('CloseEditCountryModal');
             }
+            if ($this->old_iproject_id_fk != $this->iproject_id_fk) {
+                # code...
+                formdata_00::where([
+                    'user_created' => $this->userID,
+                    'iproject_id_fk' => $this->old_iproject_id_fk,
+                    'ddd_id_fk' => $this->ddd_id_fk
+                ])->decrement('counter', 1);
+
+                formdata_00::where([
+                    'user_created' => $this->userID,
+                    'iproject_id_fk' => $this->iproject_id_fk,
+                    'idepartment_id_fk' => $this->idepartment_id_fk,
+                    'ibc_id_fk' => $this->ibc_id_fk,
+                    'ddd_id_fk' => $this->ddd_id_fk
+                ])->increment('counter', 1);
+            }
+            $this->dispatchBrowserEvent('CloseEditCountryModal');
         }
     }
 

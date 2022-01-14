@@ -22,7 +22,7 @@ class Formdata17 extends Component
     public $inv_photos = [], $inv_imgTitles = [], $searchQuery, $role, $injury_to_f16, $eml_id_no_f16, $designation_f16, $doincident_dt_f16, $potential_injurytos_other_f16;
     public $ibc_id_fk, $idepartment_id_fk, $ddd_id_fk, $iproject_id_fk;
     public $substandcondition_ids, $substandaction_ids, $substandaction_id_fk, $incident_description, $coworker_statement, $formdata_16s_id_fk, $concernedsupervisor_statement, $root_cause, $remedial_actions, $comment_remedial_actions, $site_safety_in_charge_name, $site_safety_in_charge_signature, $project_manager, $project_manager_signature;
-    public $upd_substandcondition_ids, $upd_substandaction_ids;
+    public $upd_substandcondition_ids, $upd_substandaction_ids,$old_iproject_id_fk;
     public $cid, $imgsId, $inv_oldimgTitles = [], $oldphotosLocation = [], $oldimgName = [], $userID;
 
     public function selectedProjectID($id)
@@ -185,25 +185,17 @@ class Formdata17 extends Component
                 }
             }
             # code...
-            $getCounter = formdata_00::where([
-                'formdata_00s.user_created' => $this->userID,
-                'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
-                'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
-                'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
-                'formdata_00s.ddd_id_fk' => $this->ddd_id_fk
-            ])->get('counter')[0]->counter + 1;
-
-            $updateformsCounter = formdata_00::where([
-                'formdata_00s.user_created' => $this->userID,
-                'formdata_00s.iproject_id_fk' => $this->iproject_id_fk,
-                'formdata_00s.idepartment_id_fk' => $this->idepartment_id_fk,
-                'formdata_00s.ibc_id_fk' => $this->ibc_id_fk,
-                'formdata_00s.ddd_id_fk' => $this->ddd_id_fk
-            ])->update(['counter' => $getCounter]);
-            if ($updateformsCounter) {
+            $increament = formdata_00::where([
+                'user_created' => $this->userID,
+                'iproject_id_fk' => $this->iproject_id_fk,
+                'idepartment_id_fk' => $this->idepartment_id_fk,
+                'ibc_id_fk' => $this->ibc_id_fk,
+                'ddd_id_fk' => $this->ddd_id_fk
+            ])->increment('counter', 1);
+            if ($increament) {
                 # code...
                 $this->dispatchBrowserEvent('CloseAddCountryModal');
-                $this->resetValidation();
+                // $this->checkedCountry = [];
             }
         }
     }
@@ -240,7 +232,7 @@ class Formdata17 extends Component
         // dd($info);
         $this->role = $role;
 
-        $this->iproject_id_fk = $info->iproject_id_fk;
+        $this->old_iproject_id_fk = $info->iproject_id_fk;
         $this->idepartment_id_fk = $info->idepartment_id_fk;
         $this->ibc_id_fk = $info->ibc_id_fk;
 
@@ -371,13 +363,26 @@ class Formdata17 extends Component
                     // clear veriable 
                     $this->inv_photos = [];
                     $this->imgTitles = array();
-                    $this->dispatchBrowserEvent('CloseEditCountryModal');
-                    // $this->checkedCountry = [];
                 }
-            } else {
-                // dd('this is img id fnl els-> ',$this->imgsId);
-                $this->dispatchBrowserEvent('CloseEditCountryModal');
             }
+            if ($this->old_iproject_id_fk != $this->iproject_id_fk) {
+                # code...
+                formdata_00::where([
+                    'user_created' => $this->userID,
+                    'iproject_id_fk' => $this->old_iproject_id_fk,
+                    'ddd_id_fk' => $this->ddd_id_fk
+                ])->decrement('counter', 1);
+
+                formdata_00::where([
+                    'user_created' => $this->userID,
+                    'iproject_id_fk' => $this->iproject_id_fk,
+                    'idepartment_id_fk' => $this->idepartment_id_fk,
+                    'ibc_id_fk' => $this->ibc_id_fk,
+                    'ddd_id_fk' => $this->ddd_id_fk
+                ])->increment('counter', 1);
+            }
+
+            $this->dispatchBrowserEvent('CloseEditCountryModal');
         }
     }
 

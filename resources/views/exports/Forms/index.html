@@ -11,7 +11,8 @@
         }
 
         @page {
-            margin: .5rem;
+            margin: 0px;
+            margin-top: .5rem !important;
             display: flex;
             justify-content: center;
         }
@@ -22,8 +23,9 @@
 
         body {
             font-family: sans-serif;
-            margin: .5rem;
-            /* margin-bottom: .5rem; */
+            margin: 0px;
+            margin-top: .5rem !important;
+            /* margin: .5rem; */
             display: flex;
             justify-content: center;
 
@@ -52,52 +54,35 @@
         }
 
         #childeTable1 tbody {
-            font-size: .995rem;
+            font-size: .9rem;
         }
 
-        #childeTable2 {
-            width: 100%;
-            border: none;
-            margin: 0;
-            /* margin-top: 1rem; */
+        table#childeTable2 td {
+            border: 1px solid black !important;
+
         }
 
-        #childeTable2 tbody {
-            font-size: .72rem !important;
-        }
 
-        #childeTable2 tr td div {
-            display: inline-block;
-            margin-bottom: .5rem;
-        }
-        #tablData{
-            width: 100% !important;
-        }
-        table div{
-            width: 100% !important;
-        }
 
-        #tablData th,
-        #tablData td {
+        #participantsTbl th,
+        #participantsTbl td {
             border: 1px solid black !important;
             /* text-align: center; */
         }
-        #tablData th {
-            padding: .4rem;
-        }
-        #tablData td{
-            padding: .19rem;
-        }
 
-        #tablData,
-        #tablData>tbody {
-            font-size: .8rem !important;
+        #participantsTbl,
+        #participantsTbl>tbody {
+            font-size: 1rem !important;
             text-align: center;
         }
 
         #Heading1 {
             margin: 1rem 0 !important;
-            font-size: 1rem !important;
+            font-size: .9rem !important;
+        }
+
+        td div {
+            padding: .1rem .2rem;
         }
 
         .imgdiv {
@@ -141,6 +126,9 @@
         .m0 {
             margin: 0 !important;
         }
+        .mx2{
+            max-width: 20%;
+        }
     </style>
 </head>
 
@@ -164,8 +152,8 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="3" class="bdr1b">Doc. Name: <strong>NEARMISS REPORTING
-                                        FORMAT</strong></td>
+                                <td colspan="3" class="bdr1b">Doc. Name: <strong>WORK PERMIT FOR WORKING AT
+                                        HEIGHT</strong></td>
                                 <td class="bdr1b">Doc. Code: <strong>EHS-F-15</strong></td>
                             </tr>
                             <tr class="">
@@ -177,347 +165,47 @@
 
                             <tr>
                                 <td colspan="5">
-                                    <table id="childeTable2">
+                                    <table id="childeTable2" style="width: 100%;">
                                         <tbody>
                                             <tr align="center">
-                                                <td colspan="5">
-                                                    <div>
-                                                        <strong><u id="Heading1">Fire Extinguisher Inspection
-                                                                Report</u></strong>
+                                                <td colspan="1" class="mx2">
+                                                    <div class="">Date: </div>
+                                                </td>
+                                                <td colspan="3">
+                                                    <div class="">
+                                                        <strong><u id="Heading1">WORK PERMIT FOR WORKING AT
+                                                                HEIGHT</u></strong>
+                                                        <br><small>(Note: Issue for works of periphery & height
+                                                            work)</small>
                                                     </div>
+                                                </td>
+                                                <td colspan="1" class="mx2">
+                                                    <div class="">Permit No.</div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2">
-                                                    <div class="">Project Name: __________________</div>
+                                                    <div class="">Date of Working: 14-02-2022</div>
                                                 </td>
-
-                                                <td colspan="2" align="right">
-                                                    <div class="">Date/time: __________________</div>
-                                                </td>
-                                                <td align="right">
-                                                    <div class="">Month: __________________</div>
+                                                <td colspan="3">
+                                                    <div class="">Time of working: 11:40 am To 10:30 pm</div>
                                                 </td>
                                             </tr>
-
                                             <tr>
                                                 <td colspan="5">
-                                                    <table class="m0" id="tablData">
-                                                        <thead>
-                                                            <tr>
-                                                                <th rowspan="2">Sr. No.</th>
-                                                                <th rowspan="2">Extinguisher No.</th>
-                                                                <th rowspan="2">Location</th>
-                                                                <th rowspan="2">Type & Size</th>
-                                                                <th colspan="2">Date of
-                                                                    
-                                                                </th>
-                                                                <th rowspan="2">Pressure gauge / safety pin status</th>
-                                                                <th rowspan="2">Seal Intact & not corroded</th>
-                                                                <th rowspan="2">Name of Responsible Person</th>
-                                                                <th colspan="2">Due for next</th>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>Refilling</th>
-                                                                <th>Inspection</th>
-                                                                <th>Refilling</th>
-                                                                <th>Inspection</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>2</td>
-                                                                <td>3</td>
-                                                                <td>4</td>
-                                                                <td>RR</td>
-                                                                <td>II</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>9</td>
-                                                                <td>R</td>
-                                                                <td>I</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>2</td>
-                                                                <td>3</td>
-                                                                <td>4</td>
-                                                                <td>5</td>
-                                                                <td>6</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>9</td>
-                                                                <td>10</td>
-                                                                <td>11</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>2</td>
-                                                                <td>3</td>
-                                                                <td>4</td>
-                                                                <td>5</td>
-                                                                <td>6</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>9</td>
-                                                                <td>10</td>
-                                                                <td>11</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>2</td>
-                                                                <td>3</td>
-                                                                <td>4</td>
-                                                                <td>5</td>
-                                                                <td>6</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>9</td>
-                                                                <td>10</td>
-                                                                <td>11</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>2</td>
-                                                                <td>3</td>
-                                                                <td>4</td>
-                                                                <td>5</td>
-                                                                <td>6</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>9</td>
-                                                                <td>10</td>
-                                                                <td>11</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>2</td>
-                                                                <td>3</td>
-                                                                <td>4</td>
-                                                                <td>5</td>
-                                                                <td>6</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>9</td>
-                                                                <td>10</td>
-                                                                <td>11</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>2</td>
-                                                                <td>3</td>
-                                                                <td>4</td>
-                                                                <td>5</td>
-                                                                <td>6</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>9</td>
-                                                                <td>10</td>
-                                                                <td>11</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>2</td>
-                                                                <td>3</td>
-                                                                <td>4</td>
-                                                                <td>5</td>
-                                                                <td>6</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>9</td>
-                                                                <td>10</td>
-                                                                <td>11</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>2</td>
-                                                                <td>3</td>
-                                                                <td>4</td>
-                                                                <td>5</td>
-                                                                <td>6</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>9</td>
-                                                                <td>10</td>
-                                                                <td>11</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>2</td>
-                                                                <td>3</td>
-                                                                <td>4</td>
-                                                                <td>5</td>
-                                                                <td>6</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>9</td>
-                                                                <td>10</td>
-                                                                <td>11</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>2</td>
-                                                                <td>3</td>
-                                                                <td>4</td>
-                                                                <td>5</td>
-                                                                <td>6</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>9</td>
-                                                                <td>10</td>
-                                                                <td>11</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>2</td>
-                                                                <td>3</td>
-                                                                <td>4</td>
-                                                                <td>5</td>
-                                                                <td>6</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>9</td>
-                                                                <td>10</td>
-                                                                <td>11</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>2</td>
-                                                                <td>3</td>
-                                                                <td>4</td>
-                                                                <td>5</td>
-                                                                <td>6</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>9</td>
-                                                                <td>10</td>
-                                                                <td>11</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>2</td>
-                                                                <td>3</td>
-                                                                <td>4</td>
-                                                                <td>5</td>
-                                                                <td>6</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>9</td>
-                                                                <td>10</td>
-                                                                <td>11</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>2</td>
-                                                                <td>3</td>
-                                                                <td>4</td>
-                                                                <td>5</td>
-                                                                <td>6</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>9</td>
-                                                                <td>10</td>
-                                                                <td>11</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>2</td>
-                                                                <td>3</td>
-                                                                <td>4</td>
-                                                                <td>5</td>
-                                                                <td>6</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>9</td>
-                                                                <td>10</td>
-                                                                <td>11</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>2</td>
-                                                                <td>3</td>
-                                                                <td>4</td>
-                                                                <td>5</td>
-                                                                <td>6</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>9</td>
-                                                                <td>10</td>
-                                                                <td>11</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>2</td>
-                                                                <td>3</td>
-                                                                <td>4</td>
-                                                                <td>5</td>
-                                                                <td>6</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>9</td>
-                                                                <td>10</td>
-                                                                <td>11</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>2</td>
-                                                                <td>3</td>
-                                                                <td>4</td>
-                                                                <td>5</td>
-                                                                <td>6</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>9</td>
-                                                                <td>10</td>
-                                                                <td>11</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>2</td>
-                                                                <td>3</td>
-                                                                <td>4</td>
-                                                                <td>5</td>
-                                                                <td>6</td>
-                                                                <td>7</td>
-                                                                <td>8</td>
-                                                                <td>9</td>
-                                                                <td>10</td>
-                                                                <td>11</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td colspan="5">
-                                                    <div style="margin-top: 1rem;" class=""><strong>Inspected by:</strong>
+                                                    <div class="">
+                                                        Exact Location and nature of work to be carried out: <b class="border-dot">
+                                                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus vitae earum repellat. Deleniti molestiae adipisci placeat ullam a voluptate, dolorem asperiores corrupti quos, necessitatibus omnis ea fuga illo cumque iure.
+                                                        </b>
                                                     </div>
                                                 </td>
                                             </tr>
-
-                                            <tr>
-                                                <td class="" colspan="3">
-                                                    <div style="margin-top: .6rem;" class="">Signature of the Faculty:
-                                                        _____________________</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2">
-                                                    <div style="margin-top: .5rem;" class="">Designation:
-                                                        __________________</div>
-                                                </td>
-                                                <td>
-                                                    <div style="margin-top: .5rem;" class="">Date: ____/___/_____</div>
-                                                </td>
-                                            </tr>
-
 
                                         </tbody>
                                     </table>
                                 </td>
                             </tr>
+
                             <tr style="border-top: 1px solid black;font-size: .6rem;">
                                 <td colspan="4" align="left">
                                     <div>

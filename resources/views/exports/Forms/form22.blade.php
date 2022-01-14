@@ -157,7 +157,7 @@
                                             <tr>
                                                 <td colspan="3">
                                                     <div class="">Project Name: <b
-                                                            class="border-dot">{{ $headerData->sproject_name }}
+                                                            class="border-dot">{{ $headerData->sproject_name }}</b>
                                                     </div>
                                                 </td>
 
@@ -309,19 +309,19 @@
                                                             {{-- if you don't want blank row then remov below (if) algo --}}
                                                             @if ($totalParticipance < 15))
                                                                 @while ($totalParticipance < 15)
-                                                                <tr>
-                                                                    <td>{{ ++$totalParticipance }}</td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                {{-- @php $totalParticipance++ @endphp --}}
-                                                                {{-- {{ dd($totalParticipance) }} --}}
+                                                                    <tr>
+                                                                        <td>{{ ++$totalParticipance }}</td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                    {{-- @php $totalParticipance++ @endphp --}}
+                                                                    {{-- {{ dd($totalParticipance) }} --}}
                                                                 @endwhile
                                                             @endif
-                                                            
+
                                                         </tbody>
 
                                                     </table>

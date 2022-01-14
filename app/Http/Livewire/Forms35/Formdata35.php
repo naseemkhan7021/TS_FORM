@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Forms35;
 
+use App\Models\common_forms\Dept_Default_Docs;
 use App\Models\common_forms\Projects;
+use App\Models\forms_00\formdata_00;
 use App\Models\forms_01\activity;
 use App\Models\forms_35\form35_checkpoint;
 use App\Models\forms_35\formdata_35;
@@ -11,16 +13,17 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+use PDF;
 // return view('livewire.forms35.formdata35');
 class Formdata35 extends Component
 {
 
     use WithPagination;
     protected $listeners = ['delete', 'selectedProjectID'];
-    public $parmitNo, $working_dt, $working_t_F, $working_t_T, $contractor_name, $supervisor_name, $no_of_people_working, $form35_checkpoint_ids, $activity_ids, $form35_checkpoint_remarks=[], $exact_location_nature_of_work_ids, $name_of_permit_issuing_authority, $sing_of_permit_issuing_authority, $name_permit_receiver, $sing_permit_receiver, $name_safety_representative, $sing_safety_representative, $name_of_permit_issuing_receiver_if_complete, $sing_of_permit_issuing_receiver_if_complete, $permit_issuing_receiver_if_complete_sing_dt, $name_of_permit_issuing_authority_if_complete, $sing_of_permit_issuing_authority_if_complete, $permit_issuing_authority_if_complete_sing_dt, $name_of_site_safety_officer, $sing_of_site_safety_officer, $permit_close_or_continued, $tags_removed;
+    public $parmitNo, $working_dt, $working_t_F, $working_t_T, $contractor_name, $supervisor_name, $no_of_people_working, $form35_checkpoint_ids, $activity_ids, $form35_checkpoint_remarks = [], $exact_location_nature_of_work_ids, $name_of_permit_issuing_authority, $sing_of_permit_issuing_authority, $name_permit_receiver, $sing_permit_receiver, $name_safety_representative, $sing_safety_representative, $name_of_permit_issuing_receiver_if_complete, $sing_of_permit_issuing_receiver_if_complete, $permit_issuing_receiver_if_complete_sing_dt, $name_of_permit_issuing_authority_if_complete, $sing_of_permit_issuing_authority_if_complete, $permit_issuing_authority_if_complete_sing_dt, $name_of_site_safety_officer, $sing_of_site_safety_officer, $permit_close_or_continued, $tags_removed;
 
-    public $ibc_id_fk, $idepartment_id_fk, $iproject_id_fk,$sproject_location, $ddd_id_fk, $userID,$fille_date;
-    public $searchQuery;
+    public $ibc_id_fk, $idepartment_id_fk, $iproject_id_fk, $sproject_location, $ddd_id_fk, $userID, $fille_date;
+    public $searchQuery, $old_iproject_id_fk;
 
     public $cid;
 
@@ -42,7 +45,7 @@ class Formdata35 extends Component
     public function render()
     {
 
-        $formData35 = formdata_35::select('formdata_35s.*','projects.sproject_name')
+        $formData35 = formdata_35::select('formdata_35s.*', 'projects.sproject_name')
             ->join('projects', 'projects.iproject_id', '=', 'formdata_35s.iproject_id_fk')
             ->where(['formdata_35s.bactive' => '1', 'formdata_35s.user_created' => $this->userID])
             ->when(session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*', function ($data) {
@@ -57,13 +60,13 @@ class Formdata35 extends Component
             })
             ->orderBy('formdata_35s_id', 'asc')->paginate(30);
 
-            // dd($formData35);
-            $data =[
-                'projectData' => Projects::where(['projects.bactive'=> '1','projects.user_created'=>$this->userID])->get(),
-                'formData35'=>$formData35,
-                'activity01Data' => activity::get(),
-                'checkpointData'=>form35_checkpoint::where(['form35_checkpoints.bactive'=> '1'])->get(),
-            ];
+        // dd($formData35);
+        $data = [
+            'projectData' => Projects::where(['projects.bactive' => '1', 'projects.user_created' => $this->userID])->get(),
+            'formData35' => $formData35,
+            'activity01Data' => activity::get(),
+            'checkpointData' => form35_checkpoint::where(['form35_checkpoints.bactive' => '1'])->get(),
+        ];
         return view('livewire.forms35.formdata35')->with($data);
     }
 
@@ -202,8 +205,18 @@ class Formdata35 extends Component
         $save = $formdata_35->save();
 
         if ($save) {
-            $this->dispatchBrowserEvent('CloseAddCountryModal');
-            // $this->checkedCountry = [];
+            $increament = formdata_00::where([
+                'user_created' => $this->userID,
+                'iproject_id_fk' => $this->iproject_id_fk,
+                'idepartment_id_fk' => $this->idepartment_id_fk,
+                'ibc_id_fk' => $this->ibc_id_fk,
+                'ddd_id_fk' => $this->ddd_id_fk
+            ])->increment('counter', 1);
+            if ($increament) {
+                # code...
+                $this->dispatchBrowserEvent('CloseAddCountryModal');
+                // $this->checkedCountry = [];
+            }
         }
     }
 
@@ -213,9 +226,10 @@ class Formdata35 extends Component
     {
         $info = formdata_35::find($formdata_35s_id);
         // dd($info);
+        $this->fille_date = Carbon::parse($info->created_at)->format(env('DATE_FORMAT_YMD'));
         $this->ibc_id_fk = $info->ibc_id_fk;
         $this->idepartment_id_fk = $info->idepartment_id_fk;
-        $this->iproject_id_fk = $info->iproject_id_fk;
+        $this->old_iproject_id_fk = $info->iproject_id_fk;
         $this->parmitNo = $info->parmitNo;
         $this->working_dt = $info->working_dt;
         $this->working_t_F = $info->working_t_F;
@@ -330,8 +344,38 @@ class Formdata35 extends Component
         ]);
 
         if ($update) {
+            if ($this->old_iproject_id_fk != $this->iproject_id_fk) {
+                # code...
+                formdata_00::where([
+                    'user_created' => $this->userID,
+                    'iproject_id_fk' => $this->old_iproject_id_fk,
+                    'ddd_id_fk' => $this->ddd_id_fk
+                ])->decrement('counter', 1);
+
+                formdata_00::where([
+                    'user_created' => $this->userID,
+                    'iproject_id_fk' => $this->iproject_id_fk,
+                    'idepartment_id_fk' => $this->idepartment_id_fk,
+                    'ibc_id_fk' => $this->ibc_id_fk,
+                    'ddd_id_fk' => $this->ddd_id_fk
+                ])->increment('counter', 1);
+            }
             $this->dispatchBrowserEvent('CloseEditCountryModal');
         }
+    }
+
+    public function ganaratePDF($id)
+    {
+        // dd($id);
+        $formData = formdata_35::find($id);
+        $data = [
+            'formHeader' => Dept_Default_Docs::find($this->ddd_id_fk),
+            'formData' => $formData,
+            'activity'=>activity::select('activity_description')->whereIn('activity_id',$formData->exact_location_nature_of_work_ids)->get(),
+            'checkpointData' => form35_checkpoint::where(['form35_checkpoints.bactive' => '1'])->get(),
+        ];
+        $pdf = PDF::loadView('exports.Forms.form35', $data)->setPaper('A4', 'portrait')->output(); //
+        return response()->streamDownload(fn () => print($pdf), 'form35_' . time() . '.pdf');
     }
 
     public function deleteConfirm($formdata_35s_id)
