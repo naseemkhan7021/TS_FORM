@@ -17,7 +17,7 @@ class Formdata35 extends Component
 
     use WithPagination;
     protected $listeners = ['delete', 'selectedProjectID'];
-    public $parmitNo, $working_dt, $working_t_F, $working_t_T, $contractor_name, $supervisor_name, $no_of_people_working, $form35_checkpoint_ids, $activity_ids, $form35_checkpoint_remarks, $exact_location_nature_of_work_ids, $name_of_permit_issuing_authority, $sing_of_permit_issuing_authority, $name_permit_receiver, $sing_permit_receiver, $name_safety_representative, $sing_safety_representative, $name_of_permit_issuing_receiver_if_complete, $sing_of_permit_issuing_receiver_if_complete, $permit_issuing_receiver_if_complete_sing_dt, $name_of_permit_issuing_authority_if_complete, $sing_of_permit_issuing_authority_if_complete, $permit_issuing_authority_if_complete_sing_dt, $name_of_site_safety_officer, $sing_of_site_safety_officer, $permit_close_or_continued, $tags_removed;
+    public $parmitNo, $working_dt, $working_t_F, $working_t_T, $contractor_name, $supervisor_name, $no_of_people_working, $form35_checkpoint_ids, $activity_ids, $form35_checkpoint_remarks=[], $exact_location_nature_of_work_ids, $name_of_permit_issuing_authority, $sing_of_permit_issuing_authority, $name_permit_receiver, $sing_permit_receiver, $name_safety_representative, $sing_safety_representative, $name_of_permit_issuing_receiver_if_complete, $sing_of_permit_issuing_receiver_if_complete, $permit_issuing_receiver_if_complete_sing_dt, $name_of_permit_issuing_authority_if_complete, $sing_of_permit_issuing_authority_if_complete, $permit_issuing_authority_if_complete_sing_dt, $name_of_site_safety_officer, $sing_of_site_safety_officer, $permit_close_or_continued, $tags_removed;
 
     public $ibc_id_fk, $idepartment_id_fk, $iproject_id_fk,$sproject_location, $ddd_id_fk, $userID,$fille_date;
     public $searchQuery;
@@ -42,7 +42,8 @@ class Formdata35 extends Component
     public function render()
     {
 
-        $formData35 = formdata_35::join('projects', 'projects.iproject_id', '=', 'formdata_35s.iproject_id_fk')
+        $formData35 = formdata_35::select('formdata_35s.*','projects.sproject_name')
+            ->join('projects', 'projects.iproject_id', '=', 'formdata_35s.iproject_id_fk')
             ->where(['formdata_35s.bactive' => '1', 'formdata_35s.user_created' => $this->userID])
             ->when(session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*', function ($data) {
                 # code...
@@ -55,6 +56,8 @@ class Formdata35 extends Component
                     ->orWhere('parmitNo', 'like', '%' . $this->searchQuery . '%');
             })
             ->orderBy('formdata_35s_id', 'asc')->paginate(30);
+
+            // dd($formData35);
             $data =[
                 'projectData' => Projects::where(['projects.bactive'=> '1','projects.user_created'=>$this->userID])->get(),
                 'formData35'=>$formData35,
@@ -79,10 +82,10 @@ class Formdata35 extends Component
         $this->contractor_name = '';
         $this->supervisor_name = '';
         $this->no_of_people_working = '';
-        $this->form35_checkpoint_ids = collect();
-        // $this->activity_ids = collect();
+        $this->form35_checkpoint_ids = [];
+        // $this->activity_ids = [];
         $this->form35_checkpoint_remarks = []; # *
-        $this->exact_location_nature_of_work_ids = collect();
+        $this->exact_location_nature_of_work_ids = [];
 
         $this->name_of_permit_issuing_authority = '';
         $this->sing_of_permit_issuing_authority = '';
@@ -142,42 +145,61 @@ class Formdata35 extends Component
             // 'tags_removed' => 'required',
         ]);
 
-        $save = formdata_35::insert([
-            'ibc_id_fk' => $this->ibc_id_fk,
-            'idepartment_id_fk' => $this->idepartment_id_fk,
-            'iproject_id_fk' => $this->iproject_id_fk,
-            'ddd_id_fk' => $this->ddd_id_fk,
-            'parmitNo' => $this->parmitNo,
-            'working_dt' => $this->working_dt,
-            'working_t_F' => $this->working_t_F,
-            'working_t_T' => $this->working_t_T,
-            'contractor_name' => $this->contractor_name,
-            'supervisor_name' => $this->supervisor_name,
-            'no_of_people_working' => $this->no_of_people_working,
-            'form35_checkpoint_ids' => implode(',', $this->form35_checkpoint_ids),
-            // 'activity_ids' => implode(',', $this->activity_ids),
-            'form35_checkpoint_remarks' => $this->form35_checkpoint_remarks , # *
-            'exact_location_nature_of_work_ids' => implode(',', $this->exact_location_nature_of_work_ids),
+        // $save = formdata_35::insert([
+        //     'ibc_id_fk' => $this->ibc_id_fk,
+        //     'idepartment_id_fk' => $this->idepartment_id_fk,
+        //     'iproject_id_fk' => $this->iproject_id_fk,
+        //     'ddd_id_fk' => $this->ddd_id_fk,
+        //     'parmitNo' => $this->parmitNo,
+        //     'working_dt' => $this->working_dt,
+        //     'working_t_F' => $this->working_t_F,
+        //     'working_t_T' => $this->working_t_T,
+        //     'contractor_name' => $this->contractor_name,
+        //     'supervisor_name' => $this->supervisor_name,
+        //     'no_of_people_working' => $this->no_of_people_working,
+        //     'form35_checkpoint_ids' => implode(',', $this->form35_checkpoint_ids),
+        //     // 'activity_ids' => implode(',', $this->activity_ids),
+        //     'form35_checkpoint_remarks' => $this->form35_checkpoint_remarks , # *
+        //     'exact_location_nature_of_work_ids' => implode(',', $this->exact_location_nature_of_work_ids),
 
-            // 'name_of_permit_issuing_authority' => $this->name_of_permit_issuing_authority,
-            // 'sing_of_permit_issuing_authority' => $this->sing_of_permit_issuing_authority,
-            // 'name_permit_receiver' => $this->name_permit_receiver,
-            // 'sing_permit_receiver' => $this->sing_permit_receiver,
-            // 'name_safety_representative' => $this->name_safety_representative,
-            // 'sing_safety_representative' => $this->sing_safety_representative,
-            // 'name_of_permit_issuing_receiver_if_complete' => $this->name_of_permit_issuing_receiver_if_complete,
-            // 'sing_of_permit_issuing_receiver_if_complete' => $this->sing_of_permit_issuing_receiver_if_complete,
-            // 'permit_issuing_receiver_if_complete_sing_dt' => $this->permit_issuing_receiver_if_complete_sing_dt,
-            // 'name_of_permit_issuing_authority_if_complete' => $this->name_of_permit_issuing_authority_if_complete,
-            // 'sing_of_permit_issuing_authority_if_complete' => $this->sing_of_permit_issuing_authority_if_complete,
-            // 'permit_issuing_authority_if_complete_sing_dt' => $this->permit_issuing_authority_if_complete_sing_dt,
-            // 'name_of_site_safety_officer' => $this->name_of_site_safety_officer,
-            // 'sing_of_site_safety_officer' => $this->sing_of_site_safety_officer,
-            // 'permit_close_or_continued' => $this->permit_close_or_continued,
-            // 'tags_removed' => $this->tags_removed,
+        //     // 'name_of_permit_issuing_authority' => $this->name_of_permit_issuing_authority,
+        //     // 'sing_of_permit_issuing_authority' => $this->sing_of_permit_issuing_authority,
+        //     // 'name_permit_receiver' => $this->name_permit_receiver,
+        //     // 'sing_permit_receiver' => $this->sing_permit_receiver,
+        //     // 'name_safety_representative' => $this->name_safety_representative,
+        //     // 'sing_safety_representative' => $this->sing_safety_representative,
+        //     // 'name_of_permit_issuing_receiver_if_complete' => $this->name_of_permit_issuing_receiver_if_complete,
+        //     // 'sing_of_permit_issuing_receiver_if_complete' => $this->sing_of_permit_issuing_receiver_if_complete,
+        //     // 'permit_issuing_receiver_if_complete_sing_dt' => $this->permit_issuing_receiver_if_complete_sing_dt,
+        //     // 'name_of_permit_issuing_authority_if_complete' => $this->name_of_permit_issuing_authority_if_complete,
+        //     // 'sing_of_permit_issuing_authority_if_complete' => $this->sing_of_permit_issuing_authority_if_complete,
+        //     // 'permit_issuing_authority_if_complete_sing_dt' => $this->permit_issuing_authority_if_complete_sing_dt,
+        //     // 'name_of_site_safety_officer' => $this->name_of_site_safety_officer,
+        //     // 'sing_of_site_safety_officer' => $this->sing_of_site_safety_officer,
+        //     // 'permit_close_or_continued' => $this->permit_close_or_continued,
+        //     // 'tags_removed' => $this->tags_removed,
 
-            'user_created' => $this->userID,
-        ]);
+        //     'user_created' => $this->userID,
+        // ]);
+        $formdata_35 = new formdata_35;
+        $formdata_35->user_created = $this->userID;
+        $formdata_35->ibc_id_fk = $this->ibc_id_fk;
+        $formdata_35->idepartment_id_fk = $this->idepartment_id_fk;
+        $formdata_35->iproject_id_fk = $this->iproject_id_fk;
+        $formdata_35->ddd_id_fk = $this->ddd_id_fk;
+        $formdata_35->parmitNo = $this->parmitNo;
+        $formdata_35->working_dt = $this->working_dt;
+        $formdata_35->working_t_F = $this->working_t_F;;
+        $formdata_35->working_t_T = $this->working_t_T;;
+        $formdata_35->contractor_name = $this->contractor_name;;
+        $formdata_35->supervisor_name = $this->supervisor_name;;
+        $formdata_35->no_of_people_working = $this->no_of_people_working;;
+        $formdata_35->form35_checkpoint_ids = $this->form35_checkpoint_ids;;
+        $formdata_35->form35_checkpoint_remarks = $this->form35_checkpoint_remarks;;
+        $formdata_35->exact_location_nature_of_work_ids = $this->exact_location_nature_of_work_ids;;
+
+
+        $save = $formdata_35->save();
 
         if ($save) {
             $this->dispatchBrowserEvent('CloseAddCountryModal');
@@ -201,10 +223,10 @@ class Formdata35 extends Component
         $this->contractor_name = $info->contractor_name;
         $this->supervisor_name = $info->supervisor_name;
         $this->no_of_people_working = $info->no_of_people_working;
-        $this->form35_checkpoint_ids = explode(',', $info->form35_checkpoint_ids);
+        $this->form35_checkpoint_ids = $info->form35_checkpoint_ids;
         // $this->activity_ids = explode(',', $info->activity_ids);
         $this->form35_checkpoint_remarks = $info->form35_checkpoint_remarks; # *
-        $this->exact_location_nature_of_work_ids = explode(',', $info->exact_location_nature_of_work_ids);
+        $this->exact_location_nature_of_work_ids = $info->exact_location_nature_of_work_ids;
 
         // $this->name_of_permit_issuing_authority = $info->name_of_permit_issuing_authority;
         // $this->sing_of_permit_issuing_authority = $info->sing_of_permit_issuing_authority;
@@ -282,10 +304,10 @@ class Formdata35 extends Component
             'contractor_name' => $this->contractor_name,
             'supervisor_name' => $this->supervisor_name,
             'no_of_people_working' => $this->no_of_people_working,
-            'form35_checkpoint_ids' => implode(',', $this->form35_checkpoint_ids),
+            'form35_checkpoint_ids' => $this->form35_checkpoint_ids,
             // 'activity_ids' => implode(',', $this->activity_ids),
-            'form35_checkpoint_remarks' => implode(',', $this->form35_checkpoint_remarks), # *
-            'exact_location_nature_of_work_ids' => implode(',', $this->exact_location_nature_of_work_ids),
+            'form35_checkpoint_remarks' => $this->form35_checkpoint_remarks, # *
+            'exact_location_nature_of_work_ids' => $this->exact_location_nature_of_work_ids,
 
             // 'name_of_permit_issuing_authority' => $this->name_of_permit_issuing_authority,
             // 'sing_of_permit_issuing_authority' => $this->sing_of_permit_issuing_authority,

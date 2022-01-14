@@ -47,10 +47,15 @@ class formdata_35 extends Model
     ];
 
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
     protected $casts = [
+        'form35_checkpoint_ids' => 'array',
         'form35_checkpoint_remarks' => 'array',
-        // 'uploaddocuments_title' => 'array',
-        // 'uploaddocuments_location' => 'array',
+        'exact_location_nature_of_work_ids' => 'array',
     ];
 
 }

@@ -191,6 +191,8 @@
                                             <div class="col-md-3">
                                                 <input type="text" placeholder="remark" class="form-control"
                                                     wire:model='form35_checkpoint_remarks.{{ $index }}'>
+
+                                                    {{-- <input type="text" class="form-control" placeholder="Img title" wire:model='imgTitles.{{$key}}'> --}}
                                             </div>
                                         </div>
                                         {{-- </div> --}}

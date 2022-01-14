@@ -51,8 +51,8 @@ if ($iproject_id_fk) {
                         <td>{{ $row->parmitNo }}</td>
                         <td>{{ $row->contractor_name }}</td>
                         <td>{{ $row->no_of_people_working }}</td>
-                        <td>{{ $row->working_t_F }} to {{ $row->working_t_T }}</td>
-                        <td>{{ $row->created_at }}</td>
+                        <td>{{ Carbon\Carbon::parse($row->working_t_F)->format(env('HIA')) }} to {{Carbon\Carbon::parse($row->working_t_T)->format(env('HIA')) }}</td>
+                        <td>{{ Carbon\Carbon::parse($row->created_at)->format(env('DATE_FORMAT1')) }}</td>
                         <td>
                             <div class="btn-group">
                                 <button class="btn btn-success btn-sm"

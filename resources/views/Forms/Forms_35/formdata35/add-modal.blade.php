@@ -189,8 +189,7 @@
                                                     id="add_point_{{ $item->form35_checkpoints_id }}_add">
                                             </div>
                                             <div class="col-md-3">
-                                                <input type="text" placeholder="remark" class="form-control"
-                                                    wire:model='form35_checkpoint_remarks.{{ $index }}'>
+                                                    <input type="text" placeholder="remark" class="form-control" wire:model='form35_checkpoint_remarks.{{ $index }}'>
                                             </div>
                                         </div>
                                         {{-- </div> --}}
