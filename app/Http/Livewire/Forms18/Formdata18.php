@@ -154,7 +154,8 @@ class Formdata18 extends Component
 
         $this->ibc_id_fk=$info->ibc_id_fk;
         $this->idepartment_id_fk=$info->idepartment_id_fk;
-        $this->old_iproject_id_fk = $info->iproject_id_fk;
+        $this->old_iproject_id_fk = $info->iproject_id_fk; // for comparing
+        $this->iproject_id_fk = $info->iproject_id_fk;
         $this->extinguisher_no = $info->extinguisher_no;
         $this->location = $info->location;
         $this->type = $info->type;

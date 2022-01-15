@@ -232,7 +232,8 @@ class Formdata17 extends Component
         // dd($info);
         $this->role = $role;
 
-        $this->old_iproject_id_fk = $info->iproject_id_fk;
+        $this->iproject_id_fk = $info->iproject_id_fk;
+        $this->old_iproject_id_fk = $info->iproject_id_fk; // for comparing
         $this->idepartment_id_fk = $info->idepartment_id_fk;
         $this->ibc_id_fk = $info->ibc_id_fk;
 

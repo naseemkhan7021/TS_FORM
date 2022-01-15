@@ -277,7 +277,8 @@ class Formdata01 extends Component
 
         // dd($info);
         $this->currentData = Carbon::parse($info->created_at)->format('Y-m-d H:i:s');
-        $this->old_iproject_id_fk = $info->iproject_id_fk;
+        $this->iproject_id_fk = $info->iproject_id_fk;
+        $this->old_iproject_id_fk = $info->iproject_id_fk; // for comparing
         $this->idepartment_id_fk = $info->idepartment_id_fk;
         $this->ibc_id_fk = $info->ibc_id_fk;
         $this->B_activity_id_fk = $info->B_activity_id_fk;

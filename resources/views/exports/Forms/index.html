@@ -8,6 +8,8 @@
         * {
             margin: 0;
             border: unset;
+            padding: 0;
+            line-height: 1.2;
         }
 
         @page {
@@ -54,7 +56,7 @@
         }
 
         #childeTable1 tbody {
-            font-size: .9rem;
+            font-size: .98rem;
         }
 
         table#childeTable2 td {
@@ -111,7 +113,7 @@
         }
 
         .border-dot {
-            border-bottom: 1px solid black dotted;
+            border-bottom: 1px black dotted;
         }
 
         .selected-OPT {
@@ -126,8 +128,80 @@
         .m0 {
             margin: 0 !important;
         }
-        .mx2{
-            max-width: 20%;
+
+        .wd100 {
+            width: 100% !important;
+        }
+
+        .mx2 {
+            width: 20%;
+        }
+
+        table#checkpointTable,
+        table#checkpointTable table {
+            margin: 0 !important;
+            width: 100%;
+        }
+
+        table#childeTable2 table#checkpointTable td,
+        table#childeTable2 table#checkpointTable th {
+            /* border: 1px solid black !important; */
+            border: none !important;
+        }
+
+        table#childeTable2 table#checkpointTable td,
+        table#childeTable2 table#checkpointTable th {
+            /* border: 1px solid black !important; */
+            border-right: 1px solid !important;
+        }
+        table#childeTable2 table#checkpointTable td:last-child,
+        table#childeTable2 table#checkpointTable th:last-child {
+            /* border: 1px solid black !important; */
+            border-right: unset !important;
+        }
+
+        table#childeTable2 table#checkpointTable table td {
+            /* border: 1px solid black !important; */
+            border-top: 1px dotted !important;
+        }
+
+        table#childeTable2 table#checkpointTable table td {
+            text-align: center;
+        }
+        table#childeTable2 table#checkpointTable table td:first-child {
+            text-align: start;
+        }
+
+        table#childeTable2 table#checkpointTable table th {
+            /* border: 1px solid black !important; */
+            border-bottom: 1px solid !important;
+        }
+
+        /* signature area  */
+        table#childeTable2 table td {
+            /* border: 1px solid black !important; */
+            border: none !important;
+        }
+
+        table#childeTable2 table td {
+            /* border: 1px solid black !important; */
+            border-right: 1px solid !important;
+        }
+        table#childeTable2 table td:last-child {
+            /* border: 1px solid black !important; */
+            border-right:unset !important;
+        }
+
+        .singA {
+            margin-top: 2rem;
+        }
+
+        .border-b {
+            border-bottom: 1px solid !important;
+        }
+
+        .d-inlineB {
+            display: inline-block;
         }
     </style>
 </head>
@@ -168,8 +242,8 @@
                                     <table id="childeTable2" style="width: 100%;">
                                         <tbody>
                                             <tr align="center">
-                                                <td colspan="1" class="mx2">
-                                                    <div class="">Date: </div>
+                                                <td colspan="" class="mx2">
+                                                    <div class="">Date: 14-10-2021</div>
                                                 </td>
                                                 <td colspan="3">
                                                     <div class="">
@@ -179,8 +253,8 @@
                                                             work)</small>
                                                     </div>
                                                 </td>
-                                                <td colspan="1" class="mx2">
-                                                    <div class="">Permit No.</div>
+                                                <td colspan="" class="mx2">
+                                                    <div class="">Permit No.: 1265</div>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -194,9 +268,388 @@
                                             <tr>
                                                 <td colspan="5">
                                                     <div class="">
-                                                        Exact Location and nature of work to be carried out: <b class="border-dot">
-                                                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus vitae earum repellat. Deleniti molestiae adipisci placeat ullam a voluptate, dolorem asperiores corrupti quos, necessitatibus omnis ea fuga illo cumque iure.
+                                                        Exact Location and nature of work to be carried out: <b
+                                                            class="border-dot">
+                                                            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                                                            Voluptatibus vitae earum repellat. Deleniti molestiae
+                                                            adipisci placeat ullam a voluptate, dolorem asperiores
+                                                            corrupti quos, necessitatibus omnis ea fuga illo cumque
+                                                            iure.
                                                         </b>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <div class="">Name of Contractor: Naseem Akaram Khan</div>
+                                                </td>
+                                                <td colspan="2">
+                                                    <div class="">Name of Supervisor: Naseem Akaram Khan</div>
+                                                </td>
+                                                <td>
+                                                    <div class="">No. of people working: 85</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5" align="left">
+                                                    <div class="">
+                                                        <span>To carry out work, the following points are to be
+                                                            checked:</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <!--  check point area -->
+                                            <tr>
+                                                <td colspan="5">
+                                                    <table id="checkpointTable">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <table>
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Checkpoints</th>
+                                                                                <th>Y/N</th>
+                                                                                <th>Remark</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div class="">Proper Access</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">YES</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">
+                                                                                        ok fine
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div class="">Proper Access</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">YES</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">
+                                                                                        ok fine
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div class="">Proper Access</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">YES</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">
+                                                                                        ok fine
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div class="">Proper Access</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">YES</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">
+                                                                                        ok fine
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div class="">Proper Access</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">YES</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">
+                                                                                        ok fine
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div class="">Proper Access</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">YES</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">
+                                                                                        ok fine
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div class="">Proper Access</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">YES</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">
+                                                                                        ok fine
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                                <td>
+                                                                    <table>
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Checkpoints</th>
+                                                                                <th>Y/N</th>
+                                                                                <th>Remark</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div class="">Proper Access</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">YES</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">
+                                                                                        ok fine
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div class="">Proper Access</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">YES</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">
+                                                                                        ok fine
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div class="">Proper Access</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">YES</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">
+                                                                                        ok fine
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div class="">Proper Access</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">YES</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">
+                                                                                        ok fine
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div class="">Proper Access</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">YES</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">
+                                                                                        ok fine
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div class="">Proper Access</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">YES</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">
+                                                                                        ok fine
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div class="">Proper Access</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">YES</div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="">
+                                                                                        ok fine
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>
+
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td colspan="5">
+                                                    <div class=""><b>Special Instruction and restrictions, if any:
+                                                            Before issuing this permit ensure the relevant checklist has
+                                                            been filled and submitted to site EHS department
+                                                            (EHS-F-35)</b></div>
+                                                </td>
+                                            </tr>
+                                            <!-- signature area -->
+                                            <tr>
+                                                <td colspan="5">
+                                                    <table class="m0 wd100">
+                                                        <tbody>
+                                                            <tr align="center">
+                                                                <td>
+                                                                    <div class="">
+                                                                        <p>All the above checkpoints found OK. Permit is
+                                                                            issued to carry out the required Height work
+                                                                        </p>
+                                                                        <div class="singA">
+                                                                            <span>_____________________</span>
+                                                                        </div>
+                                                                        <span>
+                                                                            Name & Sign. of Permit Issuing Authority
+                                                                            <br>
+                                                                            <small>
+                                                                                (Area Incharge / Engineer / Manager)
+                                                                            </small>
+                                                                        </span>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="">
+                                                                        <p>I understood the Safety Requirements of the
+                                                                            job and shall follow without fail</p>
+                                                                        <div class="singA">
+                                                                            <span>_____________________</span>
+                                                                        </div>
+                                                                        <span>
+                                                                            Name & Sign. of Permit Receiver / Holder
+                                                                            <br>
+                                                                            <small>
+                                                                                (Supervisor / Responsible person)
+                                                                            </small>
+                                                                        </span>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="">
+                                                                        <p>All the checkpoints are verified and found
+                                                                            OK. Work can be started.</p>
+                                                                        <div class="singA">
+                                                                            <span>_____________________</span>
+                                                                        </div>
+                                                                        <span>
+                                                                            (Name & Signature of Safety representative)
+                                                                        </span>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5">
+                                                    <table class="wd100 m0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="">
+                                                                        <p class="border-dot">To be filled in by Permit
+                                                                            Receiver on completion of work and returned
+                                                                            to Safety Department:</p>
+                                                                        <p>I have checked & certify the work completion.
+                                                                            All the men and materials withdrawn</p>
+                                                                        <div class="singA" align="center">
+                                                                            <span>_____________________</span><br>
+                                                                            <span>(Name & Signature of Permit Issuing
+                                                                                Authority / Holder)</span>
+                                                                        </div>
+                                                                        <small>Date:__/__/____</small>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="">
+                                                                        <p class="border-dot">To be filled in by Permit
+                                                                            Receiver on completion of work and returned
+                                                                            to Safety Department:</p>
+                                                                        <p>I have checked & certify the work completion.
+                                                                            All the men and materials withdrawn</p>
+                                                                        <div class="singA" align="center">
+                                                                            <span>_____________________</span><br>
+                                                                            <span>(Name & Signature of Permit Issuing
+                                                                                Authority / Holder)</span>
+                                                                        </div>
+                                                                        <small>Date:__/__/____</small>
+                                                                    </div>
+                                                                </td>
+
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5">
+                                                    <div class="">
+                                                        <div class="">
+                                                            <span>Note:</span>
+                                                            <div class="d-inlineB" style="margin-left: 2rem;">
+                                                                <p class="d-inlineB">01) Ensure all labours / men’s
+                                                                    working at height is
+                                                                    trained for the same & tool box training should be
+                                                                    conducted prior to work.</p>
+                                                                <br>
+                                                                <p class="d-inlineB">02) "Understand work - Ensure
+                                                                    Safety" before commencing
+                                                                    work.</p>
+                                                                <br>
+                                                                <p class="d-inlineB">03) The above permit is valid for
+                                                                    the day only. Permit
+                                                                    may be carried forward with the permission of the
+                                                                    Issuing authority for the next day only.</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="" style="margin-top: 1rem;">Name & Signature of Site Safety Officer: _____________________</div>
+                                                        <div class="" style="margin-top: .5rem;"><p>
+                                                            Note: For continuation of permit, please notify authorized person 1 hour before expiry of permit.
+                                                        </p></div>
                                                     </div>
                                                 </td>
                                             </tr>

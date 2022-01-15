@@ -165,7 +165,8 @@ class Headers extends Component
         $this->faculty_sign = $info->faculty_sign;
         $this->site_safety_in_charge_sign = $info->site_safety_in_charge_sign;
         $this->site_safety_in_charge_name = $info->site_safety_in_charge_name;
-        $this->old_iproject_id_fk = $info->iproject_id_fk;
+        $this->old_iproject_id_fk = $info->iproject_id_fk; // for comparing
+        $this->iproject_id_fk = $info->iproject_id_fk;
         $this->ibc_id_fk = $info->ibc_id_fk;
         $this->idepartment_id_fk = $info->idepartment_id_fk;
 

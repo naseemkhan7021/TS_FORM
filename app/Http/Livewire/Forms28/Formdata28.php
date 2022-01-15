@@ -137,7 +137,8 @@ class Formdata28 extends Component
         $this->ibc_id_fk = $info->ibc_id_fk;
         $this->date = Carbon::parse($info->created_at)->format(env('DATE_FORMAT_YMD'));
         $this->idepartment_id_fk = $info->idepartment_id_fk;
-        $this->old_iproject_id_fk = $info->iproject_id_fk;
+        $this->iproject_id_fk = $info->iproject_id_fk;
+        $this->old_iproject_id_fk = $info->iproject_id_fk; // for comparing
         // $this->ddd_id_fk = $info->ddd_id_fk;
         $this->prioritytimescales_id_fk = $info->prioritytimescales_id_fk;
         $this->observation_desc = $info->observation_desc;

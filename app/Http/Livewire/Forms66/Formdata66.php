@@ -198,7 +198,8 @@ class Formdata66 extends Component
         $this->ibc_id_fk = $info->ibc_id_fk;
         $this->idepartment_id_fk = $info->idepartment_id_fk;
         // $this->ddd_id_fk=$info->ddd_id_fk;
-        $this->old_iproject_id_fk = $info->iproject_id_fk;
+        $this->iproject_id_fk = $info->iproject_id_fk;
+        $this->old_iproject_id_fk = $info->iproject_id_fk; // for comparing
         $this->B_activity_id_fk = $info->B_activity_id_fk;
         $this->C_sub_activity_id_fk = $info->C_sub_activity_id_fk;
         $this->C_sub_activity_id_fks = $info->C_sub_activity_id_fks;

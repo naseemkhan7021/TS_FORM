@@ -25,7 +25,7 @@ class formdata_35 extends Model
         'supervisor_name',
         'no_of_people_working',
         'form35_checkpoint_ids',
-        'activity_ids',
+        // 'activity_ids',
         'form35_checkpoint_remarks',
 
         'name_of_permit_issuing_authority', # * 

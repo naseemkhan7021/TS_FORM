@@ -229,7 +229,8 @@ class Formdata35 extends Component
         $this->fille_date = Carbon::parse($info->created_at)->format(env('DATE_FORMAT_YMD'));
         $this->ibc_id_fk = $info->ibc_id_fk;
         $this->idepartment_id_fk = $info->idepartment_id_fk;
-        $this->old_iproject_id_fk = $info->iproject_id_fk;
+        $this->old_iproject_id_fk = $info->iproject_id_fk; // for comparing
+        $this->iproject_id_fk = $info->iproject_id_fk;
         $this->parmitNo = $info->parmitNo;
         $this->working_dt = $info->working_dt;
         $this->working_t_F = $info->working_t_F;

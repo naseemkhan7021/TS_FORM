@@ -336,7 +336,8 @@ class Formdata16 extends Component
         $this->designation = $info->designation;
         $this->age = $info->age;
         // $this->sproject_location = $this->sproject_location;
-        $this->old_iproject_id_fk = $info->iproject_id_fk;
+        $this->iproject_id_fk = $info->iproject_id_fk;
+        $this->old_iproject_id_fk = $info->iproject_id_fk; // for comparing
         $this->idepartment_id_fk = $info->idepartment_id_fk;
         $this->ibc_id_fk = $info->ibc_id_fk;
         $this->doincident_dt = $info->doincident_dt;
