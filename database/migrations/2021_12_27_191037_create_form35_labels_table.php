@@ -16,7 +16,7 @@ class CreateForm35LabelsTable extends Migration
         if (!Schema::hasTable('form35_labels')){
         Schema::create('form35_labels', function (Blueprint $table) {
             $table->id('form35_labels_id');
-            $table->string('form35_labels_desc',150)->default('NA');
+            $table->string('form35_labels_desc',10000)->default('NA');
             $table->string('form35_labels_abbr',10)->default('NA');
 
             $table->boolean('bactive')->default(true);

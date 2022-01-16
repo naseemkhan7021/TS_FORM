@@ -10,7 +10,10 @@
                  $dir = public_path('storage/photos/logo/large/');
                  $fils = scandir($dir);
                  $firtFile = $fils;
-                 //     dd(public_path("storage/photos/logo/large/".$fils[2]));
+                    //  dd(public_path("storage/photos/logo/large/".$fils[2]));
+                    // $fils[0] == /
+                    // $fils[1] == ..
+                    // $fils[2] == first file name
              @endphp
              {{-- img --}}
              {{-- <img src="{{Storage::url($defaultData->sbc_logo_small)}}" alt="loglarge"> <-- this code will work in production ... this is reletive path --}}

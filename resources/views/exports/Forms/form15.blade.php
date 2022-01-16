@@ -71,7 +71,8 @@
         }
 
         #Heading1 {
-            margin-bottom: 1rem;
+            margin-bottom: 1rem !important;
+            font-size: 1rem !important;
         }
 
         .imgdiv {
@@ -130,16 +131,16 @@
                                         <tbody>
                                             <tr align="center">
                                                 <td id="Heading1" colspan="5">
-                                                    <strong style="font-size: .95rem"><u>NEARMISS REPORTING
-                                                            FORMAT</u></strong>
+                                                    <strong style="font-size: .95rem"><u>{{$formHeader->document_name}}</u></strong>
                                                 </td>
                                             </tr>
+
                                             <tr>
                                                 <td colspan="3">
                                                     <div class="">Project Name: <b class="border-dot">{{$formData->sproject_name}}</b>
                                                     </div>
                                                 </td>
-
+                                   
                                                 <td colspan="2" align="right">
                                                     <div class="">Report no.: <b class="border-dot">{{$formData->report_no}}</b></div>
                                                 </td>
@@ -151,10 +152,12 @@
                                                 <td colspan="2" align="right">
                                                     <div class="">Date/time: <b class="border-dot">{{$formData->doincident_dt}}</b></div>
                                                 </td>
-                                            </tr>
+                                            </tr> 
+
                                             <tr>
                                                 <td>
-                                                    <div class=""><strong>Potential Injury:</div>
+                                                    <div class=""><strong>
+                                                        Potential Injury:</strong></div>
                                                 </td>
                                                 @foreach ($potentialinjurytotData as $item)
                                                     <td>{!! $item->potential_injurytos_id == $formData->potential_injurytos_fk ? '&bull; <span class="selected-OPT">'.$item->potential_injurytos_description.'</span> ' : '&ordm; '.$item->potential_injurytos_description !!} 
@@ -167,11 +170,11 @@
                                                     <div style="margin: 0;" class="">Company Name:<b class="border-dot">{{$formData->sbc_company_name}}</b></div>
                                                 </td>
                                             </tr>
-                                            <!-- Nature of Potential Injury: ( Tick &check; in the Boxes ) -->
+
                                             <tr>
                                                 <td colspan="5">
-                                                    <div class=""><strong>Nature of Potential
-                                                            Injury:</strong> <span>(Tick &bull; in the Boxes)</span>
+                                                    <div class="">
+                                                        <strong>Nature of Potential Injury:</strong> <span>(Tick &bull; in the Boxes)</span>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -194,7 +197,7 @@
                                             </tr>
                                             <tr>
                                                 @foreach ($NatureofpotentialData as $index => $item)
-                                                    @if ($index == 3 || $index == 4))
+                                                    @if ($index == 3 || $index == 4)
                                                         <td>
                                                             <div class="m-l1">
                                                                 {!! in_array($item->nature_of_potential_injuries_id,explode(',',$formData->nature_of_potential_injuries_ids))  ? '&bull; <span class="selected-OPT">'.$item->nature_of_potential_injuries_description .'</span> ' : '&ordm; '.$item->nature_of_potential_injuries_description !!}
@@ -202,12 +205,13 @@
                                                         </td>
                                                     @endif
                                                     
-
+                                   
                                                 @endforeach
                                                 <td colspan="3">
                                                     <div class="m-l1">Details if required: <b class="border-dot">{{$formData->nature_of_potential_injuries_other}}</b></div>
                                                 </td>
                                             </tr>
+
                                             <!-- Activity: ( Tick <span class="selected-OPT">&bull; </span> in the Boxes ) -->
                                             <tr>
                                                 <td colspan="5">
@@ -218,7 +222,7 @@
                                                 @foreach ($activityData as $index => $item)
                                                     <td>
                                                         <div class="m-l1">
-                                                             {!! in_array($item->activity15s_id,explode(',',$formData->activity15s_ids))  ? '&bull; <span class="selected-OPT">'.$item->activity15s_description .'</span> ' : '&ordm; '.$item->activity15s_description  !!}
+                                                            {!! in_array($item->activity15s_id,explode(',',$formData->activity15s_ids))  ? '&bull; <span class="selected-OPT">'.$item->activity15s_description .'</span> ' : '&ordm; '.$item->activity15s_description  !!}
                                                             {{-- {{ $item->activity15s_description }} --}}
                                                         </div>
                                                     </td>
@@ -231,13 +235,11 @@
                                                 @foreach ($activityData as $index => $item)
                                                     @if ($index == 4 || $index == 5 || $index == 6 || $index == 7)
                                                     <td>
-                                                       <div class="m-l1">
+                                                    <div class="m-l1">
                                                         {!! in_array($item->activity15s_id,explode(',',$formData->activity15s_ids))  ? '&bull; <span class="selected-OPT">'.$item->activity15s_description .'</span> ' : '&ordm; '.$item->activity15s_description  !!}
-                                                       </div>
-                                                   </td>
+                                                    </div>
+                                                </td>
                                                     @endif
-                                                    
-
                                                 @endforeach
                                             </tr>
 
@@ -265,7 +267,7 @@
                                                         <div class="lihit14"><b class="border-dot"> {{ $formData->details_of_nearmiss ?? '.....................'}}</b></div>
                                                 </td>
                                             </tr>
-
+                                   
                                             <tr>
                                                 <td colspan="5">
                                                     <div style="width: 100%" class="">
@@ -274,7 +276,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-
+                                   
                                             <tr>
                                                 <td colspan="3" align="center">
                                                     <div><strong>Immediate Cause:</strong></div>
@@ -314,7 +316,7 @@
                                                     <table style="margin: 0; transform: translate(10px, -20px);">
                                                         <tbody>
                                                             @foreach ($contributcauseData as $index => $item)
-
+                                   
                                                                 <tr>
                                                                     <td>
                                                                         <div style="display: block;"
@@ -324,7 +326,7 @@
                                                                         </div>
                                                                     </td>
                                                                 </tr>
-
+                                   
                                                             @endforeach
                                                             <tr>
                                                                 <td>
@@ -386,14 +388,14 @@
                                                     <div class="m-l1">Details if required:  <b class="border-dot">{{$formData->whyunsafeact_committeds_other ?? '______________'}}</b></div>
                                                 </td>
                                             </tr>
-
+                                   
                                             <tr>
                                                 <td colspan="5">
                                                     <div style="width: 100%" class=""><strong>Immediate
                                                             Corrective Action to be taken:</strong> <span>( Tick &bull; in the Boxes )</span></div>
                                                 </td>
                                             </tr>
-
+                                   
                                             <tr>
                                                 <td colspan="2" align="center">
                                                     <div><strong>Action:</strong></div>
@@ -418,7 +420,7 @@
                                                                             {!! in_array($item->imd_actions_id,explode(',',$formData->imd_actions_ids))  ? '&bull; <span class="selected-OPT">'.$item->imd_actions_description.'</span> ' : '&ordm; '.$item->imd_actions_description !!}
                                                                         </div>
                                                                     @endforeach
-
+                                   
                                                                 </td>
                                                                 <td></td>
                                                                 <td colspan="2">
@@ -435,9 +437,9 @@
                                                     </table>
                                                 </td>
                                             </tr>
-
-
-
+                                   
+                                   
+                                   
                                             <tr>
                                                 <td colspan="5">
                                                     <div class=""><strong>Further recommended
@@ -456,7 +458,7 @@
                                                     <div class="lihit14"><b class="border-dot"> {{ $formData->further_recommended_action ?? '.....................'}}</b></div>
                                                 </td>
                                             </tr>
-
+                                   
                                             <tr>
                                                 <td class="" colspan="3">
                                                     <div style="width: 100%" class="">Completed by - Name: <b class="border-dot"> {{ $formData->completed_by_name ?? '____________________________'}}</b></div>
@@ -472,7 +474,6 @@
                                                             Department</strong></div>
                                                 </td>
                                             </tr>
-
                                         </tbody>
                                     </table>
                                 </td>

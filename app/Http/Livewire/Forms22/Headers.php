@@ -250,7 +250,7 @@ class Headers extends Component
             'topicData'=>topic_discussed::get(),
         ];
         $pdf = PDF::loadView('exports.Forms.form22', $data)->setPaper('A4', 'portrait')->output(); //
-        return response()->streamDownload(fn () => print($pdf),'form22.pdf');
+        return response()->streamDownload(fn () => print($pdf),'form22_'.time().'.pdf');
 
     }
 

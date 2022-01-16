@@ -7,7 +7,6 @@ if ($iproject_id_fk) {
     $this->sproject_location = $sproject_location_obj[0]->sproject_location;
     $this->ibc_id_fk = $sproject_location_obj[0]->ibc_id_fk;
     $this->idepartment_id_fk = $sproject_location_obj[0]->idepartment_id_fk;
-    
 }
 @endphp
 
@@ -34,7 +33,9 @@ if ($iproject_id_fk) {
             <thead>
                 <tr align="center">
                     <th>#</th>
-                    <th><div class="bg-gray-800">Project Name</div></th>
+                    <th>
+                        <div class="bg-gray-800">Project Name</div>
+                    </th>
                     <th>parmitNo</th>
                     <th>Contractor Name</th>
                     <th>No Of People Working</th>
@@ -51,7 +52,8 @@ if ($iproject_id_fk) {
                         <td>{{ $row->parmitNo }}</td>
                         <td>{{ $row->contractor_name }}</td>
                         <td>{{ $row->no_of_people_working }}</td>
-                        <td>{{ Carbon\Carbon::parse($row->working_t_F)->format(env('HIA')) }} to {{Carbon\Carbon::parse($row->working_t_T)->format(env('HIA')) }}</td>
+                        <td>{{ Carbon\Carbon::parse($row->working_t_F)->format(env('HIA')) }} to
+                            {{ Carbon\Carbon::parse($row->working_t_T)->format(env('HIA')) }}</td>
                         <td>{{ Carbon\Carbon::parse($row->created_at)->format(env('DATE_FORMAT1')) }}</td>
                         <td>
                             <div class="btn-group">
@@ -59,8 +61,10 @@ if ($iproject_id_fk) {
                                     wire:click="OpenEditCountryModal({{ $row->formdata_35s_id }})">Edit</button>
                                 <button class="waves-effect waves-light btn btn-danger btn-sm"
                                     wire:click="deleteConfirm({{ $row->formdata_35s_id }})">Delete</button>
-                                <button class="waves-effect waves-light btn btn-primary btn-sm"
+                                <button wire:loading.attr="disabled" class="waves-effect waves-light btn btn-primary btn-sm"
                                     wire:click="ganaratePDF({{ $row->formdata_35s_id }})">pdf</button>
+                                {{-- show loading --}}
+                                @include('template.shared.loading')
                             </div>
                         </td>
                     </tr>

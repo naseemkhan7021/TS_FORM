@@ -307,7 +307,7 @@
                                                                 </tr>
                                                             @endforeach
                                                             {{-- if you don't want blank row then remov below (if) algo --}}
-                                                            @if ($totalParticipance < 15))
+                                                            @if ($totalParticipance < 15)
                                                                 @while ($totalParticipance < 15)
                                                                     <tr>
                                                                         <td>{{ ++$totalParticipance }}</td>

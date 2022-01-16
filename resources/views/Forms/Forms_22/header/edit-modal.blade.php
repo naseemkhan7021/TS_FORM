@@ -163,6 +163,8 @@
                         {{-- Show Partisipance start --}}
 
                         {{-- {{dd($partisipanceData)}} --}}
+                        @php($len = count($id_no) ?? 0)
+                        {{-- {{dd($len)}} --}}
                         <div class="col-12">
                             @if ($partisipanceId == 0)
                                 <h4 class="text-danger text-center">No Participant add at</h4>
@@ -182,7 +184,8 @@
                                     </thead>
                                     <tbody>
                                         {{-- {{dd($id_no)}} --}}
-                                        @php($len = count($id_no))
+                                        @php($len = count($id_no) ?? 0)
+                                        {{-- {{dd($len)}} --}}
                                         @forelse ($partisipanceData as $row)
                                             @forelse (range(0,$len-1) as $item)
                                                 <tr>
@@ -215,7 +218,9 @@
                             {{-- show button according to user role --}}
                             {{-- $len is total number of paritcipance added in header --}}
                             {{-- @php($len = 0) --}}
-                            {!! $role == 'Project Head' ? ($len > 0 ? '<a class="btn btn-primary btn-sm text-white" wire:click="ganaratePDF()">Export PDF</a>' : '<a class="btn btn-success btn-sm text-white" href="/form22_participant" >Add Partisipance to Export</a>') : '<button type="submit" class="btn btn-primary btn-sm">Save Changes</button>' !!}
+                            {!! $role == 'Project Head' ? ($len > 0 ? '<input type="button" wire:loading.attr="disabled" class="btn btn-success btn-sm text-white" wire:click="ganaratePDF()" value="Export PDF">' : '<a class="btn btn-primary btn-sm text-white" href="/form22_participant" >Add Partisipance to Export</a>') : '<button type="submit" class="btn btn-primary btn-sm">Save Changes</button>' !!}
+                            {{-- show loading --}}
+                            @include('template.shared.loading')
                         </div>
                     </div>
                 </form>

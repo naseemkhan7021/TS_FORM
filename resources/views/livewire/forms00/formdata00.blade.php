@@ -43,7 +43,7 @@
                     <td>{{ $row->document_name }}</td>
                     <td>{{ $row->document_code }}</td>
                     <td>{{ $row->counter }}</td>
-                    <td>{{ $row->created_at }}</td>
+                    <td>{{ Carbon\Carbon::parse($row->created_at)->format(env('DATE_FORMAT1')) }}</td>
                     <td>
                         <div class="btn-group">
                             <button class="btn btn-success btn-sm disabled"

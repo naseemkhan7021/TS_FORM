@@ -35,7 +35,10 @@ if ($date_of_inspection) {
                 <button class="btn btn-danger waves-effect waves-light mb-2" wire:click="OpenAddCountryModal()">
                     {{ $button_title }} </button>
                 {{-- <button type="button" class="btn btn-success waves-effect waves-light mb-2 mr-1">Export PDF</button> --}}
-                {!! count($form18Data) > 0 ? ( $print_disable == false ? '<button type="button" class="btn btn-success waves-effect waves-light mb-2 mr-1" wire:click="ganaratePDF()">Export PDF</button>' : '<button type="button" class="btn btn-primary waves-effect waves-light mb-2 mr-1" >Export one Project at a time 😊</button>') : '<button type="button" class="btn btn-primary waves-effect waves-light mb-2 mr-1">← Add A Record in this Project to export pdf 😊</button>' !!}
+                {!! count($form18Data) > 0 ? ( $print_disable == false ? '<input wire:loading.attr="disabled" type="button" class="btn btn-success waves-effect waves-light mb-2 mr-1" wire:click="ganaratePDF()" value="Export PDF">' : '<button type="button" class="btn btn-primary waves-effect waves-light mb-2 mr-1" >Export one Project at a time 😊</button>') : '<button type="button" class="btn btn-primary waves-effect waves-light mb-2 mr-1">← Add A Record in this Project to export pdf 😊</button>' !!}
+                {{-- show loading --}}
+                @include('template.shared.loading')
+
             </div>
         </div>
         <div class="col-md-4">

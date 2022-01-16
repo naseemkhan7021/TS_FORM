@@ -61,6 +61,17 @@ class DatabaseSeeder extends Seeder
             SubActivity01::class,
             causes01Seeder::class,
             SubCauses01Seeder::class,
+            AdministrativeCtrMitigative::class,
+            AdministrativeCtrPreventive::class,
+            ConsequenceCtr::class,
+            DurationOfExposure::class,
+            EngineeringCtr::class,
+            PotentialHazard::class,
+            PreventiveIncidentCtr::class,
+            ProbableConsequence::class,
+            RiskConsequence::class,
+            RiskProbability::class,
+            
             // form 15 data 
             Activity15Seeder::class,
             Cause15Seeder::class,
@@ -78,6 +89,7 @@ class DatabaseSeeder extends Seeder
             PrioritytimescaleSeeder::class,
             // form 35 data
             Form35CheckpointSeeder::class,
+            Form35LabelsSeeder::class,
             // form 16 data 
             Activity66Seeder::class,
             SubActivity66Seeder::class,

@@ -37,7 +37,7 @@
                     <td>{{ $row->sdepartment_name }}</td>
                     <td>{{ $row->sproject_name }}</td>
                     <td>{{ $row->description}}</td>
-                    <td>{{ $row->created_at }}</td>
+                    <td>{{ Carbon\Carbon::parse($row->created_at)->format(env('DATE_FORMAT1')) }}</td>
                     <td>
                         @if (Auth::user()->id == $row->user_created)
                             <div class="btn-group">

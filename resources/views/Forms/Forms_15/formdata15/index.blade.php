@@ -1,5 +1,6 @@
 @extends('template.vertical', ['title' => 'Forms - NEARMISS REPORTING'])
 
+
 @section('content')
 
 <div class="container-fluid pl-3 pr-3">

@@ -81,7 +81,8 @@ if ($R_risk_probability && $S_risk_consequence && $T_duration) {
                         <td>{{ $row->causes_description  }}</td>
                         <td>{{ $row->consequences_controls_description  }}</td>
                         <td style="{{$row->O_risk_acceptable_non_acceptable == 'Note Acceptable' ? 'background: red;color: white;font-weight: 900;font-size: 1.1rem;' : 'background: green;color: white;font-weight: 900;font-size: 1.1rem;' }}">{{ $row->O_risk_acceptable_non_acceptable  }}</td>
-                        <td>{{ Carbon\Carbon::parse($row->hiraCreate)->diffForHumans() }}</td>
+                        {{-- Carbon\Carbon::parse($row->hiraCreate)->diffForHumans()  --}}
+                        <td>{{ Carbon\Carbon::parse($row->hiraCreate)->format(env('DATE_FORMAT1'))}}</td>
                         <td>
                             <div class="btn-group">
                                 <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->formdata_01s_id}})">Edit</button>

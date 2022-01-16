@@ -2,6 +2,8 @@
 
 <!-- icons -->
 <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+{{-- loading --}}
+<link href="{{ asset('assets/css/loading.css') }} " rel="stylesheet" type="text/css" />
 
 
 @if (isset($mode) && $mode == 'rtl')
@@ -34,8 +36,8 @@
                     id="app-default-stylesheet" />
                 <link href="{{ asset('assets/css/bootstrap-material-dark.min.css') }} " rel="stylesheet"
                     type="text/css" id="bs-dark-stylesheet" disabled />
-                <link href="{{ asset('assets/css/app-material-dark-rtl.min.css') }} " rel="stylesheet" type="text/css"
-                    id="app-dark-stylesheet" disabled />
+                <link href="{{ asset('assets/css/app-material-dark-rtl.min.css') }} " rel="stylesheet"
+                    type="text/css" id="app-dark-stylesheet" disabled />
             @else
                 @if (isset($demo) && $demo == 'purple')
                     <link href="{{ asset('assets/css/bootstrap-purple.min.css') }}" rel="stylesheet" type="text/css"
@@ -48,8 +50,8 @@
                         type="text/css" id="app-dark-stylesheet" disabled />
                 @else
                     @if (isset($demo) && $demo == 'saas')
-                        <link href="{{ asset('assets/css/bootstrap-saas.min.css') }}" rel="stylesheet" type="text/css"
-                            id="bs-default-stylesheet" />
+                        <link href="{{ asset('assets/css/bootstrap-saas.min.css') }}" rel="stylesheet"
+                            type="text/css" id="bs-default-stylesheet" />
                         <link href="{{ asset('assets/css/app-saas-rtl.min.css') }} " rel="stylesheet" type="text/css"
                             id="app-default-stylesheet" />
                         <link href="{{ asset('assets/css/bootstrap-saas-dark.min.css') }} " rel="stylesheet"
@@ -61,8 +63,8 @@
                             id="bs-default-stylesheet" />
                         <link href="{{ asset('assets/css/app-rtl.min.css') }} " rel="stylesheet" type="text/css"
                             id="app-default-stylesheet" />
-                        <link href="{{ asset('assets/css/bootstrap-dark.min.css') }} " rel="stylesheet" type="text/css"
-                            id="bs-dark-stylesheet" disabled />
+                        <link href="{{ asset('assets/css/bootstrap-dark.min.css') }} " rel="stylesheet"
+                            type="text/css" id="bs-dark-stylesheet" disabled />
                         <link href="{{ asset('assets/css/app-dark-rtl.min.css') }} " rel="stylesheet" type="text/css"
                             id="app-dark-stylesheet" disabled />
                     @endif
@@ -114,22 +116,27 @@
                         id="app-dark-stylesheet" disabled />
                 @else
                     @if (isset($demo) && $demo == 'saas')
-                        <link href="{{ asset('assets/css/bootstrap-saas.min.css') }}" rel="stylesheet" type="text/css"
-                            id="bs-default-stylesheet" />
+                        <link href="{{ asset('assets/css/bootstrap-saas.min.css') }}" rel="stylesheet"
+                            type="text/css" id="bs-default-stylesheet" />
                         <link href="{{ asset('assets/css/app-saas.min.css') }} " rel="stylesheet" type="text/css"
                             id="app-default-stylesheet" />
                         <link href="{{ asset('assets/css/bootstrap-saas-dark.min.css') }} " rel="stylesheet"
                             type="text/css" id="bs-dark-stylesheet" disabled />
-                        <link href="{{ asset('assets/css/app-saas-dark.min.css') }} " rel="stylesheet" type="text/css"
-                            id="app-dark-stylesheet" disabled />
+                        <link href="{{ asset('assets/css/app-saas-dark.min.css') }} " rel="stylesheet"
+                            type="text/css" id="app-dark-stylesheet" disabled />
                     @else
-                        <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
-                    <link href="{{asset('assets/css/app.min.css')}} " rel="stylesheet" type="text/css" id="app-default-stylesheet" />
-                    <link href="{{asset('assets/css/bootstrap-dark.min.css')}} " rel="stylesheet" type="text/css" id="bs-dark-stylesheet" disabled />
-                    <link href="{{asset('assets/css/app-dark.min.css')}} " rel="stylesheet" type="text/css" id="app-dark-stylesheet"  disabled />
+                        <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"
+                            id="bs-default-stylesheet" />
+                        <link href="{{ asset('assets/css/app.min.css') }} " rel="stylesheet" type="text/css"
+                            id="app-default-stylesheet" />
+                        <link href="{{ asset('assets/css/bootstrap-dark.min.css') }} " rel="stylesheet" type="text/css"
+                            id="bs-dark-stylesheet" disabled />
+                        <link href="{{ asset('assets/css/app-dark.min.css') }} " rel="stylesheet" type="text/css"
+                            id="app-dark-stylesheet" disabled />
+                        
 
-                    {{-- <link rel="stylesheet" href="{{public_path('css/app.css')}}" type="text/css"> --}}
-                    {{-- {{dd(public_path('css/app.css'))}} --}}
+                        {{-- <link rel="stylesheet" href="{{public_path('css/app.css')}}" type="text/css"> --}}
+                        {{-- {{dd(public_path('css/app.css'))}} --}}
                     @endif
                 @endif
             @endif

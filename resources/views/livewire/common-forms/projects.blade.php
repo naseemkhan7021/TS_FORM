@@ -38,7 +38,7 @@
                     <td>{{ $row->sproject_name }}</td>
                     <td>{{ $row->sproject_location }}</td>
 
-                    <td>{{ $row->created_at }}</td>
+                    <td>{{ Carbon\Carbon::parse($row->created_at)->format(env('DATE_FORMAT1')) }}</td>
                     <td>
                         <div class="btn-group">
                             <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->iproject_id}})">Edit</button>

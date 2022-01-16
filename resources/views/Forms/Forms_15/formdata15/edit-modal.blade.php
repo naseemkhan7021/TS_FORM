@@ -189,8 +189,8 @@
                                                 Cause</strong></label>
 
                                         <div class="text-justify border @error('imdcause15s_ids') border-danger @enderror"">
-                                                @foreach ($imdcauseData as $index=>
-                                            $item)
+                                                     @foreach ($imdcauseData as
+                                            $index=> $item)
 
                                             <div class="form-check my-1 ml-2">
                                                 <input wire:model='imdcause15s_ids' class="form-check-input"
@@ -215,7 +215,7 @@
                                             <strong>Contributing Cause</strong></label>
 
                                         <div class="text-justify border @error('contributing_causes_ids') border-danger @enderror"">
-                                                @foreach ($contributcauseData as
+                                                     @foreach ($contributcauseData as
                                             $index=> $item)
 
                                             <div class="form-check my-1 ml-2">
@@ -288,8 +288,8 @@
                                             class="@error('imd_actions_ids') text-danger @enderror"><strong>Action</strong></label>
 
                                         <div class="text-justify border @error('imd_actions_ids') border-danger @enderror"">
-                                                @foreach ($imdactionData as $index=>
-                                            $item)
+                                                     @foreach ($imdactionData as
+                                            $index=> $item)
 
                                             <div class="form-check my-1 ml-2">
                                                 <input wire:model='imd_actions_ids' class="form-check-input"
@@ -311,7 +311,7 @@
                                             <strong>Correction</strong></label>
 
                                         <div class="text-justify border @error('imd_corrections_ids') border-danger @enderror"">
-                                                @foreach ($imdcorrectionData as
+                                                     @foreach ($imdcorrectionData as
                                             $index=> $item)
 
                                             <div class="form-check my-1 ml-2">
@@ -336,7 +336,8 @@
                         {{-- Further recommended action: start --}}
                         <div class="col-12 form-group">
                             <label for="furtheraction"><strong>Further recommended action:</strong></label>
-                            <textarea minlength="100" maxlength="600" wire:model='further_recommended_action' id="furtheraction"
+                            <textarea minlength="100" maxlength="600" wire:model='further_recommended_action'
+                                id="furtheraction"
                                 class="form-control border @error('further_recommended_action') border-danger @enderror"
                                 rows="5"></textarea>
                         </div>
@@ -377,13 +378,35 @@
                             <button wire:click='clearValuesandValidation()' type="button" class="btn btn-danger btn-sm"
                                 data-dismiss="modal">Close</button>
                             {{-- show button according to user role --}}
-                            {!! $role == 'Project Head' ? '<a class="btn btn-primary btn-sm text-white" wire:click="ganaratePDF()">Export PDF</a>' : '<button type="submit" class="btn btn-primary btn-sm">Save Changes</button>' !!}
+                            {!! $role == 'Project Head' ? '<input type="button" wire:loading.attr="disabled" class="btn btn-primary btn-sm text-white" wire:click="ganaratePDF()" value="Export PDF">' : '<button type="submit" class="btn btn-primary btn-sm">Save Changes</button>' !!}
+
                             {{-- above algo will make blow logice
                             {{-- @if ($role == 'Project Head')
                                 <a href="{{route('pdf')}}" class="btn btn-primary btn-sm text-white" wire:click="ganaratePDF()">Export PDF</a>
                             @else
                                 <button type="submit" class="btn btn-primary btn-sm">Save Changes</button>
                             @endif --}}
+                            {{-- show loading --}}
+                            {{-- <div wire:loading.delay.longest>
+                                <div class="loadingio-spinner-spinner-4t0yxun4snh">
+                                    <div class="ldio-lhhk4663u7e">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                </div>
+                            </div> --}}
+                            {{-- show loading --}}
+                            @include('template.shared.loading')
 
                         </div>
                     </div>

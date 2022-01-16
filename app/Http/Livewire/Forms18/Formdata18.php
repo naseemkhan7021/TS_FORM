@@ -259,7 +259,7 @@ class Formdata18 extends Component
             'form18Data'=>$form18Data,
         ];
         $pdf = PDF::loadView('exports.Forms.form18', $data)->setPaper('A4', 'landscape')->output(); //
-        return response()->streamDownload(fn () => print($pdf),'form18.pdf');
+        return response()->streamDownload(fn () => print($pdf),'form18_'.time().'.pdf');
 
     }
 

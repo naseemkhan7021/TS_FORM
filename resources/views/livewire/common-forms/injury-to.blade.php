@@ -36,7 +36,7 @@
                     <td>{{ $row->potential_injurytos_abbr }}</td>
 
 
-                    <td>{{ $row->created_at }}</td>
+                    <td>{{ Carbon\Carbon::parse($row->created_at)->format(env('DATE_FORMAT1')) }}</td>
                     <td>
                         <div class="btn-group">
                             <button class="btn btn-success btn-sm" wire:click="OpenEditCountryModal({{$row->potential_injurytos_id}})">Edit</button>
