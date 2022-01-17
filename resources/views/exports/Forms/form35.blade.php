@@ -321,7 +321,7 @@
                                                                                     <td>
                                                                                         <div class="">
                                                                                             {{-- this is string truncat --}}
-                                                                                            {!! Str::limit($formData->form35_checkpoint_remarks[$index], 8, $end='...') ?? '' !!}
+                                                                                            {!! isset($formData->form35_checkpoint_remarks[$index]) ? Str::limit($formData->form35_checkpoint_remarks[$index], 8, $end='...') :  '' !!}
                                                                                         </div>
                                                                                     </td>
                                                                                 </tr>
@@ -358,7 +358,7 @@
                                                                                         <td>
                                                                                             <div class="">
                                                                                                 {{-- this is string truncat --}}
-                                                                                                {!! Str::limit($formData->form35_checkpoint_remarks[$index], 8, $end='...') ?? '' !!}
+                                                                                                {!! isset($formData->form35_checkpoint_remarks[$index]) ? Str::limit($formData->form35_checkpoint_remarks[$index], 8, $end='...') : '' !!}
                                                                                             </div>
                                                                                         </td>
                                                                                     </tr>
