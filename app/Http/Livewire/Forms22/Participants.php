@@ -79,7 +79,7 @@ class Participants extends Component
             'formdata_22s_id_fk' => 'required',
             'desgination' => 'required',
             'id_no' => 'required',
-            'totalNumberOfParticipant' => 'required',
+            'totalNumberOfParticipant' => 'required|numeric|min:2',
         ]);
 
         // dd($this->participant_name,$this->age,$this->formdata_22s_id_fk,$this->desgination,$this->id_no);
@@ -136,7 +136,7 @@ class Participants extends Component
             'formdata_22s_id_fk' => 'required',
             'desgination' => 'required',
             'id_no' => 'required',
-            'totalNumberOfParticipant' => 'required',
+            'totalNumberOfParticipant' => 'required|numeric|min:2',
         ]);
 
         $update = formdata_22_participant::find($cid)->update([

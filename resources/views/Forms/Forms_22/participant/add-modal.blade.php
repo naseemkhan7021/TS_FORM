@@ -45,10 +45,12 @@
                             <input style="width: unset" type="number" {{ $formdata_22s_id_fk >= 1 ? '' : 'disabled' }}
                                 class="form-control d-inline  @error('totalNumberOfParticipant') border-danger @enderror"
                                 wire:model="totalNumberOfParticipant">
-                            <input style="height: calc(1.5em + 0.9rem + 4px);" type="button"
-                                wire:click='addParticipant()' {{ $formdata_22s_id_fk >= 1 ? '' : 'disabled' }}
+                            <input wire:loading.attr="disabled" style="height: calc(1.5em + 0.9rem + 4px);"
+                                type="button" wire:click='addParticipant()'
+                                {{ $formdata_22s_id_fk >= 1 ? '' : 'disabled' }}
                                 class="btn btn-outline-success btn-sm rounded" value="+">
-
+                            {{-- show loading --}}
+                            @include('template.shared.loading')
                         </div>
                     </div>
 
@@ -81,18 +83,19 @@
                         </div>
                     </div>
 
-                    @if ($totalNumberOfParticipant != 0 || null)
-                        @forelse (range(0,$totalNumberOfParticipant) as $item => $index)
-                            {{-- {{$item}} --}}
+                    @if ($totalNumberOfParticipant >= 1 || null)
+                        @forelse (range(1,$totalNumberOfParticipant) as $index => $item)
+                            {{-- {{$index}} --}}
                             <div class="col-md-3">
-                                <input required type="number" class="form-control @error('id_no') border-danger @enderror"
+                                <input wire:key='id_no_{{ $index }}' required type="number"
+                                    class="form-control @error('id_no') border-danger @enderror"
                                     wire:model="id_no.{{ $index }}"
                                     placeholder="Participant Id {{ $item }}">
                             </div>
 
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <input required type="text"
+                                    <input wire:key='participant_name_{{ $index }}' required type="text"
                                         class="form-control  @error('participant_name') border-danger @enderror"
                                         placeholder="Participant Name {{ $item }}"
                                         wire:model="participant_name.{{ $index }}">
@@ -101,7 +104,7 @@
 
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <input id="age" type="number"
+                                    <input wire:key='age_{{ $index }}' type="number"
                                         class="form-control  @error('age') border-danger @enderror"
                                         placeholder="age {{ $item }}" wire:model="age.{{ $index }}">
                                 </div>
@@ -109,7 +112,7 @@
 
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <input required id="desgination" type="text"
+                                    <input wire:key='desgination_{{ $index }}' required type="text"
                                         class="form-control  @error('desgination') border-danger @enderror"
                                         placeholder="Desgination {{ $item }}"
                                         wire:model="desgination.{{ $index }}">
