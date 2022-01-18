@@ -50,7 +50,8 @@ class Formdata66 extends Component
 
     public function render()
     {
-        $formdata66 = Forms66data::select('formdata66s.created_at as form66create', 'formdata66s.formdata66_id', 'formdata66s.F_condition_of_impact', 'formdata66s.G_existing_controls_as_per_hierarchy', 'formdata66s.H_organization_requirement_id_fk', 'formdata66s.O_significance_score_level', 'projects.sproject_name', 'activity66s.activity_description', 'sub_activity66s.sub_activity_description', 'environmental_impacts.environmental_impact_description', 'organization_requirements.organization_requirement_description')
+        $formdata66 = Forms66data::select('formdata66s.created_at as form66create', 'formdata66s.*', 'projects.sproject_name', 'activity66s.activity_description', 'sub_activity66s.sub_activity_description', 'environmental_impacts.environmental_impact_description', 'organization_requirements.organization_requirement_description')
+        // select('formdata66s.created_at as form66create', 'formdata66s.formdata66_id', 'formdata66s.F_condition_of_impact', 'formdata66s.G_existing_controls_as_per_hierarchy', 'formdata66s.H_organization_requirement_id_fk', 'formdata66s.O_significance_score_level', 'projects.sproject_name', 'activity66s.activity_description', 'sub_activity66s.sub_activity_description', 'environmental_impacts.environmental_impact_description', 'organization_requirements.organization_requirement_description')
             // ->join('companies', 'companies.ibc_id', '=', 'formdata66s.ibc_id_fk')
             // idepartment_id_fk
             // ->join('departments', 'departments.idepartment_id', '=', 'formdata66s.idepartment_id_fk')

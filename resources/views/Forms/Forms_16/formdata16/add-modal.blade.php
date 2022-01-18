@@ -7,8 +7,9 @@
                     # object oriented
                 @endphp --}}
                 <h5 class="modal-title" id="exampleModalLabel">Add New INCIDENT REPORT FORM
-</h5>
-                <button wire:click='clearValidationf()' type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </h5>
+                <button wire:click='clearValidationf()' type="button" class="close" data-dismiss="modal"
+                    aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -128,8 +129,9 @@
                         <div class="form-group">
                             <label for="" class="@error('dob_dt') text-danger @enderror">DOB @error('dob_dt') <i
                                     class="text-danger fas fa-times-circle"></i>@enderror</label>
-                            <input type="date" class="form-control" max="{{now()->subYear(18)->format(env('DATE_FORMAT_YMD'))}}" wire:model="dob_dt">
-                            {{-- ******* now()->subYear(18)->format(env('DATE_FORMAT_YMD')) --> this for req 18 age  *****--}}
+                            <input type="date" class="form-control"
+                                max="{{ now()->subYear(18)->format(env('DATE_FORMAT_YMD')) }}" wire:model="dob_dt">
+                            {{-- ******* now()->subYear(18)->format(env('DATE_FORMAT_YMD')) --> this for req 18 age  ***** --}}
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-6">
@@ -692,8 +694,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
 
-                                    <div class="row">
-                                            <div class="col-md-12">    
+                                        <div class="row">
+                                            <div class="col-md-12">
                                                 <label for="" title="image preview">imgages preview</label>
                                             </div>
                                             @foreach ($photos as $key => $photo)
@@ -709,9 +711,11 @@
                                                 <div class="col-md-3 mb-4">
                                                     <div class="form-group">
                                                         <label for="img title"> Image Title</label>
-                                                        <input type="text" class="form-control" placeholder="Img title" wire:model='imgTitles.{{$key}}'>
+                                                        <input type="text" class="form-control" placeholder="Img title"
+                                                            wire:model='imgTitles.{{ $key }}'>
                                                     </div>
-                                                    <input type="button" wire:click='removeImg({{ $key }})'  class="btn btn-outline-danger btn-sm rounded w-100" value="remove">
+                                                    <input type="button" wire:click='removeImg({{ $key }})'
+                                                        class="btn btn-outline-danger btn-sm rounded w-100" value="remove">
                                                     {{-- <button wire:click='removeImg({{ $key }})' type=""
                                                         class="btn btn-outline-danger btn-sm rounded w-100">remove</button> --}}
                                                 </div>
@@ -720,6 +724,43 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                
+                                {{-- <div class="col-md-12">
+                                    <div class="form-group">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label for="" title="image preview">imgages preview</label>
+                                            </div>
+                                            @foreach ($photos as $key => $photo)
+                                                <div class="col-md-3 img mb-4" style="height: 12rem">
+                                                    
+                                                    <a href="{{ $photo->temporaryUrl() }}" class="h-100 d-block">
+                                                        <img src="{{ $photo->temporaryUrl() }}"
+                                                            alt="{{ $photo->temporaryUrl() }}" class="w-100 h-100"
+                                                            style="object-fit: contain">
+                                                    </a>
+                                                </div>
+
+                                                <div class="col-md-3 mb-4">
+                                                    <div class="form-group">
+                                                        <label for="img title"> Image Title</label>
+                                                        <input type="text" class="form-control" placeholder="Img title"
+                                                            wire:model='imgTitles.{{ $key }}'>
+                                                    </div>
+                                                    <input type="button" wire:click='removeImg({{ $key }})'
+                                                        class="btn btn-outline-danger btn-sm rounded w-100" value="remove">
+                                                    
+                                                        
+                                                </div>
+
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div> --}}
+
+
                             </div>
                         </div>
                         {{-- img upload end --}}
@@ -881,14 +922,14 @@
 
                         {{-- </div> --}}
                         {{-- only for head Employee end --}}
-                        <br>
-                        <br>
-                        <br>
+                        <hr class="text-secondary w-100">
+
                         <div class="col-12">
                             <div class="form-group">
-                                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal" wire:click='clearValidationf()'>Close</button>
+                                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"
+                                    wire:click='clearValidationf()'>Close</button>
                                 <button type="submit" class="btn btn-primary btn-sm">Save</button>
-                                
+
                             </div>
                         </div>
                     </form>

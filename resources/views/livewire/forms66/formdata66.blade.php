@@ -93,14 +93,14 @@ if ($M_probability_id_fk && $L_consequence) {
                             @if (Auth::user()->id == $row->user_created)
                             <div class="btn-group">
                                 <button class="btn btn-success btn-sm"
-                                    wire:click="OpenEditCountryModal({{ $row->ibc_id }})">Edit</button>
+                                    wire:click="OpenEditCountryModal({{ $row->formdata66_id }})">Edit</button>
                                 <button class="btn btn-danger btn-sm"
-                                    wire:click="deleteConfirm({{ $row->ibc_id }})">Delete</button>
+                                    wire:click="deleteConfirm({{ $row->formdata66_id }})">Delete</button>
 
                             </div>
                             @else
                             <button class="btn btn-success btn-sm"
-                                    wire:click="OpenEditCountryModal({{ $row->ibc_id }})">View</button>
+                                    wire:click="OpenEditCountryModal({{ $row->formdata66_id }})">View</button>
                         @endif
                         </td>
 

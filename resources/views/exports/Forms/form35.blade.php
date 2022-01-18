@@ -254,8 +254,8 @@
                                                 </td>
                                                 <td colspan="3">
                                                     <div class="">Time of working: <b
-                                                            class="border-dot">{{ $formData->working_t_F }}</b> To
-                                                        <b class="border-dot">{{ $formData->working_t_T }}</b>
+                                                            class="border-dot">{{ Carbon\Carbon::parse($formData->working_t_F)->format(env('HIA')) }}</b> To
+                                                        <b class="border-dot">{{ Carbon\Carbon::parse($formData->working_t_T)->format(env('HIA')) }}</b>
                                                     </div>
                                                 </td>
                                             </tr>

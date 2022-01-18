@@ -31,6 +31,9 @@
             /* justify-self: center; */
         }
 
+        div{
+            width: 100% !important;
+        }
         #parant {
             border: 1px solid black !important;
             margin: auto;
@@ -115,7 +118,7 @@
 
 <body>
     <table id="parant">
-        {{-- {{ dd($formData,$defaultData) }} --}}
+        {{-- {{ dd($defaultData) }} --}}
         {{-- {{ dd($NatureofpotentialData,isset(explode(',',$formDat) ? 'ok' : 'nothere') }} --}}
         {{-- {{ dd(in_array('1',explode(',',$formData->nature_of_potential_injuries_ids))) }} --}}
         <tbody>
@@ -150,7 +153,7 @@
                                                     <div class=""> Location: <b class="border-dot">{{$formData->sproject_location}}</b></div>
                                                 </td>
                                                 <td colspan="2" align="right">
-                                                    <div class="">Date/time: <b class="border-dot">{{$formData->doincident_dt}}</b></div>
+                                                    <div class="">Date/time: <b class="border-dot">{{ Carbon\Carbon::parse($formData->doincident_dt)->format(env('DATE_FORMAT2'))}}</b></div>
                                                 </td>
                                             </tr> 
 
@@ -167,7 +170,7 @@
                                                      <div class=""><b>{{$formData->potential_injurytos_other}}</b></div>
                                                 </td> --}}
                                                 <td align="right">
-                                                    <div style="margin: 0;" class="">Company Name:<b class="border-dot">{{$formData->sbc_company_name}}</b></div>
+                                                    <div style="margin: 0; width: 100% !important;" class="">Company Name:<b class="border-dot">{{$formData->sbc_company_name}}</b></div>
                                                 </td>
                                             </tr>
 

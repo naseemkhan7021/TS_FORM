@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Forms22;
 
+use App\Models\common_forms\Defaultdata;
 use App\Models\common_forms\Dept_Default_Docs;
 use App\Models\common_forms\Projects;
 use App\Models\forms_00\formdata_00;
@@ -239,12 +240,13 @@ class Headers extends Component
     public function ganaratePDF()
     {
         # code...
-        // $defaultData = Defaultdata::find(1)->join('companies', 'companies.ibc_id', '=', 'defaultdatas.ibc_id_fk')->join('projects', 'projects.iproject_id', '=', 'defaultdatas.iproject_id_fk')->join('departments', 'departments.idepartment_id', '=', 'defaultdatas.idepartment_id_fk')->get();
+        $defaultData = Defaultdata::find(1)->join('companies', 'companies.ibc_id', '=', 'defaultdatas.ibc_id_fk')->join('projects', 'projects.iproject_id', '=', 'defaultdatas.iproject_id_fk')->join('departments', 'departments.idepartment_id', '=', 'defaultdatas.idepartment_id_fk')->get();
         // $formHeader = Dept_Default_Docs::find($this->ddd_id_fk);
 
         // dd($formHeader);
         $data = [
             'formHeader'=>Dept_Default_Docs::find($this->ddd_id_fk),
+            'defaultData'=>$defaultData[0],
             'headerData'=>formdata_22_header::find($this->cid)->join('projects', 'projects.iproject_id', '=', 'formdata_22_headers.iproject_id_fk')->get()[0],
             'partisipanceData' => formdata_22_participant::where('formdata_22s_id_fk', '=', $this->cid)->get()[0],
             'topicData'=>topic_discussed::get(),

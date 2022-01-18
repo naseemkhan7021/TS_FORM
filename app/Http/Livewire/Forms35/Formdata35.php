@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Forms35;
 
+use App\Models\common_forms\Defaultdata;
 use App\Models\common_forms\Dept_Default_Docs;
 use App\Models\common_forms\Projects;
 use App\Models\forms_00\formdata_00;
@@ -369,8 +370,10 @@ class Formdata35 extends Component
     {
         // dd($id);
         $formData = formdata_35::find($id);
+        $defaultData = Defaultdata::find(1)->join('companies', 'companies.ibc_id', '=', 'defaultdatas.ibc_id_fk')->join('projects', 'projects.iproject_id', '=', 'defaultdatas.iproject_id_fk')->join('departments', 'departments.idepartment_id', '=', 'defaultdatas.idepartment_id_fk')->get();
         $data = [
             'formHeader' => Dept_Default_Docs::find($this->ddd_id_fk),
+            'defaultData'=>$defaultData[0],
             'formData' => $formData,
             'activity'=>activity::select('activity_description')->whereIn('activity_id',$formData->exact_location_nature_of_work_ids)->get(),
             'checkpointData' => form35_checkpoint::where(['form35_checkpoints.bactive' => '1'])->get(),

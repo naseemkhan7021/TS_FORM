@@ -355,6 +355,7 @@ class Formdata15 extends Component
         // ];
         $pdf = PDF::loadView('exports.Forms.form15', $data)->setPaper('A4', 'portrait')->output(); //
         return response()->streamDownload(fn () => print($pdf), 'form15_'.time().'.pdf');
+        
         // return response()->stream(fn () => $pdf,200, $header); 
         // return $pdf->stream('test.pdf',["Attachment" => false]);
         // return response()->view('exports.Forms.form15',$data,200,$header);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Forms18;
 
+use App\Models\common_forms\Defaultdata;
 use App\Models\common_forms\Dept_Default_Docs;
 use App\Models\common_forms\Projects;
 use App\Models\forms_00\formdata_00;
@@ -252,10 +253,12 @@ class Formdata18 extends Component
             $form18Data = Forms_18Formdata18::join('projects', 'projects.iproject_id', '=', 'formdata_18s.iproject_id_fk')
             ->where(['formdata_18s.bactive' => '1', 'formdata_18s.user_created' => $this->userID,'formdata_18s.iproject_id_fk'=>session('globleSelectedProjectID')])->get();
         }
-        // dd($form18Data);
-
+        $defaultData = Defaultdata::find(1)->join('companies', 'companies.ibc_id', '=', 'defaultdatas.ibc_id_fk')->join('projects', 'projects.iproject_id', '=', 'defaultdatas.iproject_id_fk')->join('departments', 'departments.idepartment_id', '=', 'defaultdatas.idepartment_id_fk')->get();
+        
+        // dd($defaultData);
         $data = [
             'formHeader'=>Dept_Default_Docs::find($this->ddd_id_fk),
+            'defaultData'=>$defaultData[0],
             'form18Data'=>$form18Data,
         ];
         $pdf = PDF::loadView('exports.Forms.form18', $data)->setPaper('A4', 'landscape')->output(); //

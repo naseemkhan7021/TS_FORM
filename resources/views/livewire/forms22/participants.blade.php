@@ -44,8 +44,8 @@ if ($formdata_22s_id_fk) {
                     <td>{{ ++$loop->index }}</td>
                     <td>{{ $row->sproject_name  }}</td>
                     <td>{{ count(explode(',',$row->participant_name)) }}</td>
-                    <td>{{ $row->age  }}</td>
-                    <td>{{ $row->desgination  }}</td>
+                    <td>{{ Str::limit($row->age,50 , '...')  }}</td>
+                    <td>{{ Str::limit($row->desgination,50 , '...')  }}</td>
                     <td> {{Carbon\Carbon::parse($row->ehsind_dt)->diffForHumans()}}</td>
                     <td>
                         <div class="btn-group">
