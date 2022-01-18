@@ -192,7 +192,7 @@
                     </div>
 
                     {{-- I_consequences_controls_id_fk --}}
-                    <div class="col-md-2 col-sm-6">
+                    <div class="col-md-3 col-sm-6">
                         <div class="form-group">
                             <label for=""
                                 class="form-label @error('I_consequences_controls_id_fk') text-danger @enderror">I_Consequences</label>
@@ -272,7 +272,7 @@
 
 
                     {{-- M_any_legal_obligation_to_the_risk_assessment --}}
-                    <div class="col-md-2 col-sm-6">
+                    <div class="col-md-3 col-sm-6">
                         <div class="form-group">
                             <label title="Any Legal Obligation To The Risk Assessment " for=""
                                 class="form-label @error('M_any_legal_obligation_to_the_risk_assessment') text-danger @enderror">M_Any

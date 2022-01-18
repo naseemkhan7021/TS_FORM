@@ -87,7 +87,7 @@ class CreateFormdata01sTable extends Migration
                 // Risk Quantum
                 $table->integer('N_risk_quantum');
                 // Risk Acceptable / Non Acceptable
-                $table->enum('O_risk_acceptable_non_acceptable', array('Acceptable', 'non_Acceptable'));
+                $table->enum('O_risk_acceptable_non_acceptable', array('Acceptable', 'non_Acceptable','Unset'))->default('Unset');
                 // For Non acceptable risk, No. of person believed to be affected
                 $table->integer('P_no_of_person_believed_to_be_affected');
                 // Actions as per hierarchy of control (Refer Guideword)
@@ -101,7 +101,7 @@ class CreateFormdata01sTable extends Migration
                 // Risk Quantum
                 $table->integer('U_risk_quantum');
                 // Risk Acceptable / Non Acceptable
-                $table->enum('V_risk_acceptable_non_acceptable', array('Acceptable', 'Non_Acceptable'))->default('Acceptable');
+                $table->enum('V_risk_acceptable_non_acceptable', array('Acceptable', 'Non_Acceptable','Unset'))->default('Unset');
 
 
 

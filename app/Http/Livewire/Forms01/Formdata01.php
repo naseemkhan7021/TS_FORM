@@ -153,8 +153,8 @@ class Formdata01 extends Component
         // $this->iproject_id_fk = session('globleSelectedProjectID') && session('globleSelectedProjectID') != '*' ? session('globleSelectedProjectID') : 0;
         $this->D_routine = 'R';
         $this->M_any_legal_obligation_to_the_risk_assessment = 'NO';
-        $this->O_risk_acceptable_non_acceptable = 'unset';
-        $this->V_risk_acceptable_non_acceptable = 'unset';
+        $this->O_risk_acceptable_non_acceptable = 'Unset';
+        $this->V_risk_acceptable_non_acceptable = 'Unset';
         $this->U_risk_quantum = 0;
         $this->N_risk_quantum = 0;
         $this->sproject_location = '';
