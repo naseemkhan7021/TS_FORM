@@ -13,13 +13,14 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use PDF;
+
 class Headers extends Component
 {
     protected $listeners = ['delete', 'selectedProjectID'];
     public $searchQuery, $role;
     public $contractor_name, $faculty_name, $iproject_id_fk, $ibc_id_fk, $idepartment_id_fk, $venue, $duration, $topic_discusseds_ids, $faculty_sign, $site_safety_in_charge_sign, $site_safety_in_charge_name, $sproject_location, $ehsind_dt, $userID;
     public   $partisipanceId, $id_no = [];
-    public $cid, $ddd_id_fk,$old_iproject_id_fk;
+    public $cid, $ddd_id_fk, $old_iproject_id_fk;
 
     public function selectedProjectID($id)
     {
@@ -53,7 +54,7 @@ class Headers extends Component
                     ->orWhere('faculty_name', 'like', '%' . $this->searchQuery . '%');
             })->get();
 
-        $projectData = Projects::where(['projects.bactive'=> '1','projects.user_created'=>$this->userID])->get();
+        $projectData = Projects::where(['projects.bactive' => '1', 'projects.user_created' => $this->userID])->get();
         $topicData = topic_discussed::all();
         $partisipanceData = formdata_22_participant::where('formdata_22s_id_fk', '=', $this->cid)->get();
         // dd($partisipanceData);
@@ -227,6 +228,7 @@ class Headers extends Component
                     'user_created' => $this->userID,
                     'iproject_id_fk' => $this->iproject_id_fk,
                     'idepartment_id_fk' => $this->idepartment_id_fk,
+                    
                     'ibc_id_fk' => $this->ibc_id_fk,
                     'ddd_id_fk' => $this->ddd_id_fk
                 ])->increment('counter', 1);
@@ -240,20 +242,19 @@ class Headers extends Component
     public function ganaratePDF()
     {
         # code...
+        // dd(Defaultdata::find(1));
         $defaultData = Defaultdata::find(1)->join('companies', 'companies.ibc_id', '=', 'defaultdatas.ibc_id_fk')->join('projects', 'projects.iproject_id', '=', 'defaultdatas.iproject_id_fk')->join('departments', 'departments.idepartment_id', '=', 'defaultdatas.idepartment_id_fk')->get();
         // $formHeader = Dept_Default_Docs::find($this->ddd_id_fk);
-
         // dd($formHeader);
         $data = [
-            'formHeader'=>Dept_Default_Docs::find($this->ddd_id_fk),
-            'defaultData'=>$defaultData[0],
-            'headerData'=>formdata_22_header::find($this->cid)->join('projects', 'projects.iproject_id', '=', 'formdata_22_headers.iproject_id_fk')->get()[0],
+            'formHeader' => Dept_Default_Docs::find($this->ddd_id_fk),
+            'defaultData' => $defaultData[0],
+            'headerData' => formdata_22_header::find($this->cid)->join('projects', 'projects.iproject_id', '=', 'formdata_22_headers.iproject_id_fk')->get()[0],
             'partisipanceData' => formdata_22_participant::where('formdata_22s_id_fk', '=', $this->cid)->get()[0],
-            'topicData'=>topic_discussed::get(),
+            'topicData' => topic_discussed::get(),
         ];
         $pdf = PDF::loadView('exports.Forms.form22', $data)->setPaper('A4', 'portrait')->output(); //
-        return response()->streamDownload(fn () => print($pdf),'form22_'.time().'.pdf');
-
+        return response()->streamDownload(fn () => print($pdf), 'form22_' . time() . '.pdf');
     }
 
 
